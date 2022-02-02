@@ -6,11 +6,9 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/da_utils"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/mucus"/>
+	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-16">
 		<attributes>
-			<attribute name="module" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
@@ -20,5 +18,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="D:/Documents/DougzJavazOnGitHub/mucus_experiments/src/main/resources/da_utils-0.1.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/mucus"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

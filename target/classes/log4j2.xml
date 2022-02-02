@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <Appenders>
+  
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </Console>  
+    
+    <RollingFile name="ErrorLog" fileName="logs/error.log" filePattern="logs/loggerlog-%d{yyyyMMdd}.error.%i.log">
+    	<PatternLayout>
+    		<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+    	</PatternLayout>
+    	<Policies>
+    		<TimeBasedTriggeringPolicy />
+    		<SizeBasedTriggeringPolicy size="1 KB"/>
+    	</Policies>
+    	<Filters>
+    		<ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY" />
+    	</Filters>
+    
+    </RollingFile>
+
+
+    <RollingFile name="StatusLog" fileName="logs/status.log" filePattern="logs/loggerlog-%d{yyyyMMdd}.status.%i.log">
+    	<PatternLayout>
+    		<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+    	</PatternLayout>
+    	<Policies>
+    		<TimeBasedTriggeringPolicy />
+    		<SizeBasedTriggeringPolicy size="1 KB"/>
+    	</Policies>
+    	<Filters>
+    		<ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY" />
+    	</Filters>
+    
+    </RollingFile>
+    
+      
+  </Appenders>
+  
+  <Loggers>
+  
+ <!--  <Logger name="com.dougron.lorez2021" level="debug" additivity="false">--> 	
+ <!--   		<AppenderRef ref="Console"/>--> 	
+ <!--   	</Logger>--> 	
+  	
+    <Root level="debug" >
+      	<AppenderRef ref="Console"/>
+      	<AppenderRef ref="ErrorLog"/>
+      	<AppenderRef ref="StatusLog"/>
+    </Root>    
+  </Loggers>
+</Configuration>

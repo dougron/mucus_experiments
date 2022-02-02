@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -16,6 +18,8 @@ import main.java.com.dougron.mucus.algorithms.random_melody_generator.Parameter;
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.RMG_002;
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.RMRandomNumberContainer;
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.RandomMelodyGenerator;
+import main.java.com.dougron.mucus.mu_framework.Mu;
+import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTag;
 import main.java.com.dougron.mucus.mucus_output_manager.MucusOutputManager;
 import main.java.da_utils.render_name.RenderName;
 
@@ -40,7 +44,7 @@ public class MucusKernel
 	double[] safeRiskyOptions = new double[] {1.0};
 	double[] pleaseProvokeOptions = new double[] {0.0};
 	
-	
+	public static final Logger logger = LogManager.getLogger(MucusKernel.class);
 	
 	
 	
@@ -286,6 +290,30 @@ public class MucusKernel
 		}
 		sb.append(x);
 		return sb.toString();
+	}
+
+
+
+	public MucusInteractionData addTestControllerToMelody(MucusInteractionData mid, String timeStamp) {
+		Mu melody = mid.getMu().getMu("melody");
+		if (melody == null)
+		{
+			logger.info("Mu named 'melody' not found");
+		}
+		else
+		{
+			Random rnd = new Random();
+			double lengthInQuarters = melody.getLengthInQuarters();
+			for (double pos = 0.0; pos < lengthInQuarters; pos++)
+			{
+				double value = rnd.nextDouble();
+				Mu ccMu = new Mu("cc");
+				ccMu.setControllerValue(value);
+				ccMu.addTag(MuTag.CONTROLLER_LP);
+				melody.addMu(ccMu, pos);
+			}
+		}
+		return mid;
 	}
 
 

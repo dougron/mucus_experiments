@@ -23,6 +23,7 @@ import main.java.com.dougron.mucus.algorithms.random_melody_generator.RandomMelo
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.RandomMelodyParameterObject;
 import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.data_types.MuAnnotation;
+import main.java.com.dougron.mucus.mu_framework.mu_controller.MuController;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTag;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagBundle;
 import main.java.com.dougron.mucus.mu_framework.mu_xml_utility.MuXMLUtility;
@@ -483,6 +484,7 @@ public class Mu033_InteractionVersionTwo
 				aMuContainer.getMu(), 
 				fileName + "_" + aDateTimeStamp,
 				partTrackAndClipIndexMap,
+				new ArrayList<MuController>(),	// placeholder for the controller list
 				injector
 				);
 		System.out.println(x);

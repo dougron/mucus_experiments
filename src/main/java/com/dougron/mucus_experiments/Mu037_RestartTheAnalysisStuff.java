@@ -11,6 +11,7 @@ import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.data_types.MuAnnotation;
 import main.java.com.dougron.mucus.mu_framework.data_types.MuNote;
 import main.java.com.dougron.mucus.mu_framework.data_types.RelativeRhythmicPosition;
+import main.java.com.dougron.mucus.mu_framework.mu_controller.MuController;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTag;
 import main.java.com.dougron.mucus.mucus_output_manager.continuous_integrator.ContinuousIntegrator;
 import main.java.com.dougron.mucus.mucus_output_manager.mucus_lom_injector.MuucusLOMInjector;
@@ -71,6 +72,7 @@ public class Mu037_RestartTheAnalysisStuff
 					originalMu, 
 					fileName + "_" + corpusInfo.str + "_" + RenderName.dateAndTime(),
 					partTrackAndClipIndexMap,
+					new ArrayList<MuController>(),	// placeholder for the controller list
 					injector
 					);
 			System.out.println(corpusInfo.str + " " + x);

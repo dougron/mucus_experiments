@@ -21,6 +21,7 @@ import main.java.com.dougron.mucus.algorithms.random_melody_generator.RandomMelo
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.parameter_specific_feedback.ParameterSpecificFeedback;
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.parameter_specific_feedback.feedback_objects.FeedbackObject;
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.random_number_containers.RNDValueObject;
+import main.java.com.dougron.mucus.mu_framework.mu_controller.MuController;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTag;
 import main.java.com.dougron.mucus.mucus_output_manager.continuous_integrator.ContinuousIntegrator;
 import main.java.com.dougron.mucus.mucus_output_manager.mucus_lom_injector.MuucusLOMInjector;
@@ -526,6 +527,7 @@ public class Mu034_GenericInteractionImplementation
 				aMid.getMu(), 
 				fileName + "_" + aDateTimeStamp,
 				partTrackAndClipIndexMap,
+				new ArrayList<MuController>(),	// placeholder for the controller list
 				injector
 				);
 		return x;

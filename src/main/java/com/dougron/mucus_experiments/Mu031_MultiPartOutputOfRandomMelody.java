@@ -1,5 +1,6 @@
 package main.java.com.dougron.mucus_experiments;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
@@ -13,6 +14,7 @@ import main.java.com.dougron.mucus.algorithms.random_melody_generator.RMRandomNu
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.RandomMelodyGenerator;
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.RandomMelodyParameterObject;
 import main.java.com.dougron.mucus.mu_framework.Mu;
+import main.java.com.dougron.mucus.mu_framework.mu_controller.MuController;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTag;
 import main.java.com.dougron.mucus.mucus_output_manager.continuous_integrator.ContinuousIntegrator;
 import main.java.com.dougron.mucus.mucus_output_manager.mucus_lom_injector.MuucusLOMInjector;
@@ -73,6 +75,7 @@ public class Mu031_MultiPartOutputOfRandomMelody
 				aMu, 
 				fileName,
 				partTrackAndClipIndexMap,
+				new ArrayList<MuController>(),	// placeholder for the controller list
 				injector
 				);
 		System.out.println(x);

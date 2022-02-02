@@ -12,6 +12,7 @@ import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.data_types.MuAnnotation;
 import main.java.com.dougron.mucus.mu_framework.data_types.MuAnnotation.TextPlacement;
 import main.java.com.dougron.mucus.mu_framework.data_types.MuNote;
+import main.java.com.dougron.mucus.mu_framework.mu_controller.MuController;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTag;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagBundle;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagNamedParameter;
@@ -91,6 +92,7 @@ public class Mu025_MakeMuOfStrongNotesBasedOnPositionAndSyncopation
 					multiMu, 
 					fileName + corpusInfo.str + "_" + RenderName.dateAndTime(),
 					partTrackAndClipIndexMap,
+					new ArrayList<MuController>(),	// placeholder for the controller list
 					injector
 					);
 			System.out.println(corpusInfo.str + " " + x);
