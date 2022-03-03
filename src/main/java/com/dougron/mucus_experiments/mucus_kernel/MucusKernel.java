@@ -23,6 +23,10 @@ import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTag;
 import main.java.com.dougron.mucus.mucus_output_manager.MucusOutputManager;
 import main.java.da_utils.render_name.RenderName;
 
+
+/*
+ * Utility class for Mu interactions circa Mu038-Mu040.
+ */
 public class MucusKernel
 {
 	
@@ -242,13 +246,19 @@ public class MucusKernel
 			RMRandomNumberContainer rndContainer,
 			MucusInteractionData mid)
 	{
-		for (String key: aBotMid.getThinkingJSON().keySet())
+		if (aBotMid.getThinkingJSON() != null)
 		{
-			mid.appendJSONThinking(key, aBotMid.getThinkingJSON().get(key));
+			for (String key: aBotMid.getThinkingJSON().keySet())
+			{
+				mid.appendJSONThinking(key, aBotMid.getThinkingJSON().get(key));
+			}
 		}
-		for (String key: rndContainer.getJSONThinking().keySet())
+		if (rndContainer.getJSONThinking() != null)
 		{
-			mid.appendJSONThinking(key, rndContainer.getJSONThinking().get(key));
+			for (String key: rndContainer.getJSONThinking().keySet())
+			{
+				mid.appendJSONThinking(key, rndContainer.getJSONThinking().get(key));
+			}			
 		}
 	}
 	

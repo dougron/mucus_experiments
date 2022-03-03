@@ -13,7 +13,7 @@ import com.google.common.collect.ImmutableMap;
 
 import main.java.com.dougron.mucus.mucus_output_manager.LocalOutputManager;
 import main.java.com.dougron.mucus.mucus_output_manager.TestingOutputManager;
-import main.java.com.dougron.mucus_experiments.Mu038_MuKernelConsoleFrontEnd;
+import main.java.com.dougron.mucus_experiments.completed.Mu038_MuKernelConsoleFrontEnd;
 import main.java.com.dougron.mucus_experiments.mucus_controller.MucusControllerInterface;
 import main.java.com.dougron.mucus_experiments.mucus_controller.mucus_controller_001.MucusController_001;
 

@@ -1,0 +1,1599 @@
+2022-02-19 07:27:30,570 INFO m.j.c.d.m.g.GeneratorPipeline [main] Created: PipelinePackage(rnd=java.util.Random@1b1cfb87, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+LengthFromChildren: 0 bars
+globalPositionInQuarters=0.0
+ruler=null
+mu count=0
+muNotes:--none--
+, rndContainer={})
+2022-02-19 07:27:30,580 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomPhraseLengthInBars
+2022-02-19 07:27:30,606 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=2 rndContainer('phrase_length')=0.06433409394496736 for PipelinePackage(rnd=java.util.Random@1b1cfb87, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 2 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=2, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":0.06433409394496736})
+2022-02-19 08:13:49,437 INFO m.j.c.d.m.g.p.RandomXMLKey [main] Set mu.xmlKey=-5 rndContainer('xml_key')=0.0 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@1fcb4808, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+LengthFromChildren: 0 bars
+globalPositionInQuarters=0.0
+ruler=null
+mu count=0
+muNotes:--none--
+, rndContainer={"xml_key":0})
+2022-02-19 08:14:32,182 INFO m.j.c.d.m.g.p.RandomXMLKey [main] Set mu.xmlKey=-5 rndContainer('xml_key')=0.0 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@726e5805, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+LengthFromChildren: 0 bars
+globalPositionInQuarters=0.0
+ruler=null
+mu count=0
+muNotes:--none--
+, rndContainer={"xml_key":0})
+2022-02-19 08:14:32,254 INFO m.j.c.d.m.g.p.RandomXMLKey [main] Set mu.xmlKey=-5 rndContainer('xml_key')=0.0 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@1643d68f, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+LengthFromChildren: 0 bars
+globalPositionInQuarters=0.0
+ruler=null
+mu count=0
+muNotes:--none--
+, rndContainer={"xml_key":0})
+2022-02-19 08:26:35,583 INFO m.j.c.d.m.g.p.RandomXMLKey [main] Set mu.xmlKey=-5 rndContainer('xml_key')=0.0 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@726e5805, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+LengthFromChildren: 0 bars
+globalPositionInQuarters=0.0
+ruler=null
+mu count=0
+muNotes:--none--
+, rndContainer={"xml_key":0})
+2022-02-19 08:26:35,658 INFO m.j.c.d.m.g.p.RandomXMLKey [main] Set mu.xmlKey=1 rndContainer('xml_key')=0.5 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@186978a6, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+LengthFromChildren: 0 bars
+globalPositionInQuarters=0.0
+ruler=null
+mu count=0
+muNotes:--none--
+, rndContainer={"xml_key":0.5})
+2022-02-19 08:26:47,632 INFO m.j.c.d.m.g.p.RandomXMLKey [main] Set mu.xmlKey=-5 rndContainer('xml_key')=0.0 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@726e5805, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+LengthFromChildren: 0 bars
+globalPositionInQuarters=0.0
+ruler=null
+mu count=0
+muNotes:--none--
+, rndContainer={"xml_key":0})
+2022-02-19 08:26:47,717 INFO m.j.c.d.m.g.p.RandomXMLKey [main] Set mu.xmlKey=1 rndContainer('xml_key')=0.5 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@186978a6, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+LengthFromChildren: 0 bars
+globalPositionInQuarters=0.0
+ruler=null
+mu count=0
+muNotes:--none--
+, rndContainer={"xml_key":0.5})
+2022-02-19 16:03:16,992 INFO m.j.c.d.m.g.GeneratorPipeline [main] Created: PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+LengthFromChildren: 0 bars
+globalPositionInQuarters=0.0
+ruler=null
+mu count=0
+muNotes:--none--
+, rndContainer={})
+2022-02-19 16:03:16,996 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomPhraseLengthInBars
+2022-02-19 16:03:17,008 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=6 rndContainer('phrase_length')=0.3960741199928489 for PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 6 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=6, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":0.3960741199928489})
+2022-02-19 16:03:17,009 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomXMLKey
+2022-02-19 16:03:17,009 INFO m.j.c.d.m.g.p.RandomXMLKey [main] Set mu.xmlKey=-3 rndContainer('xml_key')=0.23526100746883571 for PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 6 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=6, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":0.3960741199928489,"xml_key":0.23526100746883571})
+2022-02-19 16:03:17,009 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomSingleTimeSignature
+2022-02-19 16:03:17,009 INFO m.j.c.d.m.g.p.RandomSingleTimeSignature [main] Set mu.TimeSignature=6/4 rndContainer('phrase_length')=0.7632753932114509 for PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 6 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=6, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:6/4_33
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:6/4_33
+TimeSignatureList:
+6/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=true
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":0.3960741199928489,"xml_key":0.23526100746883571,"time_signature":0.7632753932114509})
+2022-02-19 16:11:50,651 INFO m.j.c.d.m.g.GeneratorPipeline [main] Created: PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+LengthFromChildren: 0 bars
+globalPositionInQuarters=0.0
+ruler=null
+mu count=0
+muNotes:--none--
+, rndContainer={})
+2022-02-19 16:11:50,655 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomPhraseLengthInBars
+2022-02-19 16:11:50,666 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=5 rndContainer('phrase_length')=0.35046634233992324 for PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 5 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=5, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.35046634233992324},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 16:11:50,666 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomXMLKey
+2022-02-19 16:11:50,667 INFO m.j.c.d.m.g.p.RandomXMLKey [main] Set mu.xmlKey=-4 rndContainer('xml_key')=0.10165216539168154 for PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 5 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=5, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.35046634233992324},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}},"xml_key":0.10165216539168154})
+2022-02-19 16:11:50,667 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomSingleTimeSignature
+2022-02-19 16:11:50,668 INFO m.j.c.d.m.g.p.RandomSingleTimeSignature [main] Set mu.TimeSignature=2/4 rndContainer('phrase_length')=0.4596615379184009 for PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 5 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=5, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:2/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:2/4
+TimeSignatureList:
+2/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=true
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.35046634233992324},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}},"xml_key":0.10165216539168154,"time_signature":0.4596615379184009})
+2022-02-19 16:13:50,478 INFO m.j.c.d.m.g.GeneratorPipeline [main] Created: PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+LengthFromChildren: 0 bars
+globalPositionInQuarters=0.0
+ruler=null
+mu count=0
+muNotes:--none--
+, rndContainer={})
+2022-02-19 16:13:50,482 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomPhraseLengthInBars
+2022-02-19 16:13:50,491 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=7 rndContainer('phrase_length')=0.5217709070964317 for PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 7 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=7, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.5217709070964317},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 16:13:50,492 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomXMLKey
+2022-02-19 16:13:50,492 INFO m.j.c.d.m.g.p.RandomXMLKey [main] Set mu.xmlKey=-2 rndContainer('xml_key')=0.30203993764737813 for PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 7 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=7, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.5217709070964317},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}},"xml_key":0.30203993764737813})
+2022-02-19 16:13:50,492 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomSingleTimeSignature
+2022-02-19 16:13:50,493 INFO m.j.c.d.m.g.p.RandomSingleTimeSignature [main] Set mu.TimeSignature=13/4 rndContainer('phrase_length')=0.9781489152457281 for PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 7 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=7, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:13/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:13/4
+TimeSignatureList:
+13/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=true
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.5217709070964317},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}},"xml_key":0.30203993764737813,"time_signature":0.9781489152457281})
+2022-02-19 16:16:26,307 INFO m.j.c.d.m.g.GeneratorPipeline [main] Created: PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+LengthFromChildren: 0 bars
+globalPositionInQuarters=0.0
+ruler=null
+mu count=0
+muNotes:--none--
+, rndContainer={})
+2022-02-19 16:16:26,311 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomPhraseLengthInBars
+2022-02-19 16:16:26,320 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=3 rndContainer('phrase_length')=0.11008974258817916 for PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 3 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=3, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.11008974258817916},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 16:16:26,320 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomXMLKey
+2022-02-19 16:16:26,320 INFO m.j.c.d.m.g.p.RandomXMLKey [main] Set mu.xmlKey=-2 rndContainer('xml_key')=0.30593335852259906 for PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 3 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=3, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.11008974258817916},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}},"xml_key":0.30593335852259906})
+2022-02-19 16:16:26,321 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomSingleTimeSignature
+2022-02-19 16:16:26,397 INFO m.j.c.d.m.g.p.RandomSingleTimeSignature [main] Set mu.TimeSignature=6/4 rndContainer('phrase_length')=0.7248169101428998 for PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 3 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=3, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:6/4_33
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:6/4_33
+TimeSignatureList:
+6/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=true
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.11008974258817916},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}},"xml_key":0.30593335852259906,"time_signature":{"random_seed":{"type":"double","value":0.7248169101428998},"options":{"option_list":[{"tactusAsQuartersPositions":[0,1.5],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2],"absolutelyDoNotCrossList":[],"lengthInQuarters":2.5,"tactus":[1.5,1],"superTactusAsQuartersPositions":[0],"denominator":8,"numerator":5,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":2.5,"tactii":[1.5,1],"tactusCount":2}],"averageLength":2.5,"gcf":2.5,"splitList":[2.5]},{"superTactuses":[{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1.25,"gcf":0.5,"splitList":[1.5,2.5]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2]},{"averageLength":0.25,"length":2.5,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":2.5,"tactii":[1.5,1],"tactusCount":2}]},"name":"5/8","subTactusLength":0.5,"parameterObjectArray":["5/8"],"JSONEntry":[5,8,0.5,[1,1.5,1]]},{"tactusAsQuartersPositions":[0,1.5],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5],"absolutelyDoNotCrossList":[],"lengthInQuarters":3,"tactus":[1.5,1.5],"superTactusAsQuartersPositions":[0,1.5],"denominator":8,"numerator":6,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.5,"gcf":1.5,"splitList":[1.5,3]},{"superTactuses":[{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.5,"gcf":1.5,"splitList":[1.5,3]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.25,"gcf":0.5,"splitList":[1,2.5]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5]},{"averageLength":0.25,"length":3,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}]},"name":"6/8","subTactusLength":0.5,"parameterObjectArray":["6/8"],"JSONEntry":[6,8,0.5,[1,1.5,1,1.5]]},{"tactusAsQuartersPositions":[0,1.5,2.5],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3],"absolutelyDoNotCrossList":[1.5],"lengthInQuarters":3.5,"tactus":[1.5,1,1],"superTactusAsQuartersPositions":[0,1.5],"denominator":8,"numerator":7,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}],"averageLength":1.75,"gcf":0.5,"splitList":[1.5,3.5]},{"superTactuses":[{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1.1666666666666667,"gcf":0.5,"splitList":[1.5,2.5,3.5]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3]},{"averageLength":0.25,"length":3.5,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}]},"name":"7/8_322","subTactusLength":0.5,"parameterObjectArray":["7/8_322"],"JSONEntry":[7,8,0.5,[1,1.5,1,1,1]]},{"tactusAsQuartersPositions":[0,1,2],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3],"absolutelyDoNotCrossList":[2],"lengthInQuarters":3.5,"tactus":[1,1,1.5],"superTactusAsQuartersPositions":[0,2],"denominator":8,"numerator":7,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.75,"gcf":0.5,"splitList":[2,3.5]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.1666666666666667,"gcf":0.5,"splitList":[1,2,3.5]},{"superTactuses":[{"level":0,"lengthInQuarters":3,"tactii":[3],"tactusCount":1}],"averageLength":3,"gcf":3,"splitList":[3]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3]},{"averageLength":0.25,"length":3.5,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}]},"name":"7/8_223","subTactusLength":0.5,"parameterObjectArray":["7/8_223"],"JSONEntry":[7,8,0.5,[1,1,1,1,1.5]]},{"tactusAsQuartersPositions":[0,1.5,3],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3,3.5,4],"absolutelyDoNotCrossList":[],"lengthInQuarters":4.5,"tactus":[1.5,1.5,1.5],"superTactusAsQuartersPositions":[0,1.5,3],"denominator":8,"numerator":9,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.5,"gcf":1.5,"splitList":[1.5,3,4.5]},{"superTactuses":[{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.5,"gcf":1.5,"splitList":[1.5,3,4.5]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.3333333333333333,"gcf":0.5,"splitList":[1,2.5,4]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3,3.5,4]},{"averageLength":0.25,"length":4.5,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75,4.25]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}]},"name":"9/8_333","subTactusLength":0.5,"parameterObjectArray":["9/8_333"],"JSONEntry":[9,8,0.5,[1,1.5,1,1.5,1,1.5]]},{"tactusAsQuartersPositions":[0,1.5,3,4],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3,3.5,4,4.5],"absolutelyDoNotCrossList":[3],"lengthInQuarters":5,"tactus":[1.5,1.5,1,1],"superTactusAsQuartersPositions":[0,1.5,3,4],"denominator":8,"numerator":10,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":3,"tactii":[1.5,1.5],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}],"averageLength":2.5,"gcf":1,"splitList":[3,5]},{"superTactuses":[{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":2,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1.25,"gcf":0.5,"splitList":[1.5,3,4,5]},{"superTactuses":[{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1.25,"gcf":0.5,"splitList":[1.5,3,4,5]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.25,"gcf":0.5,"splitList":[1,2.5]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3,3.5,4,4.5]},{"averageLength":0.25,"length":5,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75,4.25,4.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":3,"tactii":[1.5,1.5],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}],"2":[{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":2,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}]},"name":"10/8_3322","subTactusLength":0.5,"parameterObjectArray":["10/8_3322"],"JSONEntry":[10,8,0.5,[1,2,1.5,2,1.5,1,2,1,2,1]]},{"tactusAsQuartersPositions":[0,1.5,3,4.5],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5],"absolutelyDoNotCrossList":[4.5,3],"lengthInQuarters":5.5,"tactus":[1.5,1.5,1.5,1],"superTactusAsQuartersPositions":[0,1.5,3,4.5],"denominator":8,"numerator":11,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":3,"tactii":[1.5,1.5],"tactusCount":2},{"level":1,"lengthInQuarters":2.5,"tactii":[1.5,1],"tactusCount":2}],"averageLength":2.75,"gcf":0.5,"splitList":[3,5.5]},{"superTactuses":[{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1.375,"gcf":0.5,"splitList":[1.5,3,4.5,5.5]},{"superTactuses":[{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1.375,"gcf":0.5,"splitList":[1.5,3,4.5,5.5]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.3333333333333333,"gcf":0.5,"splitList":[1,2.5,4]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3,3.5,4,4.5,5]},{"averageLength":0.25,"length":5.5,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75,4.25,4.75,5.25]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":3,"tactii":[1.5,1.5],"tactusCount":2},{"level":1,"lengthInQuarters":2.5,"tactii":[1.5,1],"tactusCount":2}],"2":[{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}]},"name":"11/8_3322","subTactusLength":0.5,"parameterObjectArray":["TimeSignature","11/8_3322",11,8,0.5,1,2,1.5,2,1.5,1,2,1.5,2,1],"JSONEntry":[11,8,0.5,[1,2,1.5,2,1.5,1,2,1.5,2,1]]},{"tactusAsQuartersPositions":[0,1.5,3,4.5],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5],"absolutelyDoNotCrossList":[],"lengthInQuarters":6,"tactus":[1.5,1.5,1.5,1.5],"superTactusAsQuartersPositions":[0,1.5,3,4.5],"denominator":8,"numerator":12,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":3,"tactii":[1.5,1.5],"tactusCount":2},{"level":1,"lengthInQuarters":3,"tactii":[1.5,1.5],"tactusCount":2}],"averageLength":3,"gcf":3,"splitList":[3,6]},{"superTactuses":[{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.5,"gcf":1.5,"splitList":[1.5,3,4.5,6]},{"superTactuses":[{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.5,"gcf":1.5,"splitList":[1.5,3,4.5,6]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.375,"gcf":0.5,"splitList":[1,2.5,4,5.5]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5]},{"averageLength":0.25,"length":6,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75,4.25,4.75,5.25,5.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":3,"tactii":[1.5,1.5],"tactusCount":2},{"level":1,"lengthInQuarters":3,"tactii":[1.5,1.5],"tactusCount":2}],"2":[{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}]},"name":"12/8","subTactusLength":0.5,"parameterObjectArray":["12/8"],"JSONEntry":[12,8,0.5,[1,2,1.5,2,1.5,1,2,1.5,2,1.5]]},{"tactusAsQuartersPositions":[0,1],"subTactusAsQuartersPositions":[0,0.5,1,1.5],"absolutelyDoNotCrossList":[],"lengthInQuarters":2,"tactus":[1,1],"superTactusAsQuartersPositions":[0],"denominator":4,"numerator":2,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}],"averageLength":2,"gcf":2,"splitList":[2]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1,2]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5]},{"averageLength":0.25,"length":2,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}]},"name":"2/4","subTactusLength":0.5,"parameterObjectArray":["2/4"],"JSONEntry":[2,4,0.5,[1,1,1]]},{"tactusAsQuartersPositions":[0,1,2],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5],"absolutelyDoNotCrossList":[],"lengthInQuarters":3,"tactus":[1,1,1],"superTactusAsQuartersPositions":[0],"denominator":4,"numerator":3,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3}],"averageLength":3,"gcf":3,"splitList":[3]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1,2,3]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5]},{"averageLength":0.25,"length":3,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3}]},"name":"3/4","subTactusLength":0.5,"parameterObjectArray":["3/4"],"JSONEntry":[3,4,0.5,[1,1,1,1]]},{"tactusAsQuartersPositions":[0,1,2,3],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3,3.5],"absolutelyDoNotCrossList":[],"lengthInQuarters":4,"tactus":[1,1,1,1],"superTactusAsQuartersPositions":[0,2],"denominator":4,"numerator":4,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}],"averageLength":2,"gcf":2,"splitList":[2,4]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1,2,3,4]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3,3.5]},{"averageLength":0.25,"length":4,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}]},"name":"4/4","subTactusLength":0.5,"parameterObjectArray":["4/4"],"JSONEntry":[4,4,0.5,[1,1,1,1,1,1]]},{"tactusAsQuartersPositions":[0,1,2,3],"subTactusAsQuartersPositions":[0,1,2,3],"absolutelyDoNotCrossList":[],"lengthInQuarters":4,"tactus":[1,1,1,1],"superTactusAsQuartersPositions":[0,2],"denominator":2,"numerator":2,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}],"averageLength":2,"gcf":2,"splitList":[2,4]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1,2,3,4]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1,2,3]},{"averageLength":0.5,"length":4,"increment":0.5,"gcf":0.5,"splitList":[0.5,1.5,2.5,3.5]},{"averageLength":0.25,"length":4,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}]},"name":"2/2","subTactusLength":1,"parameterObjectArray":["2/2"],"JSONEntry":[2,2,1,[1,1,1,1,1,1]]},{"tactusAsQuartersPositions":[0,1,2,3,4],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3,3.5,4,4.5],"absolutelyDoNotCrossList":[3],"lengthInQuarters":5,"tactus":[1,1,1,1,1],"superTactusAsQuartersPositions":[0,3],"denominator":4,"numerator":5,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}],"averageLength":2.5,"gcf":1,"splitList":[3,5]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1,2,3,4,5]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3,3.5,4,4.5]},{"averageLength":0.25,"length":5,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75,4.25,4.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}]},"name":"5/4","subTactusLength":0.5,"parameterObjectArray":["5/4"],"JSONEntry":[5,4,0.5,[1,1,1,1,1,1,1]]},{"tactusAsQuartersPositions":[0,1,2,3,4,5],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5],"absolutelyDoNotCrossList":[],"lengthInQuarters":6,"tactus":[1,1,1,1,1,1],"superTactusAsQuartersPositions":[0,3],"denominator":4,"numerator":6,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3},{"level":1,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3}],"averageLength":3,"gcf":3,"splitList":[3,6]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1,2,3,4,5,6]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5]},{"averageLength":0.25,"length":6,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75,4.25,4.75,5.25,5.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3},{"level":1,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3}]},"name":"6/4_33","subTactusLength":0.5,"parameterObjectArray":["6/4_33"],"JSONEntry":[6,4,0.5,[1,1,1,1,1,1,1,1]]},{"tactusAsQuartersPositions":[0,1,2,3,4,5],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5],"absolutelyDoNotCrossList":[],"lengthInQuarters":6,"tactus":[1,1,1,1,1,1],"superTactusAsQuartersPositions":[0,2,4],"denominator":4,"numerator":6,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}],"averageLength":2,"gcf":2,"splitList":[2,4,6]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1,2,3,4,5,6]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5]},{"averageLength":0.25,"length":6,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75,4.25,4.75,5.25,5.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}]},"name":"6/4_222","subTactusLength":0.5,"parameterObjectArray":["6/4_222"],"JSONEntry":[6,4,0.5,[1,1,1,1,1,1,1,1,1]]},{"tactusAsQuartersPositions":[0,1,2,3,4,5,6],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5],"absolutelyDoNotCrossList":[3],"lengthInQuarters":7,"tactus":[1,1,1,1,1,1,1],"superTactusAsQuartersPositions":[0,3,5],"denominator":4,"numerator":7,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}],"averageLength":2.3333333333333335,"gcf":1,"splitList":[3,5,7]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1,2,3,4,5,6,7]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5]},{"averageLength":0.25,"length":7,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75,4.25,4.75,5.25,5.75,6.25,6.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}]},"name":"7/4_322","subTactusLength":0.5,"parameterObjectArray":["7/4_322"],"JSONEntry":[7,4,0.5,[1,1,1,1,1,1,1,1,1,1]]},{"tactusAsQuartersPositions":[0,1,2,3,4,5,6,7],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5],"absolutelyDoNotCrossList":[],"lengthInQuarters":8,"tactus":[1,1,1,1,1,1,1,1],"superTactusAsQuartersPositions":[0,2,4,6],"denominator":4,"numerator":8,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":4,"tactii":[1,1,1,1],"tactusCount":4},{"level":1,"lengthInQuarters":4,"tactii":[1,1,1,1],"tactusCount":4}],"averageLength":4,"gcf":4,"splitList":[4,8]},{"superTactuses":[{"level":2,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":2,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":2,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":2,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}],"averageLength":2,"gcf":2,"splitList":[2,4,6,8]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1,2,3,4,5,6,7,8]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5]},{"averageLength":0.25,"length":8,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75,4.25,4.75,5.25,5.75,6.25,6.75,7.25,7.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":4,"tactii":[1,1,1,1],"tactusCount":4},{"level":1,"lengthInQuarters":4,"tactii":[1,1,1,1],"tactusCount":4}],"2":[{"level":2,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":2,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":2,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":2,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}]},"name":"8/4","subTactusLength":0.5,"parameterObjectArray":["8/4"],"JSONEntry":[8,4,0.5,[1,2,1,1,2,1,1,1,2,1,1,2,1,1]]},{"tactusAsQuartersPositions":[0,1.5,3,4,5,6,7,8.5,10,11,12],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5],"absolutelyDoNotCrossList":[4,11,7],"lengthInQuarters":13,"tactus":[1.5,1.5,1,1,1,1,1.5,1.5,1,1,1],"superTactusAsQuartersPositions":[0,4,7,11],"denominator":4,"numerator":13,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":7,"tactii":[1.5,1.5,1,1,1,1],"tactusCount":6},{"level":1,"lengthInQuarters":6,"tactii":[1.5,1.5,1,1,1],"tactusCount":5}],"averageLength":6.5,"gcf":1,"splitList":[7,13]},{"superTactuses":[{"level":2,"lengthInQuarters":4,"tactii":[1.5,1.5,1],"tactusCount":3},{"level":2,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3},{"level":2,"lengthInQuarters":4,"tactii":[1.5,1.5,1],"tactusCount":3},{"level":2,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}],"averageLength":3.25,"gcf":1,"splitList":[4,7,11,13]},{"superTactuses":[{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1.1818181818181819,"gcf":0.5,"splitList":[1.5,3,4,5,6,7,8.5,10,11,12,13]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":5.5,"tactii":[5.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":2.375,"gcf":0.5,"splitList":[1,2.5,8,9.5]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5]},{"averageLength":0.25,"length":13,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75,4.25,4.75,5.25,5.75,6.25,6.75,7.25,7.75,8.25,8.75,9.25,9.75,10.25,10.75,11.25,11.75,12.25,12.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":7,"tactii":[1.5,1.5,1,1,1,1],"tactusCount":6},{"level":1,"lengthInQuarters":6,"tactii":[1.5,1.5,1,1,1],"tactusCount":5}],"2":[{"level":2,"lengthInQuarters":4,"tactii":[1.5,1.5,1],"tactusCount":3},{"level":2,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3},{"level":2,"lengthInQuarters":4,"tactii":[1.5,1.5,1],"tactusCount":3},{"level":2,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}]},"name":"13/4","subTactusLength":0.5,"parameterObjectArray":["13/4"],"JSONEntry":[13,4,0.5,[1,2,1.5,1.5,1,2,1,1,1,1,2,1.5,1.5,1,2,1,1]]}],"type":"int"}}})
+2022-02-19 16:24:25,877 INFO m.j.c.d.m.g.GeneratorPipeline [main] Created: PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+LengthFromChildren: 0 bars
+globalPositionInQuarters=0.0
+ruler=null
+mu count=0
+muNotes:--none--
+, rndContainer={})
+2022-02-19 16:24:25,880 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomPhraseLengthInBars
+2022-02-19 16:24:25,890 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=7 rndContainer('phrase_length')=0.5010655176420579 for PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 7 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=7, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.5010655176420579},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 16:24:25,890 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomXMLKey
+2022-02-19 16:24:25,891 INFO m.j.c.d.m.g.p.RandomXMLKey [main] Set mu.xmlKey=6 rndContainer('xml_key')=0.9451463184951012 for PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 7 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=7, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.5010655176420579},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}},"xml_key":0.9451463184951012})
+2022-02-19 16:24:25,891 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomSingleTimeSignature
+2022-02-19 16:24:25,965 INFO m.j.c.d.m.g.p.RandomSingleTimeSignature [main] Set mu.TimeSignature=6/4 rndContainer('phrase_length')=0.8103650699258781 for PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 7 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=7, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:6/4_222
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:6/4_222
+TimeSignatureList:
+6/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=true
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.5010655176420579},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}},"xml_key":0.9451463184951012,"time_signature":{"random_seed":{"type":"double","value":0.8103650699258781},"options":{"option_list":[{"tactusAsQuartersPositions":[0,1.5],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2],"absolutelyDoNotCrossList":[],"lengthInQuarters":2.5,"tactus":[1.5,1],"superTactusAsQuartersPositions":[0],"numerator":5,"denominator":8,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":2.5,"tactii":[1.5,1],"tactusCount":2}],"averageLength":2.5,"gcf":2.5,"splitList":[2.5]},{"superTactuses":[{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1.25,"gcf":0.5,"splitList":[1.5,2.5]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2]},{"averageLength":0.25,"length":2.5,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":2.5,"tactii":[1.5,1],"tactusCount":2}]},"name":"5/8","subTactusLength":0.5,"parameterObjectArray":["5/8"],"JSONEntry":[5,8,0.5,[1,1.5,1]]},{"tactusAsQuartersPositions":[0,1.5],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5],"absolutelyDoNotCrossList":[],"lengthInQuarters":3,"tactus":[1.5,1.5],"superTactusAsQuartersPositions":[0,1.5],"numerator":6,"denominator":8,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.5,"gcf":1.5,"splitList":[1.5,3]},{"superTactuses":[{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.5,"gcf":1.5,"splitList":[1.5,3]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.25,"gcf":0.5,"splitList":[1,2.5]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5]},{"averageLength":0.25,"length":3,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}]},"name":"6/8","subTactusLength":0.5,"parameterObjectArray":["6/8"],"JSONEntry":[6,8,0.5,[1,1.5,1,1.5]]},{"tactusAsQuartersPositions":[0,1.5,2.5],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3],"absolutelyDoNotCrossList":[1.5],"lengthInQuarters":3.5,"tactus":[1.5,1,1],"superTactusAsQuartersPositions":[0,1.5],"numerator":7,"denominator":8,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}],"averageLength":1.75,"gcf":0.5,"splitList":[1.5,3.5]},{"superTactuses":[{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1.1666666666666667,"gcf":0.5,"splitList":[1.5,2.5,3.5]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3]},{"averageLength":0.25,"length":3.5,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}]},"name":"7/8_322","subTactusLength":0.5,"parameterObjectArray":["7/8_322"],"JSONEntry":[7,8,0.5,[1,1.5,1,1,1]]},{"tactusAsQuartersPositions":[0,1,2],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3],"absolutelyDoNotCrossList":[2],"lengthInQuarters":3.5,"tactus":[1,1,1.5],"superTactusAsQuartersPositions":[0,2],"numerator":7,"denominator":8,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.75,"gcf":0.5,"splitList":[2,3.5]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.1666666666666667,"gcf":0.5,"splitList":[1,2,3.5]},{"superTactuses":[{"level":0,"lengthInQuarters":3,"tactii":[3],"tactusCount":1}],"averageLength":3,"gcf":3,"splitList":[3]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3]},{"averageLength":0.25,"length":3.5,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}]},"name":"7/8_223","subTactusLength":0.5,"parameterObjectArray":["7/8_223"],"JSONEntry":[7,8,0.5,[1,1,1,1,1.5]]},{"tactusAsQuartersPositions":[0,1.5,3],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3,3.5,4],"absolutelyDoNotCrossList":[],"lengthInQuarters":4.5,"tactus":[1.5,1.5,1.5],"superTactusAsQuartersPositions":[0,1.5,3],"numerator":9,"denominator":8,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.5,"gcf":1.5,"splitList":[1.5,3,4.5]},{"superTactuses":[{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.5,"gcf":1.5,"splitList":[1.5,3,4.5]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.3333333333333333,"gcf":0.5,"splitList":[1,2.5,4]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3,3.5,4]},{"averageLength":0.25,"length":4.5,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75,4.25]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":1,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}]},"name":"9/8_333","subTactusLength":0.5,"parameterObjectArray":["9/8_333"],"JSONEntry":[9,8,0.5,[1,1.5,1,1.5,1,1.5]]},{"tactusAsQuartersPositions":[0,1.5,3,4],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3,3.5,4,4.5],"absolutelyDoNotCrossList":[3],"lengthInQuarters":5,"tactus":[1.5,1.5,1,1],"superTactusAsQuartersPositions":[0,1.5,3,4],"numerator":10,"denominator":8,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":3,"tactii":[1.5,1.5],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}],"averageLength":2.5,"gcf":1,"splitList":[3,5]},{"superTactuses":[{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":2,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1.25,"gcf":0.5,"splitList":[1.5,3,4,5]},{"superTactuses":[{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1.25,"gcf":0.5,"splitList":[1.5,3,4,5]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.25,"gcf":0.5,"splitList":[1,2.5]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3,3.5,4,4.5]},{"averageLength":0.25,"length":5,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75,4.25,4.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":3,"tactii":[1.5,1.5],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}],"2":[{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":2,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}]},"name":"10/8_3322","subTactusLength":0.5,"parameterObjectArray":["10/8_3322"],"JSONEntry":[10,8,0.5,[1,2,1.5,2,1.5,1,2,1,2,1]]},{"tactusAsQuartersPositions":[0,1.5,3,4.5],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5],"absolutelyDoNotCrossList":[4.5,3],"lengthInQuarters":5.5,"tactus":[1.5,1.5,1.5,1],"superTactusAsQuartersPositions":[0,1.5,3,4.5],"numerator":11,"denominator":8,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":3,"tactii":[1.5,1.5],"tactusCount":2},{"level":1,"lengthInQuarters":2.5,"tactii":[1.5,1],"tactusCount":2}],"averageLength":2.75,"gcf":0.5,"splitList":[3,5.5]},{"superTactuses":[{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1.375,"gcf":0.5,"splitList":[1.5,3,4.5,5.5]},{"superTactuses":[{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1.375,"gcf":0.5,"splitList":[1.5,3,4.5,5.5]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.3333333333333333,"gcf":0.5,"splitList":[1,2.5,4]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3,3.5,4,4.5,5]},{"averageLength":0.25,"length":5.5,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75,4.25,4.75,5.25]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":3,"tactii":[1.5,1.5],"tactusCount":2},{"level":1,"lengthInQuarters":2.5,"tactii":[1.5,1],"tactusCount":2}],"2":[{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}]},"name":"11/8_3322","subTactusLength":0.5,"parameterObjectArray":["TimeSignature","11/8_3322",11,8,0.5,1,2,1.5,2,1.5,1,2,1.5,2,1],"JSONEntry":[11,8,0.5,[1,2,1.5,2,1.5,1,2,1.5,2,1]]},{"tactusAsQuartersPositions":[0,1.5,3,4.5],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5],"absolutelyDoNotCrossList":[],"lengthInQuarters":6,"tactus":[1.5,1.5,1.5,1.5],"superTactusAsQuartersPositions":[0,1.5,3,4.5],"numerator":12,"denominator":8,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":3,"tactii":[1.5,1.5],"tactusCount":2},{"level":1,"lengthInQuarters":3,"tactii":[1.5,1.5],"tactusCount":2}],"averageLength":3,"gcf":3,"splitList":[3,6]},{"superTactuses":[{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.5,"gcf":1.5,"splitList":[1.5,3,4.5,6]},{"superTactuses":[{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.5,"gcf":1.5,"splitList":[1.5,3,4.5,6]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":1.375,"gcf":0.5,"splitList":[1,2.5,4,5.5]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5]},{"averageLength":0.25,"length":6,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75,4.25,4.75,5.25,5.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":3,"tactii":[1.5,1.5],"tactusCount":2},{"level":1,"lengthInQuarters":3,"tactii":[1.5,1.5],"tactusCount":2}],"2":[{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":2,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}]},"name":"12/8","subTactusLength":0.5,"parameterObjectArray":["12/8"],"JSONEntry":[12,8,0.5,[1,2,1.5,2,1.5,1,2,1.5,2,1.5]]},{"tactusAsQuartersPositions":[0,1],"subTactusAsQuartersPositions":[0,0.5,1,1.5],"absolutelyDoNotCrossList":[],"lengthInQuarters":2,"tactus":[1,1],"superTactusAsQuartersPositions":[0],"numerator":2,"denominator":4,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}],"averageLength":2,"gcf":2,"splitList":[2]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1,2]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5]},{"averageLength":0.25,"length":2,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}]},"name":"2/4","subTactusLength":0.5,"parameterObjectArray":["2/4"],"JSONEntry":[2,4,0.5,[1,1,1]]},{"tactusAsQuartersPositions":[0,1,2],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5],"absolutelyDoNotCrossList":[],"lengthInQuarters":3,"tactus":[1,1,1],"superTactusAsQuartersPositions":[0],"numerator":3,"denominator":4,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3}],"averageLength":3,"gcf":3,"splitList":[3]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1,2,3]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5]},{"averageLength":0.25,"length":3,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3}]},"name":"3/4","subTactusLength":0.5,"parameterObjectArray":["3/4"],"JSONEntry":[3,4,0.5,[1,1,1,1]]},{"tactusAsQuartersPositions":[0,1,2,3],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3,3.5],"absolutelyDoNotCrossList":[],"lengthInQuarters":4,"tactus":[1,1,1,1],"superTactusAsQuartersPositions":[0,2],"numerator":4,"denominator":4,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}],"averageLength":2,"gcf":2,"splitList":[2,4]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1,2,3,4]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3,3.5]},{"averageLength":0.25,"length":4,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}]},"name":"4/4","subTactusLength":0.5,"parameterObjectArray":["4/4"],"JSONEntry":[4,4,0.5,[1,1,1,1,1,1]]},{"tactusAsQuartersPositions":[0,1,2,3],"subTactusAsQuartersPositions":[0,1,2,3],"absolutelyDoNotCrossList":[],"lengthInQuarters":4,"tactus":[1,1,1,1],"superTactusAsQuartersPositions":[0,2],"numerator":2,"denominator":2,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}],"averageLength":2,"gcf":2,"splitList":[2,4]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1,2,3,4]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1,2,3]},{"averageLength":0.5,"length":4,"increment":0.5,"gcf":0.5,"splitList":[0.5,1.5,2.5,3.5]},{"averageLength":0.25,"length":4,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}]},"name":"2/2","subTactusLength":1,"parameterObjectArray":["2/2"],"JSONEntry":[2,2,1,[1,1,1,1,1,1]]},{"tactusAsQuartersPositions":[0,1,2,3,4],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3,3.5,4,4.5],"absolutelyDoNotCrossList":[3],"lengthInQuarters":5,"tactus":[1,1,1,1,1],"superTactusAsQuartersPositions":[0,3],"numerator":5,"denominator":4,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}],"averageLength":2.5,"gcf":1,"splitList":[3,5]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1,2,3,4,5]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3,3.5,4,4.5]},{"averageLength":0.25,"length":5,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75,4.25,4.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}]},"name":"5/4","subTactusLength":0.5,"parameterObjectArray":["5/4"],"JSONEntry":[5,4,0.5,[1,1,1,1,1,1,1]]},{"tactusAsQuartersPositions":[0,1,2,3,4,5],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5],"absolutelyDoNotCrossList":[],"lengthInQuarters":6,"tactus":[1,1,1,1,1,1],"superTactusAsQuartersPositions":[0,3],"numerator":6,"denominator":4,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3},{"level":1,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3}],"averageLength":3,"gcf":3,"splitList":[3,6]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1,2,3,4,5,6]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5]},{"averageLength":0.25,"length":6,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75,4.25,4.75,5.25,5.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3},{"level":1,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3}]},"name":"6/4_33","subTactusLength":0.5,"parameterObjectArray":["6/4_33"],"JSONEntry":[6,4,0.5,[1,1,1,1,1,1,1,1]]},{"tactusAsQuartersPositions":[0,1,2,3,4,5],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5],"absolutelyDoNotCrossList":[],"lengthInQuarters":6,"tactus":[1,1,1,1,1,1],"superTactusAsQuartersPositions":[0,2,4],"numerator":6,"denominator":4,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}],"averageLength":2,"gcf":2,"splitList":[2,4,6]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1,2,3,4,5,6]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5]},{"averageLength":0.25,"length":6,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75,4.25,4.75,5.25,5.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}]},"name":"6/4_222","subTactusLength":0.5,"parameterObjectArray":["6/4_222"],"JSONEntry":[6,4,0.5,[1,1,1,1,1,1,1,1,1]]},{"tactusAsQuartersPositions":[0,1,2,3,4,5,6],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5],"absolutelyDoNotCrossList":[3],"lengthInQuarters":7,"tactus":[1,1,1,1,1,1,1],"superTactusAsQuartersPositions":[0,3,5],"numerator":7,"denominator":4,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}],"averageLength":2.3333333333333335,"gcf":1,"splitList":[3,5,7]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1,2,3,4,5,6,7]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5]},{"averageLength":0.25,"length":7,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75,4.25,4.75,5.25,5.75,6.25,6.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":1,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}]},"name":"7/4_322","subTactusLength":0.5,"parameterObjectArray":["7/4_322"],"JSONEntry":[7,4,0.5,[1,1,1,1,1,1,1,1,1,1]]},{"tactusAsQuartersPositions":[0,1,2,3,4,5,6,7],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5],"absolutelyDoNotCrossList":[],"lengthInQuarters":8,"tactus":[1,1,1,1,1,1,1,1],"superTactusAsQuartersPositions":[0,2,4,6],"numerator":8,"denominator":4,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":4,"tactii":[1,1,1,1],"tactusCount":4},{"level":1,"lengthInQuarters":4,"tactii":[1,1,1,1],"tactusCount":4}],"averageLength":4,"gcf":4,"splitList":[4,8]},{"superTactuses":[{"level":2,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":2,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":2,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":2,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}],"averageLength":2,"gcf":2,"splitList":[2,4,6,8]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1,"gcf":1,"splitList":[1,2,3,4,5,6,7,8]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5]},{"averageLength":0.25,"length":8,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75,4.25,4.75,5.25,5.75,6.25,6.75,7.25,7.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":4,"tactii":[1,1,1,1],"tactusCount":4},{"level":1,"lengthInQuarters":4,"tactii":[1,1,1,1],"tactusCount":4}],"2":[{"level":2,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":2,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":2,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2},{"level":2,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}]},"name":"8/4","subTactusLength":0.5,"parameterObjectArray":["8/4"],"JSONEntry":[8,4,0.5,[1,2,1,1,2,1,1,1,2,1,1,2,1,1]]},{"tactusAsQuartersPositions":[0,1.5,3,4,5,6,7,8.5,10,11,12],"subTactusAsQuartersPositions":[0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5],"absolutelyDoNotCrossList":[4,11,7],"lengthInQuarters":13,"tactus":[1.5,1.5,1,1,1,1,1.5,1.5,1,1,1],"superTactusAsQuartersPositions":[0,4,7,11],"numerator":13,"denominator":4,"splitLists":[{"superTactuses":[{"level":1,"lengthInQuarters":7,"tactii":[1.5,1.5,1,1,1,1],"tactusCount":6},{"level":1,"lengthInQuarters":6,"tactii":[1.5,1.5,1,1,1],"tactusCount":5}],"averageLength":6.5,"gcf":1,"splitList":[7,13]},{"superTactuses":[{"level":2,"lengthInQuarters":4,"tactii":[1.5,1.5,1],"tactusCount":3},{"level":2,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3},{"level":2,"lengthInQuarters":4,"tactii":[1.5,1.5,1],"tactusCount":3},{"level":2,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}],"averageLength":3.25,"gcf":1,"splitList":[4,7,11,13]},{"superTactuses":[{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1}],"averageLength":1.1818181818181819,"gcf":0.5,"splitList":[1.5,3,4,5,6,7,8.5,10,11,12,13]},{"superTactuses":[{"level":0,"lengthInQuarters":1,"tactii":[1],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1},{"level":0,"lengthInQuarters":5.5,"tactii":[5.5],"tactusCount":1},{"level":0,"lengthInQuarters":1.5,"tactii":[1.5],"tactusCount":1}],"averageLength":2.375,"gcf":0.5,"splitList":[1,2.5,8,9.5]},{"superTactuses":[{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1},{"level":0,"lengthInQuarters":0.5,"tactii":[0.5],"tactusCount":1}],"averageLength":0.5,"gcf":0.5,"splitList":[0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5]},{"averageLength":0.25,"length":13,"increment":0.25,"gcf":0.25,"splitList":[0.25,0.75,1.25,1.75,2.25,2.75,3.25,3.75,4.25,4.75,5.25,5.75,6.25,6.75,7.25,7.75,8.25,8.75,9.25,9.75,10.25,10.75,11.25,11.75,12.25,12.75]}],"superTacMap":{"1":[{"level":1,"lengthInQuarters":7,"tactii":[1.5,1.5,1,1,1,1],"tactusCount":6},{"level":1,"lengthInQuarters":6,"tactii":[1.5,1.5,1,1,1],"tactusCount":5}],"2":[{"level":2,"lengthInQuarters":4,"tactii":[1.5,1.5,1],"tactusCount":3},{"level":2,"lengthInQuarters":3,"tactii":[1,1,1],"tactusCount":3},{"level":2,"lengthInQuarters":4,"tactii":[1.5,1.5,1],"tactusCount":3},{"level":2,"lengthInQuarters":2,"tactii":[1,1],"tactusCount":2}]},"name":"13/4","subTactusLength":0.5,"parameterObjectArray":["13/4"],"JSONEntry":[13,4,0.5,[1,2,1.5,1.5,1,2,1,1,1,1,2,1.5,1.5,1,2,1,1]]}],"type":"int"}}})
+2022-02-19 16:42:40,871 INFO m.j.c.d.m.g.GeneratorPipeline [main] Created: PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+LengthFromChildren: 0 bars
+globalPositionInQuarters=0.0
+ruler=null
+mu count=0
+muNotes:--none--
+, rndContainer={})
+2022-02-19 16:42:40,875 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomPhraseLengthInBars
+2022-02-19 16:42:40,886 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=3 rndContainer('phrase_length')=0.16330338072898676 for PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 3 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=3, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.16330338072898676},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 16:42:40,887 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomXMLKey
+2022-02-19 16:42:40,887 INFO m.j.c.d.m.g.p.RandomXMLKey [main] Set mu.xmlKey=-2 rndContainer('xml_key')=0.25999283591091027 for PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 3 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=3, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.16330338072898676},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}},"xml_key":0.25999283591091027})
+2022-02-19 16:42:40,887 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomSingleTimeSignature
+2022-02-19 16:42:40,889 INFO m.j.c.d.m.g.p.RandomSingleTimeSignature [main] Set mu.TimeSignature=6/4 rndContainer('phrase_length')=0.7964686403958348 for PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 3 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=3, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:6/4_222
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:6/4_222
+TimeSignatureList:
+6/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=true
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.16330338072898676},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}},"xml_key":0.25999283591091027,"time_signature":{"random_seed":{"type":"double","value":0.7964686403958348},"options":{"option_list":[{"name":"5/8","type":"preset"},{"name":"6/8","type":"preset"},{"name":"7/8_322","type":"preset"},{"name":"7/8_223","type":"preset"},{"name":"9/8_333","type":"preset"},{"name":"10/8_3322","type":"preset"},{"type":"unique","object":"11/8"},{"name":"12/8","type":"preset"},{"name":"2/4","type":"preset"},{"name":"3/4","type":"preset"},{"name":"4/4","type":"preset"},{"name":"2/2","type":"preset"},{"name":"5/4","type":"preset"},{"name":"6/4_33","type":"preset"},{"name":"6/4_222","type":"preset"},{"name":"7/4_322","type":"preset"},{"name":"8/4","type":"preset"},{"name":"13/4","type":"preset"}],"type":"preset or serialized TimeSignature"}}})
+2022-02-19 16:45:59,566 INFO m.j.c.d.m.g.GeneratorPipeline [main] Created: PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+LengthFromChildren: 0 bars
+globalPositionInQuarters=0.0
+ruler=null
+mu count=0
+muNotes:--none--
+, rndContainer={})
+2022-02-19 16:45:59,570 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomPhraseLengthInBars
+2022-02-19 16:45:59,579 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=3 rndContainer('phrase_length')=0.1614167557348527 for PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 3 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=3, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.1614167557348527},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 16:45:59,579 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomXMLKey
+2022-02-19 16:45:59,580 INFO m.j.c.d.m.g.p.RandomXMLKey [main] Set mu.xmlKey=-4 rndContainer('xml_key')=0.14695191815434416 for PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 3 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=3, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.1614167557348527},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}},"xml_key":{"random_seed":{"type":"double","value":0.14695191815434416},"options":{"option_list":[-5,-4,-3,-2,-1,0,1,2,3,4,5,6],"type":"int"}}})
+2022-02-19 16:45:59,580 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomSingleTimeSignature
+2022-02-19 16:45:59,580 INFO m.j.c.d.m.g.p.RandomSingleTimeSignature [main] Set mu.TimeSignature=6/4 rndContainer('phrase_length')=0.7764929570395422 for PipelinePackage(rnd=java.util.Random@71687585, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 3 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=3, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:6/4_33
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:6/4_33
+TimeSignatureList:
+6/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=true
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.1614167557348527},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}},"xml_key":{"random_seed":{"type":"double","value":0.14695191815434416},"options":{"option_list":[-5,-4,-3,-2,-1,0,1,2,3,4,5,6],"type":"int"}},"time_signature":{"random_seed":{"type":"double","value":0.7764929570395422},"options":{"option_list":[{"name":"5/8","type":"preset"},{"name":"6/8","type":"preset"},{"name":"7/8_322","type":"preset"},{"name":"7/8_223","type":"preset"},{"name":"9/8_333","type":"preset"},{"name":"10/8_3322","type":"preset"},{"type":"unique","object":"11/8"},{"name":"12/8","type":"preset"},{"name":"2/4","type":"preset"},{"name":"3/4","type":"preset"},{"name":"4/4","type":"preset"},{"name":"2/2","type":"preset"},{"name":"5/4","type":"preset"},{"name":"6/4_33","type":"preset"},{"name":"6/4_222","type":"preset"},{"name":"7/4_322","type":"preset"},{"name":"8/4","type":"preset"},{"name":"13/4","type":"preset"}],"type":"preset or serialized TimeSignature"}}})
+2022-02-19 16:53:25,600 INFO m.j.c.d.m.g.GeneratorPipeline [main] Created: PipelinePackage(rnd=java.util.Random@1807f5a7, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+LengthFromChildren: 0 bars
+globalPositionInQuarters=0.0
+ruler=null
+mu count=0
+muNotes:--none--
+, rndContainer={})
+2022-02-19 16:53:25,603 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomPhraseLengthInBars
+2022-02-19 16:53:25,613 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=4 rndContainer('phrase_length')=0.21691597997724954 for PipelinePackage(rnd=java.util.Random@1807f5a7, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 4 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=4, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.21691597997724954},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 16:53:25,613 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomXMLKey
+2022-02-19 16:53:25,614 INFO m.j.c.d.m.g.p.RandomXMLKey [main] Set mu.xmlKey=3 rndContainer('xml_key')=0.6812560888240018 for PipelinePackage(rnd=java.util.Random@1807f5a7, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 4 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=4, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.21691597997724954},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}},"xml_key":{"random_seed":{"type":"double","value":0.6812560888240018},"options":{"option_list":[-5,-4,-3,-2,-1,0,1,2,3,4,5,6],"type":"int"}}})
+2022-02-19 16:53:25,614 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomSingleTimeSignature
+2022-02-19 16:53:25,615 INFO m.j.c.d.m.g.p.RandomSingleTimeSignature [main] Set mu.TimeSignature=2/4 rndContainer('time_signature')=0.4444887311130228 for PipelinePackage(rnd=java.util.Random@1807f5a7, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 4 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=4, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:2/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:2/4
+TimeSignatureList:
+2/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=true
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.21691597997724954},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}},"xml_key":{"random_seed":{"type":"double","value":0.6812560888240018},"options":{"option_list":[-5,-4,-3,-2,-1,0,1,2,3,4,5,6],"type":"int"}},"time_signature":{"random_seed":{"type":"double","value":0.4444887311130228},"options":{"option_list":[{"name":"5/8","type":"preset"},{"name":"6/8","type":"preset"},{"name":"7/8_322","type":"preset"},{"name":"7/8_223","type":"preset"},{"name":"9/8_333","type":"preset"},{"name":"10/8_3322","type":"preset"},{"type":"unique","object":"11/8"},{"name":"12/8","type":"preset"},{"name":"2/4","type":"preset"},{"name":"3/4","type":"preset"},{"name":"4/4","type":"preset"},{"name":"2/2","type":"preset"},{"name":"5/4","type":"preset"},{"name":"6/4_33","type":"preset"},{"name":"6/4_222","type":"preset"},{"name":"7/4_322","type":"preset"},{"name":"8/4","type":"preset"},{"name":"13/4","type":"preset"}],"type":"preset or serialized TimeSignature"}}})
+2022-02-19 16:53:25,615 INFO m.j.c.d.m.g.GeneratorPipeline [main] Processing class main.java.com.dougron.mucus_experiments.generator_pipeline.plugins.RandomTempo
+2022-02-19 16:53:25,616 INFO m.j.c.d.m.g.p.RandomTempo [main] Set mu.startTempo=142 rndContainer('tempo')=0.6220295045012391 for PipelinePackage(rnd=java.util.Random@1807f5a7, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 4 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=4, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:2/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:2/4
+TimeSignatureList:
+2/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=142.0 at 0.0 floatBars
+hasTimeSignature=true
+hasTempo=true
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.6220295045012391},"options":{"high":190,"low":65,"type":"high and low int value"}},"xml_key":{"random_seed":{"type":"double","value":0.6812560888240018},"options":{"option_list":[-5,-4,-3,-2,-1,0,1,2,3,4,5,6],"type":"int"}},"time_signature":{"random_seed":{"type":"double","value":0.4444887311130228},"options":{"option_list":[{"name":"5/8","type":"preset"},{"name":"6/8","type":"preset"},{"name":"7/8_322","type":"preset"},{"name":"7/8_223","type":"preset"},{"name":"9/8_333","type":"preset"},{"name":"10/8_3322","type":"preset"},{"type":"unique","object":"11/8"},{"name":"12/8","type":"preset"},{"name":"2/4","type":"preset"},{"name":"3/4","type":"preset"},{"name":"4/4","type":"preset"},{"name":"2/2","type":"preset"},{"name":"5/4","type":"preset"},{"name":"6/4_33","type":"preset"},{"name":"6/4_222","type":"preset"},{"name":"7/4_322","type":"preset"},{"name":"8/4","type":"preset"},{"name":"13/4","type":"preset"}],"type":"preset or serialized TimeSignature"}}})
+2022-02-19 18:47:23,161 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=4 rndContainer('phrase_length')=0.2 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@24fb6a80, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 4 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=4, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.2},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:47:23,188 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=7 rndContainer('phrase_length')=0.5 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@756cf158, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 7 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=7, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.5},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:47:23,193 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=2 rndContainer('phrase_length')=0.0 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@18a3962d, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 2 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=2, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:47:23,195 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=12 rndContainer('phrase_length')=0.999 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@78aea4b9, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 12 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=12, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.999},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:47:23,198 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=4 rndContainer('phrase_length')=0.2 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@2a65bb85, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 4 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=4, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.2},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:50:17,066 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=4 rndContainer('phrase_length')=0.2 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@24fb6a80, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 4 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=4, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.2},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:50:17,075 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=7 rndContainer('phrase_length')=0.5 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@4648ce9, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 7 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=7, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.5},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:50:17,081 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=2 rndContainer('phrase_length')=0.0 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@1d1f7216, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 2 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=2, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:50:17,084 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=12 rndContainer('phrase_length')=0.999 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@423e4cbb, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 12 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=12, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.999},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:50:17,086 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=4 rndContainer('phrase_length')=0.2 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@6e16b8b5, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 4 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=4, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.2},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:50:58,146 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=4 rndContainer('phrase_length')=0.2 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@24fb6a80, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 4 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=4, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.2},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:50:58,156 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=7 rndContainer('phrase_length')=0.5 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@4648ce9, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 7 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=7, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.5},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:50:58,161 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=2 rndContainer('phrase_length')=0.0 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@1d1f7216, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 2 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=2, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:50:58,163 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=12 rndContainer('phrase_length')=0.999 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@423e4cbb, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 12 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=12, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.999},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:50:58,166 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=4 rndContainer('phrase_length')=0.2 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@6e16b8b5, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 4 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=4, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.2},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:52:35,863 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=4 rndContainer('phrase_length')=0.2 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@24fb6a80, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 4 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=4, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.2},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:52:35,872 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=7 rndContainer('phrase_length')=0.5 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@4648ce9, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 7 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=7, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.5},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:52:35,877 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=2 rndContainer('phrase_length')=0.0 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@1d1f7216, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 2 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=2, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:52:35,879 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=12 rndContainer('phrase_length')=0.999 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@423e4cbb, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 12 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=12, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.999},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:52:35,881 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=4 rndContainer('phrase_length')=0.2 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@6e16b8b5, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 4 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=4, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.2},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:54:02,621 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=4 rndContainer('phrase_length')=0.2 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@24fb6a80, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 4 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=4, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.2},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:54:02,630 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=7 rndContainer('phrase_length')=0.5 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@4648ce9, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 7 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=7, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.5},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:54:02,635 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=2 rndContainer('phrase_length')=0.0 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@1d1f7216, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 2 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=2, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:54:02,637 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=12 rndContainer('phrase_length')=0.999 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@423e4cbb, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 12 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=12, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.999},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:54:02,639 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=4 rndContainer('phrase_length')=0.2 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@6e16b8b5, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 4 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=4, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.2},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:54:36,822 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=4 rndContainer('phrase_length')=0.2 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@24fb6a80, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 4 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=4, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.2},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:54:36,829 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=7 rndContainer('phrase_length')=0.5 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@4648ce9, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 7 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=7, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.5},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:54:36,835 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=2 rndContainer('phrase_length')=0.0 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@1d1f7216, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 2 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=2, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:54:36,837 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=12 rndContainer('phrase_length')=0.999 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@423e4cbb, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 12 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=12, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.999},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 18:54:36,839 INFO m.j.c.d.m.g.p.RandomPhraseLengthInBars [main] Set mu.lengthInBars=4 rndContainer('phrase_length')=0.2 for PipelinePackage(rnd=test.java.com.dougron.mucus.algorithms.TestRandom@6e16b8b5, mu=
+mu:PipelinePackage_initial_mu
+PositionIsZero
+FixedLength: 4 bars
+globalPositionInQuarters=0.0
+lengthInBarsAndBeats=BarsAndBeats [barPosition=4, offsetInQuarters=0.0] 
+timeSignatureList:null
+timeSignatureListGenerator:
+SingleTimeSignature:4/4
+tsGenAndMap:
+TimeSignatureListGenerator:
+SingleTimeSignature:4/4
+TimeSignatureList:
+4/4__
+tsMap;
+
+tempoList:
+TempoList
+ -tempo=120.0 at 0.0 floatBars
+hasTimeSignature=false
+hasTempo=false
+
+mu count=0
+muNotes:--none--
+, rndContainer={"phrase_length":{"random_seed":{"type":"double","value":0.2},"options":{"option_list":[2,3,4,5,6,7,8,9,10,11,12],"type":"int"}}})
+2022-02-19 22:59:40,906 INFO m.j.c.d.m.g.Poopline [main] Poopline created.
+2022-02-19 23:03:32,318 INFO m.j.c.d.m.g.Poopline [main] Poopline created.
+2022-02-19 23:03:32,322 INFO m.j.c.d.m.g.Poopline [main] Poopline received PlugA(parent=main.java.com.dougron.mucus_experiments.generator_poopline.Poopline@67ab1c47)
+2022-02-19 23:28:58,750 INFO m.j.c.d.m.g.Poopline [main] Poopline created.
+2022-02-19 23:28:58,755 INFO m.j.c.d.m.g.Poopline [main] Poopline received PlugA(parent=main.java.com.dougron.mucus_experiments.generator_poopline.Poopline@30bcf3c1, renderedParameters=[CHORD_LIST_GENERATOR], requiredParameters=[PHRASE_LENGTH])
+2022-02-19 23:32:11,516 INFO m.j.c.d.m.g.Poopline [main] Poopline created.
+2022-02-19 23:32:11,523 INFO m.j.c.d.m.g.Poopline [main] Poopline received PlugA(parent=main.java.com.dougron.mucus_experiments.generator_poopline.Poopline@30bcf3c1, renderedParameters=[CHORD_LIST_GENERATOR], requiredParameters=[PHRASE_LENGTH])
+2022-02-19 23:32:11,533 INFO m.j.c.d.m.g.p.PlugA [main] PlugA received main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage@531c311e
+2022-02-19 23:32:11,533 INFO m.j.c.d.m.g.p.PlugA [main] PlugA did not receive required paramter PHRASE_LENGTH
+2022-02-19 23:34:16,193 INFO m.j.c.d.m.g.Poopline [main] Poopline created.
+2022-02-19 23:34:16,200 INFO m.j.c.d.m.g.Poopline [main] Poopline received PlugA(parent=main.java.com.dougron.mucus_experiments.generator_poopline.Poopline@a776e, renderedParameters=[CHORD_LIST_GENERATOR], requiredParameters=[PHRASE_LENGTH])
+2022-02-19 23:34:16,209 INFO m.j.c.d.m.g.p.PlugA [main] PlugA received main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage@ea9b7c6
+2022-02-19 23:34:16,209 INFO m.j.c.d.m.g.p.PlugA [main] PlugA did not receive required paramter PHRASE_LENGTH
+2022-02-19 23:35:21,057 INFO m.j.c.d.m.g.Poopline [main] Poopline created.
+2022-02-19 23:35:21,066 INFO m.j.c.d.m.g.Poopline [main] Poopline received PlugA(parent=main.java.com.dougron.mucus_experiments.generator_poopline.Poopline@a776e, renderedParameters=[CHORD_LIST_GENERATOR], requiredParameters=[PHRASE_LENGTH])
+2022-02-19 23:35:21,079 INFO m.j.c.d.m.g.p.PlugA [main] PlugA received main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage@ea9b7c6
+2022-02-19 23:35:21,079 INFO m.j.c.d.m.g.p.PlugA [main] PlugA did not receive required paramter PHRASE_LENGTH
+2022-02-19 23:38:05,211 INFO m.j.c.d.m.g.Poopline [main] Poopline created.
+2022-02-19 23:38:05,218 INFO m.j.c.d.m.g.Poopline [main] Poopline received PlugA(parent=main.java.com.dougron.mucus_experiments.generator_poopline.Poopline@a776e, renderedParameters=[CHORD_LIST_GENERATOR], requiredParameters=[PHRASE_LENGTH])
+2022-02-19 23:38:05,227 INFO m.j.c.d.m.g.p.PlugA [main] PlugA received PooplinePackage(name=one, parametersRendered=[])
+2022-02-19 23:38:05,227 INFO m.j.c.d.m.g.p.PlugA [main] PlugA did not receive required paramter PHRASE_LENGTH
+2022-02-19 23:42:34,683 INFO m.j.c.d.m.g.Poopline [main] Poopline created.
+2022-02-19 23:42:34,689 INFO m.j.c.d.m.g.Poopline [main] Poopline received PlugA(parent=main.java.com.dougron.mucus_experiments.generator_poopline.Poopline@a776e, renderedParameters=[CHORD_LIST_GENERATOR], requiredParameters=[PHRASE_LENGTH])
+2022-02-19 23:42:34,690 INFO m.j.c.d.m.g.p.PlugA [main] PlugA received PooplinePackage(name=one, parametersRendered=[])
+2022-02-19 23:42:34,690 INFO m.j.c.d.m.g.p.PlugA [main] PlugA did not receive required parameter PHRASE_LENGTH
+2022-02-19 23:44:20,822 INFO m.j.c.d.m.g.Poopline [main] Poopline created.
+2022-02-19 23:44:20,827 INFO m.j.c.d.m.g.Poopline [main] Received PlugA(parent=main.java.com.dougron.mucus_experiments.generator_poopline.Poopline@a776e, renderedParameters=[CHORD_LIST_GENERATOR], requiredParameters=[PHRASE_LENGTH])
+2022-02-19 23:44:20,828 INFO m.j.c.d.m.g.p.PlugA [main] Received PooplinePackage(name=one, parametersRendered=[])
+2022-02-19 23:44:20,829 INFO m.j.c.d.m.g.p.PlugA [main] Did not receive required parameter PHRASE_LENGTH

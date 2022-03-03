@@ -12,7 +12,7 @@
     	</PatternLayout>
     	<Policies>
     		<TimeBasedTriggeringPolicy />
-    		<SizeBasedTriggeringPolicy size="1 KB"/>
+    		<SizeBasedTriggeringPolicy size="10 MB"/>
     	</Policies>
     	<Filters>
     		<ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY" />
@@ -27,7 +27,7 @@
     	</PatternLayout>
     	<Policies>
     		<TimeBasedTriggeringPolicy />
-    		<SizeBasedTriggeringPolicy size="1 KB"/>
+    		<SizeBasedTriggeringPolicy size="10 MB"/>
     	</Policies>
     	<Filters>
     		<ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY" />

@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import main.java.com.dougron.mucus_experiments.Mu033_InteractionVersionTwo;
+import main.java.com.dougron.mucus_experiments.completed.Mu033_InteractionVersionTwo;
 
 class Mu033_Test
 {

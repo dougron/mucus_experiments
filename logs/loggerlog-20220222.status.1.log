@@ -1,0 +1,14 @@
+2022-02-22 21:32:10,721 INFO m.j.c.d.m.g.Poopline [main] Poopline created.
+2022-02-22 21:32:10,735 INFO m.j.c.d.m.g.Poopline [main] Received PlugGeneric(parent=main.java.com.dougron.mucus_experiments.generator_poopline.Poopline@75e91545, renderedParameters=[CHORD_LIST_GENERATOR], requiredParameters=[PHRASE_LENGTH])
+2022-02-22 21:32:10,736 INFO m.j.c.d.m.g.Poopline [main] Validating required parameters for plugins
+2022-02-22 21:32:10,736 INFO m.j.c.d.m.g.Poopline [main] No plugin can supply PHRASE_LENGTH
+2022-02-22 21:32:10,736 INFO m.j.c.d.m.g.Poopline [main] Validation false
+2022-02-22 21:32:10,737 INFO m.j.c.d.m.g.Poopline [main] Received PlugGeneric(parent=main.java.com.dougron.mucus_experiments.generator_poopline.Poopline@75e91545, renderedParameters=[PHRASE_LENGTH], requiredParameters=[])
+2022-02-22 21:32:10,737 INFO m.j.c.d.m.g.Poopline [main] Validating required parameters for plugins
+2022-02-22 21:32:10,738 INFO m.j.c.d.m.g.Poopline [main] class main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PlugB can supply Parameter PHRASE_LENGTH
+2022-02-22 21:32:10,738 INFO m.j.c.d.m.g.Poopline [main] Validation true
+2022-02-22 21:32:10,739 INFO m.j.c.d.m.g.p.PlugGeneric [main] Received PooplinePackage(name=one, parametersRendered=[])
+2022-02-22 21:32:10,739 INFO m.j.c.d.m.g.p.PlugGeneric [main] Did not receive required parameter PHRASE_LENGTH
+2022-02-22 21:32:10,739 INFO m.j.c.d.m.g.p.PlugGeneric [main] Received PooplinePackage(name=one, parametersRendered=[])
+2022-02-22 21:32:10,739 INFO m.j.c.d.m.g.PooplinePackage [main] Added Parameter PHRASE_LENGTH to PooplinePackage(name=one, parametersRendered=[])
+2022-02-22 21:32:10,740 INFO m.j.c.d.m.g.PooplinePackage [main] Added Parameter CHORD_LIST_GENERATOR to PooplinePackage(name=one, parametersRendered=[PHRASE_LENGTH])
