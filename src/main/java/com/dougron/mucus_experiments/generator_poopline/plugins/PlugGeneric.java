@@ -76,7 +76,7 @@ public class PlugGeneric implements PooplinePlugin {
 	protected boolean checkForRequiredParameters(PooplinePackage aPackage) {
 		boolean okay = true;
 		for (Parameter p: requiredParameters) {
-			if (!aPackage.hasParameterInJson(p)) {
+			if (!aPackage.hasParameterInRepo(p)) {
 				okay = false;
 				logger.info("Did not receive required parameter " + p);
 			}

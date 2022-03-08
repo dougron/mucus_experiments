@@ -31,6 +31,7 @@ public class PooplinePackage {
 	@Getter @Setter @NonNull private Random rnd;
 //	@Getter private List<Parameter> renderedParameters = new ArrayList<Parameter>();
 	@Getter private JsonObject json;// = new JsonObject();
+	@Getter ParameterRepository repo;
 	@Getter @Setter private Mu mu;
 	
 	public static final Logger logger = LogManager.getLogger(PooplinePackage.class);
@@ -42,6 +43,7 @@ public class PooplinePackage {
 		this.rnd = rnd;
 		mu = new Mu(name);
 		json = new JsonObject();
+		repo = new ParameterRepository();
 	}
 	
 	
@@ -80,6 +82,12 @@ public class PooplinePackage {
 
 	public boolean hasParameterInJson(Parameter p) {
 		return json.has(p.toString());
+	}
+
+	
+	
+	public boolean hasParameterInRepo(Parameter p) {
+		return repo.containsKey(p);
 	}
 
 

@@ -12,9 +12,9 @@ import org.junit.jupiter.api.Test;
 import com.google.gson.JsonObject;
 
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.Parameter;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PlugA;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PlugB;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PlugC;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.test_plugs.PlugA;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.test_plugs.PlugB;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.test_plugs.PlugC;
 import test.java.com.dougron.mucus.algorithms.TestRandom;
 
 class Poopline_Tests {

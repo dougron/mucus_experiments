@@ -70,16 +70,16 @@ class RandomPhraseLengthInBars_Tests {
 	}
 	
 	
-	@Test
-	void when_a_phrase_length_is_generated_then_the_rndContainer_contains_an_item_options_in_item_phrase_length_which_is_a_JSONArray() throws Exception {
-		GeneratorPipelinePlugIn plug = new RandomPhraseLengthInBars();
-		PipelinePackage pp = new PipelinePackage(new TestRandom(0.2));
-		pp = plug.process(pp);
-//		assertThat(pp.rndContainerHas("phrase_length")).isTrue();
-//		assertThat(pp.getRndContainer().getJSONObject("phrase_length").getJSONArray("options")).isExactlyIn;
-		JSONObject phraseLength = pp.getRndContainer().getJSONObject("phrase_length");
-		JSONObject options = phraseLength.getJSONObject("options");
-		assertThat(options.get("option_list")).isInstanceOf(JSONArray.class);
-	}
+//	@Test
+//	void when_a_phrase_length_is_generated_then_the_rndContainer_contains_an_item_options_in_item_phrase_length_which_is_a_JSONArray() throws Exception {
+//		GeneratorPipelinePlugIn plug = new RandomPhraseLengthInBars();
+//		PipelinePackage pp = new PipelinePackage(new TestRandom(0.2));
+//		pp = plug.process(pp);
+////		assertThat(pp.rndContainerHas("phrase_length")).isTrue();
+////		assertThat(pp.getRndContainer().getJSONObject("phrase_length").getJSONArray("options")).isExactlyIn;
+//		JSONObject phraseLength = pp.getRndContainer().getJSONObject("phrase_length");
+//		JSONObject options = phraseLength.getJSONObject("options");
+//		assertThat(options.get("option_list")).isInstanceOf(JSONArray.class);
+//	}
 
 }
