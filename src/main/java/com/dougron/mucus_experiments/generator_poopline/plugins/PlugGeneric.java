@@ -28,7 +28,7 @@ public class PlugGeneric implements PooplinePlugin {
 
 	@Getter @Setter Poopline parent;
 	@NonNull @Getter private Parameter[] renderParameters;// = new Parameter[] {Parameter.CHORD_LIST_GENERATOR};
-	@NonNull private Parameter[] requiredParameters;// = new Parameter[] {Parameter.PHRASE_LENGTH};
+	@NonNull @Setter private Parameter[] requiredParameters;// = new Parameter[] {Parameter.PHRASE_LENGTH};
 	public static final Logger logger = LogManager.getLogger(PlugGeneric.class);
 
 	

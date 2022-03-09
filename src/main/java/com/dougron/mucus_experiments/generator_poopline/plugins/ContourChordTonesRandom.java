@@ -10,6 +10,8 @@ import main.java.com.dougron.mucus.algorithms.random_melody_generator.Parameter;
 import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.data_types.MuNote;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTag;
+import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagBundle;
+import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagNamedParameter;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePlugin;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.ContourChordTonesRepo;
@@ -54,11 +56,13 @@ public class ContourChordTonesRandom   extends PlugGeneric implements PooplinePl
 
 	private ContourChordTonesRepo contourChordTonesRepo;
 	
+//	private TessituraSolver tessituraSolver = TessituraSolverUsingAtMostOneBreakPoint.getInstance();
+	
 	public ContourChordTonesRandom() {
 		super(
 				new Parameter[] {Parameter.STRUCTURE_TONE_CONTOUR},
 				new Parameter[] {
-						Parameter.TESSITURA,
+						Parameter.TESSITURA_START_NOTE,
 						Parameter.START_NOTE,
 						Parameter.PHRASE_START_PERCENT,
 						Parameter.PHRASE_END_PERCENT,
@@ -120,8 +124,8 @@ public class ContourChordTonesRandom   extends PlugGeneric implements PooplinePl
 		if (pack.getRepo().containsKey(Parameter.START_NOTE)) {
 			startNoteRepo = (StartNoteRepo)pack.getRepo().get(Parameter.START_NOTE);
 		}
-		if (pack.getRepo().containsKey(Parameter.TIME_SIGNATURE)) {
-			tessituraRepo = (TessituraRepo)pack.getRepo().get(Parameter.TESSITURA);
+		if (pack.getRepo().containsKey(Parameter.TESSITURA_START_NOTE)) {
+			tessituraRepo = (TessituraRepo)pack.getRepo().get(Parameter.TESSITURA_START_NOTE);
 		}
 		if (pack.getRepo().containsKey(Parameter.PHRASE_START_PERCENT)) {
 			startPercentRepo = (PhraseBoundRepo)pack.getRepo().get(Parameter.PHRASE_START_PERCENT);
@@ -147,7 +151,14 @@ public class ContourChordTonesRandom   extends PlugGeneric implements PooplinePl
 			double percentagePosition = (pos - startPositionInFloatBars) / (endPositionInFloatBars - startPositionInFloatBars);
 			double contourPosition = contour.getValue(percentagePosition);
 			int contourNote = startNote + (int)Math.round(contourPosition * multiplier);
-			int note = mu.getPrevailingChord().getClosestChordTone(contourNote);
+			int note;
+			List<MuTagBundle> bundleList = mu.getMuTagBundleContaining(MuTag.IS_SYNCOPATION);
+			if (bundleList.size() == 0) {
+				note = mu.getPrevailingChord().getClosestChordTone(contourNote);
+			} else {
+				double positionInQuarters = (double)bundleList.get(0).getNamedParameter(MuTagNamedParameter.SYNCOPATED_BEAT_GLOBAL_POSITION);
+				note = mu.getChordAtGlobalPosition(mu.getGlobalPositionInBarsAndBeats(positionInQuarters)).getClosestChordTone(contourNote);
+			}
 			mu.addMuNote(new MuNote(note, DEFAULT_STRUCTURE_TONE_VELOCITY));
 		}
 		return pack;

@@ -16,8 +16,11 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.Diaton
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.EvenlySpacedStructureToneRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseBoundPercentRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseLengthRandom;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ShouldIUseTheStructureToneSyncopator;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StartNoteMelodyRandom;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneSyncopatorInQuartersRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TessituraFixed;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TessituraSolverOneBreakpointRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TimeSignatureSingleRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.XmlKeyRandom;
 import main.java.da_utils.render_name.RenderName;
@@ -37,10 +40,14 @@ public class Mu043_GeneratorPooplineExperiment
 		pipeline.addPlugin(new PhraseBoundPercentRandom(Parameter.PHRASE_START_PERCENT, -0.05, 0.0));
 		pipeline.addPlugin(new PhraseBoundPercentRandom(Parameter.PHRASE_END_PERCENT, 0.35, 0.8));
 		pipeline.addPlugin(new EvenlySpacedStructureToneRandom());
-		pipeline.addPlugin(new TessituraFixed());
+		pipeline.addPlugin(new ShouldIUseTheStructureToneSyncopator());
+		pipeline.addPlugin(new StructureToneSyncopatorInQuartersRandom());
+		pipeline.addPlugin(new TessituraFixed(Parameter.TESSITURA_START_NOTE));
 		pipeline.addPlugin(new StartNoteMelodyRandom());
 		pipeline.addPlugin(new ContourMultiplierRandom());
 		pipeline.addPlugin(new ContourChordTonesRandom());
+		pipeline.addPlugin(new TessituraFixed(Parameter.TESSITURA_MELODY_RANGE));
+		pipeline.addPlugin(new TessituraSolverOneBreakpointRandom(Parameter.STRUCTURE_TONE_CONTOUR, MuTag.IS_STRUCTURE_TONE));
 		pipeline.setPrimaryPlugin(new RequiredPlugInsRunner(
 				new Parameter[] {
 						Parameter.PHRASE_LENGTH,
@@ -50,10 +57,14 @@ public class Mu043_GeneratorPooplineExperiment
 						Parameter.PHRASE_START_PERCENT, 
 						Parameter.PHRASE_END_PERCENT, 
 						Parameter.STRUCTURE_TONE_SPACING, 
-						Parameter.TESSITURA, 
+						Parameter.USE_STRUCTURE_TONE_SYNCOPATOR,
+						Parameter.STRUCTURE_TONE_SYNCOPATION,
+						Parameter.TESSITURA_START_NOTE, 
 						Parameter.START_NOTE, 
 						Parameter.STRUCTURE_TONE_MULTIPLIER, 
 						Parameter.STRUCTURE_TONE_CONTOUR, 
+						Parameter.TESSITURA_MELODY_RANGE,
+						Parameter.TESSITURA_SOLVER
 				}
 				));
 		

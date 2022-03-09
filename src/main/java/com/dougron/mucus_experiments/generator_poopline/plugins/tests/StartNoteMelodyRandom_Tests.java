@@ -32,7 +32,7 @@ class StartNoteMelodyRandom_Tests {
 	@Test
 	void when_StartNoteMelodyRandom_does_have_required_parameters_then_pack_repo_does_acquire_START_NOTE_item() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.0));
-		TessituraFixed tessituraPlug = new TessituraFixed();
+		TessituraFixed tessituraPlug = new TessituraFixed(Parameter.TESSITURA_START_NOTE);
 		pack = tessituraPlug.process(pack);
 		StartNoteMelodyRandom plug = new StartNoteMelodyRandom	();
 		pack = plug.process(pack);
@@ -43,7 +43,7 @@ class StartNoteMelodyRandom_Tests {
 	@Test
 	void when_pack_rand_is_0_then_StartNoteMelodyRandom_returns_lowValue_of_42() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.0));
-		TessituraFixed tessituraPlug = new TessituraFixed();
+		TessituraFixed tessituraPlug = new TessituraFixed(Parameter.TESSITURA_START_NOTE);
 		pack = tessituraPlug.process(pack);
 		StartNoteMelodyRandom plug = new StartNoteMelodyRandom();
 		pack = plug.process(pack);

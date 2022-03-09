@@ -53,7 +53,7 @@ class ContourChordTonesRandom_Tests {
 	@Test
 	void when_ContourChordTonesRandom_does_have_required_parameters_then_repo_does_acquire_STRUCTURE_TONE_CONTOUR_item() throws Exception {
 		PooplinePackage pack = getPackWithPitchFreeStructureTones();
-		TessituraFixed tessPlug = new TessituraFixed();
+		TessituraFixed tessPlug = new TessituraFixed(Parameter.TESSITURA_START_NOTE);
 		pack = tessPlug.process(pack);
 		StartNoteMelodyRandom startPlug = new StartNoteMelodyRandom();
 		pack = startPlug.process(pack);
@@ -68,7 +68,7 @@ class ContourChordTonesRandom_Tests {
 	@Test
 	void when_ContourChordTonesRandom_does_have_required_parameters_then_mu_structure_tones_get_notes() throws Exception {
 		PooplinePackage pack = getPackWithPitchFreeStructureTones();
-		TessituraFixed tessPlug = new TessituraFixed();
+		TessituraFixed tessPlug = new TessituraFixed(Parameter.TESSITURA_START_NOTE);
 		pack = tessPlug.process(pack);
 		StartNoteMelodyRandom startPlug = new StartNoteMelodyRandom();
 		pack = startPlug.process(pack);

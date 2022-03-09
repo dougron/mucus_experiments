@@ -20,7 +20,7 @@ public class StartNoteMelodyRandom extends PlugGeneric implements PooplinePlugin
 	public StartNoteMelodyRandom() {
 		super(
 				new Parameter[] {Parameter.START_NOTE},
-				new Parameter[] {Parameter.TESSITURA}
+				new Parameter[] {Parameter.TESSITURA_START_NOTE}
 				);
 	}
 	
@@ -33,8 +33,8 @@ public class StartNoteMelodyRandom extends PlugGeneric implements PooplinePlugin
 				&& pack.getRepo().get(Parameter.START_NOTE).getClassName().equals(getClass().getName())) {	
 			// yeah don't do anything
 		} else {
-			if (pack.getRepo().containsKey(Parameter.TESSITURA)){
-				tessituraRepo = (TessituraRepo)pack.getRepo().get(Parameter.TESSITURA);
+			if (pack.getRepo().containsKey(Parameter.TESSITURA_START_NOTE)){
+				tessituraRepo = (TessituraRepo)pack.getRepo().get(Parameter.TESSITURA_START_NOTE);
 				double rndValue = pack.getRnd().nextDouble();
 				int startNote = (int)(rndValue * 
 						(tessituraRepo.getHighValue() - tessituraRepo.getLowValue()))
