@@ -15,6 +15,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.Parameter;
 import main.java.com.dougron.mucus_experiments.generator_poopline.Poopline;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
@@ -78,7 +79,7 @@ public class PlugGeneric implements PooplinePlugin {
 		for (Parameter p: requiredParameters) {
 			if (!aPackage.hasParameterInRepo(p)) {
 				okay = false;
-				logger.info("Did not receive required parameter " + p);
+				logger.info("pack.repo does not have required parameter " + p);
 			}
 		}
 		return okay;
