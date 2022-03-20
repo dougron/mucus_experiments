@@ -1,5 +1,6 @@
 package main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,10 +30,20 @@ public class PatternEmbellishmentRepo implements RepoInterface{
 	@Getter @Setter private boolean[] pitchAndRhythmPatternSyncOptions;
 	
 	
+	@Getter @Setter private double countIndexPatternRndValue;
+	@Getter @Setter private int[] selectedCountIndexPattern;
+	@Getter @Setter private int[][] countIndexPatternOptions;
+
+	
+	@Getter @Setter private Map<Integer, Double> countRndValues;
+	@Getter @Setter private Map<Integer, Integer> selectedCounts;
+	@Getter @Setter private int[] countOptions;
+	
+	
 	@Getter @Setter private double pitchIndexPatternRndValue;
 	@Getter @Setter private int[] selectedPitchIndexPattern;
 	@Getter @Setter private int[][] pitchIndexPatternOptions;
-
+	
 	
 	@Getter @Setter private Map<Integer, List<Double>> pitchGeneratorRndValues;
 	@Getter @Setter private Map<Integer, List<MuEmbellisher>> selectedPitchGenerators;
@@ -67,4 +78,24 @@ public class PatternEmbellishmentRepo implements RepoInterface{
 	@Getter @Setter private RhythmOffset[] collisionOffsetOptions;
 
 	@Getter @Setter private String className;
+
+	public void clearPitchAndRhythmUsedCountMaps() {
+		if (pitchGeneratorsUsedCount == null)
+		{
+			pitchGeneratorsUsedCount = new HashMap<Integer, Integer>();
+		}
+		else
+		{
+			pitchGeneratorsUsedCount.clear();
+		}
+		if (rhythmGeneratorsUsedCount == null)
+		{
+			rhythmGeneratorsUsedCount = new HashMap<Integer, Integer>();
+		}
+		else
+		{
+			rhythmGeneratorsUsedCount.clear();
+		}
+		
+	}
 }

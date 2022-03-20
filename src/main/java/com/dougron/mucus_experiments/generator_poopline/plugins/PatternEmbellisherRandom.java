@@ -11,13 +11,17 @@ import org.apache.logging.log4j.Logger;
 
 import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
+import main.java.com.dougron.mucus.algorithms.mu_generator.enums.ChordToneType;
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.Parameter;
 import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTag;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePlugin;
 import main.java.com.dougron.mucus_experiments.generator_poopline.embellisher.Anticipation;
+import main.java.com.dougron.mucus_experiments.generator_poopline.embellisher.ChordTone;
 import main.java.com.dougron.mucus_experiments.generator_poopline.embellisher.MuEmbellisher;
+import main.java.com.dougron.mucus_experiments.generator_poopline.embellisher.StepTone;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.LoopModelRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.LoopModelRepo.LoopModel;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PatternEmbellishmentRepo;
@@ -32,14 +36,14 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 	
 	private PatternEmbellishmentRepo patternEmbellishmentRepo;
 	private LoopModelRepo loopModelRepo;
-	private int DEFAULT_MU_EMBELLISHER_COUNT = 8;
+	@Getter private int DEFAULT_MU_EMBELLISHER_COUNT = 4;
 
-	@Getter private EmbellishmentRhythmResolution[] resolutionOptions = new EmbellishmentRhythmResolution[]
+	@Getter @Setter private EmbellishmentRhythmResolution[] resolutionOptions = new EmbellishmentRhythmResolution[]
 			{
 					EmbellishmentRhythmResolution.EIGHTHS, EmbellishmentRhythmResolution.SIXTEENTHS
 			};
-	@Getter private boolean[] pitchAndRhythmPatternSyncOptions = new boolean[] {false, true};
-	@Getter private int[][] pitchIndexPatternOptions = new int[][] 
+	@Getter @Setter private boolean[] pitchAndRhythmPatternSyncOptions = new boolean[] {false, true};
+	@Getter @Setter private int[][] countIndexPatternOptions = new int[][] 
 			{
 				new int[] {0},
 				new int[] {0, 1},
@@ -53,11 +57,37 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 				new int[] {0, 1, 1, 0},
 				new int[] {0, 1, 1, 1},
 			};
-	@Getter private MuEmbellisher[] pitchGeneratorOptions = new MuEmbellisher[]
+	@Getter @Setter private int[] countOptions = new int[]
 			{
-					Anticipation.getInstance(),
+					0,1,2,3,4,5,6,7,8
 			};
-	@Getter private int[][] rhythmIndexPatternOptions = new int[][] 
+	@Getter @Setter private int[][] pitchIndexPatternOptions = new int[][] 
+			{
+		new int[] {0},
+		new int[] {0, 1},
+		new int[] {0, 0, 1},
+		new int[] {0, 1, 0},
+		new int[] {0, 1, 1},
+		new int[] {0, 0, 0, 1},
+		new int[] {0, 0, 1, 0},
+		new int[] {0, 1, 0, 0},
+		new int[] {0, 0, 1, 1},
+		new int[] {0, 1, 1, 0},
+		new int[] {0, 1, 1, 1},
+			};
+	@Getter @Setter private MuEmbellisher[] pitchGeneratorOptions = new MuEmbellisher[]
+			{
+				Anticipation.getInstance(),
+				new ChordTone(ChordToneType.CLOSEST_BELOW, 1),
+				new ChordTone(ChordToneType.CLOSEST_ABOVE, 1),
+				new StepTone(ChordToneType.CLOSEST_BELOW, 1),
+				new StepTone(ChordToneType.CLOSEST_ABOVE, 1),
+				new StepTone(ChordToneType.CLOSEST_ABOVE, 1),
+				new StepTone(ChordToneType.CLOSEST_ABOVE, 1),
+				new StepTone(ChordToneType.CLOSEST_ABOVE, 1),
+					
+			};
+	@Getter @Setter private int[][] rhythmIndexPatternOptions = new int[][] 
 			{
 				new int[] {0},
 				new int[] {0, 1},
@@ -71,20 +101,22 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 				new int[] {0, 1, 1, 0},
 				new int[] {0, 1, 1, 1},
 			};
-	@Getter private RhythmOffset[] rhythmOffsetOptions = new RhythmOffset[]
+	@Getter @Setter private RhythmOffset[] rhythmOffsetOptions = new RhythmOffset[]
 			{
 					new RhythmOffset(0, 0, 0, -1, 0),
+					new RhythmOffset(0, 0, -1, 0, 0),
+					new RhythmOffset(0, 0, -1, -1, 0),
 			};
-	@Getter private int[][] collisionIndexPatternOptions = new int[][] 
+	@Getter @Setter private int[][] collisionIndexPatternOptions = new int[][] 
 			{
 				new int[] {0},
 				new int[] {0, 1},
 			};
-	@Getter private RhythmOffset[] collisionOffsetOptions = new RhythmOffset[]
+	@Getter @Setter private RhythmOffset[] collisionOffsetOptions = new RhythmOffset[]
 			{
 				new RhythmOffset(0, 0, 1, 0, 0),
-				new RhythmOffset(0, 1, 0, 0, 0),
-				new RhythmOffset(0, 1, 1, 0, 0),
+//				new RhythmOffset(0, 1, 0, 0, 0),
+//				new RhythmOffset(0, 1, 1, 0, 0),
 			};
 
 	
@@ -92,7 +124,7 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 	
 	public PatternEmbellisherRandom() {
 		super(
-				new Parameter[] {},
+				new Parameter[] {Parameter.PATTERN_EMBELLISHER},
 				new Parameter[] {}
 				);
 	}
@@ -138,7 +170,7 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 					.selectedLoopModel(LoopModel.LOOP)
 					.className(getClass().getName())  	// gets the class name of the plug that created it, even if as in this case it is a default created by a class not really meant to create LoopModels
 					.build();
-			logger.info("Created temporary loopModelRepo=" + loopModelRepo.getSelectedLoopModel() + " because there was not one present in the pack.repo");
+			logger.info("Created temporary loopModelRepo=" + repo.getSelectedLoopModel() + " because there was not one already present in the pack.repo");
 		}
 		return repo;
 	}
@@ -158,6 +190,9 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 		double collisionIndexPatternRndValue;
 		int[] collisionIndices;
 		Map<Integer, Double> collisionRndValues;
+		double countIndexPatternRndValue;
+		int[] countIndices;
+		Map<Integer, Double> countRndValues;
 		PatternEmbellishmentRepo repo = PatternEmbellishmentRepo.builder()
 				.resolutionRndValue(resolutionRndValue = pack.getRnd().nextDouble())
 				.selectedResolution(resolutionOptions[(int)(resolutionOptions.length * resolutionRndValue)])
@@ -183,6 +218,12 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 				.collisionOffsetRndValues(collisionRndValues = getSingleRndValueMap(collisionIndices, pack.getRnd()))
 				.selectedCollisionOffsets(getSelectedCollisionOffsets(collisionRndValues, collisionOffsetOptions))
 				.collisionOffsetOptions(collisionOffsetOptions)
+				.countIndexPatternRndValue(countIndexPatternRndValue = pack.getRnd().nextDouble())
+				.selectedCountIndexPattern(countIndices = countIndexPatternOptions[(int)(countIndexPatternOptions.length * countIndexPatternRndValue)])
+				.countIndexPatternOptions(countIndexPatternOptions)
+				.countRndValues(countRndValues = getSingleRndValueMap(collisionIndices, pack.getRnd()))
+				.selectedCounts(getSelectedCounts(countRndValues, countOptions))
+				.countOptions(countOptions)
 				.className(getClass().getName())
 				.build();
 		return repo;
@@ -191,6 +232,22 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 	
 
 
+
+	private Map<Integer, Integer> getSelectedCounts
+	(
+			Map<Integer, Double> rndValueMap, 
+			int[] options
+			) 
+	{
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+		for (Integer key: rndValueMap.keySet()) 
+		{
+			map.put(key, options[(int)(options.length * rndValueMap.get(key))]);
+		}
+		return map;
+	}
+
+	
 
 	private Map<Integer, RhythmOffset> getSelectedCollisionOffsets
 	(
@@ -207,6 +264,7 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 	}
 
 
+	
 	private Map<Integer, Double> getSingleRndValueMap
 	(
 			int[] rndValues, 
@@ -298,24 +356,50 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 			) 
 	{
 		// set up parameters
-		int[] pitchIndexPattern =repo.getSelectedPitchIndexPattern();
 		int pitchIndexPatternIndex = 0;
-		int[] rhythmIndexPattern;
+		int[] pitchIndexPattern =repo.getSelectedPitchIndexPattern();
 		int rhythmIndexPatternIndex = 0;
-		if (repo.isSelectedPitchAndRhythmPatternSync())
-		{
-			rhythmIndexPattern = pitchIndexPattern;
-		}
-		else
-		{
-			rhythmIndexPattern = repo.getSelectedPitchIndexPattern();
-		}
-		int[] collisionIndexPattern = repo.getSelectedCollisionIndexPattern();
+		int[] rhythmIndexPattern = getRhythmIndexPattern(repo, pitchIndexPattern);
 		int collisionIndexPatternIndex = 0;
+		int[] collisionIndexPattern = repo.getSelectedCollisionIndexPattern();
+		int countIndexPatternIndex = 0;
+		int[] countIndexPattern = repo.getSelectedCountIndexPattern();
+		repo.clearPitchAndRhythmUsedCountMaps();
+		
+		int rhythmIndex = rhythmIndexPattern[rhythmIndexPatternIndex];
+		int pitchIndex = pitchIndexPattern[pitchIndexPatternIndex];
+		int collisionIndex = collisionIndexPattern[collisionIndexPatternIndex];
+		int countIndex = countIndexPattern[countIndexPatternIndex];
 		
 		// loop through structure tones and apply embellishment patterns
+		Mu previousStructureTone = null;
+		Mu tempMu;
 		for (Mu structureTone: structureTones)
 		{
+			List<RhythmOffset> offsetList = repo.getSelectedRhythmOffsets().get(rhythmIndex);
+			List<MuEmbellisher> embellisherList = repo.getSelectedPitchGenerators().get(pitchIndex);
+			RhythmOffset collisionOffset = repo.getSelectedCollisionOffsets().get(collisionIndex);
+			double globalPositionOfPreviousMu = getGlobalPositionOfPreviousMu(structureTone, previousStructureTone, loopModelRepo, structureTones);
+			double globalPositionOfCollisionPoint = globalPositionOfPreviousMu + collisionOffset.getOffsetInQuarters(globalPositionOfPreviousMu, structureTone);
+			tempMu = structureTone;
+			Integer count = repo.getSelectedCounts().get(countIndex);
+			int numberOfEmbellishmentsUsed = 0;
+			for (int i = 0; i < count; i++)
+			{
+				RhythmOffset ro = getRhythmOffset(pack, offsetList, i, rhythmIndex);
+				double offsetInQuarters = getOffsetInQuarters(ro, tempMu);
+				if (tempMu.getGlobalPositionInQuarters() + offsetInQuarters >= globalPositionOfCollisionPoint)
+				{
+					numberOfEmbellishmentsUsed = i;
+					Mu mu = new Mu("emb");
+					tempMu.addMu(mu, offsetInQuarters);
+					MuEmbellisher currentEmbellisher = getEmbellisher(pack, embellisherList, i, pitchIndex);
+					currentEmbellisher.addNotes(mu);
+					tempMu = mu;
+				}
+			}
+			setCountMapKeyAndValue(rhythmIndex, numberOfEmbellishmentsUsed, repo.getRhythmGeneratorsUsedCount());
+			setCountMapKeyAndValue(pitchIndex, numberOfEmbellishmentsUsed, repo.getPitchGeneratorsUsedCount());
 			
 			
 			// increment and check indices......
@@ -325,11 +409,148 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 			if (rhythmIndexPatternIndex >= rhythmIndexPattern.length) rhythmIndexPatternIndex = 0;
 			collisionIndexPatternIndex++;
 			if (collisionIndexPatternIndex >= collisionIndexPattern.length) collisionIndexPatternIndex = 0;
+			countIndexPatternIndex++;
+			if (countIndexPatternIndex >= countIndexPattern.length) countIndexPatternIndex = 0;
+			previousStructureTone = structureTone;
 		}
 		
 		
 		
 		return pack;
 	}
+
+
+
+
+	private int[] getRhythmIndexPattern(PatternEmbellishmentRepo repo, int[] pitchIndexPattern) {
+		int[] rhythmIndexPattern;
+		if (repo.isSelectedPitchAndRhythmPatternSync())
+		{
+			rhythmIndexPattern = pitchIndexPattern;
+		}
+		else
+		{
+			rhythmIndexPattern = repo.getSelectedPitchIndexPattern();
+		}
+		return rhythmIndexPattern;
+	}
+
+
+	private void setCountMapKeyAndValue(int rhythmIndex, int numberOfEmbellishmentsUsed,
+			Map<Integer, Integer> rhythmCountMap) {
+		if (rhythmCountMap.containsKey(rhythmIndex))
+		{
+			if (rhythmCountMap.get(rhythmIndex) < numberOfEmbellishmentsUsed)
+			{
+				rhythmCountMap.put(rhythmIndex, numberOfEmbellishmentsUsed);
+			}
+		}
+		else
+		{
+			rhythmCountMap.put(rhythmIndex, numberOfEmbellishmentsUsed);
+		}
+	}
+
+
+	
+	private double getOffsetInQuarters(RhythmOffset ro, Mu aMu) 
+	{
+		return ro.getOffsetInQuarters(aMu);
+	}
+
+	
+	
+	private MuEmbellisher getEmbellisher
+	(
+			PooplinePackage pack, 
+			List<MuEmbellisher> embellisherList, 
+			int pitchListIndex, 
+			int pitchIndex
+			) 
+	{
+		if (embellisherList.size() <= pitchListIndex)
+		{
+			for (int i = embellisherList.size(); i <= pitchListIndex; i++)
+			{
+				double newRnd = pack.getRnd().nextDouble();
+				patternEmbellishmentRepo.getPitchGeneratorRndValues().get(pitchIndex).add(newRnd);
+				MuEmbellisher[] options = patternEmbellishmentRepo.getPitchGeneratorOptions();
+				MuEmbellisher selectedEmbellisher = options[(int)(options.length * newRnd)];
+				patternEmbellishmentRepo.getSelectedPitchGenerators().get(pitchIndex).add(selectedEmbellisher);
+			}
+		}
+		return embellisherList.get(pitchListIndex);
+	}
+
+
+	private RhythmOffset getRhythmOffset
+	(
+			PooplinePackage pack, 
+			List<RhythmOffset> offsetList, 
+			int offsetListIndex, 
+			int rhythmIndex
+			) 
+	{
+		if (offsetList.size() <= offsetListIndex)
+		{
+			for (int i = offsetList.size(); i <= offsetListIndex; i++)
+			{
+				double newRnd = pack.getRnd().nextDouble();
+				patternEmbellishmentRepo.getRhythmOffsetRndValues().get(rhythmIndex).add(newRnd);
+				RhythmOffset[] options = patternEmbellishmentRepo.getRhythmOffsetOptions();
+				RhythmOffset selectedOffset = options[(int)(options.length * newRnd)];
+				patternEmbellishmentRepo.getSelectedRhythmOffsets().get(rhythmIndex).add(selectedOffset);
+			}
+		}
+		return offsetList.get(offsetListIndex);
+	}
+
+
+	private double getGlobalPositionOfPreviousMu
+	(
+			Mu thisMu, 
+			Mu previousMu, 
+			LoopModelRepo repo, 
+			List<Mu> structureTones
+			) 
+	{
+		if (previousMu == null)
+		{
+			if (repo.getSelectedLoopModel() == LoopModel.LOOP)
+			{
+				return getFinalStructureToneAsThoughBeforeCurrentNote(thisMu, structureTones);
+			}
+			else if (repo.getSelectedLoopModel() == LoopModel.CONTINUOUS)
+			{
+				return getPreviousStructureToneFromGlobalParent(thisMu, structureTones);
+			}
+		}
+		else
+		{
+			return previousMu.getGlobalPositionInQuarters();
+		}
+		return 0;
+	}
+	
+	
+
+	// this is temporary for now, obviously this is just LoopModel.LOOP
+	private double getPreviousStructureToneFromGlobalParent(Mu thisMu, List<Mu> structureTones) 
+	{
+		return getFinalStructureToneAsThoughBeforeCurrentNote(thisMu, structureTones);
+	}
+
+	
+
+	private double getFinalStructureToneAsThoughBeforeCurrentNote(Mu aMu, List<Mu> structureTones) 
+	{
+		Mu parentMu = aMu.getParent();
+		double lengthInQuarters = parentMu.getLengthInQuarters();
+		Mu lastMu = structureTones.get(structureTones.size() - 1);
+		return lastMu.getGlobalPositionInQuarters() - lengthInQuarters;
+	}
+	
+
+
 
 }

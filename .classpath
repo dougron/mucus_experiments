@@ -20,6 +20,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="lib" path="D:/Documents/DougzJavazOnGitHub/da_utils/da_utils-0.1.2.jar"/>
+	<classpathentry kind="lib" path="D:/Documents/DougzJavazOnGitHub/da_utils/da_utils-0.1.4.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
