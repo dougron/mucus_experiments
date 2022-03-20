@@ -8,7 +8,7 @@ import com.google.common.collect.ImmutableMap;
 
 import main.java.com.dougron.mucus.mucus_output_manager.LocalOutputManager;
 import main.java.com.dougron.mucus_experiments.mucus_controller.MucusControllerInterface;
-import main.java.com.dougron.mucus_experiments.mucus_controller.mucus_controller_001.MucusController_001;
+import main.java.com.dougron.mucus_experiments.mucus_controller.mucus_controller_002.MucusController_002;
 
 
 
@@ -17,7 +17,7 @@ public class Mu038_MuKernelConsoleFrontEnd
 
 	private JSONObject log = new JSONObject();
 	Scanner in = new Scanner(System.in);
-	MucusControllerInterface mk = new MucusController_001(LocalOutputManager.getInstance());
+	MucusControllerInterface mk = new MucusController_002(LocalOutputManager.getInstance());
 	
 	
 	
