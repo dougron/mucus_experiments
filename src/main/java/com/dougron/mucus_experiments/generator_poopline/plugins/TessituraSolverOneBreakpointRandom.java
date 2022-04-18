@@ -62,7 +62,7 @@ public class TessituraSolverOneBreakpointRandom extends PlugGeneric implements P
 	
 	@Override
 	public PooplinePackage process (PooplinePackage pack) {
-		logger.info("Received " + pack);
+		logger.info(getInfoLevelPackReceiptMessage(pack));
 		pack = super.process(pack);
 		List<Mu> muList = pack.getMu().getMuWithTag(muTagToActUpon);
 		assignFieldReposFromPackRepo(pack);

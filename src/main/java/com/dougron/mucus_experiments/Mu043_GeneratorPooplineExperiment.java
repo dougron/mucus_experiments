@@ -13,7 +13,6 @@ import main.java.com.dougron.mucus.mucus_output_manager.LocalOutputManager;
 import main.java.com.dougron.mucus.mucus_output_manager.MucusOutputManager;
 import main.java.com.dougron.mucus_experiments.generator_poopline.Poopline;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
-import main.java.com.dougron.mucus_experiments.generator_poopline.RequiredPlugInsRunner;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ContourChordTonesRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ContourMultiplierRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DiatonicTriadProgressionRandom;
@@ -22,6 +21,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.Evenly
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PatternEmbellisherRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseBoundPercentRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseLengthRandom;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.RequiredPlugInsRunner;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ShouldIUseTheStructureToneSyncopator;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StartNoteMelodyRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneSyncopatorInQuartersRandom;
@@ -33,6 +33,19 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.XmlKey
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.DurationPatternRepo;
 import main.java.da_utils.render_name.RenderName;
 
+
+/*
+ * demonstration of the Poopline framework generating random musical content
+ * 
+ * generates structure tones and chord- and step-tone embellishments
+ * 
+ * generates 10 options joined end to end. There is an exponential escalation of time
+ * taken to render as the number of items increases. Doubling the count ramps this up 
+ * about 40-50 fold. Not sure why this is, other than the recursive calls to get position.
+ * 
+ * might indicate that this is an area where Mu needs to cache some position data instead of re-rendering 
+ * every time.
+ */
 public class Mu043_GeneratorPooplineExperiment 
 {
 	
@@ -41,6 +54,7 @@ public class Mu043_GeneratorPooplineExperiment
 	
 	public Mu043_GeneratorPooplineExperiment() 
 	{
+		long startTime = System.nanoTime();
 		Poopline pipeline = new Poopline();
 		pipeline.addPlugin(new PhraseLengthRandom());
 		pipeline.addPlugin(new TempoRandom());
@@ -83,6 +97,7 @@ public class Mu043_GeneratorPooplineExperiment
 				}
 				));
 		
+		long afterPipelineInstantiation = System.nanoTime();
 		Mu totalMu = new Mu("parent");
 		boolean first = true;
 		Mu previousMu = null;
@@ -90,7 +105,7 @@ public class Mu043_GeneratorPooplineExperiment
 		{
 			PooplinePackage pack = new PooplinePackage("pack" + i, new Random());
 			pack = pipeline.process(pack);
-			System.out.println(pack.toString());
+//			System.out.println(pack.toString());
 			Mu tempMu = pack.getMu();
 			tempMu.addTag(MuTag.PART_MELODY);
 			tempMu.addTag(MuTag.PRINT_CHORDS);
@@ -105,6 +120,7 @@ public class Mu043_GeneratorPooplineExperiment
 			}
 			previousMu = tempMu;
 		}
+		long allMusMade = System.nanoTime();
 		
 		Mu melody = new Mu("melody");
 //		melody.addTag(MuTag.PART_MELODY);
@@ -124,7 +140,15 @@ public class Mu043_GeneratorPooplineExperiment
 			mu.addMuAnnotation(new MuAnnotation(tempo + " bpm"));
 		}
 		
+		long allMuAnnotationsAdded = System.nanoTime();
+		
 		outputManager.outputToMusicXML(RenderName.dateAndTime(), totalMu);
+		long musRenderedToMusicXML = System.nanoTime();
+		
+		System.out.println("pipeline instantiation\t" + ((afterPipelineInstantiation - startTime) / 1e9));
+		System.out.println("mus generates\t" + ((allMusMade - afterPipelineInstantiation) / 1e9));
+		System.out.println("mus annotated\t" + ((allMuAnnotationsAdded - allMusMade) / 1e9));
+		System.out.println("render to musicxml\t" + ((musRenderedToMusicXML - allMuAnnotationsAdded) / 1e9));
 	}
 	
 	

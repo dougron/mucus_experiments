@@ -26,7 +26,7 @@ public class StructureToneSyncopator extends PlugGeneric implements PooplinePlug
 	
 	@Override
 	public PooplinePackage process (PooplinePackage pack) {
-		logger.info("Received " + pack);
+		logger.info(getInfoLevelPackReceiptMessage(pack));
 		pack = super.process(pack);
 		
 		

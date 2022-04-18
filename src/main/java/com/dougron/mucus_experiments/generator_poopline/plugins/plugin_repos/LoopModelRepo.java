@@ -7,11 +7,21 @@ import lombok.ToString;
 
 @Builder
 @ToString
-public class LoopModelRepo implements RepoInterface {
+public class LoopModelRepo extends RepoSuperclass implements RepoInterface {
 
 public enum LoopModel {LOOP, CONTINUOUS}
 	
 	@Getter @Setter private LoopModel selectedLoopModel;
 	@Getter @Setter private String className;
+	
+	
+	
+	public LoopModelRepo deepCopy()
+	{
+		return LoopModelRepo.builder()
+				.selectedLoopModel(selectedLoopModel)
+				.className(className)
+				.build();
+	}
 
 }

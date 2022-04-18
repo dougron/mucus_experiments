@@ -24,7 +24,7 @@ public class ShouldIUseTheStructureToneSyncopator extends PlugGeneric {
 	
 	@Override
 	public PooplinePackage process (PooplinePackage pack) {
-		logger.info("Received " + pack);
+		logger.info(getInfoLevelPackReceiptMessage(pack));
 		pack = super.process(pack);
 		if (pack.getRepo().containsKey(Parameter.USE_STRUCTURE_TONE_SYNCOPATOR) 
 				&& pack.getRepo().get(Parameter.USE_STRUCTURE_TONE_SYNCOPATOR).getClassName().equals(getClass().getName())) {			

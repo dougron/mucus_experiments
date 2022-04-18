@@ -37,7 +37,7 @@ public class ContourMultiplierRandom  extends PlugGeneric implements PooplinePlu
 	
 	@Override
 	public PooplinePackage process (PooplinePackage pack) {
-		logger.info("Received " + pack);
+		logger.info(getInfoLevelPackReceiptMessage(pack));
 		pack = super.process(pack);
 		if (pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_MULTIPLIER) 
 				&& pack.getRepo().get(Parameter.STRUCTURE_TONE_MULTIPLIER).getClassName().equals(getClass().getName())) {			

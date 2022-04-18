@@ -9,13 +9,31 @@ import lombok.ToString;
 
 @Builder
 @ToString
-public class DiatonicTriadRepo implements RepoInterface {
+public class DiatonicTriadRepo extends RepoSuperclass implements RepoInterface {
 
 	@Getter @Setter private double[] rndValue;
 	@Getter @Setter private int[] selectedValues;
 	@Getter @Setter private String[] options;
 	@Getter @Setter private Map<Double, String> floatBarChordMap;
 	@Getter @Setter private String className;
+	
+	
+	public DiatonicTriadRepo deepCopy()
+	{
+		return DiatonicTriadRepo.builder()
+				.rndValue(getCopy(rndValue))
+				.selectedValues(getCopy(selectedValues))
+				.options(getCopy(options))
+				.floatBarChordMap(getDoubleStringMapCopy(floatBarChordMap))
+				.className(className)
+				.build();
+	}
+	
+	
+
+
+
+
 	public Object[] getMapAsObjectList(double lengthInFloatBars) {
 		Object[] list = new Object[floatBarChordMap.size() * 2 + 2] ;
 		list[0] = "FloatBarChordProgression";

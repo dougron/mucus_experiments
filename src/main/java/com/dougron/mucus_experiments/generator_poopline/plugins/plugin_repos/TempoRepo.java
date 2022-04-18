@@ -7,7 +7,7 @@ import lombok.ToString;
 
 @Builder
 @ToString
-public class TempoRepo implements RepoInterface{
+public class TempoRepo extends RepoSuperclass implements RepoInterface{
 
 	
 	@Getter @Setter private double rndValue;
@@ -15,4 +15,16 @@ public class TempoRepo implements RepoInterface{
 	@Getter @Setter private int highLimit;
 	@Getter @Setter private int lowLimit;
 	@Getter @Setter private String className;
+	
+	
+	public TempoRepo deepCopy()
+	{
+		return TempoRepo.builder()
+				.rndValue(rndValue)
+				.selectedTempo(selectedTempo)
+				.highLimit(highLimit)
+				.lowLimit(lowLimit)
+				.className(className)
+				.build();
+	}
 }

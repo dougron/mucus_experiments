@@ -65,7 +65,7 @@ public class StructureToneSyncopatorInQuartersRandom  extends PlugGeneric {
 	
 	@Override
 	public PooplinePackage process (PooplinePackage pack) {
-		logger.info("Received " + pack);
+		logger.info(getInfoLevelPackReceiptMessage(pack));
 		pack = super.process(pack);
 		if (pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_SYNCOPATION) 
 				&& pack.getRepo().get(Parameter.STRUCTURE_TONE_SYNCOPATION).getClassName().equals(getClass().getName())) {			

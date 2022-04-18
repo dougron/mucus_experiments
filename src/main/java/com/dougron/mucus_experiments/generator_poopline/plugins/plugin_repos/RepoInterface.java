@@ -4,4 +4,6 @@ public interface RepoInterface {
 
 	
 	public String getClassName();
+
+	public RepoInterface deepCopy();
 }

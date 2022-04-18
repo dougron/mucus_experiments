@@ -30,7 +30,7 @@ public class PhraseLengthRandom extends PlugGeneric implements PooplinePlugin {
 	
 	@Override
 	public PooplinePackage process (PooplinePackage pack) {
-		logger.info("Received " + pack);
+		logger.info(getInfoLevelPackReceiptMessage(pack));
 		pack = super.process(pack);
 		if (pack.getRepo().containsKey(Parameter.PHRASE_LENGTH) 
 				&& pack.getRepo().get(Parameter.PHRASE_LENGTH).getClassName().equals(getClass().getName())) {			

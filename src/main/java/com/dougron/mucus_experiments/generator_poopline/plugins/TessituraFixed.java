@@ -49,7 +49,7 @@ public class TessituraFixed extends PlugGeneric implements PooplinePlugin  {
 	
 	@Override
 	public PooplinePackage process (PooplinePackage pack) {
-		logger.info("Received " + pack);
+		logger.info(getInfoLevelPackReceiptMessage(pack));
 		pack = super.process(pack);
 		if (pack.getRepo().containsKey(tessituraParameter) 
 				&& pack.getRepo().get(tessituraParameter).getClassName().equals(getClass().getName())) {			
@@ -57,6 +57,7 @@ public class TessituraFixed extends PlugGeneric implements PooplinePlugin  {
 			tessituraRepo = TessituraRepo.builder()
 					.lowValue(lowValue)
 					.highValue(highValue)
+					.parameter(tessituraParameter)
 					.className(getClass().getName())
 					.build();
 			pack.getRepo().put(tessituraParameter, tessituraRepo);

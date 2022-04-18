@@ -25,6 +25,7 @@ public class EvenlySpacedStructureToneRandom extends PlugGeneric {
 	private static final int STRENGTH_THRESHOLD = 2;
 
 	private double[] options = new double[] {0.5, 1.0, 2.0};
+	private static final double DEFAULT_LENGTH_IN_QUARTERS = 0.5;
 	
 	private Parameter parameter;
 	
@@ -63,11 +64,11 @@ public class EvenlySpacedStructureToneRandom extends PlugGeneric {
 	
 	@Override
 	public PooplinePackage process (PooplinePackage pack) {
-		logger.info("Received " + pack);
+		logger.info(getInfoLevelPackReceiptMessage(pack));
 		pack = super.process(pack);
 		if (pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_SPACING) 
 				&& pack.getRepo().get(Parameter.STRUCTURE_TONE_SPACING).getClassName().equals(getClass().getName())) {			
-			// don't change existing info from same plugin
+			evenlySpacedStructureToneRepo = (EvenlySpacedStructureToneRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_SPACING);
 		} else {
 			evenlySpacedStructureToneRepo = makeNewRandomEvenlySpacedStructureToneRepo(pack);
 			pack.getRepo().put(Parameter.STRUCTURE_TONE_SPACING, evenlySpacedStructureToneRepo);
@@ -88,6 +89,7 @@ public class EvenlySpacedStructureToneRandom extends PlugGeneric {
 					
 				}
 				Mu mu = new Mu("st");
+				mu.setLengthInQuarters(DEFAULT_LENGTH_IN_QUARTERS);
 				mu.addTag(MuTag.IS_STRUCTURE_TONE);
 				pack.getMu().addMu(mu, finalPosition);
 			}

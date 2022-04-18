@@ -55,7 +55,7 @@ public class DurationPattern extends PlugGeneric implements PooplinePlugin {
 	@Override
 	public PooplinePackage process (PooplinePackage pack) 
 	{
-		logger.info("Received " + pack);
+		logger.info(getInfoLevelPackReceiptMessage(pack));
 		pack = super.process(pack);
 		double staccatoDurationInQuarters = getStaccatoDurationInQuarters(pack);
 		if (pack.getRepo().containsKey(Parameter.DURATION) 
@@ -113,15 +113,18 @@ public class DurationPattern extends PlugGeneric implements PooplinePlugin {
 
 
 	private void dealWithDurationOfLastMuInList(double staccatoDurationInQuarters, List<Mu> muList) {
-		Mu lastMu = muList.get(muList.size() - 1);
-		switch(endNoteSolution)
+		if (muList.size() > 0)
 		{
-		case LEGATO_TILL_END_OF_BAR:
-			setLastMuDurationToEndOfBar(lastMu);
-			break;
-		case STACCATO:
-			lastMu.setLengthInQuarters(staccatoDurationInQuarters);
-			break;
+			Mu lastMu = muList.get(muList.size() - 1);
+			switch(endNoteSolution)
+			{
+			case LEGATO_TILL_END_OF_BAR:
+				setLastMuDurationToEndOfBar(lastMu);
+				break;
+			case STACCATO:
+				lastMu.setLengthInQuarters(staccatoDurationInQuarters);
+				break;
+			}
 		}
 	}
 

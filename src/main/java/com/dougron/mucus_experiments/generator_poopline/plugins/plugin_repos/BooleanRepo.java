@@ -7,10 +7,23 @@ import lombok.ToString;
 
 @Builder
 @ToString
-public class BooleanRepo implements RepoInterface {
+public class BooleanRepo extends RepoSuperclass implements RepoInterface 
+{
 
 	@Getter @Setter private double rndValue;
 	@Getter @Setter private boolean selectedOption;
 	@Getter @Setter private boolean[] options;
 	@Getter @Setter private String className;
+	
+	
+	
+	public BooleanRepo deepCopy()
+	{
+		return BooleanRepo.builder()
+				.rndValue(rndValue)
+				.selectedOption(selectedOption)
+				.options(getCopy(options))
+				.className(className)
+				.build();
+	}
 }

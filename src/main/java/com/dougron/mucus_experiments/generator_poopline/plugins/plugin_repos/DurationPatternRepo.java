@@ -8,11 +8,20 @@ import main.java.com.dougron.mucus.algorithms.generic_generator.DurationType;
 
 @Builder
 @ToString
-public class DurationPatternRepo implements RepoInterface {
+public class DurationPatternRepo extends RepoSuperclass implements RepoInterface {
 	
 
 	@Getter @Setter private DurationType[] durationPattern;
 	@Getter @Setter private int staccatoDurationInMilliseconds;
 	@Getter @Setter private String className;
+	
+	
+	public DurationPatternRepo deepCopy()
+	{
+		return DurationPatternRepo.builder()
+				.durationPattern(getCopy(durationPattern))
+				.staccatoDurationInMilliseconds(staccatoDurationInMilliseconds)
+				.build();
+	}
 
 }

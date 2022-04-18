@@ -44,6 +44,7 @@ public class PooplinePackage {
 		mu = new Mu(name);
 		json = new JsonObject();
 		repo = new ParameterRepository();
+		logger.info("new PooplinePackage created. name=" + name);
 	}
 	
 	

@@ -32,12 +32,12 @@ public class TempoRandom extends PlugGeneric implements PooplinePlugin {
 	@Override
 	public PooplinePackage process (PooplinePackage pack) 
 	{
-		logger.info("Received " + pack);
+		logger.info(getInfoLevelPackReceiptMessage(pack));
 		pack = super.process(pack);
 		if (pack.getRepo().containsKey(Parameter.TEMPO) 
 				&& pack.getRepo().get(Parameter.TEMPO).getClassName().equals(getClass().getName())) 
 		{	
-			// nothing required to be done
+			tempoRepo = (TempoRepo)pack.getRepo().get(Parameter.TEMPO);
 		} 
 		else 
 		{
@@ -51,7 +51,14 @@ public class TempoRandom extends PlugGeneric implements PooplinePlugin {
 					.className(getClass().getName())
 					.build();
 			pack.getRepo().put(Parameter.TEMPO, tempoRepo);
-			pack.getMu().setStartTempo(tempo);
+		}
+		if (tempoRepo == null)
+		{
+			logger.info("mu not updated as tempoRepo is null");
+		}
+		else
+		{
+			pack.getMu().setStartTempo(tempoRepo.getSelectedTempo());
 		}
 		return pack;
 	}

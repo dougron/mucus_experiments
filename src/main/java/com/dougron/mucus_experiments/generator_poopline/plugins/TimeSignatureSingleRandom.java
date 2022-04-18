@@ -54,7 +54,7 @@ public class TimeSignatureSingleRandom extends PlugGeneric {
 	
 	@Override
 	public PooplinePackage process (PooplinePackage pack) {
-		logger.info("Received " + pack);
+		logger.info(getInfoLevelPackReceiptMessage(pack));
 		pack = super.process(pack);
 		if (pack.getRepo().containsKey(Parameter.TIME_SIGNATURE) 
 				&& pack.getRepo().get(Parameter.TIME_SIGNATURE).getClassName().equals(getClass().getName())) {			

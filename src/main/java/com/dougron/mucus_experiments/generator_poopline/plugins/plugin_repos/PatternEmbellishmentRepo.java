@@ -13,7 +13,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.rhythm_offset.
 
 @Builder
 @ToString
-public class PatternEmbellishmentRepo implements RepoInterface{
+public class PatternEmbellishmentRepo extends RepoSuperclass implements RepoInterface{
 	
 	
 	// might be that this issue is a choice of PatternEmbellisher with different presets, and might belong in 
@@ -78,6 +78,56 @@ public class PatternEmbellishmentRepo implements RepoInterface{
 	@Getter @Setter private RhythmOffset[] collisionOffsetOptions;
 
 	@Getter @Setter private String className;
+	
+	
+	public PatternEmbellishmentRepo deepCopy()
+	{
+		return PatternEmbellishmentRepo.builder()
+				.resolutionRndValue(resolutionRndValue)
+				.selectedResolution(selectedResolution)
+				.resolutionOptions(getCopy(resolutionOptions))
+				
+				.pitchAndRhythmPatternSyncRndValue(pitchAndRhythmPatternSyncRndValue)
+				.selectedPitchAndRhythmPatternSync(selectedPitchAndRhythmPatternSync)
+				.pitchAndRhythmPatternSyncOptions(getCopy(pitchAndRhythmPatternSyncOptions))
+				
+				.countIndexPatternRndValue(countIndexPatternRndValue)
+				.selectedCountIndexPattern(getCopy(selectedCountIndexPattern))
+				.countIndexPatternOptions(getCopy(countIndexPatternOptions))
+				
+				.countRndValues(getIntegerDoubleMapCopy(countRndValues))
+				.selectedCounts(getIntegerIntegerMapCopy(selectedCounts))
+				.countOptions(getCopy(countOptions))
+				
+				.pitchIndexPatternRndValue(pitchIndexPatternRndValue)
+				.selectedPitchIndexPattern(getCopy(selectedPitchIndexPattern))
+				.pitchIndexPatternOptions(getCopy(pitchIndexPatternOptions))
+				
+				.pitchGeneratorRndValues(getIntegerDoubleListMapCopy(pitchGeneratorRndValues))
+				.selectedPitchGenerators(getIntegerMuEmbellisherListMapCopy(selectedPitchGenerators))
+				.pitchGeneratorsUsedCount(getIntegerIntegerMapCopy(pitchGeneratorsUsedCount))
+				.pitchGeneratorOptions(getCopy(pitchGeneratorOptions))
+				
+				.rhythmIndexPatternRndValue(rhythmIndexPatternRndValue)
+				.selectedRhythmIndexPattern(getCopy(selectedRhythmIndexPattern))
+				.rhythmIndexPatternOptions(getCopy(rhythmIndexPatternOptions))
+				
+				.rhythmOffsetRndValues(getIntegerDoubleListMapCopy(rhythmOffsetRndValues))
+				.selectedRhythmOffsets(getIntegerRhythmOffsetListMapCopy(selectedRhythmOffsets))
+				.rhythmGeneratorsUsedCount(getIntegerIntegerMapCopy(rhythmGeneratorsUsedCount))
+				.rhythmOffsetOptions(getCopy(rhythmOffsetOptions))
+
+				.collisionIndexPatternRndValue(collisionIndexPatternRndValue)
+				.selectedCollisionIndexPattern(getCopy(selectedCollisionIndexPattern))
+				.collisionIndexPatternOptions(getCopy(collisionIndexPatternOptions))
+				
+				.collisionOffsetRndValues(getIntegerDoubleMapCopy(collisionOffsetRndValues))
+				.selectedCollisionOffsets(getIntegerRhythmOffsetMapCopy(selectedCollisionOffsets))
+				.collisionOffsetOptions(getCopy(collisionOffsetOptions))
+				
+				.className(className)
+				.build();
+	}
 
 	public void clearPitchAndRhythmUsedCountMaps() {
 		if (pitchGeneratorsUsedCount == null)

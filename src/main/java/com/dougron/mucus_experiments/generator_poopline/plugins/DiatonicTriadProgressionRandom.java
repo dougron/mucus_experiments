@@ -47,7 +47,7 @@ public class DiatonicTriadProgressionRandom extends PlugGeneric implements Poopl
 	
 	@Override
 	public PooplinePackage process (PooplinePackage pack) {
-		logger.info("Received " + pack);
+		logger.info(getInfoLevelPackReceiptMessage(pack));
 		// super.process handles required parameters if they are available
 		pack = super.process(pack);
 		if (pack.getRepo().containsKey(Parameter.PHRASE_LENGTH) 

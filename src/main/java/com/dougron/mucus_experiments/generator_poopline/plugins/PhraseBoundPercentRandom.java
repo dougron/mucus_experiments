@@ -41,7 +41,7 @@ public class PhraseBoundPercentRandom extends PlugGeneric {
 	
 	@Override
 	public PooplinePackage process (PooplinePackage pack) {
-		logger.info("Received " + pack);
+		logger.info(getInfoLevelPackReceiptMessage(pack));
 		pack = super.process(pack);
 		if (pack.getRepo().containsKey(parameter) 
 				&& pack.getRepo().get(parameter).getClassName().equals(getClass().getName())) {			
@@ -53,6 +53,7 @@ public class PhraseBoundPercentRandom extends PlugGeneric {
 					.selectedValue((rangeHigh - rangeLow) * rndValue + rangeLow)
 					.rangeLow(rangeLow)
 					.rangeHigh(rangeHigh)
+					.parameter(parameter)
 					.className(getClass().getName())
 					.build();
 			pack.getRepo().put(parameter, phraseBoundRepo);

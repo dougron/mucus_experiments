@@ -7,7 +7,7 @@ import lombok.ToString;
 
 @Builder
 @ToString
-public class XmlKeyRepo implements RepoInterface {
+public class XmlKeyRepo extends RepoSuperclass implements RepoInterface {
 
 	@Getter @Setter private double rndValue;
 	@Getter @Setter private int selectedValue;
@@ -16,6 +16,14 @@ public class XmlKeyRepo implements RepoInterface {
 	
 	
 
-	
+	public XmlKeyRepo deepCopy()
+	{
+		return XmlKeyRepo.builder()
+				.rndValue(rndValue)
+				.selectedValue(selectedValue)
+				.options(getCopy(options))
+				.className(className)
+				.build();
+	}
 
 }

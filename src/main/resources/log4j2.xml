@@ -6,7 +6,7 @@
       <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
     </Console>  
     
-    <RollingFile name="ErrorLog" fileName="logs/error.log" filePattern="logs/loggerlog-%d{yyyyMMdd}.error.%i.log">
+ <!--    <RollingFile name="ErrorLog" fileName="logs/error.log" filePattern="logs/loggerlog-%d{yyyyMMdd}.error.%i.log">
     	<PatternLayout>
     		<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
     	</PatternLayout>
@@ -33,21 +33,21 @@
     		<ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY" />
     	</Filters>
     
-    </RollingFile>
+    </RollingFile>-->
     
       
   </Appenders>
   
   <Loggers>
   
- <!--  <Logger name="com.dougron.lorez2021" level="debug" additivity="false">--> 	
- <!--   		<AppenderRef ref="Console"/>--> 	
- <!--   	</Logger>--> 	
+	  <Logger name="com.dougron.lorez2021" level="debug" additivity="false">	
+	   		<AppenderRef ref="Console"/> 	
+	   	</Logger> 	
   	
     <Root level="debug" >
-      	<AppenderRef ref="Console"/>
-      	<AppenderRef ref="ErrorLog"/>
-      	<AppenderRef ref="StatusLog"/>
+     	<AppenderRef ref="Console"/>
+  <!--       	<AppenderRef ref="ErrorLog"/>--> 
+  <!--       	<AppenderRef ref="StatusLog"/>--> 
     </Root>    
   </Loggers>
 </Configuration>

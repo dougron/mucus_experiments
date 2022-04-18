@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import DataObjects.contour.FourPointContour;
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.Parameter;
 import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.data_types.MuNote;
@@ -20,6 +19,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseLengthRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StartNoteRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TessituraRepo;
+import main.java.da_utils.four_point_contour.FourPointContour;
 
 public class ContourChordTonesRandom   extends PlugGeneric implements PooplinePlugin {
 
@@ -75,7 +75,7 @@ public class ContourChordTonesRandom   extends PlugGeneric implements PooplinePl
 	
 	@Override
 	public PooplinePackage process (PooplinePackage pack) {
-		logger.info("Received " + pack);
+		logger.info(getInfoLevelPackReceiptMessage(pack));
 		pack = super.process(pack);
 		assignFieldReposFromPackRepo(pack);
 		if (pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_CONTOUR) 

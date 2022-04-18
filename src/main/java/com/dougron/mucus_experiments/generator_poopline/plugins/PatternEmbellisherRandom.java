@@ -133,7 +133,7 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 	@Override
 	public PooplinePackage process (PooplinePackage pack) 
 	{
-		logger.info("Received " + pack);
+		logger.info(getInfoLevelPackReceiptMessage(pack));
 		pack = super.process(pack);
 		List<Mu> structureTones = pack.getMu().getMuWithTag(MuTag.IS_STRUCTURE_TONE);
 		loopModelRepo = dealWithLoopModelRepo(pack);

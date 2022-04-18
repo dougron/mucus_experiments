@@ -30,7 +30,7 @@ public class XmlKeyRandom extends PlugGeneric implements PooplinePlugin {
 	
 	@Override
 	public PooplinePackage process (PooplinePackage pack) {
-		logger.info("Received " + pack);
+		logger.info(getInfoLevelPackReceiptMessage(pack));
 		pack = super.process(pack);
 		if (pack.getRepo().containsKey(Parameter.XMLKEY) 
 				&& pack.getRepo().get(Parameter.XMLKEY).getClassName().equals(getClass().getName())) {			

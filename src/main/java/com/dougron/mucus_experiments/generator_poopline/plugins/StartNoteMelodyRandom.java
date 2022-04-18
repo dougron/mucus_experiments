@@ -27,7 +27,7 @@ public class StartNoteMelodyRandom extends PlugGeneric implements PooplinePlugin
 	
 	@Override
 	public PooplinePackage process (PooplinePackage pack) {
-		logger.info("Received " + pack);
+		logger.info(getInfoLevelPackReceiptMessage(pack));
 		pack = super.process(pack);
 		if (pack.getRepo().containsKey(Parameter.START_NOTE) 
 				&& pack.getRepo().get(Parameter.START_NOTE).getClassName().equals(getClass().getName())) {	

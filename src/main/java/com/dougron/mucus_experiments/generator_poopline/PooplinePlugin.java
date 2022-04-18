@@ -13,5 +13,6 @@ public interface PooplinePlugin {
 	public boolean canSupplyParameter(Parameter aParameter);
 	
 	public Parameter[] getRenderParameters();
+	public Parameter[] getRequiredParameters();
 
 }

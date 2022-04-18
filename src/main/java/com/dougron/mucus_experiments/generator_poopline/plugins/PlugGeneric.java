@@ -29,7 +29,7 @@ public class PlugGeneric implements PooplinePlugin {
 
 	@Getter @Setter Poopline parent;
 	@NonNull @Getter private Parameter[] renderParameters;// = new Parameter[] {Parameter.CHORD_LIST_GENERATOR};
-	@NonNull @Setter private Parameter[] requiredParameters;// = new Parameter[] {Parameter.PHRASE_LENGTH};
+	@NonNull @Setter @Getter private Parameter[] requiredParameters;// = new Parameter[] {Parameter.PHRASE_LENGTH};
 	public static final Logger logger = LogManager.getLogger(PlugGeneric.class);
 
 	
@@ -56,7 +56,8 @@ public class PlugGeneric implements PooplinePlugin {
 	private PooplinePackage getPluginsForRequiredParametersFromParent(PooplinePackage aPackage) {
 		Set<PooplinePlugin> set = new LinkedHashSet<PooplinePlugin>();
 		for (Parameter parameter: requiredParameters) {
-			set.add(parent.getPluginThatSolves(parameter));
+			PooplinePlugin plug = parent.getPluginThatSolves(parameter);
+			if (plug != null) set.add(plug);
 		}
 		for (PooplinePlugin plug: set) {
 			aPackage = plug.process(aPackage);
@@ -135,7 +136,17 @@ public class PlugGeneric implements PooplinePlugin {
 	}
 	
 	
-	
+	public String getInfoLevelPackReceiptMessage(PooplinePackage pack)
+	{
+		return "Received " 
+				+ pack.getName() 
+				+ " " 
+				+ pack.getRepo().size() 
+				+ ". items in repo. mu=" 
+				+ pack.getMu().getName() 
+				+ ". lengthInBars=" 
+				+ pack.getMu().getLengthInBars();
+	}
 	
 
 }
