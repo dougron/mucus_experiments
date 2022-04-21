@@ -25,7 +25,7 @@ public class RequiredPlugInsRunner extends PlugGeneric {
 	public PooplinePackage process (PooplinePackage pack) {
 		logger.info(getInfoLevelPackReceiptMessage(pack));
 		pack = super.process(pack);
-		
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 }

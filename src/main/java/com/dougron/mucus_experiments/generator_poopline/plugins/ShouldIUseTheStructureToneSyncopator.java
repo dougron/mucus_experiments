@@ -40,6 +40,7 @@ public class ShouldIUseTheStructureToneSyncopator extends PlugGeneric {
 					.build();		
 			pack.getRepo().put(Parameter.USE_STRUCTURE_TONE_SYNCOPATOR, repo);
 		}
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 }

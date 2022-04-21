@@ -52,6 +52,7 @@ public class PhraseLengthRandom extends PlugGeneric implements PooplinePlugin {
 	
 			pack.getMu().setLengthInBars(phraseLengthRepo.getSelectedValue());
 		}
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 	

@@ -52,6 +52,7 @@ public class PhraseLengthSetLength extends PlugGeneric implements PooplinePlugin
 			pack.getRepo().put(Parameter.PHRASE_LENGTH, phraseLengthRepo);	
 		}
 		pack.getMu().setLengthInBars(phraseLengthRepo.getSelectedValue());
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 	

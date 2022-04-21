@@ -29,7 +29,7 @@ public class StructureToneSyncopator extends PlugGeneric implements PooplinePlug
 		logger.info(getInfoLevelPackReceiptMessage(pack));
 		pack = super.process(pack);
 		
-		
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;	
 	}
 }

@@ -52,7 +52,7 @@ public class PhraseBoundPercentSetAmount extends PlugGeneric {
 		}
 		
 		// for now, this does nothing to the Mu
-		
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 

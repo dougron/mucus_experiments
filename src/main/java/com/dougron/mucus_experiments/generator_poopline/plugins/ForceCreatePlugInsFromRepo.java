@@ -45,13 +45,17 @@ public class ForceCreatePlugInsFromRepo extends PlugGeneric implements PooplineP
 				parent.addPlugin(plug);
 			}
 		}
-		for (PooplinePlugin plug: parent.getPlugins())
+		// plugins always processed in reverese order, to accommodate loading default plugins first
+		// and them being encountered second
+		for (int i = parent.getPlugins().size() - 1; i >= 0; i--)
 		{
+			PooplinePlugin plug = parent.getPlugins().get(i);
 			if (plug != this)
 			{
 				pack = plug.process(pack);
 			}
 		}
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 	

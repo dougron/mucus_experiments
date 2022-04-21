@@ -67,7 +67,8 @@ public class ContourChordTonesRandom   extends PlugGeneric implements PooplinePl
 						Parameter.PHRASE_START_PERCENT,
 						Parameter.PHRASE_END_PERCENT,
 						Parameter.STRUCTURE_TONE_MULTIPLIER,
-						Parameter.STRUCTURE_TONE_SPACING
+						Parameter.STRUCTURE_TONE_SPACING,
+						Parameter.CHORD_LIST_GENERATOR
 					}
 				);
 	}
@@ -99,6 +100,7 @@ public class ContourChordTonesRandom   extends PlugGeneric implements PooplinePl
 		} else {
 			logger.info("mu not updated as all required repos were not present.");
 		}
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 

@@ -55,8 +55,9 @@ public class VectorChordTonesFixed   extends PlugGeneric implements PooplinePlug
 						Parameter.START_NOTE,
 						Parameter.PHRASE_START_PERCENT,
 						Parameter.PHRASE_END_PERCENT,
-						Parameter.STRUCTURE_TONE_MULTIPLIER,
-						Parameter.STRUCTURE_TONE_SPACING
+//						Parameter.STRUCTURE_TONE_MULTIPLIER,
+						Parameter.STRUCTURE_TONE_SPACING,
+						Parameter.CHORD_LIST_GENERATOR
 					}
 				);
 		vectorArray = aVectorArray;
@@ -67,7 +68,9 @@ public class VectorChordTonesFixed   extends PlugGeneric implements PooplinePlug
 	public PooplinePackage process (PooplinePackage pack) 
 	{
 		logger.info(getInfoLevelPackReceiptMessage(pack));
+	
 		pack = super.process(pack);
+		logger.debug("After processing the required plugins for VectorChordTones chord progression was: " + pack.getMu().getChordListToString());
 		assignFieldReposFromPackRepo(pack);
 		if (pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_VECTOR) 
 				&& pack.getRepo().get(Parameter.STRUCTURE_TONE_VECTOR).getClassName().equals(getClass().getName())) 
@@ -97,6 +100,7 @@ public class VectorChordTonesFixed   extends PlugGeneric implements PooplinePlug
 		{
 			logger.info("mu not updated as all required repos were not present.");
 		}
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 

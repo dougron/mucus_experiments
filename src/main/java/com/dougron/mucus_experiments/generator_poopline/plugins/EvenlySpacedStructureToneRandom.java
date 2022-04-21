@@ -94,7 +94,7 @@ public class EvenlySpacedStructureToneRandom extends PlugGeneric {
 				pack.getMu().addMu(mu, finalPosition);
 			}
 		}
-		
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 

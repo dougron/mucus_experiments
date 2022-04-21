@@ -90,6 +90,7 @@ public class StructureToneSyncopatorInQuartersRandom  extends PlugGeneric {
 		} else {
 			logger.info("No USE_STRUCTURE_TONE_SYNCOPATOR info in pack.repo");
 		}
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 

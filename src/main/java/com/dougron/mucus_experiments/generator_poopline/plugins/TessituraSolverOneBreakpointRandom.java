@@ -96,6 +96,7 @@ public class TessituraSolverOneBreakpointRandom extends PlugGeneric implements P
 		if (muList.size() > 0 && tessituraSolverRepo != null && melodyRangeRepo != null) {
 			adjustMuList(muList);
 		}
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 	

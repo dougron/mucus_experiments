@@ -62,6 +62,7 @@ public class TessituraFixed extends PlugGeneric implements PooplinePlugin  {
 					.build();
 			pack.getRepo().put(tessituraParameter, tessituraRepo);
 		}
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 }

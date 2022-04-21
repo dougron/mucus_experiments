@@ -49,6 +49,7 @@ public class StartNoteMelodyRandom extends PlugGeneric implements PooplinePlugin
 				pack.getRepo().put(Parameter.START_NOTE, startNoteRepo);
 			}
 		}
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 }

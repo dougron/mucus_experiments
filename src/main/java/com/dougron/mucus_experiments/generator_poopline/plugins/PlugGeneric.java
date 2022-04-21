@@ -1,6 +1,7 @@
 package main.java.com.dougron.mucus_experiments.generator_poopline.plugins;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
@@ -15,8 +16,9 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import lombok.experimental.SuperBuilder;
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.Parameter;
+import main.java.com.dougron.mucus.mu_framework.Mu;
+import main.java.com.dougron.mucus.mu_framework.data_types.MuNote;
 import main.java.com.dougron.mucus_experiments.generator_poopline.Poopline;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePlugin;
@@ -38,12 +40,24 @@ public class PlugGeneric implements PooplinePlugin {
 	
 	@Override
 	public PooplinePackage process(PooplinePackage aPackage) {
-		
+		String muMess = getMusAndMuNotesDebugMessage(aPackage);
+		logger.debug(renderParameters[0].name() + " pack.mu.mus=" + muMess);
 		boolean okay = checkForRequiredParameters(aPackage);
 		
-		if (parent != null) {
-			if (!okay) {
-				aPackage = getPluginsForRequiredParametersFromParent(aPackage);
+		if (parent != null) 
+		{
+			if (!okay) 
+			{
+				String str = "Plugin with no renderParemeters ";
+				if (renderParameters.length > 0)
+				{
+					str = renderParameters[0].name();
+				}
+				logger.info(str + " cannot process required plugins");
+			}
+			else
+			{
+				aPackage = processPluginsForRequiredParametersFromParent(aPackage);
 			}
 		}
 		return aPackage;
@@ -53,7 +67,40 @@ public class PlugGeneric implements PooplinePlugin {
 
 
 
-	private PooplinePackage getPluginsForRequiredParametersFromParent(PooplinePackage aPackage) {
+	private String getMusAndMuNotesDebugMessage(PooplinePackage aPackage)
+	{
+		StringBuilder sb = new StringBuilder();
+		List<Mu> mus = aPackage.getMu().getMus();
+		if (mus == null)
+		{
+			sb.append("mus are null");
+		}
+		else
+		{
+			int sizz = mus.size();
+			sb.append("size=" + sizz);
+			if (sizz > 0)
+			{
+				Mu firstMu = mus.get(0);
+				List<MuNote> muNotes = firstMu.getMuNotes();
+				if (muNotes == null)
+				{
+					sb.append(" muNotes is null"); 
+				}
+				else
+				{
+					sb.append(" muNotes.size()=" + muNotes.size());
+				}
+			}
+			
+		}
+		String muMess = sb.toString();
+		return muMess;
+	}
+
+
+
+	private PooplinePackage processPluginsForRequiredParametersFromParent(PooplinePackage aPackage) {
 		Set<PooplinePlugin> set = new LinkedHashSet<PooplinePlugin>();
 		for (Parameter parameter: requiredParameters) {
 			PooplinePlugin plug = parent.getPluginThatSolves(parameter);
@@ -146,6 +193,19 @@ public class PlugGeneric implements PooplinePlugin {
 				+ pack.getMu().getName() 
 				+ ". lengthInBars=" 
 				+ pack.getMu().getLengthInBars();
+	}
+	
+	
+	public Parameter getPrimaryRenderParameter()
+	{
+		if (renderParameters.length == 0)
+		{
+			return null;
+		}
+		else
+		{
+			return renderParameters[0];
+		}
 	}
 	
 

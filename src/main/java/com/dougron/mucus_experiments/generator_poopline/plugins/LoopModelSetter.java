@@ -45,7 +45,7 @@ public class LoopModelSetter extends PlugGeneric implements PooplinePlugin {
 					.build();
 			pack.getRepo().put(Parameter.LOOP_MODEL, loopModelRepo);
 		}
-		
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 

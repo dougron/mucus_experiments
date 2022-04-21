@@ -76,7 +76,9 @@ public class Poopline {
 
 
 	public PooplinePlugin getPluginThatSolves(Parameter parameter) {
-		for (PooplinePlugin plug: plugins) {
+		for (int i = plugins.size() - 1; i >= 0; i--)
+		{
+			PooplinePlugin plug = plugins.get(1);
 			if (plug.canSupplyParameter(parameter)) {
 				return plug;
 			}

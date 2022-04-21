@@ -60,6 +60,7 @@ public class TempoRandom extends PlugGeneric implements PooplinePlugin {
 		{
 			pack.getMu().setStartTempo(tempoRepo.getSelectedTempo());
 		}
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 }

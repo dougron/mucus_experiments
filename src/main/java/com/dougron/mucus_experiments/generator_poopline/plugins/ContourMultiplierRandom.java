@@ -53,6 +53,7 @@ public class ContourMultiplierRandom  extends PlugGeneric implements PooplinePlu
 					.build();
 			pack.getRepo().put(Parameter.STRUCTURE_TONE_MULTIPLIER, contourMultiplierRepo);
 		}
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 

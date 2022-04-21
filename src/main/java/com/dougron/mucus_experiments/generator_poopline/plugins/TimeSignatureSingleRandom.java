@@ -76,6 +76,7 @@ public class TimeSignatureSingleRandom extends PlugGeneric {
 	
 			pack.getMu().setTimeSignatureGenerator(new SingleTimeSignature(timeSignatureRepo.getSelectedValue()));
 		}
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 	

@@ -82,6 +82,7 @@ public class DiatonicTriadProgressionRandom extends PlugGeneric implements Poopl
 			pack = makeMu(pack);
 			
 		}
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 

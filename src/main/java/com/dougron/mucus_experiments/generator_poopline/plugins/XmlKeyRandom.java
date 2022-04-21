@@ -52,6 +52,7 @@ public class XmlKeyRandom extends PlugGeneric implements PooplinePlugin {
 	
 			pack.getMu().setXMLKey(xmlKeyRepo.getSelectedValue());
 		}
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 	

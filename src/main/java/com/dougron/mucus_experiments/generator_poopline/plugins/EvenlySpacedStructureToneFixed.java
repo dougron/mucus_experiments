@@ -96,7 +96,7 @@ public class EvenlySpacedStructureToneFixed extends PlugGeneric {
 			}
 			evenlySpacedStructureToneRepo.setHasRenderedMu(true);
 		}
-		
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 

@@ -74,6 +74,7 @@ public class DurationPattern extends PlugGeneric implements PooplinePlugin {
 		}
 
 		processMuDurations(pack, staccatoDurationInQuarters);
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 

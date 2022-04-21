@@ -153,6 +153,7 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 		{
 			pack = doEmbellishments(pack, patternEmbellishmentRepo, loopModelRepo, structureTones);
 		}
+		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 
