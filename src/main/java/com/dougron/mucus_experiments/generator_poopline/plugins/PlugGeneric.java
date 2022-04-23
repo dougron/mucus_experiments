@@ -150,6 +150,7 @@ public class PlugGeneric implements PooplinePlugin {
 			for (Parameter p: getRequiredParameters())
 			{
 				PooplinePlugin plug = parent.getPluginThatSolves(p);
+				if (plug == null) logger.debug(getRenderParameter().name() + " received a null plugin for " + p.name() + " required plugin");
 				pack = plug.process(pack);
 			}
 		}

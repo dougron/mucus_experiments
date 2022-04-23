@@ -80,7 +80,7 @@ class ArtefactToParameter_Tests
 	
 	
 	@Test
-	void given_input_of_single_chord_and_chord_tone_then_chord_tone_of_mu_returned_from_Poopline_is_the_same() throws Exception
+	void given_input_of_single_chord_and_chord_tone_then_chord_tone_of_mu_returned_from_Poopline_is_the_same_pitch() throws Exception
 	{
 		LiveClip[] clips = getMelodyAndChordClip();
 		Mu mu = MuLiveClipUtils.makeMu(clips[0], clips[1]);
@@ -89,7 +89,8 @@ class ArtefactToParameter_Tests
 		assertThat(muList.size()).isEqualTo(1);
 		List<MuNote> muNotes = muList.get(0).getMuNotes();
 		assertThat(muNotes.size()).isEqualTo(1);
-		assertThat(muList.get(0).getMuNotes().get(0).getPitch()).isEqualTo(65);
+		int originalPitch = mu.getMus().get(0).getTopPitch();
+		assertThat(muList.get(0).getMuNotes().get(0).getPitch()).isEqualTo(originalPitch);
 	}
 	
 	

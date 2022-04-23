@@ -96,7 +96,7 @@ public class Poopline
 	{
 		for (int i = plugins.size() - 1; i >= 0; i--)
 		{
-			PooplinePlugin plug = plugins.get(1);
+			PooplinePlugin plug = plugins.get(i);
 			if (plug.getRenderParameter() == aParameter) 
 			{
 				return plug;
@@ -109,11 +109,12 @@ public class Poopline
 	
 	public PooplinePackage process(PooplinePackage pack) 
 	{
+		logger.info("Poopline.process() begins. pack=" + pack.getName());
 		loadAnyMissingPluginsThatExistInTheJsonButDoNotHaveRandomSeed(pack);
 		setAllPluginsToNotExecuted();
 		if (primaryPlugin == null) 
 		{
-			logger.info("primaryPlugin=null: processing in reverse order."); 
+			logger.info("primaryPlugin=null: processing in reverse order. Actually no processing code is present, you shoulf probably think about changing this:D"); 
 		} 
 		else 
 		{

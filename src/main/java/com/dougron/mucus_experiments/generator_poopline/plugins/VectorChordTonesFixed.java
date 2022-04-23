@@ -26,6 +26,10 @@ public class VectorChordTonesFixed   extends PlugGeneric implements PooplinePlug
 
 	
 	private static final int DEFAULT_STRUCTURE_TONE_VELOCITY = 80;
+
+	// as close as posible to the start note. The first item in the vectorArray refers to 
+	// the vector from the first to the second note
+	private static final int DEFAULT_VECTOR_FOR_FIRST_STRUCTURE_TONE_FROM_START_NOTE = 0;
 	
 
 	private PhraseLengthRepo phraseLengthRepo;
@@ -206,6 +210,7 @@ public class VectorChordTonesFixed   extends PlugGeneric implements PooplinePlug
 				);
 		
 		int vectorIndex = 0;
+		int vector = DEFAULT_VECTOR_FOR_FIRST_STRUCTURE_TONE_FROM_START_NOTE;
 		Chord chord;
 		for (Mu mu: structureTones) {
 			List<MuTagBundle> bundleList = mu.getMuTagBundleContaining(MuTag.IS_SYNCOPATION);
@@ -216,7 +221,6 @@ public class VectorChordTonesFixed   extends PlugGeneric implements PooplinePlug
 				chord = mu.getChordAtGlobalPosition(mu.getGlobalPositionInBarsAndBeats(positionInQuarters));
 			}
 			
-			int vector = vectorArray[vectorIndex];
 			note = chord.getClosestChordTone(note, vector);
 			logger.info("Mu at " + mu.getGlobalPositionInFloatBars() 
 				+ " chord=" + chord.name()
@@ -224,6 +228,7 @@ public class VectorChordTonesFixed   extends PlugGeneric implements PooplinePlug
 				+ " selected note=" + note);
 			
 			mu.addMuNote(new MuNote(note, DEFAULT_STRUCTURE_TONE_VELOCITY));
+			vector = vectorArray[vectorIndex];
 			vectorIndex++;
 			if (vectorIndex >= vectorArray.length) vectorIndex = 0;
 		}
