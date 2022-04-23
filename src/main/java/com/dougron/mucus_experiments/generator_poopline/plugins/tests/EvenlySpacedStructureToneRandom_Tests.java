@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.Parameter;
 import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTag;
+import main.java.com.dougron.mucus_experiments.generator_poopline.Poopline;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePlugin;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.EvenlySpacedStructureToneRandom;
@@ -35,7 +36,9 @@ class EvenlySpacedStructureToneRandom_Tests {
 	@Test
 	void when_plug_receives_blank_package_then_STRUCTURE_TONE_SPACING_item_is_created_in_repo_with_random_seed_equal_to_TestRandom_value() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.1));
+		pack.setDebugMode(true);
 		EvenlySpacedStructureToneRandom plug = new EvenlySpacedStructureToneRandom();
+		addPooplineParent(plug);
 		pack = plug.process(pack);
 		assertThat(pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_SPACING)).isTrue();
 		EvenlySpacedStructureToneRepo repo = (EvenlySpacedStructureToneRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_SPACING);
@@ -56,6 +59,7 @@ class EvenlySpacedStructureToneRandom_Tests {
 	@Test
 	void when_pack_has_all_required_info_for_plug_to_proceed_then_Mu_has_children_with_tag_IS_STRUCTURE_TONE() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.1));
+		pack.setDebugMode(true);
 		PhraseLengthRepo phraseLengthRepo = getPhraseLengthRepo();
 		pack.getRepo().put(Parameter.PHRASE_LENGTH, phraseLengthRepo);
 		TimeSignatureRepo timeSignatureRepo = getTimeSignatureRepo();
@@ -75,6 +79,7 @@ class EvenlySpacedStructureToneRandom_Tests {
 	void when_pack_has_all_required_info_for_plug_to_proceed_then_Mu_has_children_with_tag_IS_STRUCTURE_TONE_at_expected_positions() throws Exception {
 		// 0.75 of 8 bar phrase with spacing 1.0 floatbars given 5/4 time equates to 6 items with the tag at 0.0, 5.0, 10.0, 15.0, 20.0, 25.0 quartrs position
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.55));
+		pack.setDebugMode(true);
 		
 		// length 8 bars
 		PooplinePlugin lengthPlug = new PhraseLengthRandom();
@@ -108,6 +113,7 @@ class EvenlySpacedStructureToneRandom_Tests {
 	void check_the_float_bar_quantisation() throws Exception {
 		// 0.75 of 8 bar phrase with spacing 1.0 floatbars given 5/4 time equates to 6 items with the tag at 0.0, 5.0, 10.0, 15.0, 20.0, 25.0 quartrs position
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.55));
+		pack.setDebugMode(true);
 		
 		// length 8 bars
 		PooplinePlugin lengthPlug = new PhraseLengthRandom();
@@ -140,6 +146,16 @@ class EvenlySpacedStructureToneRandom_Tests {
 	
 // ------- privates -------------------------------------------------------------------
 	
+	private void addPooplineParent(PooplinePlugin plug)
+	{
+		Poopline p = new Poopline();
+		p.addPlugin(new PhraseLengthRandom());
+		p.addPlugin( new TimeSignatureSingleRandom());
+		p.addPlugin(new PhraseBoundPercentRandom(Parameter.PHRASE_START_PERCENT));
+		p.addPlugin(new PhraseBoundPercentRandom(Parameter.PHRASE_END_PERCENT));
+		
+		plug.setParent(p);
+	}
 
 	private PhraseBoundRepo getPhraseEndPercentRepo() {
 		PhraseBoundRepo phraseEndRepo = PhraseBoundRepo.builder()

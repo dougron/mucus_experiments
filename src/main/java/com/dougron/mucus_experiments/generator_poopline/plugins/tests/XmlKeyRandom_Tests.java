@@ -7,8 +7,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.Parameter;
+import main.java.com.dougron.mucus_experiments.generator_poopline.Poopline;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePlugin;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.XmlKeyRandom;
@@ -28,10 +28,9 @@ class XmlKeyRandom_Tests {
 	void when_passing_a_blank_package_then_json_will_get_the_list_of_rendered_parameters() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.1));
 		PooplinePlugin plug = new XmlKeyRandom();
+		addPooplineParent(plug);
 		pack = plug.process(pack);
-		for (Parameter p: plug.getRenderParameters()) {
-			assertThat(pack.getRepo().containsKey(p)).isTrue();
-		}
+		assertThat(pack.getRepo().containsKey(plug.getRenderParameter())).isTrue();
 	}
 	
 	
@@ -39,16 +38,20 @@ class XmlKeyRandom_Tests {
 	void when_passing_a_blank_package_to_RandomXMLKey_then_json_XMLKEY_will_have_random_seed_withTestRandom_value_and_type_double() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.1));
 		PooplinePlugin plug = new XmlKeyRandom();
+		addPooplineParent(plug);
 		pack = plug.process(pack);
 		XmlKeyRepo repo = (XmlKeyRepo)pack.getRepo().get(Parameter.XMLKEY);
 		assertThat(repo.getRndValue()).isEqualTo(0.1);
 	}
 	
 	
+	
+
 	@Test
 	void when_passing_a_blank_package_to_RandomXMLKey_then_json_XMLKEY_will_have_options_values_equal_to_RandomXMLKey_options_and_type_int_array() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.1));
 		PooplinePlugin plug = new XmlKeyRandom();
+		addPooplineParent(plug);
 		pack = plug.process(pack);
 		
 		XmlKeyRepo repo = (XmlKeyRepo)pack.getRepo().get(Parameter.XMLKEY);
@@ -64,6 +67,7 @@ class XmlKeyRandom_Tests {
 	void when_passing_a_blank_package_to_RandomXMLKey_then_json_XMLKEY_will_have_selected_option_equal_to_minus_3() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.2));
 		PooplinePlugin plug = new XmlKeyRandom();
+		addPooplineParent(plug);
 		pack = plug.process(pack);
 		XmlKeyRepo repo = (XmlKeyRepo)pack.getRepo().get(Parameter.XMLKEY);
 		assertThat(repo.getSelectedValue()).isEqualTo(-3);
@@ -74,6 +78,7 @@ class XmlKeyRandom_Tests {
 	void when_passing_a_blank_package_to_RandomXMLKey_then_json_XMLKEY_will_have_plug_in_class_name_same_as_class_name_for_RandomXMLKey() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.2));
 		PooplinePlugin plug = new XmlKeyRandom();
+		addPooplineParent(plug);
 		pack = plug.process(pack);
 		XmlKeyRepo repo = (XmlKeyRepo)pack.getRepo().get(Parameter.XMLKEY);
 		assertThat(repo.getClassName()).isEqualTo(plug.getClass().getName());
@@ -84,6 +89,7 @@ class XmlKeyRandom_Tests {
 	void when_passing_a_blank_package_then_mu_will_have_xml_key_of_0_for_TestRandom_equal_to_0_2() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.45));
 		PooplinePlugin plug = new XmlKeyRandom();
+		addPooplineParent(plug);
 		pack = plug.process(pack);
 		assertThat(pack.getMu().getKeySignatureMap().getKey(0)).isEqualTo(0);
 	}
@@ -93,6 +99,7 @@ class XmlKeyRandom_Tests {
 	void when_passing_a_package_with_existing_data_then_existing_data_will_not_be_overwritten() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.2));
 		PooplinePlugin plug = new XmlKeyRandom();
+		addPooplineParent(plug);
 		pack = plug.process(pack);
 		
 		pack.setRnd(new TestRandom(0.9));
@@ -115,6 +122,14 @@ class XmlKeyRandom_Tests {
 		// mu length remains
 		assertThat(pack.getMu().getKeySignatureMap().getKey(0)).isEqualTo(-3);
 	}
+	
+	
+	private void addPooplineParent(PooplinePlugin plug)
+	{
+		Poopline p = new Poopline();
+		plug.setParent(p);
+	}
+
 	
 	
 	

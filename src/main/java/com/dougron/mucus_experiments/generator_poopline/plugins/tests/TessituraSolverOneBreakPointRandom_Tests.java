@@ -126,6 +126,7 @@ class TessituraSolverOneBreakPointRandom_Tests {
 
 	private PooplinePackage addMelodyContent() {
 		PooplinePackage pack = getPackWithPitchFreeStructureTones();
+		
 		TessituraFixed tessPlug = new TessituraFixed(Parameter.TESSITURA_START_NOTE);
 		pack = tessPlug.process(pack);
 		StartNoteMelodyRandom startPlug = new StartNoteMelodyRandom();
@@ -147,7 +148,7 @@ class TessituraSolverOneBreakPointRandom_Tests {
 		// 0.75 of 8 bar phrase with spacing 1.0 floatbars given 5/4 time equates to 6
 		// items with the tag at 0.0, 5.0, 10.0, 15.0, 20.0, 25.0 quartrs position
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.55));
-
+		pack.setDebugMode(true);
 		// length 8 bars
 		PooplinePlugin lengthPlug = new PhraseLengthRandom();
 		pack = lengthPlug.process(pack);

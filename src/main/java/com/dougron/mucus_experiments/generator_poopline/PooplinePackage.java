@@ -34,6 +34,10 @@ public class PooplinePackage {
 	@Getter ParameterRepository repo;
 	@Getter @Setter private Mu mu;
 	
+	// if debugMode is set to true, PooplinePlugins will not require the presence of Poopline as a parent. 
+	// This is to accomodate legacy test code, which should probably be updated at some point
+	@Getter @Setter private boolean debugMode = false;	
+	
 	public static final Logger logger = LogManager.getLogger(PooplinePackage.class);
 	
 	

@@ -1,10 +1,13 @@
 package main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos;
 
+import java.util.List;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.Parameter;
+import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTag;
 
 @Builder
@@ -24,6 +27,7 @@ public class TessituraSolverRepo extends RepoSuperclass implements RepoInterface
 	@Getter @Setter private double rndValueForRandomChoice;
 	@Getter @Setter private Parameter tessituraParameter;
 	@Getter @Setter private MuTag muTagToActUpon;
+	@Getter @Setter private List<Mu> muList;
 	@Getter @Setter private String className;
 	
 	

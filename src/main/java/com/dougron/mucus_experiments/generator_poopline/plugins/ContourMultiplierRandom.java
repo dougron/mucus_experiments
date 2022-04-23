@@ -19,7 +19,7 @@ public class ContourMultiplierRandom  extends PlugGeneric implements PooplinePlu
 	
 	public ContourMultiplierRandom() {
 		super(
-				new Parameter[] {Parameter.STRUCTURE_TONE_MULTIPLIER},
+				Parameter.STRUCTURE_TONE_MULTIPLIER,
 				new Parameter[] {}
 				);
 	}
@@ -27,7 +27,7 @@ public class ContourMultiplierRandom  extends PlugGeneric implements PooplinePlu
 	
 	public ContourMultiplierRandom(int aLowValue, int aHighValue) {
 		super(
-				new Parameter[] {Parameter.STRUCTURE_TONE_MULTIPLIER},
+				Parameter.STRUCTURE_TONE_MULTIPLIER,
 				new Parameter[] {}
 				);
 		lowValue = aLowValue;
@@ -35,26 +35,55 @@ public class ContourMultiplierRandom  extends PlugGeneric implements PooplinePlu
 	}
 	
 	
+	
 	@Override
-	public PooplinePackage process (PooplinePackage pack) {
-		logger.info(getInfoLevelPackReceiptMessage(pack));
+	public PooplinePackage process (PooplinePackage pack) 
+	{
 		pack = super.process(pack);
-		if (pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_MULTIPLIER) 
-				&& pack.getRepo().get(Parameter.STRUCTURE_TONE_MULTIPLIER).getClassName().equals(getClass().getName())) {			
-		} else {
-			double rndValue = pack.getRnd().nextDouble();
-			int multiplier = (int)(rndValue * (highValue - lowValue)) + lowValue;
-			contourMultiplierRepo = ContourMultiplierRepo.builder()
-					.rndValue(rndValue)
-					.multiplier(multiplier)
-					.lowValue(lowValue)
-					.highValue(highValue)
-					.className(getClass().getName())
-					.build();
-			pack.getRepo().put(Parameter.STRUCTURE_TONE_MULTIPLIER, contourMultiplierRepo);
-		}
-		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
+
+	
+
+	@Override
+	PooplinePackage makeRepo(PooplinePackage pack)
+	{
+		double rndValue = pack.getRnd().nextDouble();
+		int multiplier = (int)(rndValue * (highValue - lowValue)) + lowValue;
+		contourMultiplierRepo = ContourMultiplierRepo.builder()
+				.rndValue(rndValue)
+				.multiplier(multiplier)
+				.lowValue(lowValue)
+				.highValue(highValue)
+				.className(getClass().getName())
+				.build();
+		pack.getRepo().put(Parameter.STRUCTURE_TONE_MULTIPLIER, contourMultiplierRepo);
+		return pack;
+	}
+	
+	
+	
+	
+//	@Override
+//	public PooplinePackage process (PooplinePackage pack) {
+//		logger.info(getInfoLevelPackReceiptMessage(pack));
+//		pack = super.process(pack);
+//		if (pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_MULTIPLIER) 
+//				&& pack.getRepo().get(Parameter.STRUCTURE_TONE_MULTIPLIER).getClassName().equals(getClass().getName())) {			
+//		} else {
+//			double rndValue = pack.getRnd().nextDouble();
+//			int multiplier = (int)(rndValue * (highValue - lowValue)) + lowValue;
+//			contourMultiplierRepo = ContourMultiplierRepo.builder()
+//					.rndValue(rndValue)
+//					.multiplier(multiplier)
+//					.lowValue(lowValue)
+//					.highValue(highValue)
+//					.className(getClass().getName())
+//					.build();
+//			pack.getRepo().put(Parameter.STRUCTURE_TONE_MULTIPLIER, contourMultiplierRepo);
+//		}
+//		logger.debug(this.getClass().getSimpleName() + ".process() exited");
+//		return pack;
+//	}
 
 }

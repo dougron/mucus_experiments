@@ -37,7 +37,7 @@ public class EvenlySpacedStructureToneRandom extends PlugGeneric {
 	
 	public EvenlySpacedStructureToneRandom() {
 		super(
-				new Parameter[] {Parameter.STRUCTURE_TONE_SPACING},
+				Parameter.STRUCTURE_TONE_SPACING,
 				new Parameter[] {
 						Parameter.PHRASE_LENGTH,
 						Parameter.TIME_SIGNATURE,
@@ -50,7 +50,7 @@ public class EvenlySpacedStructureToneRandom extends PlugGeneric {
 	
 	public EvenlySpacedStructureToneRandom(double[] aOptions) {
 		super(
-				new Parameter[] {Parameter.STRUCTURE_TONE_SPACING},
+				Parameter.STRUCTURE_TONE_SPACING,
 				new Parameter[] {
 						Parameter.PHRASE_LENGTH,
 						Parameter.TIME_SIGNATURE,
@@ -63,18 +63,16 @@ public class EvenlySpacedStructureToneRandom extends PlugGeneric {
 	
 	
 	@Override
-	public PooplinePackage process (PooplinePackage pack) {
-		logger.info(getInfoLevelPackReceiptMessage(pack));
+	public PooplinePackage process (PooplinePackage pack) 
+	{
 		pack = super.process(pack);
-		if (pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_SPACING) 
-				&& pack.getRepo().get(Parameter.STRUCTURE_TONE_SPACING).getClassName().equals(getClass().getName())) {			
-			evenlySpacedStructureToneRepo = (EvenlySpacedStructureToneRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_SPACING);
-		} else {
-			evenlySpacedStructureToneRepo = makeNewRandomEvenlySpacedStructureToneRepo(pack);
-			pack.getRepo().put(Parameter.STRUCTURE_TONE_SPACING, evenlySpacedStructureToneRepo);
-		}
-		assignFieldReposFromPackRepo(pack);
-		
+		return pack;
+	}
+
+	
+	@Override
+	PooplinePackage updateMu(PooplinePackage pack)
+	{
 		if (phraseLengthRepo != null && timeSignatureRepo != null && startPercentRepo != null && endPercentRepo != null) {
 			List<Double> posList = getListOfStructureTonePositionsInFloatBars();
 			BarsAndBeats finalPosition;
@@ -94,9 +92,68 @@ public class EvenlySpacedStructureToneRandom extends PlugGeneric {
 				pack.getMu().addMu(mu, finalPosition);
 			}
 		}
-		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
+
+
+	@Override
+	PooplinePackage makeRepo(PooplinePackage pack)
+	{
+		evenlySpacedStructureToneRepo = makeNewRandomEvenlySpacedStructureToneRepo(pack);
+		pack.getRepo().put(Parameter.STRUCTURE_TONE_SPACING, evenlySpacedStructureToneRepo);
+		return pack;
+	}
+	
+	
+	void getRepoFromPack(PooplinePackage pack)
+	{
+		evenlySpacedStructureToneRepo = (EvenlySpacedStructureToneRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_SPACING);
+	}
+
+
+	
+	@Override
+	void getAncilliaryRepos(PooplinePackage pack)
+	{
+		assignFieldReposFromPackRepo(pack);
+	}
+	
+	
+//	@Override
+//	public PooplinePackage process (PooplinePackage pack) {
+//		logger.info(getInfoLevelPackReceiptMessage(pack));
+//		pack = super.process(pack);
+//		if (pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_SPACING) 
+//				&& pack.getRepo().get(Parameter.STRUCTURE_TONE_SPACING).getClassName().equals(getClass().getName())) {			
+//			evenlySpacedStructureToneRepo = (EvenlySpacedStructureToneRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_SPACING);
+//		} else {
+//			evenlySpacedStructureToneRepo = makeNewRandomEvenlySpacedStructureToneRepo(pack);
+//			pack.getRepo().put(Parameter.STRUCTURE_TONE_SPACING, evenlySpacedStructureToneRepo);
+//		}
+//		assignFieldReposFromPackRepo(pack);
+//		
+//		if (phraseLengthRepo != null && timeSignatureRepo != null && startPercentRepo != null && endPercentRepo != null) {
+//			List<Double> posList = getListOfStructureTonePositionsInFloatBars();
+//			BarsAndBeats finalPosition;
+//			for (Double position: posList) {
+//				BarsAndBeats globalPositionInBarsAndBeats = pack.getMu().getGlobalPositionInBarsAndBeatsFromGlobalPositionInFloatBars(position);
+//				if (position % 1.0 > 0.0) {
+//					double chosenPosition = getQuantisedQuartersPositionInBar(pack, globalPositionInBarsAndBeats);
+//					finalPosition = new BarsAndBeats(globalPositionInBarsAndBeats.getBarPosition(), chosenPosition);
+//
+//				} else {
+//					finalPosition = globalPositionInBarsAndBeats;
+//					
+//				}
+//				Mu mu = new Mu("st");
+//				mu.setLengthInQuarters(DEFAULT_LENGTH_IN_QUARTERS);
+//				mu.addTag(MuTag.IS_STRUCTURE_TONE);
+//				pack.getMu().addMu(mu, finalPosition);
+//			}
+//		}
+//		logger.debug(this.getClass().getSimpleName() + ".process() exited");
+//		return pack;
+//	}
 
 
 	private double getQuantisedQuartersPositionInBar(PooplinePackage pack, BarsAndBeats globalPositionInBarsAndBeats) {

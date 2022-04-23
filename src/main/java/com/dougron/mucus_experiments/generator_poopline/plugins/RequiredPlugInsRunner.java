@@ -15,17 +15,53 @@ public class RequiredPlugInsRunner extends PlugGeneric {
 	
 	public RequiredPlugInsRunner(Parameter[] requiredParameters) {
 		super(
-				new Parameter[] {},
+				Parameter.PLUGIN_RUNNER,
 				requiredParameters
 				);
-		// TODO Auto-generated constructor stub
 	}
-
+	
+	
+	
 	@Override
-	public PooplinePackage process (PooplinePackage pack) {
-		logger.info(getInfoLevelPackReceiptMessage(pack));
+	public PooplinePackage process (PooplinePackage pack) 
+	{
 		pack = super.process(pack);
-		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
+
+	
+//	@Override
+//	PooplinePackage updateMu(PooplinePackage pack)
+//	{
+//		//update pack.mu
+//		return pack;
+//	}
+//
+//
+//	@Override
+//	PooplinePackage makeRepo(PooplinePackage pack)
+//	{
+//		// make repo and drop in pack.repo
+//		return pack;
+//	}
+//	
+//	
+//	@Override
+//	void getRepoFromPack(PooplinePackage pack)
+//	{
+//		// TODO Auto-generated method stub
+//	}
+//
+//	
+//	@Override
+//	void getAncilliaryRepos(PooplinePackage pack)
+//	{}
+//
+//	@Override
+//	public PooplinePackage process (PooplinePackage pack) {
+//		logger.info(getInfoLevelPackReceiptMessage(pack));
+//		pack = super.process(pack);
+//		logger.debug(this.getClass().getSimpleName() + ".process() exited");
+//		return pack;
+//	}
 }

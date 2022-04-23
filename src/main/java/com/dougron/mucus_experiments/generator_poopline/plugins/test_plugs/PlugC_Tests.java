@@ -30,9 +30,7 @@ class PlugC_Tests {
 		PooplinePlugin plug = new PlugC();
 		pack = plug.process(pack);
 		JsonObject json = pack.getJson();
-		for (Parameter p: plug.getRenderParameters()) {
-			assertThat(json.has(p.toString())).isTrue();
-		}
+		assertThat(json.has(plug.getRenderParameter().toString())).isTrue();
 	}
 	
 	

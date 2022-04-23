@@ -44,39 +44,81 @@ public class DurationPattern extends PlugGeneric implements PooplinePlugin {
 	public DurationPattern(DurationType[] aDurationPattern)
 	{
 		super(
-				new Parameter[] {Parameter.DURATION},
+				Parameter.DURATION,
 				new Parameter[] {Parameter.TEMPO}
 				);
 		durationPattern = aDurationPattern;
 	}
 	
 	
-	
 	@Override
 	public PooplinePackage process (PooplinePackage pack) 
 	{
-		logger.info(getInfoLevelPackReceiptMessage(pack));
 		pack = super.process(pack);
-		double staccatoDurationInQuarters = getStaccatoDurationInQuarters(pack);
-		if (pack.getRepo().containsKey(Parameter.DURATION) 
-				&& pack.getRepo().get(Parameter.DURATION).getClassName().equals(getClass().getName())) 
-		{	
-			durationPatternRepo = (DurationPatternRepo)pack.getRepo().get(Parameter.DURATION);
-		} 
-		else
-		{
-			durationPatternRepo = DurationPatternRepo.builder()
-					.durationPattern(durationPattern)
-					.staccatoDurationInMilliseconds(staccatoDurationInMilliseconds)
-					.className(getClass().getName())
-					.build();
-			pack.getRepo().put(Parameter.DURATION, durationPatternRepo);
-		}
-
-		processMuDurations(pack, staccatoDurationInQuarters);
-		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
+
+	
+	@Override
+	PooplinePackage updateMu(PooplinePackage pack)
+	{
+		double staccatoDurationInQuarters = getStaccatoDurationInQuarters(pack);
+		processMuDurations(pack, staccatoDurationInQuarters);
+		return pack;
+	}
+
+
+	@Override
+	PooplinePackage makeRepo(PooplinePackage pack)
+	{
+		durationPatternRepo = DurationPatternRepo.builder()
+				.durationPattern(durationPattern)
+				.staccatoDurationInMilliseconds(staccatoDurationInMilliseconds)
+				.className(getClass().getName())
+				.build();
+		pack.getRepo().put(Parameter.DURATION, durationPatternRepo);
+		return pack;
+	}
+	
+	
+	@Override
+	void getRepoFromPack(PooplinePackage pack)
+	{
+		durationPatternRepo = (DurationPatternRepo)pack.getRepo().get(Parameter.DURATION);
+	}
+
+	
+	@Override
+	void getAncilliaryRepos(PooplinePackage pack)
+	{}
+	
+	
+	
+//	@Override
+//	public PooplinePackage process (PooplinePackage pack) 
+//	{
+//		logger.info(getInfoLevelPackReceiptMessage(pack));
+//		pack = super.process(pack);
+//		double staccatoDurationInQuarters = getStaccatoDurationInQuarters(pack);
+//		if (pack.getRepo().containsKey(Parameter.DURATION) 
+//				&& pack.getRepo().get(Parameter.DURATION).getClassName().equals(getClass().getName())) 
+//		{	
+//			durationPatternRepo = (DurationPatternRepo)pack.getRepo().get(Parameter.DURATION);
+//		} 
+//		else
+//		{
+//			durationPatternRepo = DurationPatternRepo.builder()
+//					.durationPattern(durationPattern)
+//					.staccatoDurationInMilliseconds(staccatoDurationInMilliseconds)
+//					.className(getClass().getName())
+//					.build();
+//			pack.getRepo().put(Parameter.DURATION, durationPatternRepo);
+//		}
+//
+//		processMuDurations(pack, staccatoDurationInQuarters);
+//		logger.debug(this.getClass().getSimpleName() + ".process() exited");
+//		return pack;
+//	}
 
 
 

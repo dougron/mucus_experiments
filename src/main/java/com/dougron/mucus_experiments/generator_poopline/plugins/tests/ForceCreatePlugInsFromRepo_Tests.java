@@ -129,6 +129,7 @@ class ForceCreatePlugInsFromRepo_Tests
 		pipeline.setPrimaryPlugin(new ForceCreatePlugInsFromRepo(pipeline));
 		assertThat(pipeline.getPlugins().size()).isEqualTo(1);
 		PooplinePackage pack = new PooplinePackage("pack", new Random());
+		pack.setDebugMode(true);
 		addPhraseLengthFixedRepo(pack, 2);
 		addXmlKeyRepo(pack, 2);
 		ImmutableMap<Double, String> floatBarChordMap = ImmutableMap.of(0.0, "Eb", 1.0, "Gm");
@@ -146,6 +147,7 @@ class ForceCreatePlugInsFromRepo_Tests
 		Poopline pipeline = new Poopline();
 		pipeline.setPrimaryPlugin(new ForceCreatePlugInsFromRepo(pipeline));
 		PooplinePackage pack = new PooplinePackage("pack", new Random());
+		pack.setDebugMode(true);
 		addPhraseLengthFixedRepo(pack, 2);
 		addTimeSignatureRepo(pack, TimeSignature.FOUR_FOUR);
 		addXmlKeyRepo(pack, 2);
@@ -183,6 +185,7 @@ class ForceCreatePlugInsFromRepo_Tests
 		Poopline pipeline = new Poopline();
 		pipeline.setPrimaryPlugin(new ForceCreatePlugInsFromRepo(pipeline));
 		PooplinePackage pack = new PooplinePackage("pack", new Random());
+		pack.setDebugMode(true);
 		addPhraseLengthRandomRepo(pack, 2);
 		addTimeSignatureRepo(pack, TimeSignature.FOUR_FOUR);
 		addXmlKeyRepo(pack, 2);

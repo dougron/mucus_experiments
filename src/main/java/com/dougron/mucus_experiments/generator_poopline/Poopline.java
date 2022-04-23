@@ -17,7 +17,8 @@ import com.google.gson.JsonObject;
 import lombok.Getter;
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.Parameter;
 
-public class Poopline {
+public class Poopline 
+{
 
 	// plugins should be processed in reverse order if not using the primaryPlugin processing route
 	// so that later added plugins will be processed first, and earlier plugins can also behave as
@@ -28,12 +29,16 @@ public class Poopline {
 	public static final Logger logger = LogManager.getLogger(Poopline.class);
 	
 	
-	public Poopline() {
+	
+	public Poopline() 
+	{
 		logger.info("Poopline created.");
 	}
 	
 	
-	public void addPlugin(PooplinePlugin aPlugin) {
+	
+	public void addPlugin(PooplinePlugin aPlugin) 
+	{
 		aPlugin.setParent(this);
 		plugins.add(aPlugin);
 		logger.info("Received " + aPlugin);
@@ -41,11 +46,15 @@ public class Poopline {
 	}
 
 	
-	private boolean validate() {
+	
+	private boolean validate() 
+	{
 		logger.info("Validating required parameters for plugins");
 		boolean valid = true;
-		for (PooplinePlugin plug: plugins) {
-			if (!plug.isValidated()) {
+		for (PooplinePlugin plug: plugins) 
+		{
+			if (!plug.isValidated()) 
+			{
 				valid = false;
 			}
 		}
@@ -54,32 +63,42 @@ public class Poopline {
 	}
 	
 	
-	public boolean hasPluginThatCanSupply(Parameter aParameter) {
+	
+	public boolean hasPluginThatCanSupply(Parameter aParameter) 
+	{
 		boolean q = false;
 		List<PooplinePlugin> reverseList = Lists.reverse(plugins);	
-		for (PooplinePlugin plug: reverseList) {
-			if (plug.canSupplyParameter(aParameter)) {
+		for (PooplinePlugin plug: reverseList) 
+		{
+			if (plug.getRenderParameter() == aParameter)
+			{
+				logger.debug(plug.getClass() + " can supply Parameter " + aParameter);
 				q = true;
-				logger.info(plug.getClass() + " can supply Parameter " + aParameter);
 			}
 		}
-		if (!q) {
-			logger.info("No plugin can supply " + aParameter);
+		if (!q) 
+		{
+			logger.debug("No plugin can supply " + aParameter);
 		}
 		return q;
 	}
 
 	
-	public boolean isValidated() {
+	
+	public boolean isValidated()
+	{
 		return isValidated;
 	}
 
 
-	public PooplinePlugin getPluginThatSolves(Parameter parameter) {
+	
+	public PooplinePlugin getPluginThatSolves(Parameter aParameter)
+	{
 		for (int i = plugins.size() - 1; i >= 0; i--)
 		{
 			PooplinePlugin plug = plugins.get(1);
-			if (plug.canSupplyParameter(parameter)) {
+			if (plug.getRenderParameter() == aParameter) 
+			{
 				return plug;
 			}
 		}
@@ -87,11 +106,17 @@ public class Poopline {
 	}
 
 
-	public PooplinePackage process(PooplinePackage pack) {
+	
+	public PooplinePackage process(PooplinePackage pack) 
+	{
 		loadAnyMissingPluginsThatExistInTheJsonButDoNotHaveRandomSeed(pack);
-		if (primaryPlugin == null) {
+		setAllPluginsToNotExecuted();
+		if (primaryPlugin == null) 
+		{
 			logger.info("primaryPlugin=null: processing in reverse order."); 
-		} else {
+		} 
+		else 
+		{
 			pack = primaryPlugin.process(pack);
 		}
 		logger.info("process() completed");
@@ -100,34 +125,50 @@ public class Poopline {
 	
 	
 	
-	private void loadAnyMissingPluginsThatExistInTheJsonButDoNotHaveRandomSeed(PooplinePackage pack) {
+	private void setAllPluginsToNotExecuted()
+	{
+		for (PooplinePlugin plug: plugins) plug.setExecutedThisCycle(false);
+	}
+
+	
+
+	private void loadAnyMissingPluginsThatExistInTheJsonButDoNotHaveRandomSeed(PooplinePackage pack) 
+	{
 		Iterator<Entry<String, JsonElement>> it = pack.getJson().entrySet().iterator();
-		while (it.hasNext()) {
+		while (it.hasNext()) 
+		{
 			Entry<String, JsonElement> entry = it.next();
 			checkIfItIsAParameter(pack, entry.getKey());			
 		}
 	}
 
 
-	private void checkIfItIsAParameter(PooplinePackage pack, String key) {
-		if (Parameter.valueOf(key) != null) {
+	private void checkIfItIsAParameter(PooplinePackage pack, String key) 
+	{
+		if (Parameter.valueOf(key) != null) 
+		{
 			checkIfItHasAPluginClassNameAndNoRandomSeed(pack, key);
 		}
 	}
 
 
-	private void checkIfItHasAPluginClassNameAndNoRandomSeed(PooplinePackage pack, String key) {
+	private void checkIfItHasAPluginClassNameAndNoRandomSeed(PooplinePackage pack, String key) 
+	{
 		JsonObject json = pack.getJson().get(key).getAsJsonObject();
-		if (json.has("plugin") && !json.has("random_seed")) {
+		if (json.has("plugin") && !json.has("random_seed")) 
+		{
 			addToPluginsIfAnInstanceIsNotAlreadyThere(json);
 		}
 	}
 
 
-	private void addToPluginsIfAnInstanceIsNotAlreadyThere(JsonObject json) {
+	private void addToPluginsIfAnInstanceIsNotAlreadyThere(JsonObject json) 
+	{
 		String className = json.get("plugin").getAsJsonObject().get("class_name").getAsString();
-		if (!plugsinsContainsInstanceOfClassName(className)) {
-			try {
+		if (!plugsinsContainsInstanceOfClassName(className)) 
+		{
+			try 
+			{
 				plugins.add((PooplinePlugin)Class.forName(className).getConstructors()[0].newInstance());
 			} catch (InstantiationException e) {
 				// TODO Auto-generated catch block
@@ -152,15 +193,19 @@ public class Poopline {
 	}
 
 
-	private boolean plugsinsContainsInstanceOfClassName(String className) {
-		for (PooplinePlugin plug: plugins) {
+	
+	private boolean plugsinsContainsInstanceOfClassName(String className) 
+	{
+		for (PooplinePlugin plug: plugins) 
+		{
 			if (plug.getClass().toString().equals(className)) return true;
 		}
 		return false;
 	}
 
 
-	public void setPrimaryPlugin(PooplinePlugin aPlugin) {
+	public void setPrimaryPlugin(PooplinePlugin aPlugin)
+	{
 		plugins.add(aPlugin);
 		aPlugin.setParent(this);
 		primaryPlugin = aPlugin;

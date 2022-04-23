@@ -10,9 +10,10 @@ public interface PooplinePlugin {
 
 	public boolean isValidated();
 	
-	public boolean canSupplyParameter(Parameter aParameter);
+//	public boolean canSupplyParameter(Parameter aParameter);
 	
-	public Parameter[] getRenderParameters();
+	public Parameter getRenderParameter();
 	public Parameter[] getRequiredParameters();
+	public void setExecutedThisCycle(boolean bool);
 
 }

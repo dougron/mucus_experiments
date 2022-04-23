@@ -10,7 +10,7 @@ public class PlugB extends PlugGeneric implements PooplinePlugin {
 	
 	public PlugB() {
 		super(
-				new Parameter[] {Parameter.PHRASE_LENGTH},
+				Parameter.PHRASE_LENGTH,
 				new Parameter[] {}
 				);
 	}
@@ -20,9 +20,7 @@ public class PlugB extends PlugGeneric implements PooplinePlugin {
 	public PooplinePackage process(PooplinePackage pack) {
 		logger.info("Received " + pack);
 		pack = super.process(pack);
-		for (Parameter p: getRenderParameters()) {
-			pack.addItemToJson(p.toString(), "placeholder");
-		}
+		pack.addItemToJson(getRenderParameter().toString(), "placeholder");
 		return pack;
 	}
 }

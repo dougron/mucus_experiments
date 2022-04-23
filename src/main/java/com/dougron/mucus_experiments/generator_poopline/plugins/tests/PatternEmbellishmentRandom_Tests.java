@@ -40,6 +40,7 @@ class PatternEmbellishmentRandom_Tests {
 	@Test
 	void when_empty_pack_is_processed_then_repo_gets_a_PATTERN_EMBELLISHER_item() throws Exception {
 		PooplinePackage pack = new PooplinePackage("XX", new TestRandom(0.1));
+		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
 		assertThat(pack.getRepo().containsKey(Parameter.PATTERN_EMBELLISHER)).isTrue();
@@ -50,6 +51,7 @@ class PatternEmbellishmentRandom_Tests {
 	void when_empty_pack_is_processed_then_repo_PATTERN_EMBELLISHER_item_has_resolutionRndValue_equal_to_TestRandomValue() throws Exception {
 		double testRandomValue = 0.1;
 		PooplinePackage pack = new PooplinePackage("XX", new TestRandom(testRandomValue));
+		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
 		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
@@ -61,6 +63,7 @@ class PatternEmbellishmentRandom_Tests {
 	void when_empty_pack_is_processed_and_TestRandomValue_is_0_1_then_repo_PATTERN_EMBELLISHER_item_has_selectedResolution_equal_to_EIGHTHS() throws Exception {
 		double testRandomValue = 0.1;
 		PooplinePackage pack = new PooplinePackage("XX", new TestRandom(testRandomValue));
+		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
 		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
@@ -72,6 +75,7 @@ class PatternEmbellishmentRandom_Tests {
 	void when_empty_pack_is_processed_then_repo_PATTERN_EMBELLISHER_item_has_resolutionOption_equal_to_resolutionOptions_in_PatternEmbellisherRandom() throws Exception {
 		double testRandomValue = 0.1;
 		PooplinePackage pack = new PooplinePackage("XX", new TestRandom(testRandomValue));
+		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
 		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
@@ -83,6 +87,7 @@ class PatternEmbellishmentRandom_Tests {
 	void when_empty_pack_is_processed_then_pitch_and_rhythm_sync_items_are_present_in_repo() throws Exception {
 		double testRandomValue = 0.1;
 		PooplinePackage pack = new PooplinePackage("XX", new TestRandom(testRandomValue));
+		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
 		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
@@ -99,6 +104,7 @@ class PatternEmbellishmentRandom_Tests {
 	void when_empty_pack_is_processed_then_pitch_index_pattern_items_are_present_in_repo() throws Exception {
 		double testRandomValue = 0.1;
 		PooplinePackage pack = new PooplinePackage("XX", new TestRandom(testRandomValue));
+		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
 		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
@@ -121,6 +127,7 @@ class PatternEmbellishmentRandom_Tests {
 	void when_empty_pack_is_processed_then_pitch_generator_items_are_present_in_repo() throws Exception {
 		double testRandomValue = 0.1;
 		PooplinePackage pack = new PooplinePackage("XX", new TestRandom(testRandomValue));
+		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
 		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
@@ -145,6 +152,7 @@ class PatternEmbellishmentRandom_Tests {
 	void when_empty_pack_is_processed_then_rhythm_index_pattern_items_are_present_in_repo() throws Exception {
 		double testRandomValue = 0.1;
 		PooplinePackage pack = new PooplinePackage("XX", new TestRandom(testRandomValue));
+		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
 		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
@@ -167,6 +175,7 @@ class PatternEmbellishmentRandom_Tests {
 	void when_empty_pack_is_processed_then_rhythm_generator_items_are_present_in_repo() throws Exception {
 		double testRandomValue = 0.1;
 		PooplinePackage pack = new PooplinePackage("XX", new TestRandom(testRandomValue));
+		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
 		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
@@ -191,6 +200,7 @@ class PatternEmbellishmentRandom_Tests {
 	void when_empty_pack_is_processed_then_collision_index_pattern_items_are_present_in_repo() throws Exception {
 		double testRandomValue = 0.1;
 		PooplinePackage pack = new PooplinePackage("XX", new TestRandom(testRandomValue));
+		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
 		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
@@ -213,6 +223,7 @@ class PatternEmbellishmentRandom_Tests {
 	void when_empty_pack_is_processed_then_collision_items_are_present_in_repo() throws Exception {
 		double testRandomValue = 0.1;
 		PooplinePackage pack = new PooplinePackage("XX", new TestRandom(testRandomValue));
+		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
 		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
@@ -233,6 +244,7 @@ class PatternEmbellishmentRandom_Tests {
 	void when_empty_pack_is_processed_then_count_index_pattern_items_are_present_in_repo() throws Exception {
 		double testRandomValue = 0.1;
 		PooplinePackage pack = new PooplinePackage("XX", new TestRandom(testRandomValue));
+		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
 		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
@@ -255,6 +267,7 @@ class PatternEmbellishmentRandom_Tests {
 	void when_empty_pack_is_processed_then_count_items_are_present_in_repo() throws Exception {
 		double testRandomValue = 0.1;
 		PooplinePackage pack = new PooplinePackage("XX", new TestRandom(testRandomValue));
+		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
 		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
@@ -275,6 +288,7 @@ class PatternEmbellishmentRandom_Tests {
 	void when_empty_pack_is_processed_then_class_name_item_is_present_in_repo() throws Exception {
 		double testRandomValue = 0.1;
 		PooplinePackage pack = new PooplinePackage("XX", new TestRandom(testRandomValue));
+		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
 		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
@@ -285,6 +299,7 @@ class PatternEmbellishmentRandom_Tests {
 	@Test
 	void when_pack_with_structure_tones_is_processed_then_structure_tones_get_embellishments() throws Exception {
 		PooplinePackage pack = getPackWithPitchFreeStructureTones();
+		pack.setDebugMode(true);
 		TessituraFixed tessPlug = new TessituraFixed(Parameter.TESSITURA_START_NOTE);
 		pack = tessPlug.process(pack);
 		StartNoteMelodyRandom startPlug = new StartNoteMelodyRandom();
@@ -304,6 +319,7 @@ class PatternEmbellishmentRandom_Tests {
 	@Test
 	void when_empty_pack_is_processed_with_a_higher_rhythm_offset_count_than_created_by_default_then_new_items_will_be_added() throws Exception {
 		PooplinePackage pack = getPackWithPitchFreeStructureTones();
+		
 		TessituraFixed tessPlug = new TessituraFixed(Parameter.TESSITURA_START_NOTE);
 		pack = tessPlug.process(pack);
 		StartNoteMelodyRandom startPlug = new StartNoteMelodyRandom();
@@ -339,7 +355,7 @@ class PatternEmbellishmentRandom_Tests {
 		// 0.75 of 8 bar phrase with spacing 1.0 floatbars given 5/4 time equates to 6
 		// items with the tag at 0.0, 5.0, 10.0, 15.0, 20.0, 25.0 quartrs position
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.55));
-
+		pack.setDebugMode(true);
 		// length 8 bars
 		PooplinePlugin lengthPlug = new PhraseLengthRandom();
 		pack = lengthPlug.process(pack);

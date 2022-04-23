@@ -26,35 +26,58 @@ public class PhraseLengthSetLength extends PlugGeneric implements PooplinePlugin
 	public PhraseLengthSetLength(int aLengthInBars) 
 	{
 		super(
-				new Parameter[] {Parameter.PHRASE_LENGTH},
+				Parameter.PHRASE_LENGTH,
 				new Parameter[] {}
 				);
 		lengthInBars = aLengthInBars;
 	}
 	
 	
+	
 	@Override
 	public PooplinePackage process (PooplinePackage pack) 
 	{
-		logger.info(getInfoLevelPackReceiptMessage(pack));
 		pack = super.process(pack);
-		if (pack.getRepo().containsKey(Parameter.PHRASE_LENGTH) 
-				&& pack.getRepo().get(Parameter.PHRASE_LENGTH).getClassName().equals(getClass().getName())) 
-		{
-			phraseLengthRepo = (PhraseLengthRepo)pack.getRepo().get(Parameter.PHRASE_LENGTH);
-		} 
-		else 
-		{
-			phraseLengthRepo = PhraseLengthRepo.builder()
-					.selectedValue(lengthInBars)
-					.className(getClass().getName())
-					.build();
-			pack.getRepo().put(Parameter.PHRASE_LENGTH, phraseLengthRepo);	
-		}
-		pack.getMu().setLengthInBars(phraseLengthRepo.getSelectedValue());
-		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
+
+	
+	
+	@Override
+	PooplinePackage updateMu(PooplinePackage pack)
+	{
+		pack.getMu().setLengthInBars(phraseLengthRepo.getSelectedValue());
+		return pack;
+	}
+
+	
+
+	@Override
+	PooplinePackage makeRepo(PooplinePackage pack)
+	{
+		phraseLengthRepo = PhraseLengthRepo.builder()
+				.selectedValue(lengthInBars)
+				.className(getClass().getName())
+				.build();
+		pack.getRepo().put(Parameter.PHRASE_LENGTH, phraseLengthRepo);	
+		return pack;
+	}
+	
+	
+	
+	@Override
+	void getRepoFromPack(PooplinePackage pack)
+	{
+		phraseLengthRepo = (PhraseLengthRepo)pack.getRepo().get(Parameter.PHRASE_LENGTH);
+	}
+
+	
+	
+	@Override
+	void getAncilliaryRepos(PooplinePackage pack)
+	{}
+	
+	
 	
 	
 	

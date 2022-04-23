@@ -35,6 +35,7 @@ class ContourChordTonesRandom_Tests {
 	void when_ContourChordTonesRandom_does_not_have_required_parameters_then_repo_does_not_acquire_STRUCTURE_TONE_CONTOUR_item() throws Exception {
 		ContourChordTonesRandom plug = new ContourChordTonesRandom();
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.1));
+		
 		pack = plug.process(pack);
 		assertThat(pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_CONTOUR)).isFalse();
 	}
@@ -43,6 +44,7 @@ class ContourChordTonesRandom_Tests {
 	@Test
 	void when_ContourChordTonesRandom_does_not_have_required_parameters_then_mu_structure_tones_do_not_get_notes() throws Exception {
 		PooplinePackage pack = getPackWithPitchFreeStructureTones();
+		
 		ContourChordTonesRandom plug = new ContourChordTonesRandom();
 		pack = plug.process(pack);
 		List<Mu> muList = pack.getMu().getMuWithTag(MuTag.IS_STRUCTURE_TONE);
@@ -53,6 +55,7 @@ class ContourChordTonesRandom_Tests {
 	@Test
 	void when_ContourChordTonesRandom_does_have_required_parameters_then_repo_does_acquire_STRUCTURE_TONE_CONTOUR_item() throws Exception {
 		PooplinePackage pack = getPackWithPitchFreeStructureTones();
+		
 		TessituraFixed tessPlug = new TessituraFixed(Parameter.TESSITURA_START_NOTE);
 		pack = tessPlug.process(pack);
 		StartNoteMelodyRandom startPlug = new StartNoteMelodyRandom();
@@ -68,6 +71,7 @@ class ContourChordTonesRandom_Tests {
 	@Test
 	void when_ContourChordTonesRandom_does_have_required_parameters_then_mu_structure_tones_get_notes() throws Exception {
 		PooplinePackage pack = getPackWithPitchFreeStructureTones();
+		
 		TessituraFixed tessPlug = new TessituraFixed(Parameter.TESSITURA_START_NOTE);
 		pack = tessPlug.process(pack);
 		StartNoteMelodyRandom startPlug = new StartNoteMelodyRandom();
@@ -89,7 +93,7 @@ class ContourChordTonesRandom_Tests {
 		// 0.75 of 8 bar phrase with spacing 1.0 floatbars given 5/4 time equates to 6
 		// items with the tag at 0.0, 5.0, 10.0, 15.0, 20.0, 25.0 quartrs position
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.55));
-
+		pack.setDebugMode(true);
 		// length 8 bars
 		PooplinePlugin lengthPlug = new PhraseLengthRandom();
 		pack = lengthPlug.process(pack);

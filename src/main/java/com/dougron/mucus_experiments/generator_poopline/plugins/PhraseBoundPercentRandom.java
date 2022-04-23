@@ -19,9 +19,11 @@ public class PhraseBoundPercentRandom extends PlugGeneric {
 	
 	PhraseBoundRepo phraseBoundRepo;
 	
+	
+	
 	public PhraseBoundPercentRandom(Parameter aParameter) {
 		super(
-				new Parameter[] {aParameter},
+				aParameter,
 				new Parameter[] {}
 				);
 		parameter = aParameter;
@@ -30,7 +32,7 @@ public class PhraseBoundPercentRandom extends PlugGeneric {
 	
 	public PhraseBoundPercentRandom(Parameter aParameter, double aRangeLow, double aRangeHigh) {
 		super(
-				new Parameter[] {aParameter},
+				aParameter,
 				new Parameter[] {}
 				);
 		parameter = aParameter;
@@ -40,29 +42,48 @@ public class PhraseBoundPercentRandom extends PlugGeneric {
 	
 	
 	@Override
-	public PooplinePackage process (PooplinePackage pack) {
-		logger.info(getInfoLevelPackReceiptMessage(pack));
+	public PooplinePackage process (PooplinePackage pack) 
+	{
 		pack = super.process(pack);
-		if (pack.getRepo().containsKey(parameter) 
-				&& pack.getRepo().get(parameter).getClassName().equals(getClass().getName())) {			
-			// don't change existing info from same plugin
-		} else {
-			double rndValue = pack.getRnd().nextDouble();
-			phraseBoundRepo = PhraseBoundRepo.builder()
-					.rndValue(rndValue)
-					.selectedValue((rangeHigh - rangeLow) * rndValue + rangeLow)
-					.rangeLow(rangeLow)
-					.rangeHigh(rangeHigh)
-					.parameter(parameter)
-					.className(getClass().getName())
-					.build();
-			pack.getRepo().put(parameter, phraseBoundRepo);
-		}
-		
-		// for now, this does nothing to the Mu
-		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
 
+	
+	@Override
+	PooplinePackage updateMu(PooplinePackage pack)
+	{
+		//does nothing to mu
+		return pack;
+	}
+
+
+	@Override
+	PooplinePackage makeRepo(PooplinePackage pack)
+	{
+		double rndValue = pack.getRnd().nextDouble();
+		phraseBoundRepo = PhraseBoundRepo.builder()
+				.rndValue(rndValue)
+				.selectedValue((rangeHigh - rangeLow) * rndValue + rangeLow)
+				.rangeLow(rangeLow)
+				.rangeHigh(rangeHigh)
+				.parameter(parameter)
+				.className(getClass().getName())
+				.build();
+		pack.getRepo().put(parameter, phraseBoundRepo);
+		return pack;
+	}
+	
+	
+	@Override
+	void getRepoFromPack(PooplinePackage pack)
+	{
+		phraseBoundRepo = (PhraseBoundRepo)pack.getRepo().get(parameter);
+	}
+
+	
+	@Override
+	void getAncilliaryRepos(PooplinePackage pack)
+	{}
+	
 	
 }

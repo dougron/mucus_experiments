@@ -29,7 +29,7 @@ public class TessituraFixed extends PlugGeneric implements PooplinePlugin  {
 	
 	public TessituraFixed(Parameter aTessituraParameter) {
 		super(
-				new Parameter[] {aTessituraParameter},
+				aTessituraParameter,
 				new Parameter[] {}
 				);
 		tessituraParameter = aTessituraParameter;
@@ -38,7 +38,7 @@ public class TessituraFixed extends PlugGeneric implements PooplinePlugin  {
 	
 	public TessituraFixed(Parameter aTessituraParameter, int aLowValue, int aHighValue) {
 		super(
-				new Parameter[] {aTessituraParameter},
+				aTessituraParameter,
 				new Parameter[] {}
 				);
 		lowValue = aLowValue;
@@ -46,23 +46,29 @@ public class TessituraFixed extends PlugGeneric implements PooplinePlugin  {
 		tessituraParameter = aTessituraParameter;
 	}
 	
+	 
 	
 	@Override
-	public PooplinePackage process (PooplinePackage pack) {
-		logger.info(getInfoLevelPackReceiptMessage(pack));
+	public PooplinePackage process (PooplinePackage pack) 
+	{
 		pack = super.process(pack);
-		if (pack.getRepo().containsKey(tessituraParameter) 
-				&& pack.getRepo().get(tessituraParameter).getClassName().equals(getClass().getName())) {			
-		} else {
-			tessituraRepo = TessituraRepo.builder()
-					.lowValue(lowValue)
-					.highValue(highValue)
-					.parameter(tessituraParameter)
-					.className(getClass().getName())
-					.build();
-			pack.getRepo().put(tessituraParameter, tessituraRepo);
-		}
-		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
+
+	
+
+	@Override
+	PooplinePackage makeRepo(PooplinePackage pack)
+	{
+		tessituraRepo = TessituraRepo.builder()
+				.lowValue(lowValue)
+				.highValue(highValue)
+				.parameter(tessituraParameter)
+				.className(getClass().getName())
+				.build();
+		pack.getRepo().put(tessituraParameter, tessituraRepo);
+		return pack;
+	}
+	
+	
 }

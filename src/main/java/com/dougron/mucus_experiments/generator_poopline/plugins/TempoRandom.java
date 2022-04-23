@@ -22,36 +22,23 @@ public class TempoRandom extends PlugGeneric implements PooplinePlugin {
 	public TempoRandom()
 	{
 		super(
-				new Parameter[] {Parameter.TEMPO},
+				Parameter.TEMPO,
 				new Parameter[] {}
 				);
 	}
 	
 	
-	
 	@Override
 	public PooplinePackage process (PooplinePackage pack) 
 	{
-		logger.info(getInfoLevelPackReceiptMessage(pack));
 		pack = super.process(pack);
-		if (pack.getRepo().containsKey(Parameter.TEMPO) 
-				&& pack.getRepo().get(Parameter.TEMPO).getClassName().equals(getClass().getName())) 
-		{	
-			tempoRepo = (TempoRepo)pack.getRepo().get(Parameter.TEMPO);
-		} 
-		else 
-		{
-			double rndValue = pack.getRnd().nextDouble();
-			int tempo = (int)((highLimit - lowLimit) * rndValue + lowLimit);
-			tempoRepo = TempoRepo.builder()
-					.rndValue(rndValue)
-					.selectedTempo(tempo)
-					.highLimit(highLimit)
-					.lowLimit(lowLimit)
-					.className(getClass().getName())
-					.build();
-			pack.getRepo().put(Parameter.TEMPO, tempoRepo);
-		}
+		return pack;
+	}
+
+	
+	@Override
+	PooplinePackage updateMu(PooplinePackage pack)
+	{
 		if (tempoRepo == null)
 		{
 			logger.info("mu not updated as tempoRepo is null");
@@ -60,7 +47,33 @@ public class TempoRandom extends PlugGeneric implements PooplinePlugin {
 		{
 			pack.getMu().setStartTempo(tempoRepo.getSelectedTempo());
 		}
-		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
+
+
+	@Override
+	PooplinePackage makeRepo(PooplinePackage pack)
+	{
+		double rndValue = pack.getRnd().nextDouble();
+		int tempo = (int)((highLimit - lowLimit) * rndValue + lowLimit);
+		tempoRepo = TempoRepo.builder()
+				.rndValue(rndValue)
+				.selectedTempo(tempo)
+				.highLimit(highLimit)
+				.lowLimit(lowLimit)
+				.className(getClass().getName())
+				.build();
+		pack.getRepo().put(Parameter.TEMPO, tempoRepo);
+		return pack;
+	}
+	
+	
+	@Override
+	void getRepoFromPack(PooplinePackage pack)
+	{
+		tempoRepo = (TempoRepo)pack.getRepo().get(Parameter.TEMPO);
+	}
+
+	
+	
 }

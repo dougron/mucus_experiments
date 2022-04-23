@@ -19,37 +19,47 @@ public class StartNoteMelodyRandom extends PlugGeneric implements PooplinePlugin
 
 	public StartNoteMelodyRandom() {
 		super(
-				new Parameter[] {Parameter.START_NOTE},
+				Parameter.START_NOTE,
 				new Parameter[] {Parameter.TESSITURA_START_NOTE}
 				);
 	}
 	
 	
+	
 	@Override
-	public PooplinePackage process (PooplinePackage pack) {
-		logger.info(getInfoLevelPackReceiptMessage(pack));
+	public PooplinePackage process (PooplinePackage pack) 
+	{
 		pack = super.process(pack);
-		if (pack.getRepo().containsKey(Parameter.START_NOTE) 
-				&& pack.getRepo().get(Parameter.START_NOTE).getClassName().equals(getClass().getName())) {	
-			// yeah don't do anything
-		} else {
-			if (pack.getRepo().containsKey(Parameter.TESSITURA_START_NOTE)){
-				tessituraRepo = (TessituraRepo)pack.getRepo().get(Parameter.TESSITURA_START_NOTE);
-				double rndValue = pack.getRnd().nextDouble();
-				int startNote = (int)(rndValue * 
-						(tessituraRepo.getHighValue() - tessituraRepo.getLowValue()))
-						+ tessituraRepo.getLowValue();
-				startNoteRepo = StartNoteRepo.builder()
-						.rndValue(rndValue)
-						.selectedValue(startNote)
-						.rangeLow(tessituraRepo.getLowValue())
-						.rangeHigh(tessituraRepo.getHighValue())
-						.className(getClass().getName())
-						.build();
-				pack.getRepo().put(Parameter.START_NOTE, startNoteRepo);
-			}
-		}
-		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
+
+
+
+	@Override
+	PooplinePackage makeRepo(PooplinePackage pack)
+	{
+		double rndValue = pack.getRnd().nextDouble();
+		int startNote = (int)(rndValue * 
+				(tessituraRepo.getHighValue() - tessituraRepo.getLowValue()))
+				+ tessituraRepo.getLowValue();
+		startNoteRepo = StartNoteRepo.builder()
+				.rndValue(rndValue)
+				.selectedValue(startNote)
+				.rangeLow(tessituraRepo.getLowValue())
+				.rangeHigh(tessituraRepo.getHighValue())
+				.className(getClass().getName())
+				.build();
+		pack.getRepo().put(Parameter.START_NOTE, startNoteRepo);
+		return pack;
+	}
+	
+	
+	
+	@Override
+	void getAncilliaryRepos(PooplinePackage pack)
+	{
+		tessituraRepo = (TessituraRepo)pack.getRepo().get(Parameter.TESSITURA_START_NOTE);
+	}
+	
+	
 }

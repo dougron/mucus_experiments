@@ -124,38 +124,82 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 	
 	public PatternEmbellisherRandom() {
 		super(
-				new Parameter[] {Parameter.PATTERN_EMBELLISHER},
+				Parameter.PATTERN_EMBELLISHER,
 				new Parameter[] {}
 				);
 	}
 	
 	
+	
 	@Override
 	public PooplinePackage process (PooplinePackage pack) 
 	{
-		logger.info(getInfoLevelPackReceiptMessage(pack));
 		pack = super.process(pack);
+		return pack;
+	}
+
+	
+	@Override
+	PooplinePackage updateMu(PooplinePackage pack)
+	{
 		List<Mu> structureTones = pack.getMu().getMuWithTag(MuTag.IS_STRUCTURE_TONE);
-		loopModelRepo = dealWithLoopModelRepo(pack);
-		
-		if (pack.getRepo().containsKey(Parameter.PATTERN_EMBELLISHER) 
-				&& pack.getRepo().get(Parameter.PATTERN_EMBELLISHER).getClassName().equals(getClass().getName())) 
-		{	
-			patternEmbellishmentRepo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
-		} 
-		else 
-		{
-			patternEmbellishmentRepo = makePatternEmbellishmentRepo(pack);
-			pack.getRepo().put(Parameter.PATTERN_EMBELLISHER, patternEmbellishmentRepo);
-		}
-		
 		if (structureTones.size() > 0)
 		{
 			pack = doEmbellishments(pack, patternEmbellishmentRepo, loopModelRepo, structureTones);
 		}
-		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
+
+
+	@Override
+	PooplinePackage makeRepo(PooplinePackage pack)
+	{
+		patternEmbellishmentRepo = makePatternEmbellishmentRepo(pack);
+		pack.getRepo().put(Parameter.PATTERN_EMBELLISHER, patternEmbellishmentRepo);
+		return pack;
+	}
+	
+	
+	@Override
+	void getRepoFromPack(PooplinePackage pack)
+	{
+		patternEmbellishmentRepo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
+	}
+
+	
+	@Override
+	void getAncilliaryRepos(PooplinePackage pack)
+	{
+		loopModelRepo = dealWithLoopModelRepo(pack);
+	}
+	
+	
+//	@Override
+//	public PooplinePackage process (PooplinePackage pack) 
+//	{
+//		logger.info(getInfoLevelPackReceiptMessage(pack));
+//		pack = super.process(pack);
+//		List<Mu> structureTones = pack.getMu().getMuWithTag(MuTag.IS_STRUCTURE_TONE);
+//		loopModelRepo = dealWithLoopModelRepo(pack);
+//		
+//		if (pack.getRepo().containsKey(Parameter.PATTERN_EMBELLISHER) 
+//				&& pack.getRepo().get(Parameter.PATTERN_EMBELLISHER).getClassName().equals(getClass().getName())) 
+//		{	
+//			patternEmbellishmentRepo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
+//		} 
+//		else 
+//		{
+//			patternEmbellishmentRepo = makePatternEmbellishmentRepo(pack);
+//			pack.getRepo().put(Parameter.PATTERN_EMBELLISHER, patternEmbellishmentRepo);
+//		}
+//		
+//		if (structureTones.size() > 0)
+//		{
+//			pack = doEmbellishments(pack, patternEmbellishmentRepo, loopModelRepo, structureTones);
+//		}
+//		logger.debug(this.getClass().getSimpleName() + ".process() exited");
+//		return pack;
+//	}
 
 	
 

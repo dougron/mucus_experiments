@@ -20,7 +20,7 @@ public class ForceCreatePlugInsFromRepo extends PlugGeneric implements PooplineP
 	public ForceCreatePlugInsFromRepo(Poopline parent)
 	{
 		super(
-				new Parameter[] {},
+				Parameter.PLUGIN_RUNNER,
 				new Parameter[] {}
 				);
 		this.parent = parent;
@@ -60,40 +60,5 @@ public class ForceCreatePlugInsFromRepo extends PlugGeneric implements PooplineP
 	}
 	
 
-//	
-//	
-//	@Override
-//	public void setParent(Poopline aPoopline)
-//	{
-//		// TODO Auto-generated method stub
-//
-//	}
-//
-//	
-//	
-//	@Override
-//	public boolean isValidated()
-//	{
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
-//
-//	
-//	
-//	@Override
-//	public boolean canSupplyParameter(Parameter aParameter)
-//	{
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
-//
-//	
-//	
-//	@Override
-//	public Parameter[] getRenderParameters()
-//	{
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 
 }

@@ -29,6 +29,7 @@ class DurationPattern_Tests {
 	@Test
 	void given_legato_model_when_two_notes_then_first_end_at_beginning_of_second() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.4));
+		pack.setDebugMode(true);
 		TempoRandom tempoPlug = new TempoRandom();
 		pack = tempoPlug.process(pack);
 		Mu parent = pack.getMu();
@@ -48,6 +49,7 @@ class DurationPattern_Tests {
 	@Test
 	void given_legato_model_when_two_notes_then_second_ends_at_next_barline() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.4));
+		pack.setDebugMode(true);
 		TempoRandom tempoPlug = new TempoRandom();
 		pack = tempoPlug.process(pack);
 		Mu parent = pack.getMu();
@@ -67,6 +69,7 @@ class DurationPattern_Tests {
 	@Test
 	void given_legato_model_when_last_note_is_a_syncopation_then_last_note_ends_at_2nd_next_barline() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.4));
+		pack.setDebugMode(true);
 		TempoRandom tempoPlug = new TempoRandom();
 		pack = tempoPlug.process(pack);
 		Mu parent = pack.getMu();
@@ -89,6 +92,7 @@ class DurationPattern_Tests {
 	@Test
 	void given_legato_model_when_last_note_is_a_syncopation_that_is_in_its_original_bar_then_last_note_ends_at_next_barline() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.4));
+		pack.setDebugMode(true);
 		TempoRandom tempoPlug = new TempoRandom();
 		pack = tempoPlug.process(pack);
 		Mu parent = pack.getMu();
@@ -111,6 +115,7 @@ class DurationPattern_Tests {
 	@Test
 	void given_staccato_model_when_no_tempo_is_present_all_notes_are_duration_0_25() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.4));
+		pack.setDebugMode(true);
 //		TempoRandom tempoPlug = new TempoRandom();
 //		pack = tempoPlug.process(pack);
 		Mu parent = pack.getMu();
@@ -133,6 +138,7 @@ class DurationPattern_Tests {
 	@Test
 	void given_staccato_model_when_tempo_is_present_all_notes_are_low_duration() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.4));
+		pack.setDebugMode(true);
 		TempoRandom tempoPlug = new TempoRandom();
 		pack = tempoPlug.process(pack);
 		Mu parent = pack.getMu();
@@ -155,6 +161,7 @@ class DurationPattern_Tests {
 	@Test
 	void given_staccato_end_model_when_tempo_is_not_present_last_note_is_0_25_duration() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.4));
+		pack.setDebugMode(true);
 //		TempoRandom tempoPlug = new TempoRandom();
 //		pack = tempoPlug.process(pack);
 		Mu parent = pack.getMu();
@@ -178,6 +185,7 @@ class DurationPattern_Tests {
 	@Test
 	void given_staccato_legato_model_when_tempo_is_not_present_then_note1_duration_0_25_and_note2_duration_4() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.4));
+		pack.setDebugMode(true);
 //		TempoRandom tempoPlug = new TempoRandom();
 //		pack = tempoPlug.process(pack);
 		Mu parent = pack.getMu();

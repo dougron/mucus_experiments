@@ -60,7 +60,7 @@ public class ContourChordTonesRandom   extends PlugGeneric implements PooplinePl
 	
 	public ContourChordTonesRandom() {
 		super(
-				new Parameter[] {Parameter.STRUCTURE_TONE_CONTOUR},
+				Parameter.STRUCTURE_TONE_CONTOUR,
 				new Parameter[] {
 						Parameter.TESSITURA_START_NOTE,
 						Parameter.START_NOTE,
@@ -74,35 +74,94 @@ public class ContourChordTonesRandom   extends PlugGeneric implements PooplinePl
 	}
 	
 	
+	
 	@Override
-	public PooplinePackage process (PooplinePackage pack) {
-		logger.info(getInfoLevelPackReceiptMessage(pack));
+	public PooplinePackage process (PooplinePackage pack) 
+	{
 		pack = super.process(pack);
-		assignFieldReposFromPackRepo(pack);
-		if (pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_CONTOUR) 
-				&& pack.getRepo().get(Parameter.STRUCTURE_TONE_CONTOUR).getClassName().equals(getClass().getName())) {			
-			contourChordTonesRepo = (ContourChordTonesRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_CONTOUR);
-		} else {
-			if (noFieldReposAreNull()) {
-				double rndValue = pack.getRnd().nextDouble();
-				FourPointContour selectedOption = options[(int) (options.length * rndValue)];
-				contourChordTonesRepo = ContourChordTonesRepo.builder().rndValue(rndValue)
-						.selectedOption(selectedOption).options(options).className(getClass().getName()).build();
-				pack.getRepo().put(Parameter.STRUCTURE_TONE_CONTOUR, contourChordTonesRepo);
-				logger.info("Contour selected from pack.rnd.nextDouble and saved to repo");
-			} else {
-				logger.info("STRUCTURE_TONE_CONTOUR item not created because one or more field repos are null.");
-			}
-		}
+		return pack;
+	}
+
+	
+	@Override
+	PooplinePackage updateMu(PooplinePackage pack)
+	{
 		if (noFieldReposAreNull() && contourChordTonesRepo != null) {
 			
-			pack = updateMu(pack);
+			pack = doMuUpdate(pack);
 		} else {
 			logger.info("mu not updated as all required repos were not present.");
 		}
-		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
+
+
+	@Override
+	PooplinePackage makeRepo(PooplinePackage pack)
+	{
+		double rndValue = pack.getRnd().nextDouble();
+		FourPointContour selectedOption = options[(int) (options.length * rndValue)];
+		contourChordTonesRepo = ContourChordTonesRepo.builder().rndValue(rndValue)
+				.selectedOption(selectedOption).options(options).className(getClass().getName()).build();
+		pack.getRepo().put(Parameter.STRUCTURE_TONE_CONTOUR, contourChordTonesRepo);
+		logger.info("Contour selected from pack.rnd.nextDouble and saved to repo");
+//		if (noFieldReposAreNull()) {
+//			double rndValue = pack.getRnd().nextDouble();
+//			FourPointContour selectedOption = options[(int) (options.length * rndValue)];
+//			contourChordTonesRepo = ContourChordTonesRepo.builder().rndValue(rndValue)
+//					.selectedOption(selectedOption).options(options).className(getClass().getName()).build();
+//			pack.getRepo().put(Parameter.STRUCTURE_TONE_CONTOUR, contourChordTonesRepo);
+//			logger.info("Contour selected from pack.rnd.nextDouble and saved to repo");
+//		} else {
+//			logger.info("STRUCTURE_TONE_CONTOUR item not created because one or more field repos are null.");
+//		}
+		return pack;
+	}
+	
+	
+	@Override
+	void getRepoFromPack(PooplinePackage pack)
+	{
+		contourChordTonesRepo = (ContourChordTonesRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_CONTOUR);
+	}
+
+	
+	@Override
+	void getAncilliaryRepos(PooplinePackage pack)
+	{
+		assignFieldReposFromPackRepo(pack);
+	}
+	
+	
+//	@Override
+//	public PooplinePackage process (PooplinePackage pack) {
+//		logger.info(getInfoLevelPackReceiptMessage(pack));
+//		pack = super.process(pack);
+//		assignFieldReposFromPackRepo(pack);
+//		if (pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_CONTOUR) 
+//				&& pack.getRepo().get(Parameter.STRUCTURE_TONE_CONTOUR).getClassName().equals(getClass().getName())) {			
+//			contourChordTonesRepo = (ContourChordTonesRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_CONTOUR);
+//		} else {
+//			if (noFieldReposAreNull()) {
+//				double rndValue = pack.getRnd().nextDouble();
+//				FourPointContour selectedOption = options[(int) (options.length * rndValue)];
+//				contourChordTonesRepo = ContourChordTonesRepo.builder().rndValue(rndValue)
+//						.selectedOption(selectedOption).options(options).className(getClass().getName()).build();
+//				pack.getRepo().put(Parameter.STRUCTURE_TONE_CONTOUR, contourChordTonesRepo);
+//				logger.info("Contour selected from pack.rnd.nextDouble and saved to repo");
+//			} else {
+//				logger.info("STRUCTURE_TONE_CONTOUR item not created because one or more field repos are null.");
+//			}
+//		}
+//		if (noFieldReposAreNull() && contourChordTonesRepo != null) {
+//			
+//			pack = updateMu(pack);
+//		} else {
+//			logger.info("mu not updated as all required repos were not present.");
+//		}
+//		logger.debug(this.getClass().getSimpleName() + ".process() exited");
+//		return pack;
+//	}
 
 
 	private boolean noFieldReposAreNull() {
@@ -138,7 +197,7 @@ public class ContourChordTonesRandom   extends PlugGeneric implements PooplinePl
 	}
 
 
-	private PooplinePackage updateMu(PooplinePackage pack) {
+	private PooplinePackage doMuUpdate(PooplinePackage pack) {
 		int lengthInBars = phraseLengthRepo.getSelectedValue();
 		int startNote = startNoteRepo.getSelectedValue();
 		double startPositionInFloatBars = lengthInBars * startPercentRepo.getSelectedValue();

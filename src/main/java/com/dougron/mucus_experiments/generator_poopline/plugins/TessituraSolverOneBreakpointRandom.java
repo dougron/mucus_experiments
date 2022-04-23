@@ -51,7 +51,7 @@ public class TessituraSolverOneBreakpointRandom extends PlugGeneric implements P
 			Parameter aTessituraParameter, 
 			MuTag aMuTagToActUpon) {
 		super(
-				new Parameter[] {Parameter.TESSITURA_SOLVER},
+				Parameter.TESSITURA_SOLVER,
 				new Parameter[] {}
 				);
 		setRequiredParameters(new Parameter[] {aTessituraParameter});
@@ -60,45 +60,109 @@ public class TessituraSolverOneBreakpointRandom extends PlugGeneric implements P
 	}
 	
 	
+	
 	@Override
-	public PooplinePackage process (PooplinePackage pack) {
-		logger.info(getInfoLevelPackReceiptMessage(pack));
+	public PooplinePackage process (PooplinePackage pack) 
+	{
 		pack = super.process(pack);
-		List<Mu> muList = pack.getMu().getMuWithTag(muTagToActUpon);
-		assignFieldReposFromPackRepo(pack);
-		
-		if (pack.getRepo().containsKey(Parameter.TESSITURA_SOLVER) 
-				&& pack.getRepo().get(Parameter.TESSITURA_SOLVER).getClassName().equals(getClass().getName())) {
-			tessituraSolverRepo = (TessituraSolverRepo)pack.getRepo().get(Parameter.TESSITURA_SOLVER);
-		} else {
-			if (melodyRangeRepo != null) {
-				if (muList.size() == 0) {
-					logger.info("No mus tagged with " + muTagToActUpon.toString() + " were found.");
-				} else {
-					double rndValue = pack.getRnd().nextDouble();
-					BreakPointChoice solverType 
-					= TessituraSolverRepo.breakPointOptions[(int)(TessituraSolverRepo.breakPointOptions.length * rndValue)];
-					double randomSolverRndValue = pack.getRnd().nextDouble();
-					tessituraSolverRepo = TessituraSolverRepo.builder()
-							.rndValue(rndValue)
-							.breakPointChoice(solverType)
-							.rndValueForRandomChoice(randomSolverRndValue)
-							.tessituraParameter(tessituraParameter)
-							.muTagToActUpon(muTagToActUpon)
-							.className(getClass().getName())
-							.build();
-					pack.getRepo().put(Parameter.TESSITURA_SOLVER, tessituraSolverRepo);
-				}
-			} else {
-				logger.info("melodyRangeRepo was not found. No Tessitura solving done.");
-			}
-		}
+		return pack;
+	}
+
+	
+	@Override
+	PooplinePackage updateMu(PooplinePackage pack)
+	{
+		List<Mu> muList = tessituraSolverRepo.getMuList();
 		if (muList.size() > 0 && tessituraSolverRepo != null && melodyRangeRepo != null) {
 			adjustMuList(muList);
 		}
-		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
+
+
+	@Override
+	PooplinePackage makeRepo(PooplinePackage pack)
+	{
+		List<Mu> muList = pack.getMu().getMuWithTag(muTagToActUpon);
+		if (melodyRangeRepo != null) {
+			if (muList.size() == 0) {
+				logger.info("No mus tagged with " + muTagToActUpon.toString() + " were found.");
+			} else {
+				double rndValue = pack.getRnd().nextDouble();
+				BreakPointChoice solverType 
+				= TessituraSolverRepo.breakPointOptions[(int)(TessituraSolverRepo.breakPointOptions.length * rndValue)];
+				double randomSolverRndValue = pack.getRnd().nextDouble();
+				tessituraSolverRepo = TessituraSolverRepo.builder()
+						.rndValue(rndValue)
+						.breakPointChoice(solverType)
+						.rndValueForRandomChoice(randomSolverRndValue)
+						.tessituraParameter(tessituraParameter)
+						.muTagToActUpon(muTagToActUpon)
+						.muList(muList)
+						.className(getClass().getName())
+						.build();
+				pack.getRepo().put(Parameter.TESSITURA_SOLVER, tessituraSolverRepo);
+			}
+		} else {
+			logger.info("melodyRangeRepo was not found. No Tessitura solving done.");
+		}
+		return pack;
+	}
+	
+	
+	@Override
+	void getRepoFromPack(PooplinePackage pack)
+	{
+		tessituraSolverRepo = (TessituraSolverRepo)pack.getRepo().get(Parameter.TESSITURA_SOLVER);
+	}
+
+	
+	@Override
+	void getAncilliaryRepos(PooplinePackage pack)
+	{
+		assignFieldReposFromPackRepo(pack);
+	}
+	
+	
+//	@Override
+//	public PooplinePackage process (PooplinePackage pack) {
+//		logger.info(getInfoLevelPackReceiptMessage(pack));
+//		pack = super.process(pack);
+//		List<Mu> muList = pack.getMu().getMuWithTag(muTagToActUpon);
+//		assignFieldReposFromPackRepo(pack);
+//		
+//		if (pack.getRepo().containsKey(Parameter.TESSITURA_SOLVER) 
+//				&& pack.getRepo().get(Parameter.TESSITURA_SOLVER).getClassName().equals(getClass().getName())) {
+//			tessituraSolverRepo = (TessituraSolverRepo)pack.getRepo().get(Parameter.TESSITURA_SOLVER);
+//		} else {
+//			if (melodyRangeRepo != null) {
+//				if (muList.size() == 0) {
+//					logger.info("No mus tagged with " + muTagToActUpon.toString() + " were found.");
+//				} else {
+//					double rndValue = pack.getRnd().nextDouble();
+//					BreakPointChoice solverType 
+//					= TessituraSolverRepo.breakPointOptions[(int)(TessituraSolverRepo.breakPointOptions.length * rndValue)];
+//					double randomSolverRndValue = pack.getRnd().nextDouble();
+//					tessituraSolverRepo = TessituraSolverRepo.builder()
+//							.rndValue(rndValue)
+//							.breakPointChoice(solverType)
+//							.rndValueForRandomChoice(randomSolverRndValue)
+//							.tessituraParameter(tessituraParameter)
+//							.muTagToActUpon(muTagToActUpon)
+//							.className(getClass().getName())
+//							.build();
+//					pack.getRepo().put(Parameter.TESSITURA_SOLVER, tessituraSolverRepo);
+//				}
+//			} else {
+//				logger.info("melodyRangeRepo was not found. No Tessitura solving done.");
+//			}
+//		}
+//		if (muList.size() > 0 && tessituraSolverRepo != null && melodyRangeRepo != null) {
+//			adjustMuList(muList);
+//		}
+//		logger.debug(this.getClass().getSimpleName() + ".process() exited");
+//		return pack;
+//	}
 	
 	
 	private void adjustMuList(List<Mu> muList) {

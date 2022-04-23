@@ -7,6 +7,7 @@ import main.java.com.dougron.mucus.algorithms.random_melody_generator.Parameter;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePlugin;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.LoopModelRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseLengthRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.LoopModelRepo.LoopModel;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StartNoteRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TessituraRepo;
@@ -22,31 +23,56 @@ public class LoopModelSetter extends PlugGeneric implements PooplinePlugin {
 
 	public LoopModelSetter(LoopModel aLoopModel) {
 		super(
-				new Parameter[] {Parameter.LOOP_MODEL},
+				Parameter.LOOP_MODEL,
 				new Parameter[] {}
 				);
 		loopModel = aLoopModel;
 	}
 	
 	
+	
 	@Override
-	public PooplinePackage process (PooplinePackage pack) {
-		logger.info(getInfoLevelPackReceiptMessage(pack));
+	public PooplinePackage process (PooplinePackage pack) 
+	{
 		pack = super.process(pack);
-		if (pack.getRepo().containsKey(Parameter.LOOP_MODEL))
-		{
-			
-		}
-		else
-		{
-			loopModelRepo = LoopModelRepo.builder()
-					.selectedLoopModel(loopModel)
-					.className(getClass().getName())
-					.build();
-			pack.getRepo().put(Parameter.LOOP_MODEL, loopModelRepo);
-		}
-		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
+
+	
+	@Override
+	PooplinePackage updateMu(PooplinePackage pack)
+	{
+		//update pack.mu
+		return pack;
+	}
+
+
+	
+	@Override
+	PooplinePackage makeRepo(PooplinePackage pack)
+	{
+		loopModelRepo = LoopModelRepo.builder()
+				.selectedLoopModel(loopModel)
+				.className(getClass().getName())
+				.build();
+		pack.getRepo().put(Parameter.LOOP_MODEL, loopModelRepo);
+		return pack;
+	}
+	
+	
+	
+	@Override
+	void getRepoFromPack(PooplinePackage pack)
+	{
+		loopModelRepo = (LoopModelRepo)pack.getRepo().get(Parameter.LOOP_MODEL);
+	}
+
+
+	
+	@Override
+	void getAncilliaryRepos(PooplinePackage pack)
+	{}
+	
+	
 
 }

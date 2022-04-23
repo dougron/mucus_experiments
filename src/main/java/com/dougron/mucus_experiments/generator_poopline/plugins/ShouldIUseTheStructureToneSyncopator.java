@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.Parameter;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.BooleanRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TimeSignatureRepo;
 
 public class ShouldIUseTheStructureToneSyncopator extends PlugGeneric {
 	
@@ -13,34 +14,58 @@ public class ShouldIUseTheStructureToneSyncopator extends PlugGeneric {
 
 	private boolean[] options = new boolean[] {true, false};
 
+
 	
 	public ShouldIUseTheStructureToneSyncopator() {
 		super(
-				new Parameter[] {Parameter.USE_STRUCTURE_TONE_SYNCOPATOR},
+				Parameter.USE_STRUCTURE_TONE_SYNCOPATOR,
 				new Parameter[] {Parameter.STRUCTURE_TONE_SPACING}
 				);
 	}
 	
 	
+	
 	@Override
-	public PooplinePackage process (PooplinePackage pack) {
-		logger.info(getInfoLevelPackReceiptMessage(pack));
+	public PooplinePackage process (PooplinePackage pack) 
+	{
 		pack = super.process(pack);
-		if (pack.getRepo().containsKey(Parameter.USE_STRUCTURE_TONE_SYNCOPATOR) 
-				&& pack.getRepo().get(Parameter.USE_STRUCTURE_TONE_SYNCOPATOR).getClassName().equals(getClass().getName())) {			
-			// don't change existing info from same plugin
-			
-		} else {
-			double rndValue = pack.getRnd().nextDouble();
-			BooleanRepo repo = BooleanRepo.builder()
-					.rndValue(rndValue)
-					.selectedOption(options[(int)(options.length * rndValue)])
-					.options(options)
-					.className(getClass().getName())
-					.build();		
-			pack.getRepo().put(Parameter.USE_STRUCTURE_TONE_SYNCOPATOR, repo);
-		}
-		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
+
+	
+//	@Override
+//	PooplinePackage updateMu(PooplinePackage pack)
+//	{
+//		//update pack.mu
+//		return pack;
+//	}
+
+
+	@Override
+	PooplinePackage makeRepo(PooplinePackage pack)
+	{
+		double rndValue = pack.getRnd().nextDouble();
+		BooleanRepo repo = BooleanRepo.builder()
+				.rndValue(rndValue)
+				.selectedOption(options[(int)(options.length * rndValue)])
+				.options(options)
+				.className(getClass().getName())
+				.build();		
+		pack.getRepo().put(Parameter.USE_STRUCTURE_TONE_SYNCOPATOR, repo);
+		return pack;
+	}
+	
+	
+//	@Override
+//	void getRepoFromPack(PooplinePackage pack)
+//	{
+//		// does not need to recover from repo as this is only necessary when mu needs updating
+//	}
+
+	
+//	@Override
+//	void getAncilliaryRepos(PooplinePackage pack)
+//	{}
+	
+	
 }

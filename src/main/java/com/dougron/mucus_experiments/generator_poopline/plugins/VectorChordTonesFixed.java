@@ -49,7 +49,7 @@ public class VectorChordTonesFixed   extends PlugGeneric implements PooplinePlug
 	public VectorChordTonesFixed(int[] aVectorArray) 
 	{
 		super(
-				new Parameter[] {Parameter.STRUCTURE_TONE_VECTOR},	// possible place for a general STRUCTURE_TONE_GENERATOR Parameter to cover a variety of options
+				Parameter.STRUCTURE_TONE_VECTOR,	// possible place for a general STRUCTURE_TONE_GENERATOR Parameter to cover a variety of options
 				new Parameter[] {
 						Parameter.TESSITURA_START_NOTE,
 						Parameter.START_NOTE,
@@ -64,45 +64,102 @@ public class VectorChordTonesFixed   extends PlugGeneric implements PooplinePlug
 	}
 	
 	
+	
 	@Override
 	public PooplinePackage process (PooplinePackage pack) 
 	{
-		logger.info(getInfoLevelPackReceiptMessage(pack));
-	
 		pack = super.process(pack);
-		logger.debug("After processing the required plugins for VectorChordTones chord progression was: " + pack.getMu().getChordListToString());
-		assignFieldReposFromPackRepo(pack);
-		if (pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_VECTOR) 
-				&& pack.getRepo().get(Parameter.STRUCTURE_TONE_VECTOR).getClassName().equals(getClass().getName())) 
-		{			
-			vectorChordTonesRepo = (VectorChordTonesRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_VECTOR);
-		} 
-		else 
-		{
-			if (noFieldReposAreNull()) {
-				double rndValue = pack.getRnd().nextDouble();
-//				FourPointContour selectedOption = options[(int) (options.length * rndValue)];
-				vectorChordTonesRepo = VectorChordTonesRepo.builder()
-						.selectedVectorArray(vectorArray)
-						.className(getClass().getName())
-						.build();
-				pack.getRepo().put(Parameter.STRUCTURE_TONE_VECTOR, vectorChordTonesRepo);
-				logger.info("Created vectorChordTonesRepo and saved to pack.repo");
-			} else {
-				logger.info("STRUCTURE_TONE_VECTOR item not created because one or more field repos are null.");
-			}
-		}
+		return pack;
+	}
+
+	
+	@Override
+	PooplinePackage updateMu(PooplinePackage pack)
+	{
 		if (noFieldReposAreNull() && vectorChordTonesRepo != null) 
 		{
-			pack = updateMu(pack);
+			pack = doMuUpdate(pack);
 		} 
 		else 
 		{
 			logger.info("mu not updated as all required repos were not present.");
 		}
-		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
+
+
+	@Override
+	PooplinePackage makeRepo(PooplinePackage pack)
+	{
+		if (noFieldReposAreNull()) {
+			double rndValue = pack.getRnd().nextDouble();
+//			FourPointContour selectedOption = options[(int) (options.length * rndValue)];
+			vectorChordTonesRepo = VectorChordTonesRepo.builder()
+					.selectedVectorArray(vectorArray)
+					.className(getClass().getName())
+					.build();
+			pack.getRepo().put(Parameter.STRUCTURE_TONE_VECTOR, vectorChordTonesRepo);
+			logger.info("Created vectorChordTonesRepo and saved to pack.repo");
+		} else {
+			logger.info("STRUCTURE_TONE_VECTOR item not created because one or more field repos are null.");
+		}
+		return pack;
+	}
+	
+	
+	@Override
+	void getRepoFromPack(PooplinePackage pack)
+	{
+		vectorChordTonesRepo = (VectorChordTonesRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_VECTOR);
+	}
+
+	
+	@Override
+	void getAncilliaryRepos(PooplinePackage pack)
+	{
+		assignFieldReposFromPackRepo(pack);
+	}
+	
+	
+//	@Override
+//	public PooplinePackage process (PooplinePackage pack) 
+//	{
+//		logger.info(getInfoLevelPackReceiptMessage(pack));
+//	
+//		pack = super.process(pack);
+//		logger.debug("After processing the required plugins for VectorChordTones chord progression was: " + pack.getMu().getChordListToString());
+//		assignFieldReposFromPackRepo(pack);
+//		if (pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_VECTOR) 
+//				&& pack.getRepo().get(Parameter.STRUCTURE_TONE_VECTOR).getClassName().equals(getClass().getName())) 
+//		{			
+//			vectorChordTonesRepo = (VectorChordTonesRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_VECTOR);
+//		} 
+//		else 
+//		{
+//			if (noFieldReposAreNull()) {
+//				double rndValue = pack.getRnd().nextDouble();
+////				FourPointContour selectedOption = options[(int) (options.length * rndValue)];
+//				vectorChordTonesRepo = VectorChordTonesRepo.builder()
+//						.selectedVectorArray(vectorArray)
+//						.className(getClass().getName())
+//						.build();
+//				pack.getRepo().put(Parameter.STRUCTURE_TONE_VECTOR, vectorChordTonesRepo);
+//				logger.info("Created vectorChordTonesRepo and saved to pack.repo");
+//			} else {
+//				logger.info("STRUCTURE_TONE_VECTOR item not created because one or more field repos are null.");
+//			}
+//		}
+//		if (noFieldReposAreNull() && vectorChordTonesRepo != null) 
+//		{
+//			pack = updateMu(pack);
+//		} 
+//		else 
+//		{
+//			logger.info("mu not updated as all required repos were not present.");
+//		}
+//		logger.debug(this.getClass().getSimpleName() + ".process() exited");
+//		return pack;
+//	}
 
 
 	private boolean noFieldReposAreNull() {
@@ -138,7 +195,7 @@ public class VectorChordTonesFixed   extends PlugGeneric implements PooplinePlug
 	}
 
 
-	private PooplinePackage updateMu(PooplinePackage pack) 
+	private PooplinePackage doMuUpdate(PooplinePackage pack) 
 	{
 //		int lengthInBars = phraseLengthRepo.getSelectedValue();
 		int note = startNoteRepo.getSelectedValue();

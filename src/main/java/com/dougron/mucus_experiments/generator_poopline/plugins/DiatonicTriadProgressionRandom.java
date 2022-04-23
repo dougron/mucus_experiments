@@ -39,52 +39,127 @@ public class DiatonicTriadProgressionRandom extends PlugGeneric implements Poopl
 	
 	public DiatonicTriadProgressionRandom() {
 		super(
-				new Parameter[] {Parameter.CHORD_LIST_GENERATOR},
+				Parameter.CHORD_LIST_GENERATOR,
 				new Parameter[] {Parameter.PHRASE_LENGTH, Parameter.XMLKEY}
 				);
 	}
 	
 	
+	
 	@Override
-	public PooplinePackage process (PooplinePackage pack) {
-		logger.info(getInfoLevelPackReceiptMessage(pack));
-		// super.process handles required parameters if they are available
+	public PooplinePackage process (PooplinePackage pack) 
+	{
 		pack = super.process(pack);
-		if (pack.getRepo().containsKey(Parameter.PHRASE_LENGTH) 
-				&& pack.getRepo().containsKey(Parameter.XMLKEY))
-		{
-			getRequiredParameterRepos(pack);
-			
-			if (pack.getRepo().containsKey(Parameter.CHORD_LIST_GENERATOR)
-					&& pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR).getClassName().equals(getClass().getName())) 
-			{
-				diatonicTriadRepo = (DiatonicTriadRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
-				if (hasEnoughBars(diatonicTriadRepo, phraseLengthRepo)) {
-					if (adheresToNoRepeatCriteria(diatonicTriadRepo, phraseLengthRepo)) {
-						// parameters are valid and can generate mu material
-					} else {
-						double[] rndArr = checkForSequentialRepeatsAndChangeSecondOne(diatonicTriadRepo, phraseLengthRepo.getSelectedValue(), pack.getRnd());
-						diatonicTriadRepo.setRndValue(rndArr);
-						rndArr = changeLastBarToSatisfyNoRepeatCriteria(diatonicTriadRepo, phraseLengthRepo.getSelectedValue(), pack.getRnd());
-						diatonicTriadRepo.setRndValue(rndArr);
-						int[] indexArr = getIndexArrayForPhraseLength(phraseLengthRepo.getSelectedValue(), rndArr);
-						Map<Double, String> map = getFloatBarChordMap(xmlKeyRepo.getSelectedValue(), indexArr);
-						diatonicTriadRepo.setSelectedValues(indexArr);
-						diatonicTriadRepo.setFloatBarChordMap(map);
-					}
-				} else {
-					extendDiatonicTriadRepoLength(pack);
-				}
-			} else {
-				diatonicTriadRepo = makeDiatonicTriadRepo(pack);
-				pack.getRepo().put(Parameter.CHORD_LIST_GENERATOR, diatonicTriadRepo);
-			}			
-			pack = makeMu(pack);
-			
-		}
-		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
+
+	
+	@Override
+	PooplinePackage updateMu(PooplinePackage pack)
+	{
+		pack = makeMu(pack);
+		return pack;
+	}
+
+
+	@Override
+	PooplinePackage makeRepo(PooplinePackage pack)
+	{
+		if (hasRequiredRepos())
+		{
+			diatonicTriadRepo = makeDiatonicTriadRepo(pack);
+			pack.getRepo().put(Parameter.CHORD_LIST_GENERATOR, diatonicTriadRepo);
+		}
+		else
+		{
+			logger.debug("Repo not created as not all required repos were present.");
+		}
+		return pack;
+	}
+	
+
+
+	@Override
+	void getRepoFromPack(PooplinePackage pack)
+	{
+		diatonicTriadRepo = (DiatonicTriadRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
+		if (hasEnoughBars(diatonicTriadRepo, phraseLengthRepo)) {
+			if (adheresToNoRepeatCriteria(diatonicTriadRepo, phraseLengthRepo)) {
+				// parameters are valid and can generate mu material
+			} else {
+				double[] rndArr = checkForSequentialRepeatsAndChangeSecondOne(diatonicTriadRepo, phraseLengthRepo.getSelectedValue(), pack.getRnd());
+				diatonicTriadRepo.setRndValue(rndArr);
+				rndArr = changeLastBarToSatisfyNoRepeatCriteria(diatonicTriadRepo, phraseLengthRepo.getSelectedValue(), pack.getRnd());
+				diatonicTriadRepo.setRndValue(rndArr);
+				int[] indexArr = getIndexArrayForPhraseLength(phraseLengthRepo.getSelectedValue(), rndArr);
+				Map<Double, String> map = getFloatBarChordMap(xmlKeyRepo.getSelectedValue(), indexArr);
+				diatonicTriadRepo.setSelectedValues(indexArr);
+				diatonicTriadRepo.setFloatBarChordMap(map);
+			}
+		} else {
+			extendDiatonicTriadRepoLength(pack);
+		}
+	}
+
+	
+	@Override
+	void getAncilliaryRepos(PooplinePackage pack)
+	{
+		getRequiredParameterRepos(pack);
+	}
+	
+	
+//	@Override
+//	public PooplinePackage process (PooplinePackage pack) {
+//		logger.info(getInfoLevelPackReceiptMessage(pack));
+//		// super.process handles required parameters if they are available
+//		pack = super.process(pack);
+//		if (pack.getRepo().containsKey(Parameter.PHRASE_LENGTH) 
+//				&& pack.getRepo().containsKey(Parameter.XMLKEY))
+//		{
+//			getRequiredParameterRepos(pack);
+//			
+//			if (pack.getRepo().containsKey(Parameter.CHORD_LIST_GENERATOR)
+//					&& pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR).getClassName().equals(getClass().getName())) 
+//			{
+//				diatonicTriadRepo = (DiatonicTriadRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
+//				if (hasEnoughBars(diatonicTriadRepo, phraseLengthRepo)) {
+//					if (adheresToNoRepeatCriteria(diatonicTriadRepo, phraseLengthRepo)) {
+//						// parameters are valid and can generate mu material
+//					} else {
+//						double[] rndArr = checkForSequentialRepeatsAndChangeSecondOne(diatonicTriadRepo, phraseLengthRepo.getSelectedValue(), pack.getRnd());
+//						diatonicTriadRepo.setRndValue(rndArr);
+//						rndArr = changeLastBarToSatisfyNoRepeatCriteria(diatonicTriadRepo, phraseLengthRepo.getSelectedValue(), pack.getRnd());
+//						diatonicTriadRepo.setRndValue(rndArr);
+//						int[] indexArr = getIndexArrayForPhraseLength(phraseLengthRepo.getSelectedValue(), rndArr);
+//						Map<Double, String> map = getFloatBarChordMap(xmlKeyRepo.getSelectedValue(), indexArr);
+//						diatonicTriadRepo.setSelectedValues(indexArr);
+//						diatonicTriadRepo.setFloatBarChordMap(map);
+//					}
+//				} else {
+//					extendDiatonicTriadRepoLength(pack);
+//				}
+//			} else {
+//				diatonicTriadRepo = makeDiatonicTriadRepo(pack);
+//				pack.getRepo().put(Parameter.CHORD_LIST_GENERATOR, diatonicTriadRepo);
+//			}			
+//			pack = makeMu(pack);
+//			
+//		}
+//		logger.debug(this.getClass().getSimpleName() + ".process() exited");
+//		return pack;
+//	}
+	
+	
+	
+
+	
+	private boolean hasRequiredRepos()
+	{
+		if (phraseLengthRepo == null || xmlKeyRepo == null) return false;
+		return true;
+	}
+
 
 
 	private void extendDiatonicTriadRepoLength(PooplinePackage pack) {
@@ -119,19 +194,33 @@ public class DiatonicTriadProgressionRandom extends PlugGeneric implements Poopl
 
 
 	private void getRequiredParameterRepos(PooplinePackage pack) {
-		phraseLengthRepo = (PhraseLengthRepo)pack.getRepo().get(Parameter.PHRASE_LENGTH);
-		xmlKeyRepo = (XmlKeyRepo)pack.getRepo().get(Parameter.XMLKEY);
+		if (pack.getRepo().containsKey(Parameter.PHRASE_LENGTH))
+		{
+			phraseLengthRepo = (PhraseLengthRepo)pack.getRepo().get(Parameter.PHRASE_LENGTH);
+		}
+		if (pack.getRepo().containsKey(Parameter.XMLKEY))
+		{
+			xmlKeyRepo = (XmlKeyRepo)pack.getRepo().get(Parameter.XMLKEY);
+		}
 	}
+	
 
 
 	private PooplinePackage makeMu(PooplinePackage pack) {
-//		Map<String, String> chordMap = getChordMap(pack);
-		Mu mu = pack.getMu();
-		mu.setLengthInBars(phraseLengthRepo.getSelectedValue());
-		mu.setXMLKey(xmlKeyRepo.getSelectedValue());
-		mu.setChordListGenerator(new ChordListGeneratorFactory().getGenerator(diatonicTriadRepo.getMapAsObjectList((double)phraseLengthRepo.getSelectedValue())));
+		if (hasRequiredRepos())
+		{
+			Mu mu = pack.getMu();
+			mu.setLengthInBars(phraseLengthRepo.getSelectedValue());
+			mu.setXMLKey(xmlKeyRepo.getSelectedValue());
+			mu.setChordListGenerator(new ChordListGeneratorFactory().getGenerator(diatonicTriadRepo.getMapAsObjectList((double)phraseLengthRepo.getSelectedValue())));
+		}
+		else
+		{
+			logger.debug("Mu not generated ");
+		}
 		return pack;
 	}
+	
 
 
 	

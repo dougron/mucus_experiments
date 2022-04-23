@@ -16,9 +16,11 @@ public class StructureToneSyncopator extends PlugGeneric implements PooplinePlug
 
 	private PhraseLengthRepo phraseLengthRepo;
 	
+	// I think this is not in use$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+	
 	public StructureToneSyncopator() {
 		super(
-				new Parameter[] {},
+				Parameter.STRUCTURE_TONE_SYNCOPATION,
 				new Parameter[] {}
 				);
 	}

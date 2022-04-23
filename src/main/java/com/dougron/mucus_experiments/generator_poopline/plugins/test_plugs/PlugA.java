@@ -16,8 +16,9 @@ public class PlugA extends PlugGeneric implements PooplinePlugin {
 	
 	public PlugA() {
 		super(
-				new Parameter[] {Parameter.CHORD_LIST_GENERATOR},
-				new Parameter[] {Parameter.PHRASE_LENGTH}
+				Parameter.CHORD_LIST_GENERATOR,
+				new Parameter[] {
+						Parameter.PHRASE_LENGTH}
 				);
 	}
 	
@@ -27,9 +28,7 @@ public class PlugA extends PlugGeneric implements PooplinePlugin {
 	public PooplinePackage process(PooplinePackage pack) {
 		logger.info("Received " + pack);
 		pack = super.process(pack);
-		for (Parameter p: getRenderParameters()) {
-			pack.addItemToJson(p.toString(), "placeholder");
-		}
+		pack.addItemToJson(getRenderParameter().toString(), "placeholder");
 		return pack;
 	}
 }

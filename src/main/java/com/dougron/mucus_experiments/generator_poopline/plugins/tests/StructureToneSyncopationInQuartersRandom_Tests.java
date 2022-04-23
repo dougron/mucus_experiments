@@ -34,6 +34,7 @@ class StructureToneSyncopationInQuartersRandom_Tests {
 		// 0.75 of 8 bar phrase with spacing 1.0 floatbars given 5/4 time equates to 6
 		// items with the tag at 0.0, 5.0, 10.0, 15.0, 20.0, 25.0 quartrs position
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.01));
+		pack.setDebugMode(true);
 
 		// length 2 bars
 		PooplinePlugin lengthPlug = new PhraseLengthRandom();

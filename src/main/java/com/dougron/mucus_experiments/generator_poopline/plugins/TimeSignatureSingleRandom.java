@@ -45,7 +45,7 @@ public class TimeSignatureSingleRandom extends PlugGeneric {
 
 	public TimeSignatureSingleRandom() {
 		super(
-				new Parameter[] {Parameter.TIME_SIGNATURE},
+				Parameter.TIME_SIGNATURE,
 				new Parameter[] {}
 				);
 	}
@@ -53,21 +53,16 @@ public class TimeSignatureSingleRandom extends PlugGeneric {
 	
 	
 	@Override
-	public PooplinePackage process (PooplinePackage pack) {
-		logger.info(getInfoLevelPackReceiptMessage(pack));
+	public PooplinePackage process (PooplinePackage pack) 
+	{
 		pack = super.process(pack);
-		if (pack.getRepo().containsKey(Parameter.TIME_SIGNATURE) 
-				&& pack.getRepo().get(Parameter.TIME_SIGNATURE).getClassName().equals(getClass().getName())) {			
-		} else {
-			double rndValue = pack.getRnd().nextDouble();
-			timeSignatureRepo = TimeSignatureRepo.builder()
-					.rndValue(rndValue)
-					.selectedValue(getSelectedValue(rndValue))
-					.options(options)
-					.className(getClass().getName())
-					.build();
-			pack.getRepo().put(Parameter.TIME_SIGNATURE, timeSignatureRepo);	
-		}
+		return pack;
+	}
+
+	
+	@Override
+	PooplinePackage updateMu(PooplinePackage pack)
+	{
 		if (pack.getRepo().containsKey(Parameter.TIME_SIGNATURE) 
 				&& pack.getRepo().get(Parameter.TIME_SIGNATURE).getClassName().equals(getClass().getName())) {
 			if (timeSignatureRepo == null) {
@@ -76,9 +71,36 @@ public class TimeSignatureSingleRandom extends PlugGeneric {
 	
 			pack.getMu().setTimeSignatureGenerator(new SingleTimeSignature(timeSignatureRepo.getSelectedValue()));
 		}
-		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
+
+
+	@Override
+	PooplinePackage makeRepo(PooplinePackage pack)
+	{
+		double rndValue = pack.getRnd().nextDouble();
+		timeSignatureRepo = TimeSignatureRepo.builder()
+				.rndValue(rndValue)
+				.selectedValue(getSelectedValue(rndValue))
+				.options(options)
+				.className(getClass().getName())
+				.build();
+		pack.getRepo().put(Parameter.TIME_SIGNATURE, timeSignatureRepo);
+		return pack;
+	}
+	
+	
+	@Override
+	void getRepoFromPack(PooplinePackage pack)
+	{
+		timeSignatureRepo = (TimeSignatureRepo)pack.getRepo().get(Parameter.TIME_SIGNATURE);
+	}
+
+	
+	@Override
+	void getAncilliaryRepos(PooplinePackage pack)
+	{}
+	
 	
 	
 	private TimeSignature getSelectedValue(double rndValue) {

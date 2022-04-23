@@ -22,28 +22,23 @@ public class PhraseLengthRandom extends PlugGeneric implements PooplinePlugin {
 	
 	public PhraseLengthRandom() {
 		super(
-				new Parameter[] {Parameter.PHRASE_LENGTH},
+				Parameter.PHRASE_LENGTH,
 				new Parameter[] {}
 				);
 	}
 	
 	
 	@Override
-	public PooplinePackage process (PooplinePackage pack) {
-		logger.info(getInfoLevelPackReceiptMessage(pack));
+	public PooplinePackage process (PooplinePackage pack) 
+	{
 		pack = super.process(pack);
-		if (pack.getRepo().containsKey(Parameter.PHRASE_LENGTH) 
-				&& pack.getRepo().get(Parameter.PHRASE_LENGTH).getClassName().equals(getClass().getName())) {			
-		} else {
-			double rndValue = pack.getRnd().nextDouble();
-			phraseLengthRepo = PhraseLengthRepo.builder()
-					.rndValue(rndValue)
-					.selectedValue(getSelectedValue(rndValue))
-					.options(options)
-					.className(getClass().getName())
-					.build();
-			pack.getRepo().put(Parameter.PHRASE_LENGTH, phraseLengthRepo);	
-		}
+		return pack;
+	}
+
+	
+	@Override
+	PooplinePackage updateMu(PooplinePackage pack)
+	{
 		if (pack.getRepo().containsKey(Parameter.PHRASE_LENGTH) 
 				&& pack.getRepo().get(Parameter.PHRASE_LENGTH).getClassName().equals(getClass().getName())) {
 			if (phraseLengthRepo == null) {
@@ -52,9 +47,38 @@ public class PhraseLengthRandom extends PlugGeneric implements PooplinePlugin {
 	
 			pack.getMu().setLengthInBars(phraseLengthRepo.getSelectedValue());
 		}
-		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}
+
+
+	@Override
+	PooplinePackage makeRepo(PooplinePackage pack)
+	{
+		double rndValue = pack.getRnd().nextDouble();
+		phraseLengthRepo = PhraseLengthRepo.builder()
+				.rndValue(rndValue)
+				.selectedValue(getSelectedValue(rndValue))
+				.options(options)
+				.className(getClass().getName())
+				.build();
+		pack.getRepo().put(Parameter.PHRASE_LENGTH, phraseLengthRepo);	
+		return pack;
+	}
+	
+	
+	
+	@Override
+	void getRepoFromPack(PooplinePackage pack)
+	{
+		phraseLengthRepo = (PhraseLengthRepo)pack.getRepo().get(Parameter.PHRASE_LENGTH);
+	}
+
+	
+	
+	@Override
+	void getAncilliaryRepos(PooplinePackage pack)
+	{}
+	
 	
 	
 	private int getSelectedValue(double rndValue) {

@@ -51,6 +51,7 @@ class DiatonicTriadProgressionRandom_Tests {
 		// because only the PHRASE_LENGTH will have rendered. CHORD_PROGRESSION will not render due to absence of XMLKEY
 		
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(new double[] {0.2}));
+		pack.setDebugMode(true);
 		PooplinePlugin lengthPlug = new PhraseLengthRandom();
 		pack = lengthPlug.process(pack);
 		
@@ -70,6 +71,7 @@ class DiatonicTriadProgressionRandom_Tests {
 		// because only the XMLKEY will have rendered. CHORD_PROGRESSION will not render due to absence of PHRASE_LENGTH
 		
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(new double[] {0.2}));
+		pack.setDebugMode(true);
 		PooplinePlugin xmlkeyPlug = new XmlKeyRandom();
 		pack = xmlkeyPlug.process(pack);
 		
@@ -104,6 +106,7 @@ class DiatonicTriadProgressionRandom_Tests {
 		// because only the PHRASE_LENGTH will have rendered. CHORD_PROGRESSION will not render due to absence of XMLKEY
 		
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(new double[] {0.2}));
+		pack.setDebugMode(true);
 		PooplinePlugin lengthPlug = new PhraseLengthRandom();
 		pack = lengthPlug.process(pack);
 		
@@ -119,6 +122,7 @@ class DiatonicTriadProgressionRandom_Tests {
 		// because only the XMLKEY will have rendered. CHORD_PROGRESSION will not render due to absence of PHRASE_LENGTH
 		
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(new double[] {0.2}));
+		pack.setDebugMode(true);
 		PooplinePlugin xmlkeyPlug = new XmlKeyRandom();
 		pack = xmlkeyPlug.process(pack);
 		
@@ -136,6 +140,7 @@ class DiatonicTriadProgressionRandom_Tests {
 		
 		// phrase length is 2 bars
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(new double[] {0.05}));
+		pack.setDebugMode(true);
 		PooplinePlugin lengthPlug = new PhraseLengthRandom();
 		pack = lengthPlug.process(pack);
 		
@@ -158,6 +163,8 @@ class DiatonicTriadProgressionRandom_Tests {
 		
 		// phrase length is 2 bars
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(new double[] {0.05}));
+		pack.setDebugMode(true);
+		pack.setDebugMode(true);
 		PooplinePlugin lengthPlug = new PhraseLengthRandom();
 		pack = lengthPlug.process(pack);
 		
@@ -211,6 +218,8 @@ class DiatonicTriadProgressionRandom_Tests {
 		// cannot be 0.1, 0.7, 0.1 as this implies a repeat from the last to the first bar. 
 		// will need to cycle through till it finds 0.4 for the last element
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(new double[] {0.1}));
+		pack.setDebugMode(true);
+		pack.setDebugMode(true);
 		PooplinePlugin lengthPlug = new PhraseLengthRandom();
 		pack = lengthPlug.process(pack);
 		
@@ -240,6 +249,7 @@ class DiatonicTriadProgressionRandom_Tests {
 	void when_passing_a_package_with_a_shorter_previous_PHRASE_LENGTH_then_repo_CHORD_LIST_GENERATOR_random_seed_item_will_be_test_random_sequence_accomodating_the_no_repeat_rule() throws Exception {
 	
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(new double[] {0.1}));
+		pack.setDebugMode(true);
 		PooplinePlugin lengthPlug = new PhraseLengthRandom();
 		pack = lengthPlug.process(pack);
 		
@@ -255,20 +265,13 @@ class DiatonicTriadProgressionRandom_Tests {
 		
 		pack.getRepo().remove(Parameter.PHRASE_LENGTH);
 		pack.setRnd(new TestRandom(0.7));
+		lengthPlug.setExecutedThisCycle(false);
 		pack = lengthPlug.process(pack);
 		
 		pack.setRnd(new TestRandom(chordsRandomSequence));
+		plug.setExecutedThisCycle(false);
 		pack = plug.process(pack);
 		
-		
-//		JsonArray jsonArray = pack.getJson()
-//				.get(Parameter.CHORD_LIST_GENERATOR.toString()).getAsJsonObject()
-//				.get("random_seed").getAsJsonObject()
-//				.get("values").getAsJsonArray();
-		
-//		List<Double> array = new Gson().fromJson(jsonArray, listDoubleType);//.toArray(new double[jsonArray.size()]);
-//		
-//		assertThat(array).isEqualTo(Arrays.asList(new double[] {0.1, 0.7, 0.4, 0.1, 0.7, 0.1, 0.7, 0.1, 0.7}));	
 		DiatonicTriadRepo repo = (DiatonicTriadRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
 		assertThat(repo.getRndValue()).containsExactly(new double[] {0.1, 0.7, 0.4, 0.1, 0.7, 0.1, 0.7, 0.1, 0.7});	
 	}
@@ -278,6 +281,7 @@ class DiatonicTriadProgressionRandom_Tests {
 	void when_passing_a_package_with_a_longer_previous_PHRASE_LENGTH_then_json_CHORD_LIST_GENERATOR_random_seed_item_will_be_test_random_sequence_accomodating_the_no_repeat_rule() throws Exception {
 		
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(new double[] {0.1})); 
+		pack.setDebugMode(true);
 		PooplinePlugin lengthPlug = new PhraseLengthRandom();
 		pack = lengthPlug.process(pack);
 		
@@ -293,27 +297,22 @@ class DiatonicTriadProgressionRandom_Tests {
 		
 		pack.getRepo().remove(Parameter.PHRASE_LENGTH);
 		pack.setRnd(new TestRandom(0.7));
+		lengthPlug.setExecutedThisCycle(false);
 		pack = lengthPlug.process(pack);
 		
 		pack.setRnd(new TestRandom(chordsRandomSequence));
+		plug.setExecutedThisCycle(false);
 		pack = plug.process(pack);
 		
 		pack.getRepo().remove(Parameter.PHRASE_LENGTH);
 		pack.setRnd(new TestRandom(0.2));
+		lengthPlug.setExecutedThisCycle(false);
 		pack = lengthPlug.process(pack);
 		
 		pack.setRnd(new TestRandom(chordsRandomSequence));
+		plug.setExecutedThisCycle(false);
 		pack = plug.process(pack);
 		
-		
-//		JsonArray jsonArray = pack.getJson()
-//				.get(Parameter.CHORD_LIST_GENERATOR.toString()).getAsJsonObject()
-//				.get("random_seed").getAsJsonObject()
-//				.get("values").getAsJsonArray();
-//		
-//		List<Double> array = new Gson().fromJson(jsonArray, listDoubleType);//.toArray(new double[jsonArray.size()]);
-//		
-//		assertThat(array).isEqualTo(Arrays.asList(new double[] {0.1, 0.7, 0.4, 0.7, 0.7, 0.1, 0.7, 0.1, 0.7}));	
 		DiatonicTriadRepo repo = (DiatonicTriadRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
 		assertThat(repo.getRndValue()).containsExactly(new double[] {0.1, 0.7, 0.4, 0.7, 0.7, 0.1, 0.7, 0.1, 0.7});	
 		// the extra values in the random_seed list remain behind even though they are not used as they are thematically relevant to
@@ -327,6 +326,7 @@ class DiatonicTriadProgressionRandom_Tests {
 	void when_passing_a_package_with_PHRASE_LENGTH_5_and_XMLKEY_0_and_rnd_with_repeated_values_then_json_CHORD_LIST_GENERATOR_random_seed_item_will_be_satisfy_the_no_repeat_rule() throws Exception {
 
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(new double[] {0.3}));
+		pack.setDebugMode(true);
 		PooplinePlugin lengthPlug = new PhraseLengthRandom();
 		pack = lengthPlug.process(pack);
 		
@@ -357,6 +357,7 @@ class DiatonicTriadProgressionRandom_Tests {
 	void when_passing_a_package_with_extra_prior_values_in_CHORD_LIST_GENERATOR_random_seed_which_will_fail_a_repeated_items_test_then_this_is_resolved_by_changing_the_2nd_repeated_item() throws Exception {
 		
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(new double[] {0.1})); 
+		pack.setDebugMode(true);
 		PooplinePlugin lengthPlug = new PhraseLengthRandom();
 		pack = lengthPlug.process(pack);
 		
@@ -372,46 +373,35 @@ class DiatonicTriadProgressionRandom_Tests {
 		
 		pack.getRepo().remove(Parameter.PHRASE_LENGTH);
 		pack.setRnd(new TestRandom(0.7));
+		lengthPlug.setExecutedThisCycle(false);
 		pack = lengthPlug.process(pack);
 		
 		pack.setRnd(new TestRandom(chordsRandomSequence));
+		plug.setExecutedThisCycle(false);
 		pack = plug.process(pack);
 		
 		pack.getRepo().remove(Parameter.PHRASE_LENGTH);
 		pack.setRnd(new TestRandom(0.2));
+		lengthPlug.setExecutedThisCycle(false);
 		pack = lengthPlug.process(pack);
 		
 		pack.setRnd(new TestRandom(chordsRandomSequence));
+		plug.setExecutedThisCycle(false);
 		pack = plug.process(pack);
 		
 		
-//		JsonArray jsonArray = pack.getJson()
-//				.get(Parameter.CHORD_LIST_GENERATOR.toString()).getAsJsonObject()
-//				.get("random_seed").getAsJsonObject()
-//				.get("values").getAsJsonArray();
-//		
-//		List<Double> array = new Gson().fromJson(jsonArray, listDoubleType);//.toArray(new double[jsonArray.size()]);
-		
-		// this passes for now but will fail if the phrase length increases
-//		assertThat(array).isEqualTo(Arrays.asList(new double[] {0.1, 0.7, 0.4, 0.7, 0.7, 0.1, 0.7, 0.1, 0.7}));	
 		DiatonicTriadRepo repo = (DiatonicTriadRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
 		assertThat(repo.getRndValue()).containsExactly(new double[] {0.1, 0.7, 0.4, 0.7, 0.7, 0.1, 0.7, 0.1, 0.7});	
 		
 		pack.getRepo().remove(Parameter.PHRASE_LENGTH);
 		pack.setRnd(new TestRandom(0.5));
+		lengthPlug.setExecutedThisCycle(false);
 		pack = lengthPlug.process(pack);
 		
 		pack.setRnd(new TestRandom(chordsRandomSequence));
+		plug.setExecutedThisCycle(false);
 		pack = plug.process(pack);
 		
-//		jsonArray = pack.getJson()
-//				.get(Parameter.CHORD_LIST_GENERATOR.toString()).getAsJsonObject()
-//				.get("random_seed").getAsJsonObject()
-//				.get("values").getAsJsonArray();
-//		
-//		array = new Gson().fromJson(jsonArray, listDoubleType);//.toArray(new double[jsonArray.size()]);
-//
-//		assertThat(array).isEqualTo(Arrays.asList(new double[] {0.1, 0.7, 0.4, 0.7, 0.4, 0.1, 0.7, 0.1, 0.7}));	
 		assertThat(repo.getRndValue()).containsExactly(new double[] {0.1, 0.7, 0.4, 0.7, 0.4, 0.1, 0.7, 0.1, 0.7});	
 	}
 	
@@ -419,6 +409,7 @@ class DiatonicTriadProgressionRandom_Tests {
 	@Test
 	void when_passing_a_package_with_PHRASE_LENGTH_2_and_XMLKEY_0_then_repo_CHORD_LIST_GENERATOR_selected_options_will_have_indices_0_and_4() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(new double[] {0.05}));
+		pack.setDebugMode(true);
 		PooplinePlugin lengthPlug = new PhraseLengthRandom();
 		pack = lengthPlug.process(pack);
 		
@@ -432,13 +423,6 @@ class DiatonicTriadProgressionRandom_Tests {
 		PooplinePlugin plug = new DiatonicTriadProgressionRandom();
 		pack = plug.process(pack);
 		
-//		JsonArray jsonArray = pack.getJson()
-//				.get(Parameter.CHORD_LIST_GENERATOR.toString()).getAsJsonObject()
-//				.get("selected_options").getAsJsonObject()
-//				.get("values").getAsJsonArray();
-		
-		
-//		List<Integer> array = new Gson().fromJson(jsonArray, listIntegerType);//.toArray(new double[jsonArray.size()]);
 		DiatonicTriadRepo repo = (DiatonicTriadRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
 		int[] array = repo.getSelectedValues();
 		assertThat(array).isEqualTo(new int[] {0, 4});		
@@ -448,6 +432,7 @@ class DiatonicTriadProgressionRandom_Tests {
 	@Test
 	void when_passing_a_package_with_PHRASE_LENGTH_2_and_XMLKEY_0_then_repo_CHORD_LIST_GENERATOR_selected_options_will_have_position_and_chords_0_C_1_G() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(new double[] {0.05}));
+		pack.setDebugMode(true);
 		PooplinePlugin lengthPlug = new PhraseLengthRandom();
 		pack = lengthPlug.process(pack);
 		
@@ -480,6 +465,7 @@ class DiatonicTriadProgressionRandom_Tests {
 	@Test
 	void when_passing_a_package_with_PHRASE_LENGTH_2_and_XMLKEY_0_then_json_CHORD_LIST_GENERATOR_will_have_correct_plugin_class_name() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(new double[] {0.05}));
+		pack.setDebugMode(true);
 		PooplinePlugin lengthPlug = new PhraseLengthRandom();
 		pack = lengthPlug.process(pack);
 		
@@ -506,6 +492,7 @@ class DiatonicTriadProgressionRandom_Tests {
 	@Test
 	void when_passing_a_package_with_PHRASE_LENGTH_2_and_XMLKEY_0_then_json_CHORD_LIST_GENERATOR_will_have_options_item() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(new double[] {0.05}));
+		pack.setDebugMode(true);
 		PooplinePlugin lengthPlug = new PhraseLengthRandom();
 		pack = lengthPlug.process(pack);
 		
@@ -518,9 +505,6 @@ class DiatonicTriadProgressionRandom_Tests {
 		pack.setRnd(new TestRandom(chordsRandomSequence));
 		PooplinePlugin plug = new DiatonicTriadProgressionRandom();
 		pack = plug.process(pack);
-		
-//		JsonObject chordListGeneratorJson = pack.getJson()
-//				.get(Parameter.CHORD_LIST_GENERATOR.toString()).getAsJsonObject();
 		
 		DiatonicTriadRepo repo = (DiatonicTriadRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
 		assertThat(repo.getOptions()).isNotNull();
@@ -530,6 +514,7 @@ class DiatonicTriadProgressionRandom_Tests {
 	@Test
 	void when_passing_a_package_with_PHRASE_LENGTH_2_and_XMLKEY_0_then_mu_will_have_length_2() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(new double[] {0.05}));
+		pack.setDebugMode(true);
 		PooplinePlugin lengthPlug = new PhraseLengthRandom();
 		pack = lengthPlug.process(pack);
 		
@@ -542,8 +527,6 @@ class DiatonicTriadProgressionRandom_Tests {
 		pack.setRnd(new TestRandom(chordsRandomSequence));
 		PooplinePlugin plug = new DiatonicTriadProgressionRandom();
 		pack = plug.process(pack);
-		
-		
 		
 		assertThat(pack.getMu().getChordListToString()).isEqualTo("C_G_");
 	}

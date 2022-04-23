@@ -28,7 +28,7 @@ class Poopline_Tests {
 		assertThat(pp.getRenderedParametersFromJson())
 			.hasSameElementsAs(
 				Arrays.asList(
-						Parameter.PHRASE_LENGTH, 
+						Parameter.PHRASE_LENGTH,
 						Parameter.CHORD_LIST_GENERATOR
 						));
 	}
@@ -41,7 +41,7 @@ class Poopline_Tests {
 		pipe.setPrimaryPlugin(new PlugC());
 		pack = pipe.process(pack);
 		assertThat(pack.getRenderedParametersFromJson())
-			.hasSameElementsAs(Arrays.asList(pipe.getPrimaryPlugin().getRenderParameters()));
+			.hasSameElementsAs(Arrays.asList(pipe.getPrimaryPlugin().getRenderParameter()));
 	}
 	
 	
@@ -55,9 +55,7 @@ class Poopline_Tests {
 		pack = pipe.process(pack);
 		JsonObject json = pack.getJson();
 //		System.out.println(pipe.getPrimaryPlugin().getRenderedParameters().length);
-		for (Parameter parameter: pipe.getPrimaryPlugin().getRenderParameters()) {
-			assertThat(json.has(parameter.toString())).isTrue();
-		}
+		assertThat(json.has(pipe.getPrimaryPlugin().getRenderParameter().toString())).isTrue();
 	}
 	
 		
