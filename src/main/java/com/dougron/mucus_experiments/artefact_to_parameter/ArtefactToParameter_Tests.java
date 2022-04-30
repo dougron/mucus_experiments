@@ -3,8 +3,8 @@ package main.java.com.dougron.mucus_experiments.artefact_to_parameter;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.Test;
 
@@ -94,6 +94,75 @@ class ArtefactToParameter_Tests
 	}
 	
 	
+	@Test
+	void given_input_of_single_chord_and_chord_tone_then_chord_tone_of_mu_returned_from_Poopline_is_the_same_duration() throws Exception
+	{
+		LiveClip[] clips = getMelodyAndChordClip();
+		Mu mu = MuLiveClipUtils.makeMu(clips[0], clips[1]);
+		PooplinePackage pack = getPackFromPipelineWithForceCreatePlugin(mu);
+		List<Mu> muList = pack.getMu().getMuWithTag(MuTag.IS_STRUCTURE_TONE);
+		assertThat(muList.size()).isEqualTo(1);
+		double originalLengthInQuarters = mu.getMus().get(0).getLengthInQuarters();
+		assertThat(muList.get(0).getLengthInQuarters()).isEqualTo(originalLengthInQuarters);
+	}
+	
+	
+	@Test
+	void given_list_of_repeated_double_then_getRepeatingPattern_is_list_of_single_item() throws Exception
+	{
+		Double[] arr = new Double[] {1.0, 1.0, 1.0};
+		List<Double> list = Arrays.asList(arr);
+		List<Double> pattern = ArtefactToParameter.getRepeatingPattern(list);
+		assertThat(pattern.size()).isEqualTo(1);
+		assertThat(pattern.get(0)).isEqualTo(1.0);
+	}
+
+	
+	@Test
+	void given_list_of_two_repeated_double_then_getRepeatingPattern_is_list_of_two_items() throws Exception
+	{
+		Double[] arr = new Double[] {1.0, 1.1, 1.0, 1.1, 1.0};
+		List<Double> list = Arrays.asList(arr);
+		List<Double> pattern = ArtefactToParameter.getRepeatingPattern(list);
+		assertThat(pattern.size()).isEqualTo(2);
+		assertThat(pattern.get(0)).isEqualTo(1.0);
+		assertThat(pattern.get(1)).isEqualTo(1.1);
+	}
+	
+	
+	@Test
+	void given_list_of_non_repeated_doubles_then_getRepeatingPattern_is_original_list() throws Exception
+	{
+		Double[] arr = new Double[] {1.0, 1.1, 1.2, 1.3, 1.4};
+		List<Double> list = Arrays.asList(arr);
+		List<Double> pattern = ArtefactToParameter.getRepeatingPattern(list);
+		assertThat(pattern.size()).isEqualTo(5);
+		assertThat(pattern.get(0)).isEqualTo(1.0);
+		assertThat(pattern.get(1)).isEqualTo(1.1);
+		assertThat(pattern.get(2)).isEqualTo(1.2);
+		assertThat(pattern.get(3)).isEqualTo(1.3);
+		assertThat(pattern.get(4)).isEqualTo(1.4);
+	}
+	
+	
+//	@Test
+//	void given_input_of_single_chord_and_two_chord_tones_then_two_chord_tones_are_returned_from_Poopline() throws Exception
+//	{
+//		LiveClip[] clips = getTwoMelodyAndChordClip();
+//		Mu mu = MuLiveClipUtils.makeMu(clips[0], clips[1]);
+//		PooplinePackage pack = getPackFromPipelineWithForceCreatePlugin(mu);
+//		List<Mu> muList = pack.getMu().getMuWithTag(MuTag.IS_STRUCTURE_TONE);
+//		assertThat(muList.size()).isEqualTo(2);
+		
+//		List<MuNote> muNotes = muList.get(0).getMuNotes();
+//		assertThat(muNotes.size()).isEqualTo(1);
+//		int originalPitch = mu.getMus().get(0).getTopPitch();
+//		assertThat(muList.get(0).getMuNotes().get(0).getPitch()).isEqualTo(originalPitch);
+//	}
+	
+	
+	
+	
 //	@Test
 //	void looping_test()
 //	{
@@ -132,6 +201,21 @@ class ArtefactToParameter_Tests
 		LiveClip melodyClip = new LiveClip();
 		melodyClip.loopEnd = 8.0;
 		melodyClip.addNote(53, 0.0, 1.0, 64, 0);
+		LiveClip chordClip = new LiveClip();
+		chordClip.loopEnd = 8.0;
+		chordClip.addNote(49, 0.0, 8.0, 64, 0);
+		chordClip.addNote(44, 0.0, 8.0, 64, 0);
+		chordClip.addNote(41, 0.0, 8.0, 64, 0);
+		return new LiveClip[] {melodyClip, chordClip};
+	}
+	
+	
+	private LiveClip[] getTwoMelodyAndChordClip()
+	{
+		LiveClip melodyClip = new LiveClip();
+		melodyClip.loopEnd = 8.0;
+		melodyClip.addNote(53, 0.0, 1.0, 64, 0);
+		melodyClip.addNote(49, 4.0, 1.0, 64, 0);
 		LiveClip chordClip = new LiveClip();
 		chordClip.loopEnd = 8.0;
 		chordClip.addNote(49, 0.0, 8.0, 64, 0);

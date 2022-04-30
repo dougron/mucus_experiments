@@ -12,15 +12,15 @@ import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.data_types.BarsAndBeats;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTag;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.EvenlySpacedStructureToneRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneEvenlySpacedRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseBoundRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseLengthRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TimeSignatureRepo;
 import main.java.da_utils.time_signature_utilities.time_signature.TimeSignature;
 
-public class EvenlySpacedStructureToneFixed extends PlugGeneric {
+public class StructureToneEvenlySpacedFixed extends PlugGeneric {
 	
-	public static final Logger logger = LogManager.getLogger(EvenlySpacedStructureToneFixed.class);
+	public static final Logger logger = LogManager.getLogger(StructureToneEvenlySpacedFixed.class);
 
 	private static final int STRENGTH_THRESHOLD = 2;
 
@@ -30,7 +30,7 @@ public class EvenlySpacedStructureToneFixed extends PlugGeneric {
 	
 	private Parameter parameter;
 	
-	EvenlySpacedStructureToneRepo evenlySpacedStructureToneRepo;
+	StructureToneEvenlySpacedRepo evenlySpacedStructureToneRepo;
 	PhraseLengthRepo phraseLengthRepo;
 	TimeSignatureRepo timeSignatureRepo;	
 	PhraseBoundRepo startPercentRepo;
@@ -38,7 +38,7 @@ public class EvenlySpacedStructureToneFixed extends PlugGeneric {
 
 	private double spacingInFloatBars;
 	
-	public EvenlySpacedStructureToneFixed(double aSpacingInFloatBars) {
+	public StructureToneEvenlySpacedFixed(double aSpacingInFloatBars) {
 		super(
 				Parameter.STRUCTURE_TONE_SPACING,
 				new Parameter[] {
@@ -104,7 +104,7 @@ public class EvenlySpacedStructureToneFixed extends PlugGeneric {
 	@Override
 	void getRepoFromPack(PooplinePackage pack)
 	{
-		evenlySpacedStructureToneRepo = (EvenlySpacedStructureToneRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_SPACING);
+		evenlySpacedStructureToneRepo = (StructureToneEvenlySpacedRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_SPACING);
 	}
 
 	
@@ -225,8 +225,8 @@ public class EvenlySpacedStructureToneFixed extends PlugGeneric {
 	}
 
 
-	private EvenlySpacedStructureToneRepo makeNewRandomEvenlySpacedStructureToneRepo(PooplinePackage pack) {
-		return EvenlySpacedStructureToneRepo.builder()
+	private StructureToneEvenlySpacedRepo makeNewRandomEvenlySpacedStructureToneRepo(PooplinePackage pack) {
+		return StructureToneEvenlySpacedRepo.builder()
 				.selectedValueInFloatBars(spacingInFloatBars)
 				.className(getClass().getName())
 				.hasRenderedMu(false)

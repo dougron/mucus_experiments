@@ -15,7 +15,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackag
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePlugin;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ContourChordTonesRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ContourMultiplierRandom;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.EvenlySpacedStructureToneRandom;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneEvenlySpacedRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseBoundPercentRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseLengthRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StartNoteMelodyRandom;
@@ -164,7 +164,7 @@ class TessituraSolverOneBreakPointRandom_Tests {
 		pack.getRepo().put(Parameter.PHRASE_START_PERCENT, phraseStartRepo);
 		PhraseBoundRepo phraseEndRepo = getPhraseEndPercentRepo();
 		pack.getRepo().put(Parameter.PHRASE_END_PERCENT, phraseEndRepo);
-		EvenlySpacedStructureToneRandom plug = new EvenlySpacedStructureToneRandom();
+		StructureToneEvenlySpacedRandom plug = new StructureToneEvenlySpacedRandom();
 		pack.setRnd(new TestRandom(0.5));
 		pack = plug.process(pack);
 

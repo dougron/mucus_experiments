@@ -16,9 +16,9 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackag
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePlugin;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ContourChordTonesRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ContourMultiplierRandom;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DiatonicTriadProgressionRandom;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.EvenlySpacedStructureToneFixed;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.EvenlySpacedStructureToneRandom;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ChordProgressionDiatonicTriadRandom;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneEvenlySpacedFixed;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneEvenlySpacedRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ForceCreatePlugInsFromRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseBoundPercentSetAmount;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseLengthRandom;
@@ -31,8 +31,8 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.Vector
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.XmlKeyRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.ContourChordTonesRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.ContourMultiplierRepo;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.DiatonicTriadRepo;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.EvenlySpacedStructureToneRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.ChordProgressionRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneEvenlySpacedRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseBoundRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseLengthRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StartNoteRepo;
@@ -274,11 +274,11 @@ class ForceCreatePlugInsFromRepo_Tests
 
 	private void addEvenlySpacedStructureToneFixedRepo(PooplinePackage pack, double aFloatBarSpacing)
 	{
-		EvenlySpacedStructureToneRepo spacingRepo = EvenlySpacedStructureToneRepo.builder()
+		StructureToneEvenlySpacedRepo spacingRepo = StructureToneEvenlySpacedRepo.builder()
 				.rndValue(0.5)
 				.selectedValueInFloatBars(aFloatBarSpacing)
 				.options(new double[] {aFloatBarSpacing})
-				.className(EvenlySpacedStructureToneFixed.class.getName())
+				.className(StructureToneEvenlySpacedFixed.class.getName())
 				.build();
 		pack.getRepo().put(Parameter.STRUCTURE_TONE_SPACING, spacingRepo);
 	}
@@ -286,11 +286,11 @@ class ForceCreatePlugInsFromRepo_Tests
 	
 	private void addEvenlySpacedStructureToneRandomRepo(PooplinePackage pack, double aFloatBarSpacing)
 	{
-		EvenlySpacedStructureToneRepo spacingRepo = EvenlySpacedStructureToneRepo.builder()
+		StructureToneEvenlySpacedRepo spacingRepo = StructureToneEvenlySpacedRepo.builder()
 				.rndValue(0.5)
 				.selectedValueInFloatBars(aFloatBarSpacing)
 				.options(new double[] {aFloatBarSpacing})
-				.className(EvenlySpacedStructureToneRandom.class.getName())
+				.className(StructureToneEvenlySpacedRandom.class.getName())
 				.build();
 		pack.getRepo().put(Parameter.STRUCTURE_TONE_SPACING, spacingRepo);
 	}
@@ -309,10 +309,10 @@ class ForceCreatePlugInsFromRepo_Tests
 
 	private void addDiatonicChordRepo(PooplinePackage pack, ImmutableMap<Double, String> floatBarChordMap)
 	{
-		DiatonicTriadRepo dRepo = DiatonicTriadRepo.builder()
+		ChordProgressionRepo dRepo = ChordProgressionRepo.builder()
 				.rndValue(new double[] {0.2, 0.7})
 				.floatBarChordMap(floatBarChordMap)
-				.className(DiatonicTriadProgressionRandom.class.getName())
+				.className(ChordProgressionDiatonicTriadRandom.class.getName())
 				.build();
 		pack.getRepo().put(Parameter.CHORD_LIST_GENERATOR, dRepo);
 	}

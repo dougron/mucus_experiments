@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import lombok.NonNull;
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.Parameter;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.EvenlySpacedStructureToneRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneEvenlySpacedRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseBoundRepo;
 
 public class PhraseBoundPercentSetAmount extends PlugGeneric {

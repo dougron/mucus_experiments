@@ -9,7 +9,7 @@ import lombok.ToString;
 
 @Builder
 @ToString
-public class DiatonicTriadRepo extends RepoSuperclass implements RepoInterface {
+public class ChordProgressionRepo extends RepoSuperclass implements RepoInterface {
 
 	@Getter @Setter private double[] rndValue;
 	@Getter @Setter private int[] selectedValues;
@@ -18,9 +18,9 @@ public class DiatonicTriadRepo extends RepoSuperclass implements RepoInterface {
 	@Getter @Setter private String className;
 	
 	
-	public DiatonicTriadRepo deepCopy()
+	public ChordProgressionRepo deepCopy()
 	{
-		return DiatonicTriadRepo.builder()
+		return ChordProgressionRepo.builder()
 				.rndValue(getCopy(rndValue))
 				.selectedValues(getCopy(selectedValues))
 				.options(getCopy(options))

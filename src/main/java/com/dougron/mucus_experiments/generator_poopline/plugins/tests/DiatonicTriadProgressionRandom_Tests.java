@@ -18,10 +18,10 @@ import com.google.gson.reflect.TypeToken;
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.Parameter;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePlugin;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DiatonicTriadProgressionRandom;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ChordProgressionDiatonicTriadRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseLengthRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.XmlKeyRandom;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.DiatonicTriadRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.ChordProgressionRepo;
 import test.java.com.dougron.mucus.algorithms.TestRandom;
 
 class DiatonicTriadProgressionRandom_Tests {
@@ -32,7 +32,7 @@ class DiatonicTriadProgressionRandom_Tests {
 
 	@Test
 	void instantiates() {
-		PooplinePlugin plug = new DiatonicTriadProgressionRandom();
+		PooplinePlugin plug = new ChordProgressionDiatonicTriadRandom();
 		assertThat(plug).isNotNull();
 	}
 	 
@@ -56,9 +56,9 @@ class DiatonicTriadProgressionRandom_Tests {
 		pack = lengthPlug.process(pack);
 		
 		pack.setRnd(new TestRandom(new double[] {0.1, 0.7}));
-		DiatonicTriadProgressionRandom plug = new DiatonicTriadProgressionRandom();
+		ChordProgressionDiatonicTriadRandom plug = new ChordProgressionDiatonicTriadRandom();
 		pack = plug.process(pack);
-		DiatonicTriadRepo repo = (DiatonicTriadRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
+		ChordProgressionRepo repo = (ChordProgressionRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
 		
 //		assertThat(pack.getRenderedParametersFromJson().size()).isEqualTo(1);
 		assertThat(pack.getRepo().containsKey(Parameter.CHORD_LIST_GENERATOR)).isFalse();
@@ -76,7 +76,7 @@ class DiatonicTriadProgressionRandom_Tests {
 		pack = xmlkeyPlug.process(pack);
 		
 		pack.setRnd(new TestRandom(new double[] {0.1, 0.7}));
-		PooplinePlugin plug = new DiatonicTriadProgressionRandom();
+		PooplinePlugin plug = new ChordProgressionDiatonicTriadRandom();
 		pack = plug.process(pack);
 //		assertThat(pack.getRenderedParametersFromJson().size()).isEqualTo(1);
 		assertThat(pack.getRepo().containsKey(Parameter.CHORD_LIST_GENERATOR)).isFalse();
@@ -111,7 +111,7 @@ class DiatonicTriadProgressionRandom_Tests {
 		pack = lengthPlug.process(pack);
 		
 		pack.setRnd(new TestRandom(new double[] {0.1, 0.7}));
-		PooplinePlugin plug = new DiatonicTriadProgressionRandom();
+		PooplinePlugin plug = new ChordProgressionDiatonicTriadRandom();
 		pack = plug.process(pack);
 		assertThat(pack.getRepo().containsKey(Parameter.CHORD_LIST_GENERATOR)).isFalse();
 	}
@@ -127,7 +127,7 @@ class DiatonicTriadProgressionRandom_Tests {
 		pack = xmlkeyPlug.process(pack);
 		
 		pack.setRnd(new TestRandom(new double[] {0.1, 0.7}));
-		PooplinePlugin plug = new DiatonicTriadProgressionRandom();
+		PooplinePlugin plug = new ChordProgressionDiatonicTriadRandom();
 		pack = plug.process(pack);
 		assertThat(pack.getRepo().containsKey(Parameter.CHORD_LIST_GENERATOR)).isFalse();
 //		assertThat(pack.getJson().has(Parameter.CHORD_LIST_GENERATOR.toString())).isFalse();
@@ -150,7 +150,7 @@ class DiatonicTriadProgressionRandom_Tests {
 		pack = xmlkeyPlug.process(pack);
 		
 		pack.setRnd(new TestRandom(new double[] {0.1, 0.7, 0.1, 0.7, 0.1, 0.7, 0.4}));
-		PooplinePlugin plug = new DiatonicTriadProgressionRandom();
+		PooplinePlugin plug = new ChordProgressionDiatonicTriadRandom();
 		pack = plug.process(pack);
 		assertThat(pack.getRepo().containsKey(Parameter.CHORD_LIST_GENERATOR)).isTrue();
 //		assertThat(pack.getJson().has(Parameter.CHORD_LIST_GENERATOR.toString())).isTrue();
@@ -175,12 +175,12 @@ class DiatonicTriadProgressionRandom_Tests {
 		
 		double[] chordsRandomSequence = new double[] {0.1, 0.7, 0.1, 0.7, 0.1, 0.7, 0.4, 0.1, 0.7, 0.1, 0.7, 0.1};
 		pack.setRnd(new TestRandom(chordsRandomSequence));
-		PooplinePlugin plug = new DiatonicTriadProgressionRandom();
+		PooplinePlugin plug = new ChordProgressionDiatonicTriadRandom();
 		pack = plug.process(pack);
 //		assertThat(pack.getJson()
 //				.get(Parameter.CHORD_LIST_GENERATOR.toString()).getAsJsonObject()
 //				.has("random_seed")).isTrue();
-		DiatonicTriadRepo repo = (DiatonicTriadRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
+		ChordProgressionRepo repo = (ChordProgressionRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
 		assertThat(repo.getRndValue()).containsExactly(new double[] {0.1, 0.7});
 	}
 	
@@ -230,7 +230,7 @@ class DiatonicTriadProgressionRandom_Tests {
 		
 		double[] chordsRandomSequence = new double[] {0.1, 0.7, 0.1, 0.7, 0.1, 0.7, 0.4, 0.1, 0.7, 0.1, 0.7, 0.1};
 		pack.setRnd(new TestRandom(chordsRandomSequence));
-		PooplinePlugin plug = new DiatonicTriadProgressionRandom();
+		PooplinePlugin plug = new ChordProgressionDiatonicTriadRandom();
 		pack = plug.process(pack);
 		
 //		JsonArray jsonArray = pack.getJson()
@@ -240,7 +240,7 @@ class DiatonicTriadProgressionRandom_Tests {
 		
 //		List<Double> array = new Gson().fromJson(jsonArray, listDoubleType);//.toArray(new double[jsonArray.size()]);
 		
-		DiatonicTriadRepo repo = (DiatonicTriadRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
+		ChordProgressionRepo repo = (ChordProgressionRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
 		assertThat(repo.getRndValue()).containsExactly(new double[] {0.1, 0.7, 0.4});	
 	}
 	
@@ -260,7 +260,7 @@ class DiatonicTriadProgressionRandom_Tests {
 		
 		double[] chordsRandomSequence = new double[] {0.1, 0.7, 0.1, 0.7, 0.1, 0.7, 0.4, 0.1, 0.7, 0.1, 0.7, 0.1};
 		pack.setRnd(new TestRandom(chordsRandomSequence));
-		PooplinePlugin plug = new DiatonicTriadProgressionRandom();
+		PooplinePlugin plug = new ChordProgressionDiatonicTriadRandom();
 		pack = plug.process(pack);
 		
 		pack.getRepo().remove(Parameter.PHRASE_LENGTH);
@@ -272,7 +272,7 @@ class DiatonicTriadProgressionRandom_Tests {
 		plug.setExecutedThisCycle(false);
 		pack = plug.process(pack);
 		
-		DiatonicTriadRepo repo = (DiatonicTriadRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
+		ChordProgressionRepo repo = (ChordProgressionRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
 		assertThat(repo.getRndValue()).containsExactly(new double[] {0.1, 0.7, 0.4, 0.1, 0.7, 0.1, 0.7, 0.1, 0.7});	
 	}
 	
@@ -292,7 +292,7 @@ class DiatonicTriadProgressionRandom_Tests {
 		
 		double[] chordsRandomSequence = new double[] {0.1, 0.7, 0.1, 0.7, 0.1, 0.7, 0.4, 0.1, 0.7, 0.1, 0.7, 0.1};
 		pack.setRnd(new TestRandom(chordsRandomSequence));
-		PooplinePlugin plug = new DiatonicTriadProgressionRandom();
+		PooplinePlugin plug = new ChordProgressionDiatonicTriadRandom();
 		pack = plug.process(pack);
 		
 		pack.getRepo().remove(Parameter.PHRASE_LENGTH);
@@ -313,7 +313,7 @@ class DiatonicTriadProgressionRandom_Tests {
 		plug.setExecutedThisCycle(false);
 		pack = plug.process(pack);
 		
-		DiatonicTriadRepo repo = (DiatonicTriadRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
+		ChordProgressionRepo repo = (ChordProgressionRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
 		assertThat(repo.getRndValue()).containsExactly(new double[] {0.1, 0.7, 0.4, 0.7, 0.7, 0.1, 0.7, 0.1, 0.7});	
 		// the extra values in the random_seed list remain behind even though they are not used as they are thematically relevant to
 		// an incrementally evolving co creative work. There may be a situation when the phrase length grows longer and the 
@@ -337,7 +337,7 @@ class DiatonicTriadProgressionRandom_Tests {
 		
 		double[] chordsRandomSequence = new double[] {0.1, 0.7, 0.7, 0.1, 0.7, 0.1, 0.7, 0.4, 0.1, 0.7, 0.1, 0.7, 0.1};
 		pack.setRnd(new TestRandom(chordsRandomSequence));
-		PooplinePlugin plug = new DiatonicTriadProgressionRandom();
+		PooplinePlugin plug = new ChordProgressionDiatonicTriadRandom();
 		pack = plug.process(pack);
 		
 //		JsonArray jsonArray = pack.getJson()
@@ -348,7 +348,7 @@ class DiatonicTriadProgressionRandom_Tests {
 //		List<Double> array = new Gson().fromJson(jsonArray, listDoubleType);//.toArray(new double[jsonArray.size()]);
 //		
 //		assertThat(array).isEqualTo(Arrays.asList(new double[] {0.1, 0.7, 0.1, 0.7, 0.4}));	
-		DiatonicTriadRepo repo = (DiatonicTriadRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
+		ChordProgressionRepo repo = (ChordProgressionRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
 		assertThat(repo.getRndValue()).containsExactly(new double[] {0.1, 0.7, 0.1, 0.7, 0.4});	
 	}
 	
@@ -368,7 +368,7 @@ class DiatonicTriadProgressionRandom_Tests {
 		
 		double[] chordsRandomSequence = new double[] {0.1, 0.7, 0.1, 0.7, 0.1, 0.7, 0.4, 0.1, 0.7, 0.1, 0.7, 0.1};
 		pack.setRnd(new TestRandom(chordsRandomSequence));
-		PooplinePlugin plug = new DiatonicTriadProgressionRandom();
+		PooplinePlugin plug = new ChordProgressionDiatonicTriadRandom();
 		pack = plug.process(pack);
 		
 		pack.getRepo().remove(Parameter.PHRASE_LENGTH);
@@ -390,7 +390,7 @@ class DiatonicTriadProgressionRandom_Tests {
 		pack = plug.process(pack);
 		
 		
-		DiatonicTriadRepo repo = (DiatonicTriadRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
+		ChordProgressionRepo repo = (ChordProgressionRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
 		assertThat(repo.getRndValue()).containsExactly(new double[] {0.1, 0.7, 0.4, 0.7, 0.7, 0.1, 0.7, 0.1, 0.7});	
 		
 		pack.getRepo().remove(Parameter.PHRASE_LENGTH);
@@ -420,10 +420,10 @@ class DiatonicTriadProgressionRandom_Tests {
 		
 		double[] chordsRandomSequence = new double[] {0.1, 0.7, 0.1, 0.7, 0.1, 0.7, 0.4, 0.1, 0.7, 0.1, 0.7, 0.1};
 		pack.setRnd(new TestRandom(chordsRandomSequence));
-		PooplinePlugin plug = new DiatonicTriadProgressionRandom();
+		PooplinePlugin plug = new ChordProgressionDiatonicTriadRandom();
 		pack = plug.process(pack);
 		
-		DiatonicTriadRepo repo = (DiatonicTriadRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
+		ChordProgressionRepo repo = (ChordProgressionRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
 		int[] array = repo.getSelectedValues();
 		assertThat(array).isEqualTo(new int[] {0, 4});		
 	}
@@ -443,7 +443,7 @@ class DiatonicTriadProgressionRandom_Tests {
 		
 		double[] chordsRandomSequence = new double[] {0.1, 0.7, 0.1, 0.7, 0.1, 0.7, 0.4, 0.1, 0.7, 0.1, 0.7, 0.1};
 		pack.setRnd(new TestRandom(chordsRandomSequence));
-		PooplinePlugin plug = new DiatonicTriadProgressionRandom();
+		PooplinePlugin plug = new ChordProgressionDiatonicTriadRandom();
 		pack = plug.process(pack);
 		
 //		JsonObject jsonObject = pack.getJson()
@@ -454,7 +454,7 @@ class DiatonicTriadProgressionRandom_Tests {
 //		
 //		Map<String, String> map = new Gson().fromJson(jsonObject,Map.class);//.toArray(new double[jsonArray.size()]);
 		
-		DiatonicTriadRepo repo = (DiatonicTriadRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
+		ChordProgressionRepo repo = (ChordProgressionRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
 		assertThat(repo.getFloatBarChordMap().containsKey(0.0)).isTrue();
 		assertThat(repo.getFloatBarChordMap().containsKey(1.0)).isTrue();
 		assertThat(repo.getFloatBarChordMap().get(0.0)).isEqualTo("C");
@@ -476,7 +476,7 @@ class DiatonicTriadProgressionRandom_Tests {
 		
 		double[] chordsRandomSequence = new double[] {0.1, 0.7, 0.1, 0.7, 0.1, 0.7, 0.4, 0.1, 0.7, 0.1, 0.7, 0.1};
 		pack.setRnd(new TestRandom(chordsRandomSequence));
-		PooplinePlugin plug = new DiatonicTriadProgressionRandom();
+		PooplinePlugin plug = new ChordProgressionDiatonicTriadRandom();
 		pack = plug.process(pack);
 		
 //		String jsonPlugInClassName = pack.getJson()
@@ -484,7 +484,7 @@ class DiatonicTriadProgressionRandom_Tests {
 //				.get("plugin").getAsJsonObject()
 //				.get("class_name").getAsString();
 		
-		DiatonicTriadRepo repo = (DiatonicTriadRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
+		ChordProgressionRepo repo = (ChordProgressionRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
 		assertThat(repo.getClassName()).isEqualTo(plug.getClass().getName());
 	}
 	
@@ -503,10 +503,10 @@ class DiatonicTriadProgressionRandom_Tests {
 		
 		double[] chordsRandomSequence = new double[] {0.1, 0.7, 0.1, 0.7, 0.1, 0.7, 0.4, 0.1, 0.7, 0.1, 0.7, 0.1};
 		pack.setRnd(new TestRandom(chordsRandomSequence));
-		PooplinePlugin plug = new DiatonicTriadProgressionRandom();
+		PooplinePlugin plug = new ChordProgressionDiatonicTriadRandom();
 		pack = plug.process(pack);
 		
-		DiatonicTriadRepo repo = (DiatonicTriadRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
+		ChordProgressionRepo repo = (ChordProgressionRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
 		assertThat(repo.getOptions()).isNotNull();
 	}
 	
@@ -525,7 +525,7 @@ class DiatonicTriadProgressionRandom_Tests {
 		
 		double[] chordsRandomSequence = new double[] {0.1, 0.7, 0.1, 0.7, 0.1, 0.7, 0.4, 0.1, 0.7, 0.1, 0.7, 0.1};
 		pack.setRnd(new TestRandom(chordsRandomSequence));
-		PooplinePlugin plug = new DiatonicTriadProgressionRandom();
+		PooplinePlugin plug = new ChordProgressionDiatonicTriadRandom();
 		pack = plug.process(pack);
 		
 		assertThat(pack.getMu().getChordListToString()).isEqualTo("C_G_");

@@ -7,7 +7,7 @@ import lombok.ToString;
 
 @Builder
 @ToString
-public class EvenlySpacedStructureToneRepo extends RepoSuperclass implements RepoInterface {
+public class StructureToneEvenlySpacedRepo extends RepoSuperclass implements RepoInterface {
 
 	@Getter @Setter private double rndValue;
 	@Getter @Setter private double selectedValueInFloatBars;
@@ -16,9 +16,9 @@ public class EvenlySpacedStructureToneRepo extends RepoSuperclass implements Rep
 	@Getter @Setter private String className;
 	
 	
-	public EvenlySpacedStructureToneRepo deepCopy()
+	public StructureToneEvenlySpacedRepo deepCopy()
 	{
-		return EvenlySpacedStructureToneRepo.builder()
+		return StructureToneEvenlySpacedRepo.builder()
 				.rndValue(rndValue)
 				.selectedValueInFloatBars(selectedValueInFloatBars)
 				.options(getCopy(options))

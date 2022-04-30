@@ -12,7 +12,7 @@ import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTag;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePlugin;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.EvenlySpacedStructureToneRandom;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneEvenlySpacedRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseBoundPercentRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseLengthRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ShouldIUseTheStructureToneSyncopator;
@@ -51,7 +51,7 @@ class StructureToneSyncopationInQuartersRandom_Tests {
 		pack.getRepo().put(Parameter.PHRASE_START_PERCENT, phraseStartRepo);
 		PhraseBoundRepo phraseEndRepo = getPhraseEndPercentRepo();
 		pack.getRepo().put(Parameter.PHRASE_END_PERCENT, phraseEndRepo);
-		EvenlySpacedStructureToneRandom structureTonePlug = new EvenlySpacedStructureToneRandom();
+		StructureToneEvenlySpacedRandom structureTonePlug = new StructureToneEvenlySpacedRandom();
 		pack.setRnd(new TestRandom(0.5));
 		pack = structureTonePlug.process(pack);
 		ArrayList<Mu> list = pack.getMu().getMuWithTag(MuTag.IS_STRUCTURE_TONE);

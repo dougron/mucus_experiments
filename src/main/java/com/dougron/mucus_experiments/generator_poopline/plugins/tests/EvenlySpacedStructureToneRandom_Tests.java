@@ -13,11 +13,11 @@ import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTag;
 import main.java.com.dougron.mucus_experiments.generator_poopline.Poopline;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePlugin;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.EvenlySpacedStructureToneRandom;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneEvenlySpacedRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseBoundPercentRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseLengthRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TimeSignatureSingleRandom;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.EvenlySpacedStructureToneRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneEvenlySpacedRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseBoundRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseLengthRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TimeSignatureRepo;
@@ -28,7 +28,7 @@ class EvenlySpacedStructureToneRandom_Tests {
 
 	@Test
 	void instantiates() {
-		EvenlySpacedStructureToneRandom plug = new EvenlySpacedStructureToneRandom();
+		StructureToneEvenlySpacedRandom plug = new StructureToneEvenlySpacedRandom();
 		assertThat(plug).isNotNull();
 	}
 	
@@ -37,11 +37,11 @@ class EvenlySpacedStructureToneRandom_Tests {
 	void when_plug_receives_blank_package_then_STRUCTURE_TONE_SPACING_item_is_created_in_repo_with_random_seed_equal_to_TestRandom_value() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.1));
 		pack.setDebugMode(true);
-		EvenlySpacedStructureToneRandom plug = new EvenlySpacedStructureToneRandom();
+		StructureToneEvenlySpacedRandom plug = new StructureToneEvenlySpacedRandom();
 		addPooplineParent(plug);
 		pack = plug.process(pack);
 		assertThat(pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_SPACING)).isTrue();
-		EvenlySpacedStructureToneRepo repo = (EvenlySpacedStructureToneRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_SPACING);
+		StructureToneEvenlySpacedRepo repo = (StructureToneEvenlySpacedRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_SPACING);
 		assertThat(repo.getRndValue()).isEqualTo(0.1);	
 	}
 
@@ -49,7 +49,7 @@ class EvenlySpacedStructureToneRandom_Tests {
 	@Test
 	void when_plug_receives_blank_package_then_Mu_does_not_conatin_any_children_with_tag_IS_STRUCTURE_TONE() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.1));
-		EvenlySpacedStructureToneRandom plug = new EvenlySpacedStructureToneRandom();
+		StructureToneEvenlySpacedRandom plug = new StructureToneEvenlySpacedRandom();
 		pack = plug.process(pack);
 		ArrayList<Mu> list = pack.getMu().getMuWithTag(MuTag.IS_STRUCTURE_TONE);
 		assertThat(list.size()).isEqualTo(0);	
@@ -68,7 +68,7 @@ class EvenlySpacedStructureToneRandom_Tests {
 		pack.getRepo().put(Parameter.PHRASE_START_PERCENT, phraseStartRepo);
 		PhraseBoundRepo phraseEndRepo = getPhraseEndPercentRepo();
 		pack.getRepo().put(Parameter.PHRASE_END_PERCENT, phraseEndRepo);
-		EvenlySpacedStructureToneRandom plug = new EvenlySpacedStructureToneRandom();
+		StructureToneEvenlySpacedRandom plug = new StructureToneEvenlySpacedRandom();
 		pack = plug.process(pack);
 		ArrayList<Mu> list = pack.getMu().getMuWithTag(MuTag.IS_STRUCTURE_TONE);
 		assertThat(list.size()).isGreaterThan(0);	
@@ -95,7 +95,7 @@ class EvenlySpacedStructureToneRandom_Tests {
 		pack.getRepo().put(Parameter.PHRASE_START_PERCENT, phraseStartRepo);
 		PhraseBoundRepo phraseEndRepo = getPhraseEndPercentRepo();
 		pack.getRepo().put(Parameter.PHRASE_END_PERCENT, phraseEndRepo);
-		EvenlySpacedStructureToneRandom plug = new EvenlySpacedStructureToneRandom();
+		StructureToneEvenlySpacedRandom plug = new StructureToneEvenlySpacedRandom();
 		pack.setRnd(new TestRandom(0.5));
 		pack = plug.process(pack);
 		ArrayList<Mu> list = pack.getMu().getMuWithTag(MuTag.IS_STRUCTURE_TONE);
@@ -129,7 +129,7 @@ class EvenlySpacedStructureToneRandom_Tests {
 		pack.getRepo().put(Parameter.PHRASE_START_PERCENT, phraseStartRepo);
 		PhraseBoundRepo phraseEndRepo = getPhraseEndPercentRepo();
 		pack.getRepo().put(Parameter.PHRASE_END_PERCENT, phraseEndRepo);
-		EvenlySpacedStructureToneRandom plug = new EvenlySpacedStructureToneRandom();
+		StructureToneEvenlySpacedRandom plug = new StructureToneEvenlySpacedRandom();
 		pack.setRnd(new TestRandom(0.1));
 		pack = plug.process(pack);
 		ArrayList<Mu> list = pack.getMu().getMuWithTag(MuTag.IS_STRUCTURE_TONE);

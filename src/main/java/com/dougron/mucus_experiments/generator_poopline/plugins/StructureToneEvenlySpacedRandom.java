@@ -12,15 +12,15 @@ import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.data_types.BarsAndBeats;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTag;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.EvenlySpacedStructureToneRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneEvenlySpacedRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseBoundRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseLengthRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TimeSignatureRepo;
 import main.java.da_utils.time_signature_utilities.time_signature.TimeSignature;
 
-public class EvenlySpacedStructureToneRandom extends PlugGeneric {
+public class StructureToneEvenlySpacedRandom extends PlugGeneric {
 	
-	public static final Logger logger = LogManager.getLogger(EvenlySpacedStructureToneRandom.class);
+	public static final Logger logger = LogManager.getLogger(StructureToneEvenlySpacedRandom.class);
 
 	private static final int STRENGTH_THRESHOLD = 2;
 
@@ -29,13 +29,13 @@ public class EvenlySpacedStructureToneRandom extends PlugGeneric {
 	
 	private Parameter parameter;
 	
-	EvenlySpacedStructureToneRepo evenlySpacedStructureToneRepo;
+	StructureToneEvenlySpacedRepo evenlySpacedStructureToneRepo;
 	PhraseLengthRepo phraseLengthRepo;
 	TimeSignatureRepo timeSignatureRepo;	
 	PhraseBoundRepo startPercentRepo;
 	PhraseBoundRepo endPercentRepo;
 	
-	public EvenlySpacedStructureToneRandom() {
+	public StructureToneEvenlySpacedRandom() {
 		super(
 				Parameter.STRUCTURE_TONE_SPACING,
 				new Parameter[] {
@@ -48,7 +48,7 @@ public class EvenlySpacedStructureToneRandom extends PlugGeneric {
 	}
 	
 	
-	public EvenlySpacedStructureToneRandom(double[] aOptions) {
+	public StructureToneEvenlySpacedRandom(double[] aOptions) {
 		super(
 				Parameter.STRUCTURE_TONE_SPACING,
 				new Parameter[] {
@@ -107,7 +107,7 @@ public class EvenlySpacedStructureToneRandom extends PlugGeneric {
 	
 	void getRepoFromPack(PooplinePackage pack)
 	{
-		evenlySpacedStructureToneRepo = (EvenlySpacedStructureToneRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_SPACING);
+		evenlySpacedStructureToneRepo = (StructureToneEvenlySpacedRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_SPACING);
 	}
 
 
@@ -217,9 +217,9 @@ public class EvenlySpacedStructureToneRandom extends PlugGeneric {
 	}
 
 
-	private EvenlySpacedStructureToneRepo makeNewRandomEvenlySpacedStructureToneRepo(PooplinePackage pack) {
+	private StructureToneEvenlySpacedRepo makeNewRandomEvenlySpacedStructureToneRepo(PooplinePackage pack) {
 		double rndValue = pack.getRnd().nextDouble();
-		return EvenlySpacedStructureToneRepo.builder()
+		return StructureToneEvenlySpacedRepo.builder()
 				.rndValue(rndValue)
 				.selectedValueInFloatBars((options[(int)(options.length * rndValue)]))
 				.options(options)

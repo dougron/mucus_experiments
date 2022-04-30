@@ -9,6 +9,7 @@ import com.google.common.collect.ImmutableMap;
 import main.java.com.dougron.mucus.algorithms.mu_chord_tone_and_embellishment.ChordToneAndEmbellishmentTagger;
 import main.java.com.dougron.mucus.algorithms.mu_generator.MuG_Anticipation_RRP;
 import main.java.com.dougron.mucus.mu_framework.Mu;
+import main.java.com.dougron.mucus.mu_framework.chord_list.ChordListGeneratorFactory;
 import main.java.com.dougron.mucus.mu_framework.data_types.BarsAndBeats;
 import main.java.com.dougron.mucus.mu_framework.data_types.MuAnnotation;
 import main.java.com.dougron.mucus.mu_framework.data_types.MuAnnotation.TextPlacement;
@@ -21,6 +22,10 @@ import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagNamedParameter;
 import main.java.com.dougron.mucus.mucus_output_manager.continuous_integrator.ContinuousIntegrator;
 import main.java.com.dougron.mucus.mucus_output_manager.mucus_lom_injector.MuucusLOMInjector;
 import main.java.com.dougron.mucus.mucus_utils.mucus_corpus_utility.MucusCorpusUtility;
+import main.java.com.dougron.mucus_experiments.artefact_to_parameter.ArtefactToParameter;
+import main.java.com.dougron.mucus_experiments.generator_poopline.Poopline;
+import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ForceCreatePlugInsFromRepo;
 import main.java.da_utils.combo_variables.IntAndString;
 import main.java.da_utils.render_name.RenderName;
 import main.java.da_utils.time_signature_utilities.time_signature.TimeSignature;
@@ -31,6 +36,8 @@ public class Mu037_RestartTheAnalysisStuff
 	
 	String fileName = "Mu037_RestartTheAnalysisStuff";
 	MuucusLOMInjector injector = new MuucusLOMInjector(7800);
+	
+	// this only affects injection into Live. Look to the MuXMLMaker for MuTags accomodated in musicxml output
 	private Map<MuTag, Integer[]> partTrackAndClipIndexMap = ImmutableMap.<MuTag, Integer[]>builder()
 			.put(MuTag.PART_MELODY, new Integer[] {0, 0})
 			.put(MuTag.PART_1, new Integer[] {1, 0})
@@ -61,7 +68,8 @@ public class Mu037_RestartTheAnalysisStuff
 //						new IntAndString(-2, "Anthropology"),
 //						new IntAndString(-2, "Anthropollywoggle"),	// 'Anthropology' with extended chords
 //						new IntAndString(-3, "BlueBossa"),
-						new IntAndString(0, "BlackOrpheus"),
+//						new IntAndString(0, "BlackOrpheus"),
+						new IntAndString(0, "BlackOrpheus_phrase1"),
 //						new IntAndString(-2, "Stella"),
 //						new IntAndString(-1, "Confirmation"),
 				};
@@ -75,47 +83,67 @@ public class Mu037_RestartTheAnalysisStuff
 			ChordToneAndEmbellishmentTagger.addTags(originalMu);
 			
 			annotateChordTones(originalMu);
-//			annotateSyncopations(originalMu);
 			addBeatStrengthTags(originalMu);
+			annotateSyncopations(originalMu);
 			annotateBeatStrengths(originalMu);
 			
-			ArrayList<Integer> phraseLengths 
-			= getPhraseLengthsUsingRoundedFloatBarDistanceBetweenStartNotes(originalMu);
-			addMuAnnotationsOnPhraseBarStarts(corpusInfo, originalMu, phraseLengths);
+			// add phrase length indicators based on phrase start info available in corpusInfo
+//			ArrayList<Integer> phraseLengths 
+//			= getPhraseLengthsUsingRoundedFloatBarDistanceBetweenStartNotes(originalMu);
+//			addMuAnnotationsOnPhraseBarStarts(corpusInfo, originalMu, phraseLengths);
 			
 			originalMu.addTag(MuTag.PART_MELODY);
 			
+			// top level wrapper Mu
 			Mu totalMu = new Mu("grandaddy");
 			totalMu.addMu(originalMu, 0);
 			
+			// chord tone mu (line 2 of score output)
 			Mu chordToneMu = makeChordToneMu(originalMu);
 			totalMu.addMu(chordToneMu, 0);
 			ChordToneAndEmbellishmentTagger.addTags(chordToneMu);
 			addBeatStrengthTags(chordToneMu);
+			annotateSyncopations(chordToneMu);
 			annotateBeatStrengths(chordToneMu);
 			chordToneMu.addTag(MuTag.PART_1);
 			
-			Mu level2Mu = makeReducedMu(chordToneMu, 2);
+			// beat strength 2 reduction (line 3 of score)
+			Mu level2Mu = makeReducedMu(chordToneMu, 2, "reduce_2");
 			level2Mu.addTag(MuTag.PART_2);
+			addWillSyncopateAnnotation(level2Mu);
 //			phraseLengths = getPhraseLengthsUsingRoundedFloatBarDistanceBetweenStartNotes(muchReducedMu);
 //			addMuAnnotationsOnPhraseBarStarts(corpusInfo, muchReducedMu, phraseLengths);
-			makePhraseBoundsBasedOnAverageInterOnsetDistance(level2Mu);
+//			makePhraseBoundsBasedOnAverageInterOnsetDistance(level2Mu);
 			
-			Mu level1Mu = makeReducedMu(chordToneMu, 1);
+			// beat strength 1 reduction (line 4 of score)
+			Mu level1Mu = makeReducedMu(chordToneMu, 1, "reduce_1");
 			level1Mu.addTag(MuTag.PART_3);
+			addWillSyncopateAnnotation(level1Mu);
 //			phraseLengths = getPhraseLengthsUsingRoundedFloatBarDistanceBetweenStartNotes(reducedMu);
 //			addMuAnnotationsOnPhraseBarStarts(corpusInfo, reducedMu, phraseLengths);
-			makePhraseBoundsBasedOnAverageInterOnsetDistance(level1Mu);
+//			makePhraseBoundsBasedOnAverageInterOnsetDistance(level1Mu);
 			
-			Mu level0Mu = makeReducedMu(chordToneMu, 0);
+			// beat strength 0 reduction (line 5 of score)
+			Mu level0Mu = makeReducedMu(chordToneMu, 0, "reduce_0");
 			level0Mu.addTag(MuTag.PART_4);
+			addWillSyncopateAnnotation(level0Mu);
 //			phraseLengths = getPhraseLengthsUsingRoundedFloatBarDistanceBetweenStartNotes(muchReducedMu);
 //			addMuAnnotationsOnPhraseBarStarts(corpusInfo, muchReducedMu, phraseLengths);
-			makePhraseBoundsBasedOnAverageInterOnsetDistance(level0Mu);
+//			makePhraseBoundsBasedOnAverageInterOnsetDistance(level0Mu);
 			
 			totalMu.addMu(level2Mu, 0);
 			totalMu.addMu(level1Mu, 0);
 			totalMu.addMu(level0Mu, 0);
+			
+			// regenerate mu 
+			PooplinePackage pack = ArtefactToParameter.getPackFromMu(level0Mu);
+			Poopline pipeline = new Poopline();
+			pipeline.setPrimaryPlugin(new ForceCreatePlugInsFromRepo(pipeline));
+			pack = pipeline.process(pack);
+			pack.getMu().addTag(MuTag.PART_5);
+			pack.getMu().setName("reduce_0\nreproduced");
+			pack.getMu().addTag(MuTag.PRINT_CHORDS);
+			totalMu.addMu(pack.getMu(), 0);
 			
 			String x = ContinuousIntegrator.outputMultiPartMuToXMLandLiveWithoutTimeStamp(
 					totalMu, 
@@ -131,9 +159,26 @@ public class Mu037_RestartTheAnalysisStuff
 
 
 
+	private void addWillSyncopateAnnotation(Mu aMu)
+	{
+		for (Mu mu: aMu.getMusWithNotes())
+		{
+			if (mu.hasTag(MuTag.WILL_SYNCOPATE))
+			{
+				double syncValue = (double)mu.getMuTagBundleContaining(MuTag.WILL_SYNCOPATE)
+						.get(0)
+						.getNamedParameter(MuTagNamedParameter.SYNCOPATED_OFFSET_IN_QUARTERS);
+				mu.addMuAnnotation(new MuAnnotation("sync" + syncValue, 8, TextPlacement.PLACEMENT_BELOW));
+			}
+		}
+	}
+
+
+
 	private Mu makeChordToneMu(Mu originalMu)
 	{
 		Mu reducedMu = new Mu("chord_tones");
+		originalMu.getLengthModel().setSameLengthModel(reducedMu);
 		List<Mu> muList = originalMu.getMusWithNotes();
 		for (Mu mu: muList)
 		{
@@ -161,9 +206,14 @@ public class Mu037_RestartTheAnalysisStuff
 
 
 
-	private Mu makeReducedMu(Mu originalMu, int strengthThreshold)
+	private Mu makeReducedMu(Mu originalMu, int strengthThreshold, String aName)
 	{
-		Mu reducedMu = new Mu("reduced");
+		Mu reducedMu = new Mu(aName);
+//		reducedMu.setChordListGenerator(
+//				ChordListGeneratorFactory
+//				.getCopyOfGenerator(originalMu.getChordListGenerator())
+//				);
+		originalMu.getLengthModel().setSameLengthModel(reducedMu);
 		List<Mu> muList = originalMu.getMusWithNotes();
 		for (Mu mu: muList)
 		{
@@ -179,10 +229,25 @@ public class Mu037_RestartTheAnalysisStuff
 					BarsAndBeats position = getDeSyncopatedPosition(mu);
 					copyMuNotesToNuMu(mu, nuMu);
 					reducedMu.addMu(nuMu, position);
+					addWillSyncopateTag(mu, nuMu);
 				}
 			}
 		}
 		return reducedMu;
+	}
+
+
+
+	private void addWillSyncopateTag(Mu oldMu, Mu newMu)
+	{
+		List<MuTagBundle> bundleList = oldMu.getMuTagBundleContaining(MuTag.IS_SYNCOPATION);
+		if (bundleList.size() > 0)
+		{
+			double offset = (double)bundleList.get(0).getNamedParameter(MuTagNamedParameter.SYNCOPATED_OFFSET_IN_QUARTERS);
+			MuTagBundle bundle = new MuTagBundle(MuTag.WILL_SYNCOPATE);
+			bundle.addNamedParameter(MuTagNamedParameter.SYNCOPATED_OFFSET_IN_QUARTERS, offset);
+			newMu.addMuTagBundle(bundle);
+		}
 	}
 
 
@@ -261,7 +326,8 @@ public class Mu037_RestartTheAnalysisStuff
 			{
 				MuTagBundle bundle = mu.getMuTagBundleContaining(MuTag.IS_SYNCOPATION).get(0);
 				double pos = (double)bundle.getNamedParameter(MuTagNamedParameter.SYNCOPATED_BEAT_GLOBAL_POSITION);
-				mu.addMuAnnotation(new MuAnnotation("sync" + pos));
+				BarsAndBeats bab = mu.getGlobalPositionInBarsAndBeats(pos);
+				mu.addMuAnnotation(new MuAnnotation("sync_" + bab.getOffsetInQuarters(), 8, TextPlacement.PLACEMENT_BELOW));
 			}
 		}
 	}

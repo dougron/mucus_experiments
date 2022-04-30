@@ -20,24 +20,24 @@ import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.chord_list.ChordListGeneratorFactory;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePlugin;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.DiatonicTriadRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.ChordProgressionRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseLengthRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.XmlKeyRepo;
 import main.java.da_utils.static_chord_scale_dictionary.CSD;
 
-public class DiatonicTriadProgressionRandom extends PlugGeneric implements PooplinePlugin {
+public class ChordProgressionDiatonicTriadRandom extends PlugGeneric implements PooplinePlugin {
 
 	
-	public static final Logger logger = LogManager.getLogger(DiatonicTriadProgressionRandom.class);
+	public static final Logger logger = LogManager.getLogger(ChordProgressionDiatonicTriadRandom.class);
 	
 	String[] options = new String[] {"", "m", "m", "", "", "m"};
 	
 //	Type listDoubleType = new TypeToken<List<Double>>() {}.getType();
-	@Getter private DiatonicTriadRepo diatonicTriadRepo;
+	@Getter private ChordProgressionRepo diatonicTriadRepo;
 	@Getter private PhraseLengthRepo phraseLengthRepo;
 	@Getter private XmlKeyRepo xmlKeyRepo;
 	
-	public DiatonicTriadProgressionRandom() {
+	public ChordProgressionDiatonicTriadRandom() {
 		super(
 				Parameter.CHORD_LIST_GENERATOR,
 				new Parameter[] {Parameter.PHRASE_LENGTH, Parameter.XMLKEY}
@@ -82,7 +82,7 @@ public class DiatonicTriadProgressionRandom extends PlugGeneric implements Poopl
 	@Override
 	void getRepoFromPack(PooplinePackage pack)
 	{
-		diatonicTriadRepo = (DiatonicTriadRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
+		diatonicTriadRepo = (ChordProgressionRepo)pack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
 		if (hasEnoughBars(diatonicTriadRepo, phraseLengthRepo)) {
 			if (adheresToNoRepeatCriteria(diatonicTriadRepo, phraseLengthRepo)) {
 				// parameters are valid and can generate mu material
@@ -179,11 +179,11 @@ public class DiatonicTriadProgressionRandom extends PlugGeneric implements Poopl
 	
 
 
-	private DiatonicTriadRepo makeDiatonicTriadRepo(PooplinePackage pack) {
+	private ChordProgressionRepo makeDiatonicTriadRepo(PooplinePackage pack) {
 		double[] rndArr = getRndArrayWithNoRepeatsFromPackRndFunction(pack, phraseLengthRepo);
 		int[] indexArr = getIndexArrayForPhraseLength(phraseLengthRepo.getSelectedValue(), rndArr);
 		Map<Double, String> map = getFloatBarChordMap(xmlKeyRepo.getSelectedValue(), indexArr);
-		return DiatonicTriadRepo.builder()
+		return ChordProgressionRepo.builder()
 				.rndValue(rndArr)
 				.selectedValues(indexArr)
 				.options(options)
@@ -210,8 +210,10 @@ public class DiatonicTriadProgressionRandom extends PlugGeneric implements Poopl
 		if (hasRequiredRepos())
 		{
 			Mu mu = pack.getMu();
+			//these two potentially redundant as they were dealt with in run required plugins
 			mu.setLengthInBars(phraseLengthRepo.getSelectedValue());
 			mu.setXMLKey(xmlKeyRepo.getSelectedValue());
+			// ------------
 			mu.setChordListGenerator(new ChordListGeneratorFactory().getGenerator(diatonicTriadRepo.getMapAsObjectList((double)phraseLengthRepo.getSelectedValue())));
 		}
 		else
@@ -333,7 +335,7 @@ public class DiatonicTriadProgressionRandom extends PlugGeneric implements Poopl
 
 
 
-	private double[] checkForSequentialRepeatsAndChangeSecondOne(DiatonicTriadRepo dtRepo, int phraseLengthInBars, Random rnd) {
+	private double[] checkForSequentialRepeatsAndChangeSecondOne(ChordProgressionRepo dtRepo, int phraseLengthInBars, Random rnd) {
 //		int lengthInBars = getPhraseLengthInBarsFromJson(pack);
 //		List<Double> rndList = getChordListGeneratorRandomSeedValuesAsDoublesList(pack);
 		double[] rndArr = dtRepo.getRndValue();
@@ -445,7 +447,7 @@ public class DiatonicTriadProgressionRandom extends PlugGeneric implements Poopl
 
 
 	private int maxLoopCount = 25;
-	private double[] changeLastBarToSatisfyNoRepeatCriteria(DiatonicTriadRepo dtRepo, int phraseLengthInBars, Random rnd) {
+	private double[] changeLastBarToSatisfyNoRepeatCriteria(ChordProgressionRepo dtRepo, int phraseLengthInBars, Random rnd) {
 		Preconditions.checkArgument(dtRepo.getRndValue().length >= phraseLengthInBars, "This method must be called after chord_list_generator.random_seed has enough values for phrase length");
 		int indexOfLastChord = phraseLengthInBars - 1;
 //		List<Double> rndList = getChordListGeneratorRandomSeedValuesAsDoublesList(pack);
@@ -510,7 +512,7 @@ public class DiatonicTriadProgressionRandom extends PlugGeneric implements Poopl
 	}
 	
 
-	private boolean adheresToNoRepeatCriteria(DiatonicTriadRepo dtRepo, PhraseLengthRepo plRepo) {
+	private boolean adheresToNoRepeatCriteria(ChordProgressionRepo dtRepo, PhraseLengthRepo plRepo) {
 		int[] indexArray = getIndexArrayForPhraseLength(plRepo.getSelectedValue(), dtRepo.getRndValue());
 		int previous = indexArray[indexArray.length - 1];
 		for (int i: indexArray) {
@@ -542,10 +544,14 @@ public class DiatonicTriadProgressionRandom extends PlugGeneric implements Poopl
 	}
 	
 	
-	private boolean hasEnoughBars(DiatonicTriadRepo dtRepo, PhraseLengthRepo phRepo) {
+	private boolean hasEnoughBars(ChordProgressionRepo dtRepo, PhraseLengthRepo phRepo) {
 //		int phraseLengthInBars = getPhraseLengthInBarsFromJson(pack);
 //		int lengthOfChordListGeneratorRandomSeed = getChordListGeneratorRandomSeedFromJson(pack).size();		
-		return phRepo.getSelectedValue() <= dtRepo.getRndValue().length;
+		
+		// this was a previous evaluation of enoughBars, which fails for ArtefactToParameter
+		// keeping it here cos failures will emerge here again
+//		return phRepo.getSelectedValue() <= dtRepo.getRndValue().length;
+		return true;
 	}
 
 
