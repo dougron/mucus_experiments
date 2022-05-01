@@ -136,12 +136,12 @@ public class Mu037_RestartTheAnalysisStuff
 			totalMu.addMu(level0Mu, 0);
 			
 			// regenerate mu 
-			PooplinePackage pack = ArtefactToParameter.getPackFromMu(level0Mu);
+			PooplinePackage pack = ArtefactToParameter.getPackFromMu(level2Mu);
 			Poopline pipeline = new Poopline();
 			pipeline.setPrimaryPlugin(new ForceCreatePlugInsFromRepo(pipeline));
 			pack = pipeline.process(pack);
 			pack.getMu().addTag(MuTag.PART_5);
-			pack.getMu().setName("reduce_0\nreproduced");
+			pack.getMu().setName("reduce_2\nreproduced");
 			pack.getMu().addTag(MuTag.PRINT_CHORDS);
 			totalMu.addMu(pack.getMu(), 0);
 			

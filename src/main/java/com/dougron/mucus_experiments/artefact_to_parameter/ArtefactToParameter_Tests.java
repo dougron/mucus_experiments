@@ -1,14 +1,17 @@
 package main.java.com.dougron.mucus_experiments.artefact_to_parameter;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import main.java.com.dougron.mucus.mu_framework.Mu;
+import main.java.com.dougron.mucus.mu_framework.chord_list.Chord;
 import main.java.com.dougron.mucus.mu_framework.data_types.BarsAndBeats;
 import main.java.com.dougron.mucus.mu_framework.data_types.MuNote;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTag;
@@ -112,7 +115,7 @@ class ArtefactToParameter_Tests
 	{
 		Double[] arr = new Double[] {1.0, 1.0, 1.0};
 		List<Double> list = Arrays.asList(arr);
-		List<Double> pattern = ArtefactToParameter.getRepeatingPattern(list);
+		List<Double> pattern = ArtefactToParameter.getRepeatingDoublePattern(list);
 		assertThat(pattern.size()).isEqualTo(1);
 		assertThat(pattern.get(0)).isEqualTo(1.0);
 	}
@@ -123,7 +126,7 @@ class ArtefactToParameter_Tests
 	{
 		Double[] arr = new Double[] {1.0, 1.1, 1.0, 1.1, 1.0};
 		List<Double> list = Arrays.asList(arr);
-		List<Double> pattern = ArtefactToParameter.getRepeatingPattern(list);
+		List<Double> pattern = ArtefactToParameter.getRepeatingDoublePattern(list);
 		assertThat(pattern.size()).isEqualTo(2);
 		assertThat(pattern.get(0)).isEqualTo(1.0);
 		assertThat(pattern.get(1)).isEqualTo(1.1);
@@ -135,7 +138,7 @@ class ArtefactToParameter_Tests
 	{
 		Double[] arr = new Double[] {1.0, 1.1, 1.2, 1.3, 1.4};
 		List<Double> list = Arrays.asList(arr);
-		List<Double> pattern = ArtefactToParameter.getRepeatingPattern(list);
+		List<Double> pattern = ArtefactToParameter.getRepeatingDoublePattern(list);
 		assertThat(pattern.size()).isEqualTo(5);
 		assertThat(pattern.get(0)).isEqualTo(1.0);
 		assertThat(pattern.get(1)).isEqualTo(1.1);
@@ -143,6 +146,44 @@ class ArtefactToParameter_Tests
 		assertThat(pattern.get(3)).isEqualTo(1.3);
 		assertThat(pattern.get(4)).isEqualTo(1.4);
 	}
+	
+	
+	@Test
+	void when_two_chord_tone_are_equal_then_getChordToneVector_returns_vector_of_0() throws Exception
+	{
+		assertThat(ArtefactToParameter.getChordToneVector(62, 62, new Chord("Bm7b5"))).isEqualTo(0);
+	}
+	
+	
+	@Test
+	void when_2nd_chord_tone_is_one_below_1st_then_getChordToneVector_returns_vector_of_minus_1() throws Exception
+	{
+		assertThat(ArtefactToParameter.getChordToneVector(60, 59, new Chord("Bm7b5"))).isEqualTo(-1);
+	}
+	
+	
+	@Test
+	void when_2nd_chord_tone_is_two_below_1st_then_getChordToneVector_returns_vector_of_minus_2() throws Exception
+	{
+		assertThat(ArtefactToParameter.getChordToneVector(60, 57, new Chord("Bm7b5"))).isEqualTo(-2);
+	}
+	
+	
+	@Test
+	void when_2nd_chord_tone_is_one_above_1st_then_getChordToneVector_returns_vector_of_1() throws Exception
+	{
+		assertThat(ArtefactToParameter.getChordToneVector(60, 62, new Chord("Bm7b5"))).isEqualTo(1);
+	}
+	
+	
+	@Test
+	void when_2nd_chord_tone_is_two_above_1st_then_getChordToneVector_returns_vector_of_2() throws Exception
+	{
+		assertThat(ArtefactToParameter.getChordToneVector(60, 65, new Chord("Bm7b5"))).isEqualTo(2);
+	}
+	
+	
+	
 	
 	
 //	@Test

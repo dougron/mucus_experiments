@@ -23,6 +23,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StartN
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneEvenlySpacedFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneEvenlySpacedRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneSyncopatorInQuartersRandom;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneUnevenlySpacedFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TempoRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TessituraFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TessituraSolverOneBreakpointRandom;
@@ -37,6 +38,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseLengthRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.RepoInterface;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneEvenlySpacedRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneUnevenlySpacedRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TessituraRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TessituraSolverRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.VectorChordTonesRepo;
@@ -64,6 +66,7 @@ public class PluginFactory
 
 	public static final Logger logger = LogManager.getLogger(PluginFactory.class);
 	
+	
 	public static PooplinePlugin getPlugin(RepoInterface repo)
 	{
 		logger.info("Received repo of class=" + repo.getClass().getSimpleName() + " and className=" + repo.getClassName());
@@ -81,6 +84,8 @@ public class PluginFactory
 			return getDurationFixedInQuartersPlugin(repo);
 		case "StructureToneEvenlySpacedRepo":
 			return getStructureToneEvenlySpacedPlugin(repo);
+		case "StructureToneUnevenlySpacedRepo":
+			return getStructureToneUnevenlySpacedPlugin(repo);
 		case "LoopModelRepo":
 			return getLoopModelPlugin(repo);
 		case "PatternEmbellishmentRepo":
@@ -113,6 +118,7 @@ public class PluginFactory
 	}
 
 	
+	
 	private static PooplinePlugin getVectorChordTonesPlugin(RepoInterface repo)
 	{
 		// currently only 1
@@ -121,6 +127,7 @@ public class PluginFactory
 	}
 
 
+	
 	private static PooplinePlugin getTessituraSolverPlugin(RepoInterface repo)
 	{
 		// currently only 1
@@ -128,6 +135,7 @@ public class PluginFactory
 		return new TessituraSolverOneBreakpointRandom(tsrepo.getTessituraParameter(), tsrepo.getMuTagToActUpon());
 	}
 
+	
 
 	private static PooplinePlugin getTessituraPlugin(RepoInterface repo)
 	{
@@ -136,6 +144,7 @@ public class PluginFactory
 		return new TessituraFixed(trepo.getParameter());
 	}
 
+	
 
 	private static PooplinePlugin getTempoPlugin(RepoInterface repo)
 	{
@@ -144,6 +153,7 @@ public class PluginFactory
 	}
 
 
+	
 	private static PooplinePlugin getStructureToneSyncopationPlugin(RepoInterface repo)
 	{
 		// currently only 1
@@ -151,6 +161,7 @@ public class PluginFactory
 	}
 
 
+	
 	private static PooplinePlugin getStartNotePlugin(RepoInterface repo)
 	{
 		// currently only 1
@@ -158,6 +169,7 @@ public class PluginFactory
 	}
 
 
+	
 	private static PooplinePlugin getBooleanRepoRelatedPlugin(RepoInterface repo)
 	{
 		// currently only 1
@@ -165,6 +177,7 @@ public class PluginFactory
 	}
 
 
+	
 	private static PooplinePlugin getPhraseBoundPlugin(RepoInterface repo)
 	{
 		PhraseBoundRepo nurepo = (PhraseBoundRepo)repo;
@@ -186,6 +199,7 @@ public class PluginFactory
 		return null;
 	}
 
+	
 
 	private static PooplinePlugin getPatternEmbellishmentPlugin(RepoInterface repo)
 	{
@@ -193,6 +207,7 @@ public class PluginFactory
 		return new PatternEmbellisherRandom();
 	}
 
+	
 
 	private static PooplinePlugin getLoopModelPlugin(RepoInterface repo)
 	{
@@ -202,6 +217,7 @@ public class PluginFactory
 	}
 
 
+	
 	private static PooplinePlugin getStructureToneEvenlySpacedPlugin(RepoInterface repo)
 	{
 		StructureToneEvenlySpacedRepo nurepo = (StructureToneEvenlySpacedRepo)repo;
@@ -222,7 +238,23 @@ public class PluginFactory
 		}
 		return null;
 	}
+	
+	
+	
+	private static PooplinePlugin getStructureToneUnevenlySpacedPlugin(RepoInterface repo)
+	{
+		StructureToneUnevenlySpacedRepo nurepo = (StructureToneUnevenlySpacedRepo)repo;
+		String cName = repo.getClassName();
+		String[] split = cName.split("\\.");
+		if (split.length == 0)
+		{
+			logger.info("className.split produced no options for repo=" + repo.getClass().getName());
+			return null;
+		}
+		return new StructureToneUnevenlySpacedFixed(nurepo.getSelectedValuesInFloatBars());
+	}
 
+	
 
 	private static PooplinePlugin getDurationFixedInQuartersPlugin(RepoInterface repo)
 	{
@@ -233,6 +265,7 @@ public class PluginFactory
 	}
 
 	
+	
 	private static PooplinePlugin getDurationPatternPlugin(RepoInterface repo)
 	{
 		// currently only 1
@@ -241,6 +274,7 @@ public class PluginFactory
 	}
 	
 
+	
 	private static PooplinePlugin getChordProgressionPlugin(RepoInterface repo)
 	{
 		ChordProgressionRepo nurepo = (ChordProgressionRepo)repo;
@@ -261,6 +295,7 @@ public class PluginFactory
 		return null;
 	}
 
+	
 
 	private static PooplinePlugin getContourMultiplierPlugin(RepoInterface repo)
 	{
@@ -268,6 +303,7 @@ public class PluginFactory
 		return new ContourMultiplierRandom();
 	}
 
+	
 
 	private static PooplinePlugin getContourChordTonesPlugin(RepoInterface repo)
 	{
@@ -275,6 +311,7 @@ public class PluginFactory
 		return new ContourChordTonesRandom();
 	}
 
+	
 
 	private static PooplinePlugin getXmlKeyPlugin(RepoInterface repo)
 	{
@@ -283,12 +320,14 @@ public class PluginFactory
 	}
 	
 	
+	
 	private static PooplinePlugin getTimeSignaturePlugin(RepoInterface repo)
 	{
 		// currently only 1
 		return new TimeSignatureSingleRandom();
 	}
 
+	
 
 	private static PooplinePlugin getPhraseLengthPlugin(RepoInterface repo)
 	{

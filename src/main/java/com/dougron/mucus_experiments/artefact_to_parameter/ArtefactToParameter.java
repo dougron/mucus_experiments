@@ -36,6 +36,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseLengthRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StartNoteRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneEvenlySpacedRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneUnevenlySpacedRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TessituraRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TimeSignatureRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.VectorChordTonesRepo;
@@ -140,13 +141,52 @@ public class ArtefactToParameter
 
 	private static PooplinePackage addVectorChordTonesRepo(Mu aMu, PooplinePackage pack)
 	{
+		List<Mu> structureTones = aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE);
+		Collections.sort(structureTones, Mu.globalPositionInQuartersComparator);
+		List<Integer> vectorList = new ArrayList<Integer>();
+		for (int i = 1; i < structureTones.size(); i++)
+		{
+			int firstPitch = structureTones.get(i - 1).getTopPitch();
+			int secondPitch = structureTones.get(i).getTopPitch();
+			Chord chord = structureTones.get(i).getPrevailingChord();
+			vectorList.add(getChordToneVector(firstPitch, secondPitch, chord));
+		}
+		List<Integer> pattern = getRepeatingIntegerPattern(vectorList);
+		int[] arr = pattern.stream().mapToInt(x -> x).toArray();
+		
+		
 		VectorChordTonesRepo repo = VectorChordTonesRepo.builder()
 //				.rndValue(0.5)
-				.selectedVectorArray(new int[] {-1})
+				.selectedVectorArray(arr)
 				.className(VectorChordTonesFixed.class.getName())
 				.build();
 		pack.getRepo().put(Parameter.STRUCTURE_TONE_VECTOR, repo);
 		return pack;
+	}
+	
+	
+	static int getChordToneVector(int firstPitch, int secondPitch, Chord chord)
+	{
+		if (firstPitch == secondPitch)
+		{
+			return 0;
+		}
+		else
+		{
+			int vector = (int)Math.signum(secondPitch - firstPitch);
+			int currentPitch = firstPitch;
+			int offset = 0;
+			while (true)
+			{
+				currentPitch = chord.getClosestChordTone(currentPitch, vector);
+				offset += vector;
+				if ((int)Math.signum(secondPitch - currentPitch) != vector)
+				{
+					break;
+				}
+			}
+			return offset;
+		}
 	}
 	
 	
@@ -182,7 +222,7 @@ public class ArtefactToParameter
 		List<Mu> structureTones = aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE);
 		Collections.sort(structureTones, Mu.globalPositionInQuartersComparator);
 		List<Double> ioiList = getInterOnsetIntervals(structureTones);
-		List<Double> repeatingPattern = getRepeatingPattern(ioiList);
+		List<Double> repeatingPattern = getRepeatingDoublePattern(ioiList);
 		
 		if (repeatingPattern.size() == 1)
 		{
@@ -195,11 +235,10 @@ public class ArtefactToParameter
 		}
 		else
 		{
-			// this will not work properly. Need to create the 
-			// StructureToneRepeatingInterval<or some such> plugin
-			StructureToneEvenlySpacedRepo repo = StructureToneEvenlySpacedRepo.builder()
+			double[] arr = repeatingPattern.stream().mapToDouble(x -> x).toArray();
+			StructureToneUnevenlySpacedRepo repo = StructureToneUnevenlySpacedRepo.builder()
 					.rndValue(0.5)
-					.selectedValueInFloatBars(0.4)
+					.selectedValuesInFloatBars(arr)
 					.className(StructureToneEvenlySpacedFixed.class.getName())
 					.build();
 			pack.getRepo().put(Parameter.STRUCTURE_TONE_SPACING, repo);
@@ -210,7 +249,7 @@ public class ArtefactToParameter
 	
 	
 	
-	static List<Double> getRepeatingPattern(List<Double> ioiList)
+	static List<Double> getRepeatingDoublePattern(List<Double> ioiList)
 	{
 		List<Double> pattern = new ArrayList<Double>();
 		for (int patternLength = 0; patternLength < ioiList.size(); patternLength++)
@@ -224,6 +263,36 @@ public class ArtefactToParameter
 					if (testIndex + patternIndex < ioiList.size())
 					{
 						double x = ioiList.get(testIndex + patternIndex);
+						double y = pattern.get(patternIndex);
+						if (x != y) 
+						{
+							fail = true;
+							break;
+						}
+					}
+				}
+				if (fail) break;
+			}
+			if (!fail) return pattern;
+		}
+		return pattern;
+	}
+	
+	
+	static List<Integer> getRepeatingIntegerPattern(List<Integer> list)
+	{
+		List<Integer> pattern = new ArrayList<Integer>();
+		for (int patternLength = 0; patternLength < list.size(); patternLength++)
+		{
+			pattern.add(list.get(patternLength));
+			boolean fail = false;
+			for (int testIndex = 0; testIndex < list.size(); testIndex += patternLength + 1)
+			{
+				for (int patternIndex = 0; patternIndex < patternLength + 1; patternIndex++)
+				{
+					if (testIndex + patternIndex < list.size())
+					{
+						double x = list.get(testIndex + patternIndex);
 						double y = pattern.get(patternIndex);
 						if (x != y) 
 						{

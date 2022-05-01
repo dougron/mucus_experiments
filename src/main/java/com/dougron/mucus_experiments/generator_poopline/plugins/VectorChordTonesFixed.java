@@ -211,8 +211,16 @@ public class VectorChordTonesFixed   extends PlugGeneric implements PooplinePlug
 		
 		int vectorIndex = 0;
 		int vector = DEFAULT_VECTOR_FOR_FIRST_STRUCTURE_TONE_FROM_START_NOTE;
+		boolean first = true;
 		Chord chord;
 		for (Mu mu: structureTones) {
+			if (!first)
+			{
+				vector = vectorArray[vectorIndex];
+				vectorIndex++;
+				if (vectorIndex >= vectorArray.length) vectorIndex = 0;
+			}
+			first = false;
 			List<MuTagBundle> bundleList = mu.getMuTagBundleContaining(MuTag.IS_SYNCOPATION);
 			if (bundleList.size() == 0) {
 				chord = mu.getPrevailingChord();
@@ -228,9 +236,6 @@ public class VectorChordTonesFixed   extends PlugGeneric implements PooplinePlug
 				+ " selected note=" + note);
 			
 			mu.addMuNote(new MuNote(note, DEFAULT_STRUCTURE_TONE_VELOCITY));
-			vector = vectorArray[vectorIndex];
-			vectorIndex++;
-			if (vectorIndex >= vectorArray.length) vectorIndex = 0;
 		}
 		return pack;
 	}
