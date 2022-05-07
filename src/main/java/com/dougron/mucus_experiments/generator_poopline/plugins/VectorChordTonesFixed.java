@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.Parameter;
 import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.chord_list.Chord;
+import main.java.com.dougron.mucus.mu_framework.data_types.BarsAndBeats;
 import main.java.com.dougron.mucus.mu_framework.data_types.MuNote;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTag;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagBundle;
@@ -224,10 +225,15 @@ public class VectorChordTonesFixed   extends PlugGeneric implements PooplinePlug
 			List<MuTagBundle> bundleList = mu.getMuTagBundleContaining(MuTag.IS_SYNCOPATION);
 			if (bundleList.size() == 0) {
 				chord = mu.getPrevailingChord();
-			} else {
+			} 
+			else 
+			{
 				double positionInQuarters = (double)bundleList.get(0).getNamedParameter(MuTagNamedParameter.SYNCOPATED_BEAT_GLOBAL_POSITION);
 				chord = mu.getChordAtGlobalPosition(mu.getGlobalPositionInBarsAndBeats(positionInQuarters));
+//				logger.debug("Looking for chord at quartersPosition=" + positionInQuarters);
 			}
+			
+			if (chord == null) chord = mu.getChordAtGlobalPosition(BarsAndBeats.at(0,  0.0));
 			
 			note = chord.getClosestChordTone(note, vector);
 			logger.info("Mu at " + mu.getGlobalPositionInFloatBars() 

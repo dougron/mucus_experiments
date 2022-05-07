@@ -7,7 +7,7 @@ import lombok.ToString;
 
 @Builder
 @ToString
-public class StructureToneSyncopationRepo extends RepoSuperclass implements RepoInterface {
+public class StructureToneSyncopationIntegerPatternRepo extends RepoSuperclass implements RepoInterface {
 
 	@Getter @Setter private double rndValue;
 	@Getter @Setter private int[] selectedOption;
@@ -15,9 +15,9 @@ public class StructureToneSyncopationRepo extends RepoSuperclass implements Repo
 	@Getter @Setter private String className;
 	
 	
-	public StructureToneSyncopationRepo deepCopy()
+	public StructureToneSyncopationIntegerPatternRepo deepCopy()
 	{
-		return StructureToneSyncopationRepo.builder()
+		return StructureToneSyncopationIntegerPatternRepo.builder()
 				.rndValue(rndValue)
 				.selectedOption(selectedOption)
 				.options(getCopy(options))

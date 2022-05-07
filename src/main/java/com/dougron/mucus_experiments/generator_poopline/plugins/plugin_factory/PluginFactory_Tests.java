@@ -41,7 +41,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseLengthRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.RepoInterface;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StartNoteRepo;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneSyncopationRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneSyncopationIntegerPatternRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TempoRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TessituraRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TessituraSolverRepo;
@@ -79,7 +79,7 @@ class PluginFactory_Tests
 		new Object[] {new PhraseLengthSetLength(2), PhraseLengthRepo.builder().className(PhraseLengthSetLength.class.getName()).build()},
 		new Object[] {new ShouldIUseTheStructureToneSyncopator(), BooleanRepo.builder().className(ShouldIUseTheStructureToneSyncopator.class.getName()).build()},
 		new Object[] {new StartNoteMelodyRandom(),StartNoteRepo.builder().className(StartNoteMelodyRandom.class.getName()).build()},
-		new Object[] {new StructureToneSyncopatorInQuartersRandom(),StructureToneSyncopationRepo.builder().className(StructureToneSyncopatorInQuartersRandom.class.getName()).build()},
+		new Object[] {new StructureToneSyncopatorInQuartersRandom(),StructureToneSyncopationIntegerPatternRepo.builder().className(StructureToneSyncopatorInQuartersRandom.class.getName()).build()},
 		new Object[] {new TempoRandom(), TempoRepo.builder().className(TempoRandom.class.getName()).build()},
 		new Object[] {new TessituraFixed(Parameter.TESSITURA_MELODY_RANGE), 
 				TessituraRepo.builder()

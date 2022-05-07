@@ -1,6 +1,7 @@
 package main.java.com.dougron.mucus_experiments.artefact_to_parameter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -12,30 +13,35 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import main.java.com.dougron.mucus.algorithms.mu_chord_tone_and_embellishment.ChordToneAndEmbellishmentTagger;
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.Parameter;
 import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.chord_list.Chord;
 import main.java.com.dougron.mucus.mu_framework.chord_list.ChordEvent;
 import main.java.com.dougron.mucus.mu_framework.data_types.BarsAndBeats;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTag;
+import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagBundle;
+import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagNamedParameter;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ChordProgressionFloatBarFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationFixedInQuarters;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseBoundPercentSetAmount;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseLengthSetLength;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ShouldIUseTheStructureToneSyncopator;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StartNoteMelodyRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneEvenlySpacedFixed;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneSyncopatorInQuartersFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TessituraFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TimeSignatureSingleRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.VectorChordTonesFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.XmlKeyRandom;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.BooleanRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.ChordProgressionRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.DurationFixedInQuartersRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseBoundRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseLengthRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StartNoteRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneEvenlySpacedRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneSyncopationDoublePatternRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneUnevenlySpacedRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TessituraRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TimeSignatureRepo;
@@ -46,11 +52,12 @@ import main.java.da_utils.time_signature_utilities.time_signature.TimeSignature;
 public class ArtefactToParameter
 {
 	
-	private static final double PHRASE_BOUND_GAP = 0.05;
+	private static final double PHRASE_BOUND_GAP = 0.005;
 	private static final int MELODY_TESSITURA_WIGGLE_ROOM = 5;
 	private static final int START_NOTE_TESSITURA_WIGGLE_ROOM = 5;
 
 	public static final Logger logger = LogManager.getLogger(ArtefactToParameter.class);
+	private static final int DEFAULT_START_NOTE_IF_NO_STRUCTURE_TONES_EXIST = 48;	// middle C
 	
 	
 	public static String sayHello()
@@ -62,7 +69,7 @@ public class ArtefactToParameter
 	
 	public static PooplinePackage getPackFromMu(Mu aMu)
 	{
-		ChordToneAndEmbellishmentTagger.addTags(aMu);
+//		ChordToneAndEmbellishmentTagger.addTags(aMu);
 		justForNowConvertChordTonesToStructureTones(aMu);
 		PooplinePackage pack = new PooplinePackage(aMu.getName(), new Random());
 		pack = addPhraseLengthSetLengthRepo(aMu, pack);
@@ -95,6 +102,7 @@ public class ArtefactToParameter
 		pack = addPhraseStartPercentRepo(aMu, pack);
 		pack = addPhraseEndPercentRepo(aMu, pack);
 		pack = addStructureToneSpacingRepo(aMu, pack);
+		pack = addStructureToneSyncopation(aMu, pack);
 		pack = addMelodyTessituraRepo(aMu, pack);
 		pack = addVectorChordTonesRepo(aMu, pack);
 		pack = addDurationRepo(aMu, pack);
@@ -103,17 +111,90 @@ public class ArtefactToParameter
 
 		
 	
-	private static PooplinePackage addDurationRepo(Mu aMu, PooplinePackage pack)
+	private static PooplinePackage addStructureToneSyncopation(Mu aMu, PooplinePackage pack)
 	{
 		List<Mu> structureTones = aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE);
-		List<Double> list = structureTones.stream()
-				.map(x -> x.getLengthInQuarters())
-				.collect(Collectors.toList());
+		List<Double> syncopationsInQuarters = new ArrayList<Double>();
+		boolean hasSyncopations = false;
+		for (Mu mu: structureTones)
+		{
+			List<MuTagBundle> bundleList = mu.getMuTagBundleContaining(MuTag.WILL_SYNCOPATE);
+			if (bundleList.size() == 0)
+			{
+				syncopationsInQuarters.add(0.0);
+			}
+			else
+			{
+				syncopationsInQuarters.add(
+						(double)bundleList
+						.get(0)
+						.getNamedParameter(
+								MuTagNamedParameter.SYNCOPATED_OFFSET_IN_QUARTERS
+								)
+						);
+				hasSyncopations = true;
+			}
+		}
+		if (hasSyncopations)
+		{
+			pack = addSyncopationRepos(pack, syncopationsInQuarters);
+		}
+		else
+		{
+			// for now this leaves out any structure tone syncopation repos
+			// in a later variation process they can be added
+		}
 		
+		return pack;
+	}
+
+
+
+	private static PooplinePackage addSyncopationRepos(PooplinePackage pack, List<Double> syncopationsInQuarters)
+	{
+		List<Double> finalList = getRepeatingDoublePattern(syncopationsInQuarters);
+		BooleanRepo shouldIuseTheSyncopation = BooleanRepo.builder()
+				.selectedOption(true)
+				.rndValue(0)
+				.className(ShouldIUseTheStructureToneSyncopator.class.getName())
+				.build();
+		pack.getRepo().put(Parameter.USE_STRUCTURE_TONE_SYNCOPATOR, shouldIuseTheSyncopation);
+		
+		StructureToneSyncopationDoublePatternRepo syncRepo = StructureToneSyncopationDoublePatternRepo.builder()
+				.selectedOption(finalList.stream().mapToDouble(x -> x).toArray())
+				.className(StructureToneSyncopatorInQuartersFixed.class.getName())
+				.build();
+		pack.getRepo().put(Parameter.STRUCTURE_TONE_SYNCOPATION, syncRepo);
+		
+		return pack;
+	}
+
+
+
+	private static PooplinePackage addDurationRepo(Mu aMu, PooplinePackage pack)
+	{
+		// the commented out section return the duration of the original Mu. 
+		// only temporarily relevant as the testing mus were chord tone reductions,
+		// which are not essential to replicate once we move onto adding embellishments to the process
+//		List<Mu> structureTones = aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE);
+//		List<Double> list = structureTones.stream()
+//				.map(x -> x.getLengthInQuarters())
+//				.collect(Collectors.toList());
+//		
+//		Parameter requiredParameter = getRequiredParameter(pack);
+//		
+//		DurationFixedInQuartersRepo repo = DurationFixedInQuartersRepo.builder()
+//				.durationPattern(ArrayUtils.toPrimitive(list.toArray(new Double[list.size()])))
+//				.requiredParameter(requiredParameter)
+//				.className(DurationFixedInQuarters.class.getName())
+//				.build();
+//		pack.getRepo().put(Parameter.DURATION, repo);
+		
+		// this just makes the durations=0.5
 		Parameter requiredParameter = getRequiredParameter(pack);
 		
 		DurationFixedInQuartersRepo repo = DurationFixedInQuartersRepo.builder()
-				.durationPattern(ArrayUtils.toPrimitive(list.toArray(new Double[list.size()])))
+				.durationPattern(new double[] {0.5})
 				.requiredParameter(requiredParameter)
 				.className(DurationFixedInQuarters.class.getName())
 				.build();
@@ -329,8 +410,12 @@ public class ArtefactToParameter
 	{
 		double length = aMu.getLengthInQuarters();
 		List<Mu> structureTones = aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE);
-		double position = structureTones.get(structureTones.size() - 1).getPositionInQuarters();
-		double selectedValue = (position / length) + PHRASE_BOUND_GAP;
+		double selectedValue = 0 - PHRASE_BOUND_GAP;
+		if (structureTones.size() > 0)
+		{
+			double position = structureTones.get(structureTones.size() - 1).getPositionInQuarters();
+			selectedValue = (position / length) + PHRASE_BOUND_GAP;
+		}
 		pack = addPhraseBoundRepo(pack, selectedValue, Parameter.PHRASE_END_PERCENT);
 		return pack;
 	}
@@ -340,8 +425,13 @@ public class ArtefactToParameter
 	private static PooplinePackage addPhraseStartPercentRepo(Mu aMu, PooplinePackage pack)
 	{
 		double length = aMu.getLengthInQuarters();
-		double position = aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE).get(0).getPositionInQuarters();
-		double selectedValue = (position / length) - PHRASE_BOUND_GAP;
+		List<Mu> structureTones = aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE);
+		double selectedValue = 0 - PHRASE_BOUND_GAP;
+		if (structureTones.size() > 0)
+		{
+			double position = aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE).get(0).getPositionInQuarters();
+			selectedValue = (position / length) - PHRASE_BOUND_GAP;
+		}
 		pack = addPhraseBoundRepo(pack, selectedValue, Parameter.PHRASE_START_PERCENT);
 		return pack;
 	}
@@ -363,7 +453,12 @@ public class ArtefactToParameter
 	
 	private static PooplinePackage addTessituraForStartNoteRepo(Mu aMu, PooplinePackage pack)
 	{
-		int startNotePitch = aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE).get(0).getTopPitch();
+		List<Mu> structureTones = aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE);
+		int startNotePitch = DEFAULT_START_NOTE_IF_NO_STRUCTURE_TONES_EXIST;
+		if (structureTones.size() > 0)
+		{
+			startNotePitch = structureTones.get(0).getTopPitch();
+		}
 		
 		int highRange = startNotePitch + START_NOTE_TESSITURA_WIGGLE_ROOM;
 		int lowRange = startNotePitch - START_NOTE_TESSITURA_WIGGLE_ROOM;
@@ -382,9 +477,15 @@ public class ArtefactToParameter
 	
 	private static PooplinePackage addStartNoteRepo(Mu aMu, PooplinePackage pack)
 	{
+		int selectedValue = DEFAULT_START_NOTE_IF_NO_STRUCTURE_TONES_EXIST;
+		List<Mu> structureTones = aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE);
+		if (structureTones.size() > 0)
+		{
+			selectedValue = structureTones.get(0).getTopPitch();
+		}
 		StartNoteRepo repo = StartNoteRepo.builder()
 				.rndValue(0.5)
-				.selectedValue(aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE).get(0).getTopPitch())
+				.selectedValue(selectedValue)
 				.className(StartNoteMelodyRandom.class.getName())
 				.build();
 		pack.getRepo().put(Parameter.START_NOTE, repo);

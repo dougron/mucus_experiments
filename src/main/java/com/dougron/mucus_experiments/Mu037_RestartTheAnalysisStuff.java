@@ -44,6 +44,13 @@ public class Mu037_RestartTheAnalysisStuff
 			.put(MuTag.PART_2, new Integer[] {2, 0})
 //			.put(MuTag.PART_BASS, new Integer[] {3, 0})
 			.build();
+	private static final int STRENGTH_OF_0 = 0;
+	private static final int STRENGTH_OF_1 = 1;
+	private static final int STRENGTH_OF_2 = 2;
+	private static final int STRENGTH_OF_4 = 4;		// this causes problems as a resolution for a structure tone melody
+	
+	private static final double LENGTH_OF_QUARTER = 1.0;
+	private static final double LENGTH_OF_EIGHTH = 0.5;
 	
 	private int STRENGTH_THRESHOLD = 1;
 	
@@ -108,7 +115,7 @@ public class Mu037_RestartTheAnalysisStuff
 			chordToneMu.addTag(MuTag.PART_1);
 			
 			// beat strength 2 reduction (line 3 of score)
-			Mu level2Mu = makeReducedMu(chordToneMu, 2, "reduce_2");
+			Mu level2Mu = makeReducedMu(chordToneMu, STRENGTH_OF_2, "reduce_2", LENGTH_OF_QUARTER);
 			level2Mu.addTag(MuTag.PART_2);
 			addWillSyncopateAnnotation(level2Mu);
 //			phraseLengths = getPhraseLengthsUsingRoundedFloatBarDistanceBetweenStartNotes(muchReducedMu);
@@ -116,7 +123,7 @@ public class Mu037_RestartTheAnalysisStuff
 //			makePhraseBoundsBasedOnAverageInterOnsetDistance(level2Mu);
 			
 			// beat strength 1 reduction (line 4 of score)
-			Mu level1Mu = makeReducedMu(chordToneMu, 1, "reduce_1");
+			Mu level1Mu = makeReducedMu(chordToneMu, 1, "reduce_1", LENGTH_OF_QUARTER);
 			level1Mu.addTag(MuTag.PART_3);
 			addWillSyncopateAnnotation(level1Mu);
 //			phraseLengths = getPhraseLengthsUsingRoundedFloatBarDistanceBetweenStartNotes(reducedMu);
@@ -124,26 +131,30 @@ public class Mu037_RestartTheAnalysisStuff
 //			makePhraseBoundsBasedOnAverageInterOnsetDistance(level1Mu);
 			
 			// beat strength 0 reduction (line 5 of score)
-			Mu level0Mu = makeReducedMu(chordToneMu, 0, "reduce_0");
+			Mu level0Mu = makeReducedMu(chordToneMu, STRENGTH_OF_0, "reduce_0", LENGTH_OF_QUARTER);
 			level0Mu.addTag(MuTag.PART_4);
 			addWillSyncopateAnnotation(level0Mu);
 //			phraseLengths = getPhraseLengthsUsingRoundedFloatBarDistanceBetweenStartNotes(muchReducedMu);
 //			addMuAnnotationsOnPhraseBarStarts(corpusInfo, muchReducedMu, phraseLengths);
 //			makePhraseBoundsBasedOnAverageInterOnsetDistance(level0Mu);
 			
-			totalMu.addMu(level2Mu, 0);
+//			totalMu.addMu(level2Mu, 0);
 			totalMu.addMu(level1Mu, 0);
-			totalMu.addMu(level0Mu, 0);
+//			totalMu.addMu(level0Mu, 0);
 			
 			// regenerate mu 
-			PooplinePackage pack = ArtefactToParameter.getPackFromMu(level2Mu);
+			PooplinePackage pack = ArtefactToParameter.getPackFromMu(level1Mu);
 			Poopline pipeline = new Poopline();
 			pipeline.setPrimaryPlugin(new ForceCreatePlugInsFromRepo(pipeline));
 			pack = pipeline.process(pack);
 			pack.getMu().addTag(MuTag.PART_5);
-			pack.getMu().setName("reduce_2\nreproduced");
-			pack.getMu().addTag(MuTag.PRINT_CHORDS);
+			pack.getMu().setName("reduce_1\nreproduced");
+//			pack.getMu().addTag(MuTag.PRINT_CHORDS);
+//			pack.getMu().setToGetLengthFromChildren();
 			totalMu.addMu(pack.getMu(), 0);
+			addWillSyncopateAnnotation(pack.getMu());
+			
+//			addMuIdAnnotationToAllMus(totalMu);
 			
 			String x = ContinuousIntegrator.outputMultiPartMuToXMLandLiveWithoutTimeStamp(
 					totalMu, 
@@ -155,6 +166,16 @@ public class Mu037_RestartTheAnalysisStuff
 			System.out.println(corpusInfo.str + " " + x);
 			
 		}		
+	}
+
+
+
+	private void addMuIdAnnotationToAllMus(Mu totalMu)
+	{
+		for (Mu mu: totalMu.getAllMus())
+		{
+			mu.addMuAnnotation(new MuAnnotation("muId:" + mu.getMuId(), 8, TextPlacement.PLACEMENT_ABOVE));
+		}
 	}
 
 
@@ -206,7 +227,7 @@ public class Mu037_RestartTheAnalysisStuff
 
 
 
-	private Mu makeReducedMu(Mu originalMu, int strengthThreshold, String aName)
+	private Mu makeReducedMu(Mu originalMu, int strengthThreshold, String aName, double lengthInQuarters)
 	{
 		Mu reducedMu = new Mu(aName);
 //		reducedMu.setChordListGenerator(
@@ -222,14 +243,19 @@ public class Mu037_RestartTheAnalysisStuff
 				int strength = (int)mu.getMuTagBundleContaining(MuTag.BEAT_STRENGTH)
 						.get(0)
 						.getNamedParameter(MuTagNamedParameter.BEAT_STRENGTH_VALUE);
-				if (strength <= strengthThreshold)
+				BarsAndBeats position = getDeSyncopatedPosition(mu);
+				double positionInQuarters = mu.getPositionInQuarters(position);
+				if (positionInQuarters >= 0.0)
 				{
-					Mu nuMu = new Mu("st");
-					nuMu.setLengthInQuarters(1.0);
-					BarsAndBeats position = getDeSyncopatedPosition(mu);
-					copyMuNotesToNuMu(mu, nuMu);
-					reducedMu.addMu(nuMu, position);
-					addWillSyncopateTag(mu, nuMu);
+					if (strength <= strengthThreshold)
+					{
+						Mu nuMu = new Mu("st");
+						nuMu.setLengthInQuarters(lengthInQuarters);
+						copyMuNotesToNuMu(mu, nuMu);
+						nuMu.addTag(MuTag.IS_STRUCTURE_TONE);
+						reducedMu.addMu(nuMu, position);
+						addWillSyncopateTag(mu, nuMu);
+					}
 				}
 			}
 		}

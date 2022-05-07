@@ -13,40 +13,40 @@ import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagBundle;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagNamedParameter;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.BooleanRepo;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneEvenlySpacedRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneSyncopationDoublePatternRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneSyncopationIntegerPatternRepo;
 
-public class StructureToneSyncopatorInQuartersRandom  extends PlugGeneric {
+public class StructureToneSyncopatorInQuartersFixed  extends PlugGeneric {
 	
 	public static final Logger logger = LogManager.getLogger(ShouldIUseTheStructureToneSyncopator.class);
 
 	private double[] syncopationInQuarters = new double[] {0.0, -0.5};
-	private int[][] options = new int[][] {
-			new int[] {0, 1},
-			new int[] {0, 1, 0},
-			new int[] {0, 1, 1},
-			new int[] {0, 1, 0, 0},
-			new int[] {0, 1, 1, 0},
-			new int[] {0, 0, 1},
-			new int[] {0, 0, 1, 0},
-			new int[] {0, 0, 1, 1},
-			new int[] {0, 0, 0, 1},
-			new int[] {1, 0},
-			new int[] {1, 0, 1},
-			new int[] {1, 0, 0},
-			new int[] {1, 0, 1, 1},
-			new int[] {1, 0, 0, 1},
-			new int[] {1, 1, 0},
-			new int[] {1, 1, 0, 1},
-			new int[] {1, 1, 0, 0},
-			new int[] {1, 1, 1, 0},
-					
-	};
+	private double[][] options = new double[][] {};
+//			new int[] {0, 1},
+//			new int[] {0, 1, 0},
+//			new int[] {0, 1, 1},
+//			new int[] {0, 1, 0, 0},
+//			new int[] {0, 1, 1, 0},
+//			new int[] {0, 0, 1},
+//			new int[] {0, 0, 1, 0},
+//			new int[] {0, 0, 1, 1},
+//			new int[] {0, 0, 0, 1},
+//			new int[] {1, 0},
+//			new int[] {1, 0, 1},
+//			new int[] {1, 0, 0},
+//			new int[] {1, 0, 1, 1},
+//			new int[] {1, 0, 0, 1},
+//			new int[] {1, 1, 0},
+//			new int[] {1, 1, 0, 1},
+//			new int[] {1, 1, 0, 0},
+//			new int[] {1, 1, 1, 0},
+//					
+//	};
 
 	BooleanRepo useStructureToneSyncopationRepo;
-	StructureToneSyncopationIntegerPatternRepo structureToneSyncopationRepo;
+	StructureToneSyncopationDoublePatternRepo structureToneSyncopationRepo;
 	
-	public StructureToneSyncopatorInQuartersRandom() {
+	public StructureToneSyncopatorInQuartersFixed() {
 		super(
 				Parameter.STRUCTURE_TONE_SYNCOPATION,
 				new Parameter[] {Parameter.USE_STRUCTURE_TONE_SYNCOPATOR}
@@ -54,7 +54,7 @@ public class StructureToneSyncopatorInQuartersRandom  extends PlugGeneric {
 	}
 	
 	
-	public StructureToneSyncopatorInQuartersRandom(double[] syncopationInQuarters, int[][] repPatterns) {
+	public StructureToneSyncopatorInQuartersFixed(double[] syncopationInQuarters, double[][] repPatterns) {
 		super(
 				Parameter.STRUCTURE_TONE_SYNCOPATION,
 				new Parameter[] {Parameter.USE_STRUCTURE_TONE_SYNCOPATOR}
@@ -86,14 +86,14 @@ public class StructureToneSyncopatorInQuartersRandom  extends PlugGeneric {
 	@Override
 	PooplinePackage makeRepo(PooplinePackage pack)
 	{
-		double rndValue = pack.getRnd().nextDouble();
-		structureToneSyncopationRepo = StructureToneSyncopationIntegerPatternRepo.builder()
-				.rndValue(rndValue)
-				.selectedOption((options[(int)(options.length * rndValue)]))
-				.options(options)
-				.className(getClass().getName())
-				.build();
-		pack.getRepo().put(Parameter.STRUCTURE_TONE_SYNCOPATION, structureToneSyncopationRepo);
+//		double rndValue = pack.getRnd().nextDouble();
+//		structureToneSyncopationRepo = StructureToneSyncopationIntegerPatternRepo.builder()
+//				.rndValue(rndValue)
+//				.selectedOption((options[(int)(options.length * rndValue)]))
+//				.options(options)
+//				.className(getClass().getName())
+//				.build();
+//		pack.getRepo().put(Parameter.STRUCTURE_TONE_SYNCOPATION, structureToneSyncopationRepo);
 		return pack;
 	}
 	
@@ -101,8 +101,8 @@ public class StructureToneSyncopatorInQuartersRandom  extends PlugGeneric {
 	@Override
 	void getRepoFromPack(PooplinePackage pack)
 	{
-		structureToneSyncopationRepo = (StructureToneSyncopationIntegerPatternRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_SYNCOPATION);
-
+		structureToneSyncopationRepo = (StructureToneSyncopationDoublePatternRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_SYNCOPATION);
+		syncopationInQuarters = structureToneSyncopationRepo.getSelectedOption();
 	}
 
 	
@@ -148,19 +148,20 @@ public class StructureToneSyncopatorInQuartersRandom  extends PlugGeneric {
 	private PooplinePackage addSyncopationsToMu(PooplinePackage pack) {
 		List<Mu> muList = pack.getMu().getMuWithTag(MuTag.IS_STRUCTURE_TONE);
 		Collections.sort(muList, Mu.globalPositionInQuartersComparator);
-		int[] indexArr = structureToneSyncopationRepo.getSelectedOption();
+//		int[] indexArr = structureToneSyncopationRepo.getSelectedOption();
 		int index = 0;
 		for (Mu mu: muList) {
-			double sync = syncopationInQuarters[indexArr[index]];
+			double sync = syncopationInQuarters[index];
 			if (sync != 0.0) {
 				double globalPositionBeforeSyncopation = mu.getGlobalPositionInQuarters();
 				MuTagBundle bundle = new MuTagBundle(MuTag.IS_SYNCOPATION);
 				bundle.addNamedParameter(MuTagNamedParameter.SYNCOPATED_BEAT_GLOBAL_POSITION, globalPositionBeforeSyncopation);
+				bundle.addNamedParameter(MuTagNamedParameter.SYNCOPATED_OFFSET_IN_QUARTERS, sync);
 				mu.movePosition(sync);
 				mu.addMuTagBundle(bundle);
 			}
 			index++;
-			if (index == indexArr.length) index = 0;
+			if (index == syncopationInQuarters.length) index = 0;
 		}
 		return pack;
 	}

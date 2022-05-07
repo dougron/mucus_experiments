@@ -22,6 +22,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.Should
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StartNoteMelodyRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneEvenlySpacedFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneEvenlySpacedRandom;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneSyncopatorInQuartersFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneSyncopatorInQuartersRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneUnevenlySpacedFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TempoRandom;
@@ -30,7 +31,6 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.Tessit
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TimeSignatureSingleRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.VectorChordTonesFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.XmlKeyRandom;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.ChordProgressionRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.DurationFixedInQuartersRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.DurationPatternRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.LoopModelRepo;
@@ -98,8 +98,10 @@ public class PluginFactory
 			return getBooleanRepoRelatedPlugin(repo);
 		case "StartNoteRepo":
 			return getStartNotePlugin(repo);
-		case "StructureToneSyncopationRepo":
-			return getStructureToneSyncopationPlugin(repo);
+		case "StructureToneSyncopationIntegerPatternRepo":
+			return getStructureToneSyncopationIntegerPlugin(repo);
+		case "StructureToneSyncopationDoublePatternRepo":
+			return getStructureToneSyncopationDoublePlugin(repo);
 		case "TempoRepo":
 			return getTempoPlugin(repo);
 		case "TessituraRepo":
@@ -154,10 +156,18 @@ public class PluginFactory
 
 
 	
-	private static PooplinePlugin getStructureToneSyncopationPlugin(RepoInterface repo)
+	private static PooplinePlugin getStructureToneSyncopationIntegerPlugin(RepoInterface repo)
 	{
 		// currently only 1
 		return new StructureToneSyncopatorInQuartersRandom();
+	}
+	
+	
+	
+	private static PooplinePlugin getStructureToneSyncopationDoublePlugin(RepoInterface repo)
+	{
+		// currently only 1
+		return new StructureToneSyncopatorInQuartersFixed();
 	}
 
 
@@ -277,7 +287,7 @@ public class PluginFactory
 	
 	private static PooplinePlugin getChordProgressionPlugin(RepoInterface repo)
 	{
-		ChordProgressionRepo nurepo = (ChordProgressionRepo)repo;
+//		ChordProgressionRepo nurepo = (ChordProgressionRepo)repo;
 		String cName = repo.getClassName();
 		String[] split = cName.split("\\.");
 		if (split.length == 0)

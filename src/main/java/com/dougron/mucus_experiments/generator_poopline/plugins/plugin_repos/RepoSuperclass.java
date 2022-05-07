@@ -81,6 +81,17 @@ public class RepoSuperclass
 		}
 		return brr;
 	}
+
+	
+	public double[][] getCopy(double[][] arr)
+	{
+		double[][] brr = new double[arr.length][];
+		for (int i = 0; i < arr.length; i++)
+		{
+			brr[i] = arr[i];
+		}
+		return brr;
+	}
 	
 	
 	public TimeSignature[] getCopy(TimeSignature[] arr)
