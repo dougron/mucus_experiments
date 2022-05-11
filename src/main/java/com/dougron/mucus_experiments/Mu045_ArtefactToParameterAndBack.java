@@ -35,6 +35,13 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TimeSi
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.XmlKeyRandom;
 import main.java.da_utils.render_name.RenderName;
 
+
+
+/*
+ * seems that as of 9 May 2022, this does not do the 'and back' part of the name
+ * 
+ * generates a mu but does not convert back to paramters
+ */
 public class Mu045_ArtefactToParameterAndBack
 {
 	

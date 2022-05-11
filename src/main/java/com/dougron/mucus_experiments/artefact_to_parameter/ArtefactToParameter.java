@@ -1,5 +1,9 @@
 package main.java.com.dougron.mucus_experiments.artefact_to_parameter;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -7,9 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -78,6 +80,7 @@ public class ArtefactToParameter
 		pack = addChordProgression(aMu, pack);
 		pack = addReposForStructureTones(aMu, pack);
 		
+		pack = addEmbellishmentRepos(aMu, pack);
 		
 		
 		return pack;
@@ -94,7 +97,12 @@ public class ArtefactToParameter
 	}
 
 	
-	
+	/*
+	 * currently assumes that aMu is a chord tone reduction which contains references to the original 
+	 * chord tones using the HISTORY MuTag and the ORIGINAL_MU MuTagNamedParameter
+	 * 
+	 * without the above, nothing will be generated for embellishments
+	 */
 	private static PooplinePackage addReposForStructureTones(Mu aMu, PooplinePackage pack)
 	{
 		pack = addStartNoteRepo(aMu, pack);
@@ -111,6 +119,124 @@ public class ArtefactToParameter
 
 		
 	
+	private static PooplinePackage addEmbellishmentRepos(Mu aMu, PooplinePackage pack)
+	{
+		List<EmbellishmentSchema> schemaList = getEmbellishmentSchemaList(aMu, pack);
+		try
+		{
+			BufferedWriter bw = new BufferedWriter(new FileWriter(new File("./artefactToParamter.log")));
+			for (EmbellishmentSchema schema: schemaList)
+			{
+				bw.write(schema.toString());
+				bw.write("\tquarters" + Arrays.toString(EmbellishmentSchema.getForwardQuartersSpacing(schema)) + "\n");
+				bw.write("\tquarters" + Arrays.toString(EmbellishmentSchema.getBackwardQuartersSpacing(schema)) + "\n");
+				bw.write("\tfloatBars" + Arrays.toString(EmbellishmentSchema.getForwardFloatBarsSpacing(schema)) + "\n");
+				bw.write("\tfloatBars" + Arrays.toString(EmbellishmentSchema.getBackwardFloatBarsSpacing(schema)) + "\n");
+				bw.write("\trelativeRhythmicPosition" + Arrays.toString(EmbellishmentSchema.getForwardRelativeRhythmicSpacing(schema)) + "\n");
+				bw.write("\trelativeRhythmicPosition" + Arrays.toString(EmbellishmentSchema.getBackwardRelativeRhythmicSpacing(schema)) + "\n");
+				bw.write("\tsemitones" + Arrays.toString(EmbellishmentSchema.getForwardSemitoneSpacing(schema)) + "\n");
+				bw.write("\tsemitones" + Arrays.toString(EmbellishmentSchema.getBackwardSemitoneSpacing(schema)) + "\n");
+				bw.write("\tdiatonic_steps" + Arrays.toString(EmbellishmentSchema.getForwardDiatonicSpacing(schema)) + "\n");
+				bw.write("\tdiatonic_steps" + Arrays.toString(EmbellishmentSchema.getBackwardDiatonicSpacing(schema)) + "\n");
+			}
+			bw.close();
+		} 
+		catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return pack;
+	}
+
+
+
+	private static List<EmbellishmentSchema> getEmbellishmentSchemaList(Mu aMu, PooplinePackage pack)
+	{
+		List<EmbellishmentSchema> schemaList = new ArrayList<EmbellishmentSchema>();
+		Mu previousStructureTone = null;
+		int currentBar = 0;
+		for (Mu structureTone: aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE))
+		{
+//			System.out.println("structureTone: " + structureTone.getName() + " " + structureTone.getGlobalPositionInQuarters());
+			currentBar = structureTone.getGlobalPositionInBars();
+			Mu originalStructureTone = getOriginalStructureToneFromHistoryTag(structureTone);
+			Mu previousMu = originalStructureTone.getPreviousMu();
+			EmbellishmentSchema schema = new EmbellishmentSchema();
+			addAMuToSchemaList(structureTone, schema);
+			while (true)
+			{
+				if (previousMu == null)
+				{
+					addPlaceholderNoteInfoForBeginningOfBarOfVeryFirstNote(aMu, pack, currentBar, schema);
+					break;
+				}
+				if (previousMu == previousStructureTone)
+				{
+					addAMuToSchemaList(previousMu, schema);
+					break;
+				}
+				addAMuToSchemaList(previousMu, schema);
+				currentBar = previousMu.getGlobalPositionInBars();
+				previousMu = previousMu.getPreviousMu();
+			}
+			previousStructureTone = originalStructureTone;
+			schemaList.add(schema);
+		}
+		return schemaList;
+	}
+
+
+
+	private static void addAMuToSchemaList(Mu aMu, EmbellishmentSchema schema)
+	{
+		schema.add(NoteInfo.builder()
+				.positionInQuarters(aMu.getGlobalPositionInQuarters())
+				.positionInFloatBars(aMu.getGlobalPositionInFloatBars())
+				.positionInBarsAndBeats(aMu.getGlobalPositionInBarsAndBeats())
+				.relatedMu(aMu)
+				.pitch(aMu.getTopPitch())
+				.build());
+	}
+
+
+
+	private static void addPlaceholderNoteInfoForBeginningOfBarOfVeryFirstNote(Mu aMu, PooplinePackage pack,
+			int currentBar, EmbellishmentSchema schema)
+	{
+		StartNoteRepo repo = (StartNoteRepo)pack.getRepo().get(Parameter.START_NOTE);
+		int pitch = repo.getSelectedValue();
+		schema.add(NoteInfo.builder()
+				.positionInQuarters(aMu.getGlobalPositionInQuarters(BarsAndBeats.at(currentBar, 0.0)))
+				.positionInFloatBars(currentBar)
+				.positionInBarsAndBeats(BarsAndBeats.at(currentBar, 0.0))
+				.pitch(pitch)
+				.build());
+	}
+	
+	
+	private static PooplinePackage makeListOfEmbellishmentSchemas(Mu aMu, PooplinePackage pack)
+	{
+		
+		
+		return pack;
+	}
+
+
+
+	private static Mu getOriginalStructureToneFromHistoryTag(Mu structureTone)
+	{
+		Mu originalStructureTone = null;
+		List<MuTagBundle> bundleList = structureTone.getMuTagBundleContaining(MuTag.HISTORY);
+		if (bundleList.size() > 0)
+		{
+			originalStructureTone = (Mu)bundleList.get(0).getNamedParameter(MuTagNamedParameter.ORIGINAL_MU);
+		}
+		return originalStructureTone;
+	}
+
+
+
 	private static PooplinePackage addStructureToneSyncopation(Mu aMu, PooplinePackage pack)
 	{
 		List<Mu> structureTones = aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE);
@@ -514,16 +640,23 @@ public class ArtefactToParameter
 		
 		Map<Double, String> floatBarChordMap = new HashMap<Double, String>();
 		// fyi, Mu makes a chordlist if none exists
-		for (ChordEvent ce: aMu.getMuSpecificParentChordListExcerpt().getChordEventList())
+		List<ChordEvent> ceList = aMu.getMuSpecificParentChordListExcerpt().getChordEventList();
+		for (ChordEvent ce: ceList)
 		{
 			Chord chord = ce.getChord();
 			BarsAndBeats position = ce.getPositionInBarsAndBeats();
 			TimeSignature ts = aMu.getTimeSignature(position.getBarPosition());
 			double positionInFloatBars = position.getBarPosition() + position.getOffsetInQuarters() / ts.getLengthInQuarters();
 			String chordName = null;
-			if (chord != null) chordName = chord.getAssociatedChordInKeyObject().chordSymbol();
+			if (chord != null) 
+			{
+				if (chord.getAssociatedChordInKeyObject() != null)
+				{
+					chordName = chord.getAssociatedChordInKeyObject().chordSymbol();
+				}
+			}
 			logger.debug("adding chord: " + chordName + " at " + positionInFloatBars + " floatBars");
-			floatBarChordMap.put(positionInFloatBars, chord.getAssociatedChordInKeyObject().chordSymbol());
+			floatBarChordMap.put(positionInFloatBars, chordName);
 		}
 		ChordProgressionRepo repo = ChordProgressionRepo.builder()
 				.rndValue(new double[] {0.1, 0.2})

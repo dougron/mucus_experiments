@@ -75,8 +75,8 @@ public class Mu037_RestartTheAnalysisStuff
 //						new IntAndString(-2, "Anthropology"),
 //						new IntAndString(-2, "Anthropollywoggle"),	// 'Anthropology' with extended chords
 //						new IntAndString(-3, "BlueBossa"),
-//						new IntAndString(0, "BlackOrpheus"),
-						new IntAndString(0, "BlackOrpheus_phrase1"),
+						new IntAndString(0, "BlackOrpheus"),
+//						new IntAndString(0, "BlackOrpheus_phrase1"),
 //						new IntAndString(-2, "Stella"),
 //						new IntAndString(-1, "Confirmation"),
 				};
@@ -209,10 +209,20 @@ public class Mu037_RestartTheAnalysisStuff
 				Mu nuMu = new Mu("ct");
 				nuMu.setLengthInQuarters(mu.getLengthInQuarters());
 				copyMuNotesToNuMu(mu, nuMu);
+				nuMu.addMuTagBundle(getHistoryMuTagBundle(mu));
 				reducedMu.addMu(nuMu, position);
 			}
 		}
 		return reducedMu;
+	}
+
+
+
+	private MuTagBundle getHistoryMuTagBundle(Mu mu)
+	{
+		MuTagBundle bundle = new MuTagBundle(MuTag.HISTORY);
+		bundle.addNamedParameter(MuTagNamedParameter.ORIGINAL_MU, mu);
+		return bundle;
 	}
 
 
@@ -255,11 +265,24 @@ public class Mu037_RestartTheAnalysisStuff
 						nuMu.addTag(MuTag.IS_STRUCTURE_TONE);
 						reducedMu.addMu(nuMu, position);
 						addWillSyncopateTag(mu, nuMu);
+						copyHistoryMuTag(mu, nuMu);
 					}
 				}
 			}
 		}
 		return reducedMu;
+	}
+
+
+
+	private void copyHistoryMuTag(Mu originalMu, Mu newMu)
+	{
+		List<MuTagBundle> bundleList = originalMu.getMuTagBundleContaining(MuTag.HISTORY);
+		for (MuTagBundle bundle: bundleList)
+		{
+			newMu.addMuTagBundle(bundle);
+		}
+		
 	}
 
 
