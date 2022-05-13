@@ -11,10 +11,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import main.java.com.dougron.mucus.algorithms.mu_chord_tone_and_embellishment.ChordToneAndEmbellishmentTagger;
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.Parameter;
 import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.chord_list.Chord;
@@ -49,6 +52,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TimeSignatureRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.VectorChordTonesRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.XmlKeyRepo;
+import main.java.da_utils.combo_variables.IntAndInt;
 import main.java.da_utils.time_signature_utilities.time_signature.TimeSignature;
 
 public class ArtefactToParameter
@@ -71,7 +75,7 @@ public class ArtefactToParameter
 	
 	public static PooplinePackage getPackFromMu(Mu aMu)
 	{
-//		ChordToneAndEmbellishmentTagger.addTags(aMu);
+		ChordToneAndEmbellishmentTagger.addTags(aMu);
 		justForNowConvertChordTonesToStructureTones(aMu);
 		PooplinePackage pack = new PooplinePackage(aMu.getName(), new Random());
 		pack = addPhraseLengthSetLengthRepo(aMu, pack);
@@ -127,7 +131,7 @@ public class ArtefactToParameter
 			BufferedWriter bw = new BufferedWriter(new FileWriter(new File("./artefactToParamter.log")));
 			for (EmbellishmentSchema schema: schemaList)
 			{
-				bw.write(schema.toString());
+				bw.write("\n" + schema.toString());
 				bw.write("\tquarters" + Arrays.toString(EmbellishmentSchema.getForwardQuartersSpacing(schema)) + "\n");
 				bw.write("\tquarters" + Arrays.toString(EmbellishmentSchema.getBackwardQuartersSpacing(schema)) + "\n");
 				bw.write("\tfloatBars" + Arrays.toString(EmbellishmentSchema.getForwardFloatBarsSpacing(schema)) + "\n");
@@ -136,8 +140,24 @@ public class ArtefactToParameter
 				bw.write("\trelativeRhythmicPosition" + Arrays.toString(EmbellishmentSchema.getBackwardRelativeRhythmicSpacing(schema)) + "\n");
 				bw.write("\tsemitones" + Arrays.toString(EmbellishmentSchema.getForwardSemitoneSpacing(schema)) + "\n");
 				bw.write("\tsemitones" + Arrays.toString(EmbellishmentSchema.getBackwardSemitoneSpacing(schema)) + "\n");
-				bw.write("\tdiatonic_steps" + Arrays.toString(EmbellishmentSchema.getForwardDiatonicSpacing(schema)) + "\n");
-				bw.write("\tdiatonic_steps" + Arrays.toString(EmbellishmentSchema.getBackwardDiatonicSpacing(schema)) + "\n");
+				
+				Stream<IntAndInt> stream1 = Arrays.stream(EmbellishmentSchema.getForwardDiatonicSpacing(schema));
+				List<String> toString1 = stream1.map(x -> x.toString()).collect(Collectors.toList());
+				bw.write("\tdiatonic_steps" + toString1.toString() + "\n");
+				Stream<IntAndInt> stream2 = Arrays.stream(EmbellishmentSchema.getBackwardDiatonicSpacing(schema));
+				List<String> toString2 = stream2.map(x -> x.toString()).collect(Collectors.toList());
+				bw.write("\tdiatonic_steps" + toString2.toString() + "\n");
+				
+				bw.write("\tchordtones" + Arrays.toString(EmbellishmentSchema.getForwardChordToneSpacing(schema)) + "\n");
+				bw.write("\tchordtones" + Arrays.toString(EmbellishmentSchema.getBackwardChordToneSpacing(schema)) + "\n");
+				
+				bw.write("\tembellishment_tags\n");
+				int index = 0;
+				for (List<MuTagBundle> muTagList: EmbellishmentSchema.getEmbellishmentTagLists(schema))
+				{
+					bw.write("\t\tindex=" + index + ": " + muTagList.toString() + "\n");
+				}
+				
 			}
 			bw.close();
 		} 

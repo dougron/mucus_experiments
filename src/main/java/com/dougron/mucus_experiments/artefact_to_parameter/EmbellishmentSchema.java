@@ -1,6 +1,9 @@
 package main.java.com.dougron.mucus_experiments.artefact_to_parameter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import lombok.Builder;
 import lombok.Data;
@@ -9,6 +12,7 @@ import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.chord_list.Chord;
 import main.java.com.dougron.mucus.mu_framework.data_types.BarsAndBeats;
 import main.java.com.dougron.mucus.mu_framework.data_types.RelativeRhythmicPosition;
+import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagBundle;
 import main.java.da_utils.combo_variables.IntAndInt;
 
 public class EmbellishmentSchema extends ArrayList<NoteInfo>
@@ -205,7 +209,53 @@ public class EmbellishmentSchema extends ArrayList<NoteInfo>
 		{
 			currentInfo = schema.get(i);
 			nextInfo = schema.get(i - 1);
-			arr[index] = new IntAndInt(0, 0);
+			Chord firstChord;
+			if (currentInfo.getRelatedMu() == null)
+			{
+				firstChord = nextInfo.getRelatedMu().getPrevailingChord();
+			}
+			else
+			{
+				firstChord = currentInfo.getRelatedMu().getPrevailingChord();
+			}
+			arr[index] = getDiatonicSpacing(
+					currentInfo.getPitch(), 
+					firstChord, 
+					nextInfo.getPitch(), 
+					nextInfo.getRelatedMu().getPrevailingChord()
+					);
+			index++;
+		}
+		return arr;
+	}
+
+	
+	
+	public static IntAndInt[] getBackwardDiatonicSpacing(EmbellishmentSchema schema)
+	{
+		IntAndInt[] arr = new IntAndInt[schema.size() - 1];
+		int index = 0;
+		NoteInfo currentInfo;
+		NoteInfo nextInfo;
+		for (int i = schema.size() - 1; i > 0; i--)
+		{
+			currentInfo = schema.get(i - 1);
+			nextInfo = schema.get(i);
+			Chord nextChord;
+			if (nextInfo.getRelatedMu() == null)
+			{
+				nextChord = currentInfo.getRelatedMu().getPrevailingChord();
+			}
+			else
+			{
+				nextChord = nextInfo.getRelatedMu().getPrevailingChord();
+			}
+			arr[index] = getDiatonicSpacing(
+					currentInfo.getPitch(), 
+					currentInfo.getRelatedMu().getPrevailingChord(),
+					nextInfo.getPitch(), 
+					nextChord
+					);
 			index++;
 		}
 		return arr;
@@ -254,24 +304,116 @@ public class EmbellishmentSchema extends ArrayList<NoteInfo>
 		}
 		return new IntAndInt(count, semi);
 	}
-	
-	
-	
-	public static int[] getBackwardDiatonicSpacing(EmbellishmentSchema schema)
+
+
+	public static Integer[] getForwardChordToneSpacing(EmbellishmentSchema schema)
 	{
-		int[] arr = new int[schema.size() - 1];
+		Integer[] arr = new Integer[schema.size() - 1];
 		int index = 0;
 		NoteInfo currentInfo;
 		NoteInfo nextInfo;
-		for (int i = schema.size() - 2; i >= 0; i--)
+		for (int i = schema.size() - 1; i > 0; i--)
 		{
 			currentInfo = schema.get(i);
-			nextInfo = schema.get(i + 1);
-			arr[index] = nextInfo.getPitch() - currentInfo.getPitch();
+			nextInfo = schema.get(i - 1);
+			Chord nextChord = nextInfo.getRelatedMu().getPrevailingChord();
+			if (nextChord.isChordTone(nextInfo.getPitch()))
+			{
+				if (currentInfo.getPitch() == nextInfo.getPitch())
+				{
+					arr[index] = 0;
+				}
+				else
+				{
+					int vector  = (int)Math.signum(nextInfo.getPitch() - currentInfo.getPitch());
+					int count = 0;
+					int currentNote = currentInfo.getPitch();
+					int closestChordTone;
+					while (true)
+					{
+						count += vector;
+						closestChordTone = nextChord.getClosestChordTone(currentNote, vector);
+						if (closestChordTone == nextInfo.getPitch())
+						{
+							arr[index] = count;
+							break;
+						}
+						currentNote = closestChordTone;
+					}
+				}
+			}
+			else
+			{
+				arr[index] = null;
+			}
 			index++;
 		}
 		return arr;
 	}
+	
+	
+	
+	public static Integer[] getBackwardChordToneSpacing(EmbellishmentSchema schema)
+	{
+		Integer[] arr = new Integer[schema.size() - 1];
+		int index = 0;
+		NoteInfo currentInfo;
+		NoteInfo nextInfo;
+		for (int i = schema.size() - 1; i > 0; i--)
+		{
+			currentInfo = schema.get(i - 1);
+			nextInfo = schema.get(i);
+			Mu relatedMu = nextInfo.getRelatedMu();
+			if (relatedMu == null) relatedMu = currentInfo.getRelatedMu();
+			Chord nextChord = relatedMu.getPrevailingChord();
+			if (nextChord.isChordTone(nextInfo.getPitch()))
+			{
+				if (currentInfo.getPitch() == nextInfo.getPitch())
+				{
+					arr[index] = 0;
+				}
+				else
+				{
+					int vector  = (int)Math.signum(nextInfo.getPitch() - currentInfo.getPitch());
+					int count = 0;
+					int currentNote = currentInfo.getPitch();
+					int closestChordTone;
+					while (true)
+					{
+						count += vector;
+						closestChordTone = nextChord.getClosestChordTone(currentNote, vector);
+						if (closestChordTone == nextInfo.getPitch())
+						{
+							arr[index] = count;
+							break;
+						}
+						currentNote = closestChordTone;
+					}
+				}
+			}
+			else
+			{
+				arr[index] = null;
+			}
+			index++;
+		}
+		return arr;
+	}
+
+
+	public static List<List<MuTagBundle>> getEmbellishmentTagLists(EmbellishmentSchema schema)
+	{
+		List<List<MuTagBundle>> list = new ArrayList<List<MuTagBundle>>();
+		for (int i = 1; i < schema.size() - 1; i++)
+		{
+			List<MuTagBundle> bundleList = Arrays.stream(schema.get(i).getRelatedMu().getMuTagBundles())
+					.map(x -> x)
+					.collect(Collectors.toList());
+			list.add(bundleList);
+		}
+		return list;
+	}
+	
 	
 	
 }

@@ -87,6 +87,16 @@ public class Mu037_RestartTheAnalysisStuff
 			originalMu.setHasLeadingDoubleBar(true);
 			originalMu.addTag(MuTag.PRINT_CHORDS);
 			
+			for (Mu mu: originalMu.getMusWithNotes())
+			{
+				System.out.println(
+						mu.getGlobalPositionInBarsAndBeats().toString() 
+						+ ": " 
+								+ (mu.getPrevailingChord() == null 
+								? "null" 
+								: mu.getPrevailingChord().getChordAnalysisString()));
+			}
+			
 			ChordToneAndEmbellishmentTagger.addTags(originalMu);
 			
 			annotateChordTones(originalMu);

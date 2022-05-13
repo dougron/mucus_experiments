@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import main.java.com.dougron.mucus.algorithms.mu_chord_tone_and_embellishment.ChordToneAndEmbellishmentTagger;
 import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.chord_list.Chord;
 import main.java.com.dougron.mucus.mu_framework.data_types.BarsAndBeats;
@@ -229,6 +230,7 @@ class ArtefactToParameter_Tests
 
 	private PooplinePackage getPackFromPipelineWithForceCreatePlugin(Mu mu)
 	{
+//		ChordToneAndEmbellishmentTagger.addTags(mu);
 		PooplinePackage pack = ArtefactToParameter.getPackFromMu(mu);
 		Poopline pipeline = new Poopline();
 		pipeline.setPrimaryPlugin(new ForceCreatePlugInsFromRepo(pipeline));

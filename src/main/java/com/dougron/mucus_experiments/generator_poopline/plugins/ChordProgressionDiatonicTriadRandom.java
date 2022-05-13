@@ -550,8 +550,8 @@ public class ChordProgressionDiatonicTriadRandom extends PlugGeneric implements 
 		
 		// this was a previous evaluation of enoughBars, which fails for ArtefactToParameter
 		// keeping it here cos failures will emerge here again
-//		return phRepo.getSelectedValue() <= dtRepo.getRndValue().length;
-		return true;
+		return phRepo.getSelectedValue() <= dtRepo.getRndValue().length;
+//		return true;
 	}
 
 

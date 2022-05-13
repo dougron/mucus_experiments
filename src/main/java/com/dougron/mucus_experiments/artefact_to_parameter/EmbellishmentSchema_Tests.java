@@ -82,7 +82,8 @@ class EmbellishmentSchema_Tests
 		assertThat(spacing.i2).isEqualTo(0);
 	}
 
-	
+
+// privates ---------------------------------------------------------------------
 	
 	private Mu getMu(
 			int pitch1, 
