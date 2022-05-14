@@ -79,6 +79,9 @@ public class Mu037_RestartTheAnalysisStuff
 //						new IntAndString(0, "BlackOrpheus_phrase1"),
 //						new IntAndString(-2, "Stella"),
 //						new IntAndString(-1, "Confirmation"),
+//						new IntAndString(0, "SyncError"),
+//						new IntAndString(0, "PitchError"),
+						
 				};
 		
 		for (IntAndString corpusInfo: songNames)

@@ -12,6 +12,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.Contou
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ContourMultiplierRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationFixedInQuarters;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationPattern;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.EmbellishmentFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.LoopModelSetter;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PatternEmbellisherRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseBoundPercentRandom;
@@ -82,6 +83,8 @@ public class PluginFactory
 			return getDurationPatternPlugin(repo);
 		case "DurationFixedInQuartersRepo":
 			return getDurationFixedInQuartersPlugin(repo);
+		case "EmbellishmentFixedRepo":
+			return getEmbellishmentFixedPlugin(repo);
 		case "StructureToneEvenlySpacedRepo":
 			return getStructureToneEvenlySpacedPlugin(repo);
 		case "StructureToneUnevenlySpacedRepo":
@@ -121,6 +124,13 @@ public class PluginFactory
 
 	
 	
+	private static PooplinePlugin getEmbellishmentFixedPlugin(RepoInterface repo)
+	{
+		return new EmbellishmentFixed();
+	}
+
+
+
 	private static PooplinePlugin getVectorChordTonesPlugin(RepoInterface repo)
 	{
 		// currently only 1

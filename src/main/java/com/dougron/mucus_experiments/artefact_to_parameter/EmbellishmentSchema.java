@@ -5,12 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
 import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.chord_list.Chord;
-import main.java.com.dougron.mucus.mu_framework.data_types.BarsAndBeats;
 import main.java.com.dougron.mucus.mu_framework.data_types.RelativeRhythmicPosition;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagBundle;
 import main.java.da_utils.combo_variables.IntAndInt;
@@ -416,16 +412,4 @@ public class EmbellishmentSchema extends ArrayList<NoteInfo>
 	
 	
 	
-}
-
-
-@Builder
-@Data
-class NoteInfo
-{
-	private double positionInQuarters;
-	private double positionInFloatBars;
-	private BarsAndBeats positionInBarsAndBeats;
-	private int pitch;
-	@ToString.Exclude Mu relatedMu;	
 }

@@ -29,6 +29,7 @@ import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagNamedParameter;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ChordProgressionFloatBarFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationFixedInQuarters;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.EmbellishmentFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseBoundPercentSetAmount;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseLengthSetLength;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ShouldIUseTheStructureToneSyncopator;
@@ -42,6 +43,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.XmlKey
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.BooleanRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.ChordProgressionRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.DurationFixedInQuartersRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.EmbellishmentFixedRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseBoundRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseLengthRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StartNoteRepo;
@@ -126,6 +128,19 @@ public class ArtefactToParameter
 	private static PooplinePackage addEmbellishmentRepos(Mu aMu, PooplinePackage pack)
 	{
 		List<EmbellishmentSchema> schemaList = getEmbellishmentSchemaList(aMu, pack);
+		makeArtefactToParameterLog(schemaList);
+		EmbellishmentFixedRepo repo = EmbellishmentFixedRepo.builder()
+				.schemaList(schemaList)
+				.className(EmbellishmentFixed.class.getName())
+				.build();
+		pack.getRepo().put(Parameter.PATTERN_EMBELLISHER, repo);
+		return pack;
+	}
+
+
+
+	private static void makeArtefactToParameterLog(List<EmbellishmentSchema> schemaList)
+	{
 		try
 		{
 			BufferedWriter bw = new BufferedWriter(new FileWriter(new File("./artefactToParamter.log")));
@@ -166,7 +181,6 @@ public class ArtefactToParameter
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return pack;
 	}
 
 
@@ -183,7 +197,7 @@ public class ArtefactToParameter
 			Mu originalStructureTone = getOriginalStructureToneFromHistoryTag(structureTone);
 			Mu previousMu = originalStructureTone.getPreviousMu();
 			EmbellishmentSchema schema = new EmbellishmentSchema();
-			addAMuToSchemaList(structureTone, schema);
+			addAMuToSchemaListConsideringWillSyncopateTag(originalStructureTone, schema);
 			while (true)
 			{
 				if (previousMu == null)
@@ -208,12 +222,44 @@ public class ArtefactToParameter
 
 
 
+	private static void addAMuToSchemaListConsideringWillSyncopateTag(Mu aMu, EmbellishmentSchema schema)
+	{
+//		double globalPositionInQuarters;
+		BarsAndBeats globalPositionInBarsAndBeats;
+		double globalPositionInFloatBars;
+		List<MuTagBundle> bundleList =  aMu.getMuTagBundleContaining(MuTag.WILL_SYNCOPATE);
+		double globalPositionInQuarters = aMu.getGlobalPositionInQuarters();
+		if (bundleList.size() > 0)
+		{
+			globalPositionInQuarters += (double)bundleList.get(0).getNamedParameter(MuTagNamedParameter.SYNCOPATED_OFFSET_IN_QUARTERS);
+			globalPositionInBarsAndBeats = aMu.getGlobalPositionInBarsAndBeats(globalPositionInQuarters);
+			globalPositionInFloatBars = aMu.getGlobalPositionInFloatBars(globalPositionInQuarters);
+		}
+		else
+		{
+			globalPositionInBarsAndBeats = aMu.getGlobalPositionInBarsAndBeats();
+			globalPositionInFloatBars = aMu.getGlobalPositionInFloatBars();
+		}
+		schema.add(NoteInfo.builder()
+				.positionInQuarters(globalPositionInQuarters)
+				.positionInFloatBars(globalPositionInFloatBars)
+				.positionInBarsAndBeats(globalPositionInBarsAndBeats)
+				.relatedMu(aMu)
+				.pitch(aMu.getTopPitch())
+				.build());
+	}
+	
+	
+	
 	private static void addAMuToSchemaList(Mu aMu, EmbellishmentSchema schema)
 	{
+		double globalPositionInQuarters = aMu.getGlobalPositionInQuarters();
+		BarsAndBeats globalPositionInBarsAndBeats = aMu.getGlobalPositionInBarsAndBeats();
+		double globalPositionInFloatBars = aMu.getGlobalPositionInFloatBars();
 		schema.add(NoteInfo.builder()
-				.positionInQuarters(aMu.getGlobalPositionInQuarters())
-				.positionInFloatBars(aMu.getGlobalPositionInFloatBars())
-				.positionInBarsAndBeats(aMu.getGlobalPositionInBarsAndBeats())
+				.positionInQuarters(globalPositionInQuarters)
+				.positionInFloatBars(globalPositionInFloatBars)
+				.positionInBarsAndBeats(globalPositionInBarsAndBeats)
 				.relatedMu(aMu)
 				.pitch(aMu.getTopPitch())
 				.build());
@@ -451,7 +497,25 @@ public class ArtefactToParameter
 		List<Double> ioiList = getInterOnsetIntervals(structureTones);
 		List<Double> repeatingPattern = getRepeatingDoublePattern(ioiList);
 		
-		if (repeatingPattern.size() == 1)
+		// repeating pattern returning empty list means only one structure tone
+		// this throws the entire uneven structure tone thing into disarray
+		// should probably implement a startPositionInFloatBars and ditch the PhraseStartPercent
+		// will have to see how this works out, in the meantime will assume the position
+		// of the only structure tone in the bar is a way of fudging the current 
+		// approach, which kind of ties it to the structure tone resolution, which should 
+		// be around a resolution of 1.0 or 0.5....
+		if (repeatingPattern.size() == 0)	// there was only one structure tone
+		{
+			double fudge = structureTones.get(0).getGlobalPositionInFloatBars() % 1.0;
+			if (fudge == 0.0) fudge = 1;
+			StructureToneEvenlySpacedRepo repo = StructureToneEvenlySpacedRepo.builder()
+					.rndValue(0.5)
+					.selectedValueInFloatBars(fudge)
+					.className(StructureToneEvenlySpacedFixed.class.getName())
+					.build();
+			pack.getRepo().put(Parameter.STRUCTURE_TONE_SPACING, repo);
+		}
+		else if (repeatingPattern.size() == 1)
 		{
 			StructureToneEvenlySpacedRepo repo = StructureToneEvenlySpacedRepo.builder()
 					.rndValue(0.5)
