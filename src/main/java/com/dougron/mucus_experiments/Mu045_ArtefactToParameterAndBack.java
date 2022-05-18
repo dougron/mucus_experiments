@@ -97,8 +97,8 @@ public class Mu045_ArtefactToParameterAndBack
 		pipeline.addPlugin(new StructureToneEvenlySpacedRandom());
 		pipeline.addPlugin(new TessituraFixed(Parameter.TESSITURA_START_NOTE));
 		pipeline.addPlugin(new TessituraFixed(Parameter.TESSITURA_MELODY_RANGE));
-		pipeline.addPlugin(new TessituraSolverOneBreakpointRandom(Parameter.STRUCTURE_TONE_CONTOUR, MuTag.IS_SYNCOPATION));
-		pipeline.addPlugin(new DurationPattern(new DurationType[] {DurationType.STACCATO, DurationType.LEGATO}));
+		pipeline.addPlugin(new TessituraSolverOneBreakpointRandom(Parameter.STRUCTURE_TONE_GENERATOR, MuTag.IS_SYNCOPATION));
+		pipeline.addPlugin(new DurationPattern(new DurationType[] {DurationType.STACCATO, DurationType.LEGATO}, null));
 		pipeline.addPlugin(new ContourChordTonesRandom());
 		pipeline.setPrimaryPlugin(new RequiredPlugInsRunner(
 				new Parameter[] {
@@ -115,7 +115,7 @@ public class Mu045_ArtefactToParameterAndBack
 						Parameter.TESSITURA_START_NOTE, 
 						Parameter.START_NOTE, 
 						Parameter.STRUCTURE_TONE_MULTIPLIER, 
-						Parameter.STRUCTURE_TONE_CONTOUR, 
+						Parameter.STRUCTURE_TONE_GENERATOR, 
 						Parameter.TESSITURA_MELODY_RANGE,
 						Parameter.TESSITURA_SOLVER,
 //						Parameter.PATTERN_EMBELLISHER,
@@ -145,10 +145,10 @@ public class Mu045_ArtefactToParameterAndBack
 		pipeline.addPlugin(new ContourMultiplierRandom());
 		pipeline.addPlugin(new ContourChordTonesRandom());
 		pipeline.addPlugin(new TessituraFixed(Parameter.TESSITURA_MELODY_RANGE));
-		pipeline.addPlugin(new TessituraSolverOneBreakpointRandom(Parameter.STRUCTURE_TONE_CONTOUR, MuTag.IS_STRUCTURE_TONE));
+		pipeline.addPlugin(new TessituraSolverOneBreakpointRandom(Parameter.STRUCTURE_TONE_GENERATOR, MuTag.IS_STRUCTURE_TONE));
 //		pipeline.addPlugin(new PatternEmbellisherRandom());
 //		pipeline.addPlugin(new DurationPattern(new DurationType[] {DurationType.LEGATO, DurationType.STACCATO}));
-		pipeline.addPlugin(new DurationPattern(new DurationType[] {DurationType.STACCATO, DurationType.LEGATO}));
+		pipeline.addPlugin(new DurationPattern(new DurationType[] {DurationType.STACCATO, DurationType.LEGATO}, null));
 		pipeline.setPrimaryPlugin(new RequiredPlugInsRunner(
 				new Parameter[] {
 						Parameter.PHRASE_LENGTH,
@@ -164,7 +164,7 @@ public class Mu045_ArtefactToParameterAndBack
 						Parameter.TESSITURA_START_NOTE, 
 						Parameter.START_NOTE, 
 						Parameter.STRUCTURE_TONE_MULTIPLIER, 
-						Parameter.STRUCTURE_TONE_CONTOUR, 
+						Parameter.STRUCTURE_TONE_GENERATOR, 
 						Parameter.TESSITURA_MELODY_RANGE,
 						Parameter.TESSITURA_SOLVER,
 //						Parameter.PATTERN_EMBELLISHER,

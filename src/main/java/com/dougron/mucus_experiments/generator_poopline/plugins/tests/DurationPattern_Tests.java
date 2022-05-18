@@ -21,7 +21,7 @@ class DurationPattern_Tests {
 
 	@Test
 	void instantiates() {
-		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.LEGATO});
+		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.LEGATO}, null);
 		assertThat(plug).isNotNull();
 	}
 	
@@ -40,7 +40,7 @@ class DurationPattern_Tests {
 		Mu note2 = new Mu("note2");
 		note2.addMuNote(new MuNote(64, 64));
 		parent.addMu(note2, 2);
-		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.LEGATO});
+		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.LEGATO}, null);
 		pack = plug.process(pack);
 		assertThat(note1.getLengthInQuarters()).isEqualTo(4.0);
 	}
@@ -60,7 +60,7 @@ class DurationPattern_Tests {
 		Mu note2 = new Mu("note2");
 		note2.addMuNote(new MuNote(64, 64));
 		parent.addMu(note2, 2);
-		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.LEGATO});
+		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.LEGATO}, null);
 		pack = plug.process(pack);
 		assertThat(note2.getLengthInQuarters()).isEqualTo(4.0);
 	}
@@ -83,7 +83,7 @@ class DurationPattern_Tests {
 		MuTagBundle bundle = new MuTagBundle(MuTag.IS_SYNCOPATION);
 		bundle.addNamedParameter(MuTagNamedParameter.SYNCOPATED_BEAT_GLOBAL_POSITION, 8.0);
 		note2.addMuTagBundle(bundle);
-		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.LEGATO});
+		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.LEGATO}, null);
 		pack = plug.process(pack);
 		assertThat(note2.getLengthInQuarters()).isEqualTo(4.5);
 	}
@@ -106,7 +106,7 @@ class DurationPattern_Tests {
 		MuTagBundle bundle = new MuTagBundle(MuTag.IS_SYNCOPATION);
 		bundle.addNamedParameter(MuTagNamedParameter.SYNCOPATED_BEAT_GLOBAL_POSITION, 10.0);
 		note2.addMuTagBundle(bundle);
-		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.LEGATO});
+		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.LEGATO}, null);
 		pack = plug.process(pack);
 		assertThat(note2.getLengthInQuarters()).isEqualTo(2.5);
 	}
@@ -129,7 +129,7 @@ class DurationPattern_Tests {
 		MuTagBundle bundle = new MuTagBundle(MuTag.IS_SYNCOPATION);
 		bundle.addNamedParameter(MuTagNamedParameter.SYNCOPATED_BEAT_GLOBAL_POSITION, 10.0);
 		note2.addMuTagBundle(bundle);
-		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.STACCATO});
+		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.STACCATO}, null);
 		pack = plug.process(pack);
 		assertThat(note1.getLengthInQuarters()).isEqualTo(0.25);
 	}
@@ -152,7 +152,7 @@ class DurationPattern_Tests {
 		MuTagBundle bundle = new MuTagBundle(MuTag.IS_SYNCOPATION);
 		bundle.addNamedParameter(MuTagNamedParameter.SYNCOPATED_BEAT_GLOBAL_POSITION, 10.0);
 		note2.addMuTagBundle(bundle);
-		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.STACCATO});
+		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.STACCATO}, null);
 		pack = plug.process(pack);
 		assertThat(note1.getLengthInQuarters()).isLessThan(0.25);
 	}
@@ -175,7 +175,7 @@ class DurationPattern_Tests {
 		MuTagBundle bundle = new MuTagBundle(MuTag.IS_SYNCOPATION);
 		bundle.addNamedParameter(MuTagNamedParameter.SYNCOPATED_BEAT_GLOBAL_POSITION, 10.0);
 		note2.addMuTagBundle(bundle);
-		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.STACCATO});
+		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.STACCATO}, null);
 		plug.setEndNoteSolution(EndNoteDurationSolution.STACCATO);
 		pack = plug.process(pack);
 		assertThat(note2.getLengthInQuarters()).isEqualTo(0.25);
@@ -202,7 +202,7 @@ class DurationPattern_Tests {
 //		MuTagBundle bundle = new MuTagBundle(MuTag.IS_SYNCOPATION);
 //		bundle.addNamedParameter(MuTagNamedParameter.SYNCOPATED_BEAT_GLOBAL_POSITION, 10.0);
 //		note2.addMuTagBundle(bundle);
-		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.STACCATO, DurationType.LEGATO});
+		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.STACCATO, DurationType.LEGATO}, null);
 //		plug.setEndNoteSolution(EndNoteDurationSolution.STACCATO);
 		pack = plug.process(pack);
 		assertThat(note1.getLengthInQuarters()).isEqualTo(0.25);

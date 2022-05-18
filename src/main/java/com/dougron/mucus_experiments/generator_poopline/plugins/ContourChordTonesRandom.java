@@ -60,7 +60,7 @@ public class ContourChordTonesRandom   extends PlugGeneric implements PooplinePl
 	
 	public ContourChordTonesRandom() {
 		super(
-				Parameter.STRUCTURE_TONE_CONTOUR,
+				Parameter.STRUCTURE_TONE_GENERATOR,
 				new Parameter[] {
 						Parameter.TESSITURA_START_NOTE,
 						Parameter.START_NOTE,
@@ -103,7 +103,7 @@ public class ContourChordTonesRandom   extends PlugGeneric implements PooplinePl
 		FourPointContour selectedOption = options[(int) (options.length * rndValue)];
 		contourChordTonesRepo = ContourChordTonesRepo.builder().rndValue(rndValue)
 				.selectedOption(selectedOption).options(options).className(getClass().getName()).build();
-		pack.getRepo().put(Parameter.STRUCTURE_TONE_CONTOUR, contourChordTonesRepo);
+		pack.getRepo().put(Parameter.STRUCTURE_TONE_GENERATOR, contourChordTonesRepo);
 		logger.info("Contour selected from pack.rnd.nextDouble and saved to repo");
 //		if (noFieldReposAreNull()) {
 //			double rndValue = pack.getRnd().nextDouble();
@@ -122,7 +122,7 @@ public class ContourChordTonesRandom   extends PlugGeneric implements PooplinePl
 	@Override
 	void getRepoFromPack(PooplinePackage pack)
 	{
-		contourChordTonesRepo = (ContourChordTonesRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_CONTOUR);
+		contourChordTonesRepo = (ContourChordTonesRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_GENERATOR);
 	}
 
 	

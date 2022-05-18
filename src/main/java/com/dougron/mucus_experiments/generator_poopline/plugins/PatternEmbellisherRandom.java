@@ -124,7 +124,7 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 	
 	public PatternEmbellisherRandom() {
 		super(
-				Parameter.PATTERN_EMBELLISHER,
+				Parameter.EMBELLISHMENT_GENERATOR,
 				new Parameter[] {}
 				);
 	}
@@ -155,7 +155,7 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 	PooplinePackage makeRepo(PooplinePackage pack)
 	{
 		patternEmbellishmentRepo = makePatternEmbellishmentRepo(pack);
-		pack.getRepo().put(Parameter.PATTERN_EMBELLISHER, patternEmbellishmentRepo);
+		pack.getRepo().put(Parameter.EMBELLISHMENT_GENERATOR, patternEmbellishmentRepo);
 		return pack;
 	}
 	
@@ -163,7 +163,7 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 	@Override
 	void getRepoFromPack(PooplinePackage pack)
 	{
-		patternEmbellishmentRepo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
+		patternEmbellishmentRepo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
 	}
 
 	

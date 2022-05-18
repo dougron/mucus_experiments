@@ -3,8 +3,6 @@ package main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugi
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.google.common.base.Preconditions;
-
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePlugin;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ChordProgressionDiatonicTriadRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ChordProgressionFloatBarFixed;
@@ -12,6 +10,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.Contou
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ContourMultiplierRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationFixedInQuarters;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationPattern;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationPatterns;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.EmbellishmentFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.LoopModelSetter;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PatternEmbellisherRandom;
@@ -34,6 +33,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.Vector
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.XmlKeyRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.DurationFixedInQuartersRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.DurationPatternRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.DurationPatternsRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.LoopModelRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseBoundRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseLengthRepo;
@@ -81,6 +81,8 @@ public class PluginFactory
 			return getChordProgressionPlugin(repo);
 		case "DurationPatternRepo":
 			return getDurationPatternPlugin(repo);
+		case "DurationPatternsRepo":
+			return getDurationPatternsPlugin(repo);
 		case "DurationFixedInQuartersRepo":
 			return getDurationFixedInQuartersPlugin(repo);
 		case "EmbellishmentFixedRepo":
@@ -280,8 +282,7 @@ public class PluginFactory
 	{
 		// currently only 1
 		DurationFixedInQuartersRepo drepo = (DurationFixedInQuartersRepo)repo;
-		Preconditions.checkArgument(drepo.getRequiredParameter() != null, "DurationFixedInQuartersRepo has requiredParameter=null. This will cause inconsistent behaviour in execution of the Poopline");
-		return new DurationFixedInQuarters(drepo.getDurationPattern(), drepo.getRequiredParameter());
+		return new DurationFixedInQuarters(drepo.getDurationPattern());
 	}
 
 	
@@ -290,7 +291,16 @@ public class PluginFactory
 	{
 		// currently only 1
 		DurationPatternRepo drepo = (DurationPatternRepo)repo;
-		return new DurationPattern(drepo.getDurationPattern());
+		return new DurationPattern(drepo.getDurationPattern(), drepo.getTagToActUpon());
+	}
+	
+	
+	
+	private static PooplinePlugin getDurationPatternsPlugin(RepoInterface repo)
+	{
+		// currently only 1
+		DurationPatternsRepo drepo = (DurationPatternsRepo)repo;
+		return new DurationPatterns(drepo.getPatternIndices(), drepo.getDurationPatternMap());
 	}
 	
 

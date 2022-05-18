@@ -397,6 +397,7 @@ public class EmbellishmentSchema extends ArrayList<NoteInfo>
 	}
 
 
+	
 	public static List<List<MuTagBundle>> getEmbellishmentTagLists(EmbellishmentSchema schema)
 	{
 		List<List<MuTagBundle>> list = new ArrayList<List<MuTagBundle>>();
@@ -410,6 +411,24 @@ public class EmbellishmentSchema extends ArrayList<NoteInfo>
 		return list;
 	}
 	
+	
+	
+	public static List<Double[]> getLengthAndInterOnsetDistance(EmbellishmentSchema schema)
+	{
+		List<Double[]> list = new ArrayList<Double[]>();
+		for (int i = schema.size() - 2; i >=0; i--)
+		{
+			double length = 0;
+			double interOnsetInterval = schema.get(i).getPositionInQuarters() - schema.get(i + 1).getPositionInQuarters();
+			Mu mu = schema.get(i + 1).getRelatedMu();
+			if (mu != null)
+			{
+				length = mu.getLengthInQuarters();
+			}
+			list.add(new Double[] {length, interOnsetInterval});
+		}
+		return list;
+	}
 	
 	
 }

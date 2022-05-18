@@ -42,11 +42,22 @@ public class DurationFixedInQuarters extends PlugGeneric implements PooplinePlug
 //	TempoRepo tempoRepo;
 	
 	
-	public DurationFixedInQuarters(double[] aDurationPattern, Parameter requiredMelodyParameter)
+//	public DurationFixedInQuarters(double[] aDurationPattern, Parameter requiredMelodyParameter)
+//	{
+//		super(
+//				Parameter.DURATION,
+//				new Parameter[] {requiredMelodyParameter}
+//				);
+//		durationPattern = aDurationPattern;
+//	}
+
+	
+	
+	public DurationFixedInQuarters(double[] aDurationPattern)
 	{
 		super(
 				Parameter.DURATION,
-				new Parameter[] {requiredMelodyParameter}
+				new Parameter[] {Parameter.STRUCTURE_TONE_GENERATOR}
 				);
 		durationPattern = aDurationPattern;
 	}

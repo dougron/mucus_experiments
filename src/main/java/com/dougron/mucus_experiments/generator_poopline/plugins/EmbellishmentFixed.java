@@ -20,8 +20,8 @@ public class EmbellishmentFixed extends PlugGeneric
 	
 	public EmbellishmentFixed() {
 		super(
-				Parameter.PATTERN_EMBELLISHER,
-				new Parameter[] {Parameter.STRUCTURE_TONE_VECTOR}
+				Parameter.EMBELLISHMENT_GENERATOR,
+				new Parameter[] {Parameter.STRUCTURE_TONE_GENERATOR}
 				);
 	}
 	
@@ -64,6 +64,7 @@ public class EmbellishmentFixed extends PlugGeneric
 					emb.addMuNote(new MuNote(note.getPitch() + semitoneOffset, DEFAULT_VELOCITY));
 				}
 				emb.setLengthInQuarters(DEFAULT_LENGTH_IN_QUARTERS);
+				emb.addTag(MuTag.IS_EMBELLISHMENT);
 				currentMu.addMu(emb, quartersOffset);
 				currentMu = emb;
 			}
@@ -87,7 +88,7 @@ public class EmbellishmentFixed extends PlugGeneric
 	@Override
 	void getRepoFromPack(PooplinePackage pack)
 	{
-		embellishmentRepo = (EmbellishmentFixedRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
+		embellishmentRepo = (EmbellishmentFixedRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
 	}
 
 	

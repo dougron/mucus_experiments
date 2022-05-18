@@ -59,7 +59,7 @@ class PluginFactory_Tests
 		new Object[] {new ContourChordTonesRandom(), ContourChordTonesRepo.builder().className(ContourChordTonesRandom.class.getName()).build()},
 		new Object[] {new ContourMultiplierRandom(), ContourMultiplierRepo.builder().className(ContourMultiplierRandom.class.getName()).build()},
 		new Object[] {new ChordProgressionDiatonicTriadRandom(), ChordProgressionRepo.builder().className(ChordProgressionDiatonicTriadRandom.class.getName()).build()},
-		new Object[] {new DurationPattern(new DurationType[] {}), DurationPatternRepo.builder().className(DurationPattern.class.getName()).build()},
+		new Object[] {new DurationPattern(new DurationType[] {}, null), DurationPatternRepo.builder().className(DurationPattern.class.getName()).build()},
 		new Object[] {new StructureToneEvenlySpacedFixed(1.0), StructureToneEvenlySpacedRepo.builder().className(StructureToneEvenlySpacedFixed.class.getName()).build()},
 		new Object[] {new LoopModelSetter(LoopModel.LOOP), LoopModelRepo.builder().className(LoopModelSetter.class.getName()).build()},
 		new Object[] {new PatternEmbellisherRandom(), PatternEmbellishmentRepo.builder().className(PatternEmbellisherRandom.class.getName()).build()},
@@ -87,7 +87,7 @@ class PluginFactory_Tests
 				.className(TessituraFixed.class.getName())
 				.build()
 				},
-		new Object[] {new TessituraSolverOneBreakpointRandom(Parameter.STRUCTURE_TONE_CONTOUR, MuTag.IS_STRUCTURE_TONE), TessituraSolverRepo.builder().className(TessituraSolverOneBreakpointRandom.class.getName()).build()},
+		new Object[] {new TessituraSolverOneBreakpointRandom(Parameter.STRUCTURE_TONE_GENERATOR, MuTag.IS_STRUCTURE_TONE), TessituraSolverRepo.builder().className(TessituraSolverOneBreakpointRandom.class.getName()).build()},
 		new Object[] {new TimeSignatureSingleRandom(), TimeSignatureRepo.builder().className(TimeSignatureSingleRandom.class.getName()).build()},
 		new Object[] {new VectorChordTonesFixed(new int[] {1,-1}), VectorChordTonesRepo.builder().className(VectorChordTonesFixed.class.getName()).build()},
 		new Object[] {new XmlKeyRandom(), XmlKeyRepo.builder().className(XmlKeyRandom.class.getName()).build()},

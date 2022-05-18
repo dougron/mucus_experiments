@@ -12,8 +12,7 @@ public class ContourShouldSpendMoreTimeDecending implements PoopbackObject
 		PooplinePackage pack = new PooplinePackage("variation", aPack.getRnd());
 		for (Parameter key: aPack.getRepo().keySet())
 		{
-			if (key == Parameter.STRUCTURE_TONE_VECTOR
-					|| key == Parameter.STRUCTURE_TONE_CONTOUR
+			if (key == Parameter.STRUCTURE_TONE_GENERATOR
 					)
 			{}
 			else

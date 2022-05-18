@@ -181,9 +181,9 @@ public class Mu044_FeedbackGeneralisationWithStructureTones
 		pipeline.addPlugin(new ContourMultiplierRandom());
 		pipeline.addPlugin(new ContourChordTonesRandom());
 		pipeline.addPlugin(new TessituraFixed(Parameter.TESSITURA_MELODY_RANGE));
-		pipeline.addPlugin(new TessituraSolverOneBreakpointRandom(Parameter.STRUCTURE_TONE_CONTOUR, MuTag.IS_STRUCTURE_TONE));
+		pipeline.addPlugin(new TessituraSolverOneBreakpointRandom(Parameter.STRUCTURE_TONE_GENERATOR, MuTag.IS_STRUCTURE_TONE));
 //		pipeline.addPlugin(new PatternEmbellisherRandom());
-		pipeline.addPlugin(new DurationPattern(new DurationType[] {DurationType.LEGATO}));
+		pipeline.addPlugin(new DurationPattern(new DurationType[] {DurationType.LEGATO}, null));
 		pipeline.setPrimaryPlugin(new RequiredPlugInsRunner(
 				new Parameter[] {
 						Parameter.PHRASE_LENGTH,
@@ -199,7 +199,7 @@ public class Mu044_FeedbackGeneralisationWithStructureTones
 						Parameter.TESSITURA_START_NOTE, 
 						Parameter.START_NOTE, 
 						Parameter.STRUCTURE_TONE_MULTIPLIER, 
-						Parameter.STRUCTURE_TONE_VECTOR, 
+						Parameter.STRUCTURE_TONE_GENERATOR, 
 						Parameter.TESSITURA_MELODY_RANGE,
 						Parameter.TESSITURA_SOLVER,
 //						Parameter.PATTERN_EMBELLISHER,
@@ -229,9 +229,9 @@ public class Mu044_FeedbackGeneralisationWithStructureTones
 //		pipeline.addPlugin(new ContourMultiplierRandom());
 		pipeline.addPlugin(new VectorChordTonesFixed(new int[] {0}));
 		pipeline.addPlugin(new TessituraFixed(Parameter.TESSITURA_MELODY_RANGE));
-		pipeline.addPlugin(new TessituraSolverOneBreakpointRandom(Parameter.STRUCTURE_TONE_VECTOR, MuTag.IS_STRUCTURE_TONE));
+		pipeline.addPlugin(new TessituraSolverOneBreakpointRandom(Parameter.STRUCTURE_TONE_GENERATOR, MuTag.IS_STRUCTURE_TONE));
 //		pipeline.addPlugin(new PatternEmbellisherRandom());
-		pipeline.addPlugin(new DurationPattern(new DurationType[] {DurationType.LEGATO}));
+		pipeline.addPlugin(new DurationPattern(new DurationType[] {DurationType.LEGATO}, null));
 		pipeline.setPrimaryPlugin(new RequiredPlugInsRunner(
 				new Parameter[] {
 						Parameter.PHRASE_LENGTH,
@@ -247,7 +247,7 @@ public class Mu044_FeedbackGeneralisationWithStructureTones
 						Parameter.TESSITURA_START_NOTE, 
 						Parameter.START_NOTE, 
 //						Parameter.STRUCTURE_TONE_MULTIPLIER, 
-						Parameter.STRUCTURE_TONE_VECTOR, 
+						Parameter.STRUCTURE_TONE_GENERATOR, 
 						Parameter.TESSITURA_MELODY_RANGE,
 						Parameter.TESSITURA_SOLVER,
 //						Parameter.PATTERN_EMBELLISHER,

@@ -84,7 +84,7 @@ public class Mu030_AttackOfTheMutants
 						Parameter.TEMPO, 
 						Parameter.XMLKEY, 
 						Parameter.START_NOTE, 
-						Parameter.STRUCTURE_TONE_CONTOUR, 
+						Parameter.STRUCTURE_TONE_GENERATOR, 
 						Parameter.STRUCTURE_TONE_MULTIPLIER, 
 						Parameter.CHORD_LIST_GENERATOR, 
 						Parameter.EMBELLISHMENT_CLEARANCE, 

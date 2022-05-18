@@ -54,7 +54,7 @@ public class VectorChordTonesFixed   extends PlugGeneric implements PooplinePlug
 	public VectorChordTonesFixed(int[] aVectorArray) 
 	{
 		super(
-				Parameter.STRUCTURE_TONE_VECTOR,	// possible place for a general STRUCTURE_TONE_GENERATOR Parameter to cover a variety of options
+				Parameter.STRUCTURE_TONE_GENERATOR,	
 				new Parameter[] {
 						Parameter.TESSITURA_START_NOTE,
 						Parameter.START_NOTE,
@@ -103,7 +103,7 @@ public class VectorChordTonesFixed   extends PlugGeneric implements PooplinePlug
 					.selectedVectorArray(vectorArray)
 					.className(getClass().getName())
 					.build();
-			pack.getRepo().put(Parameter.STRUCTURE_TONE_VECTOR, vectorChordTonesRepo);
+			pack.getRepo().put(Parameter.STRUCTURE_TONE_GENERATOR, vectorChordTonesRepo);
 			logger.info("Created vectorChordTonesRepo and saved to pack.repo");
 		} else {
 			logger.info("STRUCTURE_TONE_VECTOR item not created because one or more field repos are null.");
@@ -115,7 +115,7 @@ public class VectorChordTonesFixed   extends PlugGeneric implements PooplinePlug
 	@Override
 	void getRepoFromPack(PooplinePackage pack)
 	{
-		vectorChordTonesRepo = (VectorChordTonesRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_VECTOR);
+		vectorChordTonesRepo = (VectorChordTonesRepo)pack.getRepo().get(Parameter.STRUCTURE_TONE_GENERATOR);
 	}
 
 	

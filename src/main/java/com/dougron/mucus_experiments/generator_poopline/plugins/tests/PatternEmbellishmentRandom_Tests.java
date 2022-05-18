@@ -38,47 +38,47 @@ class PatternEmbellishmentRandom_Tests {
 	
 	
 	@Test
-	void when_empty_pack_is_processed_then_repo_gets_a_PATTERN_EMBELLISHER_item() throws Exception {
+	void when_empty_pack_is_processed_then_repo_gets_a_EMBELLISHMENT_GENERATOR_item() throws Exception {
 		PooplinePackage pack = new PooplinePackage("XX", new TestRandom(0.1));
 		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
-		assertThat(pack.getRepo().containsKey(Parameter.PATTERN_EMBELLISHER)).isTrue();
+		assertThat(pack.getRepo().containsKey(Parameter.EMBELLISHMENT_GENERATOR)).isTrue();
 	}
 
 	
 	@Test
-	void when_empty_pack_is_processed_then_repo_PATTERN_EMBELLISHER_item_has_resolutionRndValue_equal_to_TestRandomValue() throws Exception {
+	void when_empty_pack_is_processed_then_repo_EMBELLISHMENT_GENERATOR_item_has_resolutionRndValue_equal_to_TestRandomValue() throws Exception {
 		double testRandomValue = 0.1;
 		PooplinePackage pack = new PooplinePackage("XX", new TestRandom(testRandomValue));
 		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
-		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
+		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
 		assertThat(repo.getResolutionRndValue()).isEqualTo(testRandomValue);
 	}
 	
 	
 	@Test
-	void when_empty_pack_is_processed_and_TestRandomValue_is_0_1_then_repo_PATTERN_EMBELLISHER_item_has_selectedResolution_equal_to_EIGHTHS() throws Exception {
+	void when_empty_pack_is_processed_and_TestRandomValue_is_0_1_then_repo_EMBELLISHMENT_GENERATOR_item_has_selectedResolution_equal_to_EIGHTHS() throws Exception {
 		double testRandomValue = 0.1;
 		PooplinePackage pack = new PooplinePackage("XX", new TestRandom(testRandomValue));
 		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
-		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
+		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
 		assertThat(repo.getSelectedResolution()).isEqualTo(EmbellishmentRhythmResolution.EIGHTHS);
 	}
 	
 	
 	@Test
-	void when_empty_pack_is_processed_then_repo_PATTERN_EMBELLISHER_item_has_resolutionOption_equal_to_resolutionOptions_in_PatternEmbellisherRandom() throws Exception {
+	void when_empty_pack_is_processed_then_repo_EMBELLISHMENT_GENERATOR_item_has_resolutionOption_equal_to_resolutionOptions_in_PatternEmbellisherRandom() throws Exception {
 		double testRandomValue = 0.1;
 		PooplinePackage pack = new PooplinePackage("XX", new TestRandom(testRandomValue));
 		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
-		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
+		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
 		assertThat(repo.getResolutionOptions()).containsExactly(plug.getResolutionOptions());
 	}
 	
@@ -90,7 +90,7 @@ class PatternEmbellishmentRandom_Tests {
 		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
-		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
+		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
 		// pitchAndRhythmPatternSyncRndValue = testRandomValue
 		assertThat(repo.getPitchAndRhythmPatternSyncRndValue()).isEqualTo(testRandomValue);
 		// selected option = false
@@ -107,7 +107,7 @@ class PatternEmbellishmentRandom_Tests {
 		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
-		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
+		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
 		// pitchAndRhythmPatternSyncRndValue = testRandomValue
 		assertThat(repo.getPitchIndexPatternRndValue()).isEqualTo(testRandomValue);
 		// selected option = false
@@ -130,7 +130,7 @@ class PatternEmbellishmentRandom_Tests {
 		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
-		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
+		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
 		// pitchGeneratorRndValues = testRandomValue
 		Map<Integer, List<Double>> rndValues = repo.getPitchGeneratorRndValues();
 		assertThat(rndValues.keySet().size()).isEqualTo(2);
@@ -155,7 +155,7 @@ class PatternEmbellishmentRandom_Tests {
 		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
-		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
+		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
 		// pitchAndRhythmPatternSyncRndValue = testRandomValue
 		assertThat(repo.getRhythmIndexPatternRndValue()).isEqualTo(testRandomValue);
 		// selected option = false
@@ -178,7 +178,7 @@ class PatternEmbellishmentRandom_Tests {
 		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
-		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
+		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
 		// pitchGeneratorRndValues = testRandomValue
 		Map<Integer, List<Double>> rndValues = repo.getRhythmOffsetRndValues();
 		assertThat(rndValues.keySet().size()).isEqualTo(2);
@@ -203,7 +203,7 @@ class PatternEmbellishmentRandom_Tests {
 		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
-		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
+		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
 		// pitchAndRhythmPatternSyncRndValue = testRandomValue
 		assertThat(repo.getCollisionIndexPatternRndValue()).isEqualTo(testRandomValue);
 		// selected option = false
@@ -226,7 +226,7 @@ class PatternEmbellishmentRandom_Tests {
 		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
-		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
+		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
 		// collisionOffsetRndValues = testRandomValue
 		Map<Integer, Double> rndValues = repo.getCollisionOffsetRndValues();
 		assertThat(rndValues.keySet().size()).isEqualTo(1);
@@ -247,7 +247,7 @@ class PatternEmbellishmentRandom_Tests {
 		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
-		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
+		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
 		// pitchAndRhythmPatternSyncRndValue = testRandomValue
 		assertThat(repo.getCountIndexPatternRndValue()).isEqualTo(testRandomValue);
 		// selected option = false
@@ -270,7 +270,7 @@ class PatternEmbellishmentRandom_Tests {
 		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
-		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
+		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
 		// collisionOffsetRndValues = testRandomValue
 		Map<Integer, Double> rndValues = repo.getCountRndValues();
 		assertThat(rndValues.keySet().size()).isEqualTo(1);
@@ -291,7 +291,7 @@ class PatternEmbellishmentRandom_Tests {
 		pack.setDebugMode(true);
 		PatternEmbellisherRandom plug = new PatternEmbellisherRandom();
 		pack = plug.process(pack);
-		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
+		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
 		assertThat(repo.getClassName()).isEqualTo(plug.getClass().getName());
 	}
 	
@@ -334,7 +334,7 @@ class PatternEmbellishmentRandom_Tests {
 		embellisherPlug.setCollisionOffsetOptions(new RhythmOffset[] {new RhythmOffset(0, 0, 1, 0, 0)});
 		pack = embellisherPlug.process(pack);
 		List<Mu> structureTones = pack.getMu().getMuWithTag(MuTag.IS_STRUCTURE_TONE);
-		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.PATTERN_EMBELLISHER);
+		PatternEmbellishmentRepo repo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
 		assertThat(repo.getSelectedCounts().get(0)).isEqualTo(newForcedCount);
 		assertThat(repo.getRhythmOffsetRndValues().get(0).size()).isEqualTo(newForcedCount);
 	}

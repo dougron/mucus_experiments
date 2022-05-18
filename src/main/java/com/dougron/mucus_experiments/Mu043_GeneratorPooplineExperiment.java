@@ -71,9 +71,9 @@ public class Mu043_GeneratorPooplineExperiment
 		pipeline.addPlugin(new ContourMultiplierRandom());
 		pipeline.addPlugin(new ContourChordTonesRandom());
 		pipeline.addPlugin(new TessituraFixed(Parameter.TESSITURA_MELODY_RANGE));
-		pipeline.addPlugin(new TessituraSolverOneBreakpointRandom(Parameter.STRUCTURE_TONE_CONTOUR, MuTag.IS_STRUCTURE_TONE));
+		pipeline.addPlugin(new TessituraSolverOneBreakpointRandom(Parameter.STRUCTURE_TONE_GENERATOR, MuTag.IS_STRUCTURE_TONE));
 		pipeline.addPlugin(new PatternEmbellisherRandom());
-		pipeline.addPlugin(new DurationPattern(new DurationType[] {DurationType.LEGATO, DurationType.STACCATO}));
+		pipeline.addPlugin(new DurationPattern(new DurationType[] {DurationType.LEGATO, DurationType.STACCATO}, null));
 		pipeline.setPrimaryPlugin(new RequiredPlugInsRunner(
 				new Parameter[] {
 						Parameter.PHRASE_LENGTH,
@@ -89,10 +89,10 @@ public class Mu043_GeneratorPooplineExperiment
 						Parameter.TESSITURA_START_NOTE, 
 						Parameter.START_NOTE, 
 						Parameter.STRUCTURE_TONE_MULTIPLIER, 
-						Parameter.STRUCTURE_TONE_CONTOUR, 
+						Parameter.STRUCTURE_TONE_GENERATOR, 
 						Parameter.TESSITURA_MELODY_RANGE,
 						Parameter.TESSITURA_SOLVER,
-						Parameter.PATTERN_EMBELLISHER,
+						Parameter.EMBELLISHMENT_GENERATOR,
 						Parameter.DURATION
 				}
 				));

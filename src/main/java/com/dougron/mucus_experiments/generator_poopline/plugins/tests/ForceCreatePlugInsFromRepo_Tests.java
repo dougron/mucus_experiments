@@ -223,7 +223,7 @@ class ForceCreatePlugInsFromRepo_Tests
 				.selectedVectorArray(aVectorArray)
 				.className(VectorChordTonesFixed.class.getName())
 				.build();
-		pack.getRepo().put(Parameter.STRUCTURE_TONE_VECTOR, vrepo);
+		pack.getRepo().put(Parameter.STRUCTURE_TONE_GENERATOR, vrepo);
 	}
 
 
@@ -234,7 +234,7 @@ class ForceCreatePlugInsFromRepo_Tests
 				.selectedOption(aFourPointContour)
 				.className(ContourChordTonesRandom.class.getName())
 				.build();
-		pack.getRepo().put(Parameter.STRUCTURE_TONE_CONTOUR, ctRepo);
+		pack.getRepo().put(Parameter.STRUCTURE_TONE_GENERATOR, ctRepo);
 	}
 
 

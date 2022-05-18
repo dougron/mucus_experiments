@@ -21,7 +21,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin
 
 
 /*
- * very simple duration implementation. Legato or Staccato
+ * very simple duration implementation. Legato, Staccato or Default_Short
  */
 
 public class DurationPattern extends PlugGeneric implements PooplinePlugin {
@@ -40,15 +40,23 @@ public class DurationPattern extends PlugGeneric implements PooplinePlugin {
 	private DurationType[] durationPattern;
 	
 	TempoRepo tempoRepo;
+
+	private MuTag tagToActUpon;	// if parameterScope is empty, then the plugin works on allMusWithNotes 
 	
 	
-	public DurationPattern(DurationType[] aDurationPattern)
+	public DurationPattern(DurationType[] aDurationPattern, MuTag aTagToActUpon)
 	{
 		super(
 				Parameter.DURATION,
-				new Parameter[] {Parameter.TEMPO}
+				new Parameter[] 
+						{
+								Parameter.TEMPO,
+								Parameter.STRUCTURE_TONE_GENERATOR,
+								Parameter.EMBELLISHMENT_GENERATOR
+						}
 				);
 		durationPattern = aDurationPattern;
+		tagToActUpon = aTagToActUpon;
 	}
 	
 	
@@ -65,6 +73,7 @@ public class DurationPattern extends PlugGeneric implements PooplinePlugin {
 	PooplinePackage updateMu(PooplinePackage pack)
 	{
 		double staccatoDurationInQuarters = getStaccatoDurationInQuarters(pack);
+		pack.getMu().makePreviousNextMusWithNotes();
 		processMuDurations(pack, staccatoDurationInQuarters);
 		return pack;
 	}
@@ -76,6 +85,7 @@ public class DurationPattern extends PlugGeneric implements PooplinePlugin {
 		durationPatternRepo = DurationPatternRepo.builder()
 				.durationPattern(durationPattern)
 				.staccatoDurationInMilliseconds(staccatoDurationInMilliseconds)
+				.tagToActUpon(tagToActUpon)
 				.className(getClass().getName())
 				.build();
 		pack.getRepo().put(Parameter.DURATION, durationPatternRepo);
@@ -125,7 +135,16 @@ public class DurationPattern extends PlugGeneric implements PooplinePlugin {
 
 
 	private void processMuDurations(PooplinePackage pack, double staccatoDurationInQuarters) {
-		List<Mu> muList = pack.getMu().getMusWithNotes();
+		List<Mu> muList;
+		if (tagToActUpon == null)
+		{
+			muList = pack.getMu().getMusWithNotes();
+		}
+		else
+		{
+			muList = pack.getMu().getMuWithTag(tagToActUpon);
+		}
+		
 		Collections.sort(muList, Mu.globalPositionInQuartersComparator);
 		dealWithAllMuDurationExceptLast(staccatoDurationInQuarters, muList);
 		dealWithDurationOfLastMuInList(staccatoDurationInQuarters, muList);
@@ -144,7 +163,7 @@ public class DurationPattern extends PlugGeneric implements PooplinePlugin {
 			{
 			case LEGATO:
 				double thisGlobalPosition = muList.get(i).getGlobalPositionInQuarters();
-				double nextGlobalPosition = muList.get(i + 1).getGlobalPositionInQuarters();
+				double nextGlobalPosition = muList.get(i).getNextMu().getGlobalPositionInQuarters();
 				durationInQuarters = nextGlobalPosition - thisGlobalPosition;
 				break;
 			case STACCATO:

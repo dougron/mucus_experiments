@@ -160,7 +160,7 @@ public class Mu032_RandomMelodyMutantAttackVariations
 //						Parameter.TEMPO, 			// tempo not relevant to change as this wont come out in a multi variation output to Live
 						Parameter.XMLKEY, 
 						Parameter.START_NOTE, 
-						Parameter.STRUCTURE_TONE_CONTOUR, 
+						Parameter.STRUCTURE_TONE_GENERATOR, 
 						Parameter.STRUCTURE_TONE_MULTIPLIER, 
 						Parameter.CHORD_LIST_GENERATOR, 
 						Parameter.EMBELLISHMENT_CLEARANCE, 

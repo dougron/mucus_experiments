@@ -37,7 +37,7 @@ class EmbellishmentFixed_Tests
 			PooplinePackage pack = new PooplinePackage("pack", new Random());
 			pack.setDebugMode(true);
 			pack.setMu(parent);
-			pack.getRepo().put(Parameter.PATTERN_EMBELLISHER, repo);
+			pack.getRepo().put(Parameter.EMBELLISHMENT_GENERATOR, repo);
 			
 			EmbellishmentFixed plug = new EmbellishmentFixed();
 			
@@ -59,7 +59,7 @@ class EmbellishmentFixed_Tests
 			PooplinePackage pack = new PooplinePackage("pack", new Random());
 			pack.setDebugMode(true);
 			pack.setMu(parent);
-			pack.getRepo().put(Parameter.PATTERN_EMBELLISHER, repo);
+			pack.getRepo().put(Parameter.EMBELLISHMENT_GENERATOR, repo);
 			
 			EmbellishmentFixed plug = new EmbellishmentFixed();
 			
@@ -82,7 +82,7 @@ class EmbellishmentFixed_Tests
 			PooplinePackage pack = new PooplinePackage("pack", new Random());
 			pack.setDebugMode(true);
 			pack.setMu(parent);
-			pack.getRepo().put(Parameter.PATTERN_EMBELLISHER, repo);
+			pack.getRepo().put(Parameter.EMBELLISHMENT_GENERATOR, repo);
 			
 			EmbellishmentFixed plug = new EmbellishmentFixed();
 			
@@ -111,7 +111,7 @@ class EmbellishmentFixed_Tests
 			PooplinePackage pack = new PooplinePackage("pack", new Random());
 			pack.setDebugMode(true);
 			pack.setMu(parent);
-			pack.getRepo().put(Parameter.PATTERN_EMBELLISHER, repo);
+			pack.getRepo().put(Parameter.EMBELLISHMENT_GENERATOR, repo);
 			
 			EmbellishmentFixed plug = new EmbellishmentFixed();
 			
@@ -133,7 +133,7 @@ class EmbellishmentFixed_Tests
 			PooplinePackage pack = new PooplinePackage("pack", new Random());
 			pack.setDebugMode(true);
 			pack.setMu(parent);
-			pack.getRepo().put(Parameter.PATTERN_EMBELLISHER, repo);
+			pack.getRepo().put(Parameter.EMBELLISHMENT_GENERATOR, repo);
 			
 			EmbellishmentFixed plug = new EmbellishmentFixed();
 			
@@ -158,7 +158,7 @@ class EmbellishmentFixed_Tests
 			PooplinePackage pack = new PooplinePackage("pack", new Random());
 			pack.setDebugMode(true);
 			pack.setMu(parent);
-			pack.getRepo().put(Parameter.PATTERN_EMBELLISHER, repo);
+			pack.getRepo().put(Parameter.EMBELLISHMENT_GENERATOR, repo);
 			
 			EmbellishmentFixed plug = new EmbellishmentFixed();
 			

@@ -37,7 +37,7 @@ class ContourChordTonesRandom_Tests {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.1));
 		
 		pack = plug.process(pack);
-		assertThat(pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_CONTOUR)).isFalse();
+		assertThat(pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_GENERATOR)).isFalse();
 	}
 	
 	
@@ -64,7 +64,7 @@ class ContourChordTonesRandom_Tests {
 		pack = multPlug.process(pack);
 		ContourChordTonesRandom contourPlug = new ContourChordTonesRandom();
 		pack = contourPlug.process(pack);
-		assertThat(pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_CONTOUR)).isTrue();
+		assertThat(pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_GENERATOR)).isTrue();
 	}
 
 	

@@ -33,6 +33,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackag
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ChordProgressionFloatBarFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationFixedInQuarters;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationPattern;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationPatterns;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.EmbellishmentFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseBoundPercentSetAmount;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseLengthSetLength;
@@ -40,6 +41,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.Should
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StartNoteMelodyRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneEvenlySpacedFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneSyncopatorInQuartersFixed;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TempoRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TessituraFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TimeSignatureSingleRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.VectorChordTonesFixed;
@@ -48,6 +50,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.ChordProgressionRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.DurationFixedInQuartersRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.DurationPatternRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.DurationPatternsRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.EmbellishmentFixedRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseBoundRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseLengthRepo;
@@ -55,6 +58,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneEvenlySpacedRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneSyncopationDoublePatternRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneUnevenlySpacedRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TempoRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TessituraRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TimeSignatureRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.VectorChordTonesRepo;
@@ -86,15 +90,29 @@ public class ArtefactToParameter
 		ChordToneAndEmbellishmentTagger.addTags(aMu);
 		justForNowConvertChordTonesToStructureTones(aMu);
 		PooplinePackage pack = new PooplinePackage(aMu.getName(), new Random());
+		pack = addTempoRepo(aMu, pack);
 		pack = addPhraseLengthSetLengthRepo(aMu, pack);
 		pack = addTimeSignatureRandomRepo(aMu, pack);
 		pack = addXmlKey(aMu, pack);
 		pack = addChordProgression(aMu, pack);
 		pack = addReposForStructureTones(aMu, pack);
 		
-//		pack = addEmbellishmentRepos(aMu, pack);
+		pack = addEmbellishmentRepos(aMu, pack);
 		
 		
+		return pack;
+	}
+
+
+
+	private static PooplinePackage addTempoRepo(Mu aMu, PooplinePackage pack)
+	{
+		TempoRepo repo = TempoRepo.builder()
+				.rndValue(0.5)
+				.selectedTempo((int)aMu.getStartTempo())
+				.className(TempoRandom.class.getName())
+				.build();
+		pack.getRepo().put(Parameter.TEMPO, repo);
 		return pack;
 	}
 
@@ -129,17 +147,71 @@ public class ArtefactToParameter
 		return pack;
 	}
 
-		
 	
+		
 	private static PooplinePackage addEmbellishmentRepos(Mu aMu, PooplinePackage pack)
 	{
 		List<EmbellishmentSchema> schemaList = getEmbellishmentSchemaList(aMu, pack);
 		makeArtefactToParameterLog(schemaList);
+		
+		pack = addEmbellishmentGeneratorRepo(pack, schemaList);
+		pack = addEmbellishmentDurationRepo(pack, schemaList);
+		
+		return pack;
+	}
+
+
+
+	private static PooplinePackage addEmbellishmentGeneratorRepo(PooplinePackage pack, List<EmbellishmentSchema> schemaList)
+	{
 		EmbellishmentFixedRepo repo = EmbellishmentFixedRepo.builder()
 				.schemaList(schemaList)
 				.className(EmbellishmentFixed.class.getName())
 				.build();
-		pack.getRepo().put(Parameter.PATTERN_EMBELLISHER, repo);
+		pack.getRepo().put(Parameter.EMBELLISHMENT_GENERATOR, repo);
+		return pack;
+	}
+
+
+
+	/*
+	 * currently this does not look for any repeated embellishment patterns
+	 * 
+	 * also only does LEGATO and DEFAULT_SHORT
+	 */
+	private static PooplinePackage addEmbellishmentDurationRepo(PooplinePackage pack, List<EmbellishmentSchema> schemaList)
+	{
+		Map<Integer, DurationType[]> dpMap = new HashMap<Integer, DurationType[]>();
+		List<Integer> indexList = new ArrayList<Integer>();
+		int index = 0;
+		for (EmbellishmentSchema schema: schemaList)
+		{
+			List<Double[]> lengthAndIoiList = schema.getLengthAndInterOnsetDistance(schema);
+			DurationType[] dtArr = new DurationType[lengthAndIoiList.size()];
+			int dtArrIndex = 0;
+			for (Double[] arr: schema.getLengthAndInterOnsetDistance(schema))
+			{
+				if (DoubleMath.fuzzyEquals(arr[0], arr[1], EPSILON_FOR_DOUBLES_EQUALITY))
+				{
+					dtArr[dtArrIndex] = DurationType.LEGATO;
+				}
+				else
+				{
+					dtArr[dtArrIndex] = DurationType.DEFAULT_SHORT;
+				}
+				dtArrIndex++;
+			}
+			dpMap.put(index, dtArr);
+			indexList.add(index);
+			index++;
+		}
+		
+		DurationPatternsRepo dpRepo = DurationPatternsRepo.builder()
+				.durationPatternMap(dpMap)
+				.patternIndices(indexList.stream().mapToInt(x -> x).toArray())
+				.className(DurationPatterns.class.getName())
+				.build();
+		pack.getRepo().put(Parameter.DURATION_EMBELLISHMENT, dpRepo);
 		return pack;
 	}
 
@@ -178,7 +250,10 @@ public class ArtefactToParameter
 				{
 					bw.write("\t\tindex=" + index + ": " + muTagList.toString() + "\n");
 				}
-				
+				List<String> lengthAndIOItoString = EmbellishmentSchema.getLengthAndInterOnsetDistance(schema).stream()
+						.map(x -> "[" + x[0] + "," + x[1] + "]")
+						.collect(Collectors.toList());
+				bw.write("\tlengthAndInterOnsetInterval=" + lengthAndIOItoString);
 			}
 			bw.close();
 		} 
@@ -383,11 +458,17 @@ public class ArtefactToParameter
 
 	private static PooplinePackage getDurationPatternModelsForStructureTones(Mu aMu, PooplinePackage pack)
 	{
-		List<Mu> structureTones = aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE);
-		DurationType[] durationTypeArr = new DurationType[structureTones.size() - 1];
-		for (int i = 0; i < structureTones.size() - 1; i++)
+//		List<Mu> structureTones = aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE);
+		List<Mu> originalStructureTones = aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE).stream()
+				.map(x -> (Mu)x.getMuTagBundleContaining(MuTag.HISTORY)
+						.get(0)
+						.getNamedParameter(MuTagNamedParameter.ORIGINAL_MU)
+					)
+				.collect(Collectors.toList());
+		DurationType[] durationTypeArr = new DurationType[originalStructureTones.size() - 1];
+		for (int i = 0; i < originalStructureTones.size() - 1; i++)
 		{
-			Mu structureTone = structureTones.get(i);
+			Mu structureTone = originalStructureTones.get(i);
 			double endPosition = structureTone.getGlobalEndPositionInQuarters();
 			double nextStart = structureTone.getNextMu().getGlobalPositionInQuarters();
 			if (DoubleMath.fuzzyEquals(nextStart, endPosition, EPSILON_FOR_DOUBLES_EQUALITY))
@@ -402,6 +483,7 @@ public class ArtefactToParameter
 		DurationPatternRepo repo = DurationPatternRepo.builder()
 				.durationPattern(durationTypeArr)
 				.staccatoDurationInMilliseconds(100)
+				.tagToActUpon(MuTag.IS_STRUCTURE_TONE)
 				.className(DurationPattern.class.getName())
 				.build();
 		pack.getRepo().put(Parameter.DURATION, repo);
@@ -422,11 +504,11 @@ public class ArtefactToParameter
 				.map(x -> x.getLengthInQuarters())
 				.collect(Collectors.toList());
 		
-		Parameter requiredParameter = getRequiredParameter(pack);
+//		Parameter requiredParameter = getRequiredParameter(pack);
 		
 		DurationFixedInQuartersRepo repo = DurationFixedInQuartersRepo.builder()
 				.durationPattern(ArrayUtils.toPrimitive(list.toArray(new Double[list.size()])))
-				.requiredParameter(requiredParameter)
+//				.requiredParameter(requiredParameter)
 				.className(DurationFixedInQuarters.class.getName())
 				.build();
 		pack.getRepo().put(Parameter.DURATION, repo);
@@ -437,11 +519,11 @@ public class ArtefactToParameter
 
 	private static PooplinePackage getFixedLengthDurationForStructureTones(PooplinePackage pack, double aFixedLengthInQuarters)
 	{
-		Parameter requiredParameter = getRequiredParameter(pack);
+//		Parameter requiredParameter = getRequiredParameter(pack);
 		
 		DurationFixedInQuartersRepo repo = DurationFixedInQuartersRepo.builder()
 				.durationPattern(new double[] {aFixedLengthInQuarters})
-				.requiredParameter(requiredParameter)
+//				.requiredParameter(requiredParameter)
 				.className(DurationFixedInQuarters.class.getName())
 				.build();
 		pack.getRepo().put(Parameter.DURATION, repo);
@@ -450,18 +532,18 @@ public class ArtefactToParameter
 
 
 
-	private static Parameter getRequiredParameter(PooplinePackage pack)
-	{
-		if (pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_CONTOUR))
-		{
-			return Parameter.STRUCTURE_TONE_CONTOUR;
-		}
-		else if (pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_VECTOR))
-		{
-			return Parameter.STRUCTURE_TONE_VECTOR;
-		}
-		return null;
-	}
+//	private static Parameter getRequiredParameter(PooplinePackage pack)
+//	{
+//		if (pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_CONTOUR))
+//		{
+//			return Parameter.STRUCTURE_TONE_CONTOUR;
+//		}
+//		else if (pack.getRepo().containsKey(Parameter.STRUCTURE_TONE_VECTOR))
+//		{
+//			return Parameter.STRUCTURE_TONE_VECTOR;
+//		}
+//		return null;
+//	}
 	
 
 
@@ -487,7 +569,7 @@ public class ArtefactToParameter
 				.selectedVectorArray(arr)
 				.className(VectorChordTonesFixed.class.getName())
 				.build();
-		pack.getRepo().put(Parameter.STRUCTURE_TONE_VECTOR, repo);
+		pack.getRepo().put(Parameter.STRUCTURE_TONE_GENERATOR, repo);
 		return pack;
 	}
 	

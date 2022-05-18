@@ -30,7 +30,7 @@ class DurationFixedInQuarters_Tests
 		note2.addMuNote(new MuNote(66, 77));
 		mu.addMu(note2, BarsAndBeats.at(2, 0));
 		
-		DurationFixedInQuarters plug = new DurationFixedInQuarters(new double[] {1.0, 1.5}, Parameter.STRUCTURE_TONE_CONTOUR);
+		DurationFixedInQuarters plug = new DurationFixedInQuarters(new double[] {1.0, 1.5});
 		pack = plug.process(pack);
 		assertThat(pack.getMu().getMus().get(0).getLengthInQuarters()).isEqualTo(1.0);
 		assertThat(pack.getMu().getMus().get(1).getLengthInQuarters()).isEqualTo(1.5);
