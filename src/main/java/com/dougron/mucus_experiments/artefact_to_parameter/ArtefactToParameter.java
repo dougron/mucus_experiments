@@ -14,9 +14,12 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.nd4j.shade.guava.math.DoubleMath;
 
+import main.java.com.dougron.mucus.algorithms.generic_generator.DurationType;
 import main.java.com.dougron.mucus.algorithms.mu_chord_tone_and_embellishment.ChordToneAndEmbellishmentTagger;
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.Parameter;
 import main.java.com.dougron.mucus.mu_framework.Mu;
@@ -29,6 +32,7 @@ import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagNamedParameter;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ChordProgressionFloatBarFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationFixedInQuarters;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationPattern;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.EmbellishmentFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseBoundPercentSetAmount;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseLengthSetLength;
@@ -43,6 +47,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.XmlKey
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.BooleanRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.ChordProgressionRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.DurationFixedInQuartersRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.DurationPatternRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.EmbellishmentFixedRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseBoundRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseLengthRepo;
@@ -66,6 +71,7 @@ public class ArtefactToParameter
 
 	public static final Logger logger = LogManager.getLogger(ArtefactToParameter.class);
 	private static final int DEFAULT_START_NOTE_IF_NO_STRUCTURE_TONES_EXIST = 48;	// middle C
+	private static final double EPSILON_FOR_DOUBLES_EQUALITY = 0.0001d;
 	
 	
 	public static String sayHello()
@@ -86,7 +92,7 @@ public class ArtefactToParameter
 		pack = addChordProgression(aMu, pack);
 		pack = addReposForStructureTones(aMu, pack);
 		
-		pack = addEmbellishmentRepos(aMu, pack);
+//		pack = addEmbellishmentRepos(aMu, pack);
 		
 		
 		return pack;
@@ -365,28 +371,76 @@ public class ArtefactToParameter
 
 	private static PooplinePackage addDurationRepo(Mu aMu, PooplinePackage pack)
 	{
-		// the commented out section return the duration of the original Mu. 
-		// only temporarily relevant as the testing mus were chord tone reductions,
-		// which are not essential to replicate once we move onto adding embellishments to the process
-//		List<Mu> structureTones = aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE);
-//		List<Double> list = structureTones.stream()
-//				.map(x -> x.getLengthInQuarters())
-//				.collect(Collectors.toList());
-//		
-//		Parameter requiredParameter = getRequiredParameter(pack);
-//		
-//		DurationFixedInQuartersRepo repo = DurationFixedInQuartersRepo.builder()
-//				.durationPattern(ArrayUtils.toPrimitive(list.toArray(new Double[list.size()])))
-//				.requiredParameter(requiredParameter)
-//				.className(DurationFixedInQuarters.class.getName())
-//				.build();
-//		pack.getRepo().put(Parameter.DURATION, repo);
+		pack = getDurationPatternModelsForStructureTones(aMu, pack);
 		
-		// this just makes the durations=0.5
+//		pack = getFixedLengthDurationsFromOriginalStructureTones(aMu, pack);
+		
+//		pack = getFixedLengthDurationForStructureTones(pack, 0.5);			// this just makes all durations=0.5
+		return pack;
+	}
+
+
+
+	private static PooplinePackage getDurationPatternModelsForStructureTones(Mu aMu, PooplinePackage pack)
+	{
+		List<Mu> structureTones = aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE);
+		DurationType[] durationTypeArr = new DurationType[structureTones.size() - 1];
+		for (int i = 0; i < structureTones.size() - 1; i++)
+		{
+			Mu structureTone = structureTones.get(i);
+			double endPosition = structureTone.getGlobalEndPositionInQuarters();
+			double nextStart = structureTone.getNextMu().getGlobalPositionInQuarters();
+			if (DoubleMath.fuzzyEquals(nextStart, endPosition, EPSILON_FOR_DOUBLES_EQUALITY))
+			{
+				durationTypeArr[i] = DurationType.LEGATO;
+			}
+			else
+			{
+				durationTypeArr[i] = DurationType.DEFAULT_SHORT;
+			}
+		}
+		DurationPatternRepo repo = DurationPatternRepo.builder()
+				.durationPattern(durationTypeArr)
+				.staccatoDurationInMilliseconds(100)
+				.className(DurationPattern.class.getName())
+				.build();
+		pack.getRepo().put(Parameter.DURATION, repo);
+		return pack;
+	}
+
+
+
+	private static PooplinePackage getFixedLengthDurationsFromOriginalStructureTones(Mu aMu, PooplinePackage pack)
+	{
+		List<Mu> originalStructureTones = aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE).stream()
+				.map(x -> (Mu)x.getMuTagBundleContaining(MuTag.HISTORY)
+						.get(0)
+						.getNamedParameter(MuTagNamedParameter.ORIGINAL_MU)
+					)
+				.collect(Collectors.toList());
+		List<Double> list = originalStructureTones.stream()
+				.map(x -> x.getLengthInQuarters())
+				.collect(Collectors.toList());
+		
 		Parameter requiredParameter = getRequiredParameter(pack);
 		
 		DurationFixedInQuartersRepo repo = DurationFixedInQuartersRepo.builder()
-				.durationPattern(new double[] {0.5})
+				.durationPattern(ArrayUtils.toPrimitive(list.toArray(new Double[list.size()])))
+				.requiredParameter(requiredParameter)
+				.className(DurationFixedInQuarters.class.getName())
+				.build();
+		pack.getRepo().put(Parameter.DURATION, repo);
+		return pack;
+	}
+
+
+
+	private static PooplinePackage getFixedLengthDurationForStructureTones(PooplinePackage pack, double aFixedLengthInQuarters)
+	{
+		Parameter requiredParameter = getRequiredParameter(pack);
+		
+		DurationFixedInQuartersRepo repo = DurationFixedInQuartersRepo.builder()
+				.durationPattern(new double[] {aFixedLengthInQuarters})
 				.requiredParameter(requiredParameter)
 				.className(DurationFixedInQuarters.class.getName())
 				.build();

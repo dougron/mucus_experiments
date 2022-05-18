@@ -75,8 +75,8 @@ public class Mu037_RestartTheAnalysisStuff
 //						new IntAndString(-2, "Anthropology"),
 //						new IntAndString(-2, "Anthropollywoggle"),	// 'Anthropology' with extended chords
 //						new IntAndString(-3, "BlueBossa"),
-						new IntAndString(0, "BlackOrpheus"),
-//						new IntAndString(0, "BlackOrpheus_phrase1"),
+//						new IntAndString(0, "BlackOrpheus"),
+						new IntAndString(0, "BlackOrpheus_phrase1"),
 //						new IntAndString(-2, "Stella"),
 //						new IntAndString(-1, "Confirmation"),
 //						new IntAndString(0, "SyncError"),

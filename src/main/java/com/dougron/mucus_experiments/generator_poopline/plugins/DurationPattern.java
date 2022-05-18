@@ -34,6 +34,7 @@ public class DurationPattern extends PlugGeneric implements PooplinePlugin {
 	private int staccatoDurationInMilliseconds = 100;
 	private static final double DEFAULT_STACCATO_IN_QUARTERS_IF_NO_TEMPO_EXISTS = 0.25;
 	private EndNoteDurationSolution endNoteSolution = EndNoteDurationSolution.LEGATO_TILL_END_OF_BAR;
+	private double SHORT_DURATION_IN_QUARTERS = 0.5;	// staccato is an actual tempo dependant note, this is just to make short notes on the score
 	
 	
 	private DurationType[] durationPattern;
@@ -49,6 +50,7 @@ public class DurationPattern extends PlugGeneric implements PooplinePlugin {
 				);
 		durationPattern = aDurationPattern;
 	}
+	
 	
 	
 	@Override
@@ -147,6 +149,9 @@ public class DurationPattern extends PlugGeneric implements PooplinePlugin {
 				break;
 			case STACCATO:
 				durationInQuarters = staccatoDurationInQuarters;
+				break;
+			case DEFAULT_SHORT:
+				durationInQuarters = SHORT_DURATION_IN_QUARTERS;
 				break;
 			}
 			muList.get(i).setLengthInQuarters(durationInQuarters);

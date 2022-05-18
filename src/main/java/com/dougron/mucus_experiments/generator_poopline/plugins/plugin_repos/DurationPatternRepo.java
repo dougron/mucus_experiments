@@ -21,6 +21,7 @@ public class DurationPatternRepo extends RepoSuperclass implements RepoInterface
 		return DurationPatternRepo.builder()
 				.durationPattern(getCopy(durationPattern))
 				.staccatoDurationInMilliseconds(staccatoDurationInMilliseconds)
+				.className(className)
 				.build();
 	}
 
