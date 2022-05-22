@@ -55,6 +55,7 @@ public class DurationPatterns extends PlugGeneric implements PooplinePlugin {
 				new Parameter[] 
 						{
 								Parameter.TEMPO,
+								Parameter.STRUCTURE_TONE_SYNCOPATION,
 								Parameter.STRUCTURE_TONE_GENERATOR,
 								Parameter.EMBELLISHMENT_GENERATOR
 						}

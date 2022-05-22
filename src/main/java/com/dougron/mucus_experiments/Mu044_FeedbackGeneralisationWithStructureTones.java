@@ -14,21 +14,23 @@ import main.java.com.dougron.mucus.mucus_output_manager.LocalOutputManager;
 import main.java.com.dougron.mucus.mucus_output_manager.MucusOutputManager;
 import main.java.com.dougron.mucus_experiments.generator_poopline.Poopline;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ChordProgressionDiatonicTriadRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ContourChordTonesRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ContourMultiplierRandom;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ChordProgressionDiatonicTriadRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationPattern;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneEvenlySpacedFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseBoundPercentSetAmount;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseLengthSetLength;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.RequiredPlugInsRunner;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StartNoteMelodyRandom;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneEvenlySpacedFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TempoRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TessituraFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TessituraSolverOneBreakpointRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TimeSignatureSingleRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.VectorChordTonesFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.XmlKeyRandom;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.duration_model.DurationLegato;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.duration_model.DurationModel;
 import main.java.com.dougron.mucus_experiments.generator_poopline.poopback.ContourShouldSpendMoreTimeDecending;
 import main.java.com.dougron.mucus_experiments.generator_poopline.poopback.PoopbackObject;
 import main.java.da_utils.render_name.RenderName;
@@ -183,7 +185,7 @@ public class Mu044_FeedbackGeneralisationWithStructureTones
 		pipeline.addPlugin(new TessituraFixed(Parameter.TESSITURA_MELODY_RANGE));
 		pipeline.addPlugin(new TessituraSolverOneBreakpointRandom(Parameter.STRUCTURE_TONE_GENERATOR, MuTag.IS_STRUCTURE_TONE));
 //		pipeline.addPlugin(new PatternEmbellisherRandom());
-		pipeline.addPlugin(new DurationPattern(new DurationType[] {DurationType.LEGATO}, null));
+		pipeline.addPlugin(new DurationPattern(new DurationModel[] {new DurationLegato()}, null));
 		pipeline.setPrimaryPlugin(new RequiredPlugInsRunner(
 				new Parameter[] {
 						Parameter.PHRASE_LENGTH,
@@ -231,7 +233,7 @@ public class Mu044_FeedbackGeneralisationWithStructureTones
 		pipeline.addPlugin(new TessituraFixed(Parameter.TESSITURA_MELODY_RANGE));
 		pipeline.addPlugin(new TessituraSolverOneBreakpointRandom(Parameter.STRUCTURE_TONE_GENERATOR, MuTag.IS_STRUCTURE_TONE));
 //		pipeline.addPlugin(new PatternEmbellisherRandom());
-		pipeline.addPlugin(new DurationPattern(new DurationType[] {DurationType.LEGATO}, null));
+		pipeline.addPlugin(new DurationPattern(new DurationModel[] {new DurationLegato()}, null));
 		pipeline.setPrimaryPlugin(new RequiredPlugInsRunner(
 				new Parameter[] {
 						Parameter.PHRASE_LENGTH,

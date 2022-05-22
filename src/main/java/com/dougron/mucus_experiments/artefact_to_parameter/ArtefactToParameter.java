@@ -46,6 +46,9 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.Tessit
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TimeSignatureSingleRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.VectorChordTonesFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.XmlKeyRandom;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.duration_model.DurationInQuarters;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.duration_model.DurationLegato;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.duration_model.DurationModel;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.BooleanRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.ChordProgressionRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.DurationFixedInQuartersRepo;
@@ -465,7 +468,7 @@ public class ArtefactToParameter
 						.getNamedParameter(MuTagNamedParameter.ORIGINAL_MU)
 					)
 				.collect(Collectors.toList());
-		DurationType[] durationTypeArr = new DurationType[originalStructureTones.size() - 1];
+		DurationModel[] durationTypeArr = new DurationModel[originalStructureTones.size() - 1];
 		for (int i = 0; i < originalStructureTones.size() - 1; i++)
 		{
 			Mu structureTone = originalStructureTones.get(i);
@@ -473,15 +476,15 @@ public class ArtefactToParameter
 			double nextStart = structureTone.getNextMu().getGlobalPositionInQuarters();
 			if (DoubleMath.fuzzyEquals(nextStart, endPosition, EPSILON_FOR_DOUBLES_EQUALITY))
 			{
-				durationTypeArr[i] = DurationType.LEGATO;
+				durationTypeArr[i] = new DurationLegato();
 			}
 			else
 			{
-				durationTypeArr[i] = DurationType.DEFAULT_SHORT;
+				durationTypeArr[i] = new DurationInQuarters(DurationInQuarters.SHORT_DURATION_IN_QUARTERS);
 			}
 		}
 		DurationPatternRepo repo = DurationPatternRepo.builder()
-				.durationPattern(durationTypeArr)
+				.durationModelPattern(durationTypeArr)
 				.staccatoDurationInMilliseconds(100)
 				.tagToActUpon(MuTag.IS_STRUCTURE_TONE)
 				.className(DurationPattern.class.getName())

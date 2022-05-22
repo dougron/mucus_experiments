@@ -3,13 +3,14 @@
   <Appenders>
   
     <Console name="Console" target="SYSTEM_OUT">
-      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+<!--      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>-->
+      <PatternLayout pattern="%d %p %c{1.} [%t] %m%n"/>
  <!--   	<Filters>
     		<ThresholdFilter level="info" onMatch="DENY" onMismatch="NEUTRAL" />
     	</Filters>-->
     </Console>  
     
- <!--    <RollingFile name="ErrorLog" fileName="logs/error.log" filePattern="logs/loggerlog-%d{yyyyMMdd}.error.%i.log">
+     <RollingFile name="ErrorLog" fileName="logs/error.log" filePattern="logs/loggerlog-%d{yyyyMMdd}.error.%i.log">
     	<PatternLayout>
     		<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
     	</PatternLayout>
@@ -17,14 +18,14 @@
     		<TimeBasedTriggeringPolicy />
     		<SizeBasedTriggeringPolicy size="10 MB"/>
     	</Policies>
-    	<Filters>
+ <!--   	<Filters>
     		<ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY" />
-    	</Filters>
+    	</Filters>-->
     
     </RollingFile>
 
 
-    <RollingFile name="StatusLog" fileName="logs/status.log" filePattern="logs/loggerlog-%d{yyyyMMdd}.status.%i.log">
+<!--    <RollingFile name="StatusLog" fileName="logs/status.log" filePattern="logs/loggerlog-%d{yyyyMMdd}.status.%i.log">
     	<PatternLayout>
     		<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
     	</PatternLayout>
@@ -49,7 +50,7 @@
   	
     <Root level="debug" >
      	<AppenderRef ref="Console"/>
-  <!--       	<AppenderRef ref="ErrorLog"/>--> 
+         	<AppenderRef ref="ErrorLog"/> 
   <!--       	<AppenderRef ref="StatusLog"/>--> 
     </Root>    
   </Loggers>

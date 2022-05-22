@@ -8,6 +8,7 @@ import java.util.Map;
 import lombok.NoArgsConstructor;
 import main.java.com.dougron.mucus.algorithms.generic_generator.DurationType;
 import main.java.com.dougron.mucus_experiments.generator_poopline.embellisher.MuEmbellisher;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.duration_model.DurationModel;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PatternEmbellishmentRepo.EmbellishmentRhythmResolution;
 import main.java.com.dougron.mucus_experiments.generator_poopline.rhythm_offset.RhythmOffset;
 import main.java.da_utils.four_point_contour.FourPointContour;
@@ -119,6 +120,17 @@ public class RepoSuperclass
 	public DurationType[] getCopy(DurationType[] arr)
 	{
 		DurationType[] brr = new DurationType[arr.length];
+		for (int i = 0; i < arr.length; i++)
+		{
+			brr[i] = arr[i];
+		}
+		return brr;
+	}
+	
+	
+	public DurationModel[] getCopy(DurationModel[] arr)
+	{
+		DurationModel[] brr = new DurationModel[arr.length];
 		for (int i = 0; i < arr.length; i++)
 		{
 			brr[i] = arr[i];

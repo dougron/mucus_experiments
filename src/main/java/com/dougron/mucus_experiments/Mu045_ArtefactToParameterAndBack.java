@@ -15,24 +15,23 @@ import main.java.com.dougron.mucus.mucus_output_manager.continuous_integrator.Co
 import main.java.com.dougron.mucus.mucus_output_manager.mucus_lom_injector.MuucusLOMInjector;
 import main.java.com.dougron.mucus_experiments.generator_poopline.Poopline;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ChordProgressionDiatonicTriadRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ContourChordTonesRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ContourMultiplierRandom;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ChordProgressionDiatonicTriadRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationPattern;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneEvenlySpacedRandom;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PatternEmbellisherRandom;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseBoundPercentRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseBoundPercentSetAmount;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseLengthRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.RequiredPlugInsRunner;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ShouldIUseTheStructureToneSyncopator;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StartNoteMelodyRandom;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneSyncopatorInQuartersRandom;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneEvenlySpacedRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TempoRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TessituraFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TessituraSolverOneBreakpointRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TimeSignatureSingleRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.XmlKeyRandom;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.duration_model.DurationLegato;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.duration_model.DurationModel;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.duration_model.DurationStaccato;
 import main.java.da_utils.render_name.RenderName;
 
 
@@ -98,7 +97,7 @@ public class Mu045_ArtefactToParameterAndBack
 		pipeline.addPlugin(new TessituraFixed(Parameter.TESSITURA_START_NOTE));
 		pipeline.addPlugin(new TessituraFixed(Parameter.TESSITURA_MELODY_RANGE));
 		pipeline.addPlugin(new TessituraSolverOneBreakpointRandom(Parameter.STRUCTURE_TONE_GENERATOR, MuTag.IS_SYNCOPATION));
-		pipeline.addPlugin(new DurationPattern(new DurationType[] {DurationType.STACCATO, DurationType.LEGATO}, null));
+		pipeline.addPlugin(new DurationPattern(new DurationModel[] {new DurationStaccato(), new DurationLegato()}, null));
 		pipeline.addPlugin(new ContourChordTonesRandom());
 		pipeline.setPrimaryPlugin(new RequiredPlugInsRunner(
 				new Parameter[] {
@@ -147,8 +146,7 @@ public class Mu045_ArtefactToParameterAndBack
 		pipeline.addPlugin(new TessituraFixed(Parameter.TESSITURA_MELODY_RANGE));
 		pipeline.addPlugin(new TessituraSolverOneBreakpointRandom(Parameter.STRUCTURE_TONE_GENERATOR, MuTag.IS_STRUCTURE_TONE));
 //		pipeline.addPlugin(new PatternEmbellisherRandom());
-//		pipeline.addPlugin(new DurationPattern(new DurationType[] {DurationType.LEGATO, DurationType.STACCATO}));
-		pipeline.addPlugin(new DurationPattern(new DurationType[] {DurationType.STACCATO, DurationType.LEGATO}, null));
+		pipeline.addPlugin(new DurationPattern(new DurationModel[] {new DurationStaccato(), new DurationLegato()}, null));
 		pipeline.setPrimaryPlugin(new RequiredPlugInsRunner(
 				new Parameter[] {
 						Parameter.PHRASE_LENGTH,

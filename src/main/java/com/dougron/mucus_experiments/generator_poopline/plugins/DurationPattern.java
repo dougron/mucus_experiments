@@ -16,6 +16,8 @@ import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagBundle;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagNamedParameter;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePlugin;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.duration_model.DurationInBarsAndBeats;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.duration_model.DurationModel;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.DurationPatternRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TempoRepo;
 
@@ -26,38 +28,55 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin
 
 public class DurationPattern extends PlugGeneric implements PooplinePlugin {
 
-	public enum EndNoteDurationSolution {LEGATO_TILL_END_OF_BAR, STACCATO}
+//	public enum EndNoteDurationSolution {LEGATO_TILL_END_OF_BAR, STACCATO}
 	
 	public static final Logger logger = LogManager.getLogger(DurationPattern.class);
 	
 	private DurationPatternRepo durationPatternRepo;
 	private int staccatoDurationInMilliseconds = 100;
 	private static final double DEFAULT_STACCATO_IN_QUARTERS_IF_NO_TEMPO_EXISTS = 0.25;
-	private EndNoteDurationSolution endNoteSolution = EndNoteDurationSolution.LEGATO_TILL_END_OF_BAR;
-	private double SHORT_DURATION_IN_QUARTERS = 0.5;	// staccato is an actual tempo dependant note, this is just to make short notes on the score
+	private DurationModel endNoteDurationModel = new DurationInBarsAndBeats(BarsAndBeats.at(1, 0));
 	
-	
-	private DurationType[] durationPattern;
 	
 	TempoRepo tempoRepo;
 
 	private MuTag tagToActUpon;	// if parameterScope is empty, then the plugin works on allMusWithNotes 
+
+	private DurationModel[] durationModelPattern;
 	
 	
-	public DurationPattern(DurationType[] aDurationPattern, MuTag aTagToActUpon)
+	public DurationPattern(DurationModel[] aDurationModelPattern, MuTag aTagToActUpon)
 	{
 		super(
 				Parameter.DURATION,
 				new Parameter[] 
 						{
 								Parameter.TEMPO,
+								Parameter.STRUCTURE_TONE_SYNCOPATION,
 								Parameter.STRUCTURE_TONE_GENERATOR,
 								Parameter.EMBELLISHMENT_GENERATOR
 						}
 				);
-		durationPattern = aDurationPattern;
+		durationModelPattern = aDurationModelPattern;
 		tagToActUpon = aTagToActUpon;
 	}
+	
+	
+//	public DurationPattern(DurationType[] aDurationPattern, MuTag aTagToActUpon)
+//	{
+//		super(
+//				Parameter.DURATION,
+//				new Parameter[] 
+//						{
+//								Parameter.TEMPO,
+//								Parameter.STRUCTURE_TONE_SYNCOPATION,
+//								Parameter.STRUCTURE_TONE_GENERATOR,
+//								Parameter.EMBELLISHMENT_GENERATOR
+//						}
+//				);
+//		durationPattern = aDurationPattern;
+//		tagToActUpon = aTagToActUpon;
+//	}
 	
 	
 	
@@ -83,7 +102,7 @@ public class DurationPattern extends PlugGeneric implements PooplinePlugin {
 	PooplinePackage makeRepo(PooplinePackage pack)
 	{
 		durationPatternRepo = DurationPatternRepo.builder()
-				.durationPattern(durationPattern)
+				.durationModelPattern(durationModelPattern)
 				.staccatoDurationInMilliseconds(staccatoDurationInMilliseconds)
 				.tagToActUpon(tagToActUpon)
 				.className(getClass().getName())
@@ -153,27 +172,13 @@ public class DurationPattern extends PlugGeneric implements PooplinePlugin {
 
 
 	private void dealWithAllMuDurationExceptLast(double staccatoDurationInQuarters, List<Mu> muList) {
-		DurationType type;
+		DurationModel model;
 		double durationInQuarters = 0.0;
 		for (int i = 0; i < muList.size() - 1; i++)
 		{
-			type = durationPattern[i % durationPattern.length];
+			model = durationModelPattern[i % durationModelPattern.length];
 			
-			switch (type)
-			{
-			case LEGATO:
-				double thisGlobalPosition = muList.get(i).getGlobalPositionInQuarters();
-				double nextGlobalPosition = muList.get(i).getNextMu().getGlobalPositionInQuarters();
-				durationInQuarters = nextGlobalPosition - thisGlobalPosition;
-				break;
-			case STACCATO:
-				durationInQuarters = staccatoDurationInQuarters;
-				break;
-			case DEFAULT_SHORT:
-				durationInQuarters = SHORT_DURATION_IN_QUARTERS;
-				break;
-			}
-			muList.get(i).setLengthInQuarters(durationInQuarters);
+			model.setDuration(muList.get(i));
 		}
 	}
 
@@ -183,15 +188,7 @@ public class DurationPattern extends PlugGeneric implements PooplinePlugin {
 		if (muList.size() > 0)
 		{
 			Mu lastMu = muList.get(muList.size() - 1);
-			switch(endNoteSolution)
-			{
-			case LEGATO_TILL_END_OF_BAR:
-				setLastMuDurationToEndOfBar(lastMu);
-				break;
-			case STACCATO:
-				lastMu.setLengthInQuarters(staccatoDurationInQuarters);
-				break;
-			}
+			endNoteDurationModel.setDuration(lastMu);
 		}
 	}
 
@@ -235,8 +232,8 @@ public class DurationPattern extends PlugGeneric implements PooplinePlugin {
 
 
 
-	public DurationPattern setEndNoteSolution(EndNoteDurationSolution endNoteSolution) {
-		this.endNoteSolution = endNoteSolution;
+	public DurationPattern setEndNoteDurationModel(DurationModel aDurationModel) {
+		endNoteDurationModel = aDurationModel;
 		return this;
 	}
 }

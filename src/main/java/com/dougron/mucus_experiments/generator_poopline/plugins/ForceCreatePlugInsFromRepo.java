@@ -1,5 +1,9 @@
 package main.java.com.dougron.mucus_experiments.generator_poopline.plugins;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -47,14 +51,30 @@ public class ForceCreatePlugInsFromRepo extends PlugGeneric implements PooplineP
 		}
 		// plugins always processed in reverese order, to accommodate loading default plugins first
 		// and them being encountered second
+//		logger.debug(
+//				"Poopline.plugin() content=" 
+//						+ parent.getPlugins().stream()
+//							.map(x -> "\n" + x.getClass().getSimpleName())
+//							.collect(Collectors.toList())
+				
+//				);
+		List<String> debugList = new ArrayList<String>();
 		for (int i = parent.getPlugins().size() - 1; i >= 0; i--)
 		{
 			PooplinePlugin plug = parent.getPlugins().get(i);
+			debugList.add(plug.getClass().getSimpleName());
 			if (plug != this)
 			{
 				pack = plug.process(pack);
+				logger.debug(
+						"Plug just processed=" + plug.getClass().getSimpleName()
+						+ parent.getPlugins().stream()
+							.map(x -> "\n\t" + x.getClass().getSimpleName() + "\t" + x.isExecutedThisCycle())
+							.collect(Collectors.toList())
+						);
 			}
 		}
+		logger.debug("processing order: " + debugList.stream().map(x -> "\n" + x).collect(Collectors.toList()));
 		logger.debug(this.getClass().getSimpleName() + ".process() exited");
 		return pack;
 	}

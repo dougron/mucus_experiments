@@ -72,7 +72,7 @@ public class Poopline
 		{
 			if (plug.getRenderParameter() == aParameter)
 			{
-				logger.debug(plug.getClass() + " can supply Parameter " + aParameter);
+				logger.debug(plug.getClass().getSimpleName() + " can supply Parameter " + aParameter);
 				q = true;
 			}
 		}

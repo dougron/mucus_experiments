@@ -13,15 +13,18 @@ import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagBundle;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagNamedParameter;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationPattern;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationPatterns.EndNoteDurationSolution;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TempoRandom;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationPattern.EndNoteDurationSolution;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.duration_model.DurationLegato;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.duration_model.DurationModel;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.duration_model.DurationStaccato;
 import test.java.com.dougron.mucus.algorithms.TestRandom;
 
 class DurationPattern_Tests {
 
 	@Test
 	void instantiates() {
-		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.LEGATO}, null);
+		DurationPattern plug = new DurationPattern(new DurationModel[] {new DurationLegato()}, null);
 		assertThat(plug).isNotNull();
 	}
 	
@@ -40,7 +43,7 @@ class DurationPattern_Tests {
 		Mu note2 = new Mu("note2");
 		note2.addMuNote(new MuNote(64, 64));
 		parent.addMu(note2, 2);
-		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.LEGATO}, null);
+		DurationPattern plug = new DurationPattern(new DurationModel[] {new DurationLegato()}, null);
 		pack = plug.process(pack);
 		assertThat(note1.getLengthInQuarters()).isEqualTo(4.0);
 	}
@@ -60,7 +63,7 @@ class DurationPattern_Tests {
 		Mu note2 = new Mu("note2");
 		note2.addMuNote(new MuNote(64, 64));
 		parent.addMu(note2, 2);
-		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.LEGATO}, null);
+		DurationPattern plug = new DurationPattern(new DurationModel[] {new DurationLegato()}, null);
 		pack = plug.process(pack);
 		assertThat(note2.getLengthInQuarters()).isEqualTo(4.0);
 	}
@@ -83,7 +86,7 @@ class DurationPattern_Tests {
 		MuTagBundle bundle = new MuTagBundle(MuTag.IS_SYNCOPATION);
 		bundle.addNamedParameter(MuTagNamedParameter.SYNCOPATED_BEAT_GLOBAL_POSITION, 8.0);
 		note2.addMuTagBundle(bundle);
-		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.LEGATO}, null);
+		DurationPattern plug = new DurationPattern(new DurationModel[] {new DurationLegato()}, null);
 		pack = plug.process(pack);
 		assertThat(note2.getLengthInQuarters()).isEqualTo(4.5);
 	}
@@ -106,14 +109,14 @@ class DurationPattern_Tests {
 		MuTagBundle bundle = new MuTagBundle(MuTag.IS_SYNCOPATION);
 		bundle.addNamedParameter(MuTagNamedParameter.SYNCOPATED_BEAT_GLOBAL_POSITION, 10.0);
 		note2.addMuTagBundle(bundle);
-		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.LEGATO}, null);
+		DurationPattern plug = new DurationPattern(new DurationModel[] {new DurationLegato()}, null);
 		pack = plug.process(pack);
 		assertThat(note2.getLengthInQuarters()).isEqualTo(2.5);
 	}
 	
 	
 	@Test
-	void given_staccato_model_when_no_tempo_is_present_all_notes_are_duration_0_25() throws Exception {
+	void given_staccato_model_when_tempo_is_default_then_all_notes_are_duration_0_2() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.4));
 		pack.setDebugMode(true);
 //		TempoRandom tempoPlug = new TempoRandom();
@@ -129,9 +132,9 @@ class DurationPattern_Tests {
 		MuTagBundle bundle = new MuTagBundle(MuTag.IS_SYNCOPATION);
 		bundle.addNamedParameter(MuTagNamedParameter.SYNCOPATED_BEAT_GLOBAL_POSITION, 10.0);
 		note2.addMuTagBundle(bundle);
-		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.STACCATO}, null);
+		DurationPattern plug = new DurationPattern(new DurationModel[] {new DurationStaccato()}, null);
 		pack = plug.process(pack);
-		assertThat(note1.getLengthInQuarters()).isEqualTo(0.25);
+		assertThat(note1.getLengthInQuarters()).isEqualTo(0.2);
 	}
 	
 	
@@ -152,14 +155,14 @@ class DurationPattern_Tests {
 		MuTagBundle bundle = new MuTagBundle(MuTag.IS_SYNCOPATION);
 		bundle.addNamedParameter(MuTagNamedParameter.SYNCOPATED_BEAT_GLOBAL_POSITION, 10.0);
 		note2.addMuTagBundle(bundle);
-		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.STACCATO}, null);
+		DurationPattern plug = new DurationPattern(new DurationModel[] {new DurationStaccato()}, null);
 		pack = plug.process(pack);
 		assertThat(note1.getLengthInQuarters()).isLessThan(0.25);
 	}
 	
 	
 	@Test
-	void given_staccato_end_model_when_tempo_is_not_present_last_note_is_0_25_duration() throws Exception {
+	void given_staccato_end_model_when_tempo_is_default_then_last_note_is_0_2_duration() throws Exception {
 		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.4));
 		pack.setDebugMode(true);
 //		TempoRandom tempoPlug = new TempoRandom();
@@ -175,38 +178,40 @@ class DurationPattern_Tests {
 		MuTagBundle bundle = new MuTagBundle(MuTag.IS_SYNCOPATION);
 		bundle.addNamedParameter(MuTagNamedParameter.SYNCOPATED_BEAT_GLOBAL_POSITION, 10.0);
 		note2.addMuTagBundle(bundle);
-		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.STACCATO}, null);
-		plug.setEndNoteSolution(EndNoteDurationSolution.STACCATO);
+		DurationPattern plug = new DurationPattern(new DurationModel[] {new DurationStaccato()}, null);
+		plug.setEndNoteDurationModel(new DurationStaccato());
 		pack = plug.process(pack);
-		assertThat(note2.getLengthInQuarters()).isEqualTo(0.25);
+		assertThat(note2.getLengthInQuarters()).isEqualTo(0.2);
 	}
 	
 	
-	@Test
-	void given_staccato_legato_model_when_tempo_is_not_present_then_note1_duration_0_25_and_note2_duration_4() throws Exception {
-		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.4));
-		pack.setDebugMode(true);
-//		TempoRandom tempoPlug = new TempoRandom();
-//		pack = tempoPlug.process(pack);
-		Mu parent = pack.getMu();
-		parent.setLengthInBars(4);
-		Mu note1 = new Mu("note1");
-		note1.addMuNote(new MuNote(60, 64));
-		parent.addMu(note1, 1);
-		Mu note2 = new Mu("note2");
-		note2.addMuNote(new MuNote(64, 64));
-		parent.addMu(note2, 2);
-		Mu note3 = new Mu("note3");
-		note3.addMuNote(new MuNote(64, 64));
-		parent.addMu(note3, 3);
-//		MuTagBundle bundle = new MuTagBundle(MuTag.IS_SYNCOPATION);
-//		bundle.addNamedParameter(MuTagNamedParameter.SYNCOPATED_BEAT_GLOBAL_POSITION, 10.0);
-//		note2.addMuTagBundle(bundle);
-		DurationPattern plug = new DurationPattern(new DurationType[] {DurationType.STACCATO, DurationType.LEGATO}, null);
-//		plug.setEndNoteSolution(EndNoteDurationSolution.STACCATO);
-		pack = plug.process(pack);
-		assertThat(note1.getLengthInQuarters()).isEqualTo(0.25);
-		assertThat(note2.getLengthInQuarters()).isEqualTo(4.0);
-	}
+	// since the implementation of generator_poopline.DurationModel, tempo is always present, and if not explicitly set will 
+	// be default 120 bpm throughh the process of creating a default ruler in Mu
+//	@Test
+//	void given_staccato_legato_model_when_tempo_is_not_present_then_note1_duration_0_25_and_note2_duration_4() throws Exception {
+//		PooplinePackage pack = new PooplinePackage("x", new TestRandom(0.4));
+//		pack.setDebugMode(true);
+////		TempoRandom tempoPlug = new TempoRandom();
+////		pack = tempoPlug.process(pack);
+//		Mu parent = pack.getMu();
+//		parent.setLengthInBars(4);
+//		Mu note1 = new Mu("note1");
+//		note1.addMuNote(new MuNote(60, 64));
+//		parent.addMu(note1, 1);
+//		Mu note2 = new Mu("note2");
+//		note2.addMuNote(new MuNote(64, 64));
+//		parent.addMu(note2, 2);
+//		Mu note3 = new Mu("note3");
+//		note3.addMuNote(new MuNote(64, 64));
+//		parent.addMu(note3, 3);
+////		MuTagBundle bundle = new MuTagBundle(MuTag.IS_SYNCOPATION);
+////		bundle.addNamedParameter(MuTagNamedParameter.SYNCOPATED_BEAT_GLOBAL_POSITION, 10.0);
+////		note2.addMuTagBundle(bundle);
+//		DurationPattern plug = new DurationPattern(new DurationModel[] {new DurationStaccato(), new DurationLegato()}, null);
+////		plug.setEndNoteSolution(EndNoteDurationSolution.STACCATO);
+//		pack = plug.process(pack);
+//		assertThat(note1.getLengthInQuarters()).isEqualTo(0.25);
+//		assertThat(note2.getLengthInQuarters()).isEqualTo(4.0);
+//	}
 
 }

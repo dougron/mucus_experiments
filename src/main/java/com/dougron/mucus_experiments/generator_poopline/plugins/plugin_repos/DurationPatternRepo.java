@@ -4,15 +4,15 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import main.java.com.dougron.mucus.algorithms.generic_generator.DurationType;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTag;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.duration_model.DurationModel;
 
 @Builder
 @ToString
 public class DurationPatternRepo extends RepoSuperclass implements RepoInterface {
 	
 
-	@Getter @Setter private DurationType[] durationPattern;
+	@Getter @Setter private DurationModel[] durationModelPattern;
 	@Getter @Setter private int staccatoDurationInMilliseconds;
 	@Getter @Setter private MuTag tagToActUpon;
 	@Getter @Setter private String className;
@@ -21,7 +21,7 @@ public class DurationPatternRepo extends RepoSuperclass implements RepoInterface
 	public DurationPatternRepo deepCopy()
 	{
 		return DurationPatternRepo.builder()
-				.durationPattern(getCopy(durationPattern))
+				.durationModelPattern(getCopy(durationModelPattern))
 				.staccatoDurationInMilliseconds(staccatoDurationInMilliseconds)
 				.tagToActUpon(tagToActUpon)
 				.className(className)

@@ -15,5 +15,5 @@ public interface PooplinePlugin {
 	public Parameter getRenderParameter();
 	public Parameter[] getRequiredParameters();
 	public void setExecutedThisCycle(boolean bool);
-
+	public boolean isExecutedThisCycle();
 }

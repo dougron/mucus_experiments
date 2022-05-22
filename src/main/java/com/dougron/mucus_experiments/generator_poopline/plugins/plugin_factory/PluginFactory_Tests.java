@@ -4,15 +4,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-import main.java.com.dougron.mucus.algorithms.generic_generator.DurationType;
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.Parameter;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTag;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePlugin;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ChordProgressionDiatonicTriadRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ContourChordTonesRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ContourMultiplierRandom;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ChordProgressionDiatonicTriadRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationPattern;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneEvenlySpacedFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.LoopModelSetter;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PatternEmbellisherRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseBoundPercentRandom;
@@ -21,6 +19,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.Phrase
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseLengthSetLength;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ShouldIUseTheStructureToneSyncopator;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StartNoteMelodyRandom;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneEvenlySpacedFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneSyncopatorInQuartersRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TempoRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TessituraFixed;
@@ -28,12 +27,12 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.Tessit
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TimeSignatureSingleRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.VectorChordTonesFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.XmlKeyRandom;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.duration_model.DurationModel;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.BooleanRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.ChordProgressionRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.ContourChordTonesRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.ContourMultiplierRepo;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.ChordProgressionRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.DurationPatternRepo;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneEvenlySpacedRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.LoopModelRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.LoopModelRepo.LoopModel;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PatternEmbellishmentRepo;
@@ -41,6 +40,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseLengthRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.RepoInterface;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StartNoteRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneEvenlySpacedRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneSyncopationIntegerPatternRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TempoRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TessituraRepo;
@@ -59,7 +59,7 @@ class PluginFactory_Tests
 		new Object[] {new ContourChordTonesRandom(), ContourChordTonesRepo.builder().className(ContourChordTonesRandom.class.getName()).build()},
 		new Object[] {new ContourMultiplierRandom(), ContourMultiplierRepo.builder().className(ContourMultiplierRandom.class.getName()).build()},
 		new Object[] {new ChordProgressionDiatonicTriadRandom(), ChordProgressionRepo.builder().className(ChordProgressionDiatonicTriadRandom.class.getName()).build()},
-		new Object[] {new DurationPattern(new DurationType[] {}, null), DurationPatternRepo.builder().className(DurationPattern.class.getName()).build()},
+		new Object[] {new DurationPattern(new DurationModel[] {}, null), DurationPatternRepo.builder().className(DurationPattern.class.getName()).build()},
 		new Object[] {new StructureToneEvenlySpacedFixed(1.0), StructureToneEvenlySpacedRepo.builder().className(StructureToneEvenlySpacedFixed.class.getName()).build()},
 		new Object[] {new LoopModelSetter(LoopModel.LOOP), LoopModelRepo.builder().className(LoopModelSetter.class.getName()).build()},
 		new Object[] {new PatternEmbellisherRandom(), PatternEmbellishmentRepo.builder().className(PatternEmbellisherRandom.class.getName()).build()},

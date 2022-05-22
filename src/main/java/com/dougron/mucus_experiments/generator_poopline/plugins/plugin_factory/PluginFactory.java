@@ -291,7 +291,7 @@ public class PluginFactory
 	{
 		// currently only 1
 		DurationPatternRepo drepo = (DurationPatternRepo)repo;
-		return new DurationPattern(drepo.getDurationPattern(), drepo.getTagToActUpon());
+		return new DurationPattern(drepo.getDurationModelPattern(), drepo.getTagToActUpon());
 	}
 	
 	
