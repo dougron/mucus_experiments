@@ -18,6 +18,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.Phrase
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseBoundPercentSetAmount;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseLengthRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseLengthSetLength;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PlaceHolderRenderParameter;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ShouldIUseTheStructureToneSyncopator;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StartNoteMelodyRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneEvenlySpacedFixed;
@@ -37,6 +38,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.LoopModelRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseBoundRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseLengthRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PlaceHolderRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.RepoInterface;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneEvenlySpacedRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneUnevenlySpacedRepo;
@@ -99,6 +101,8 @@ public class PluginFactory
 			return getPhraseBoundPlugin(repo);
 		case "PhraseLengthRepo":
 			return getPhraseLengthPlugin(repo);
+		case "PlaceHolderRepo":
+			return getPlaceholderRenderPlugin(repo);
 		case "BooleanRepo":
 			return getBooleanRepoRelatedPlugin(repo);
 		case "StartNoteRepo":
@@ -126,6 +130,14 @@ public class PluginFactory
 
 	
 	
+	private static PooplinePlugin getPlaceholderRenderPlugin(RepoInterface repo)
+	{
+		PlaceHolderRepo phRepo = (PlaceHolderRepo) repo;
+		return new PlaceHolderRenderParameter(phRepo.getParameter());
+	}
+
+
+
 	private static PooplinePlugin getEmbellishmentFixedPlugin(RepoInterface repo)
 	{
 		return new EmbellishmentFixed();

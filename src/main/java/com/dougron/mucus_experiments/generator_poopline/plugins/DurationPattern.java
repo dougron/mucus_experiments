@@ -103,6 +103,7 @@ public class DurationPattern extends PlugGeneric implements PooplinePlugin {
 	{
 		durationPatternRepo = DurationPatternRepo.builder()
 				.durationModelPattern(durationModelPattern)
+				.endNoteDurationModel(endNoteDurationModel)
 				.staccatoDurationInMilliseconds(staccatoDurationInMilliseconds)
 				.tagToActUpon(tagToActUpon)
 				.className(getClass().getName())
@@ -116,6 +117,7 @@ public class DurationPattern extends PlugGeneric implements PooplinePlugin {
 	void getRepoFromPack(PooplinePackage pack)
 	{
 		durationPatternRepo = (DurationPatternRepo)pack.getRepo().get(Parameter.DURATION);
+		endNoteDurationModel = durationPatternRepo.getEndNoteDurationModel();
 	}
 
 	

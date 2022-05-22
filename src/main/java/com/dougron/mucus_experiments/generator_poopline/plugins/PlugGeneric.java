@@ -145,7 +145,13 @@ public class PlugGeneric implements PooplinePlugin {
 	
 	public PooplinePackage runRequiredPlugins(PooplinePackage pack)
 	{
-		if (!pack.isDebugMode())
+		if (pack.isDebugMode())
+		{
+			// debug mode is for plugins run with a Poopline parent, so searching in the parent.plugList is 
+			// not going to work
+			
+		}
+		else
 		{
 			for (Parameter p: getRequiredParameters())
 			{

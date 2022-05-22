@@ -13,6 +13,7 @@ public class DurationPatternRepo extends RepoSuperclass implements RepoInterface
 	
 
 	@Getter @Setter private DurationModel[] durationModelPattern;
+	@Getter @Setter private DurationModel endNoteDurationModel;
 	@Getter @Setter private int staccatoDurationInMilliseconds;
 	@Getter @Setter private MuTag tagToActUpon;
 	@Getter @Setter private String className;
@@ -22,6 +23,7 @@ public class DurationPatternRepo extends RepoSuperclass implements RepoInterface
 	{
 		return DurationPatternRepo.builder()
 				.durationModelPattern(getCopy(durationModelPattern))
+				.endNoteDurationModel(endNoteDurationModel)
 				.staccatoDurationInMilliseconds(staccatoDurationInMilliseconds)
 				.tagToActUpon(tagToActUpon)
 				.className(className)

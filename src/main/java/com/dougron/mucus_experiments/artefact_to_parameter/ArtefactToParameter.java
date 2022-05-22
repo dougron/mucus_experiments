@@ -37,6 +37,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.Durati
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.EmbellishmentFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseBoundPercentSetAmount;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseLengthSetLength;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PlaceHolderRenderParameter;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ShouldIUseTheStructureToneSyncopator;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StartNoteMelodyRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.StructureToneEvenlySpacedFixed;
@@ -57,6 +58,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.EmbellishmentFixedRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseBoundRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseLengthRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PlaceHolderRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StartNoteRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneEvenlySpacedRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StructureToneSyncopationDoublePatternRepo;
@@ -376,7 +378,7 @@ public class ArtefactToParameter
 
 	private static Mu getOriginalStructureToneFromHistoryTag(Mu structureTone)
 	{
-		Mu originalStructureTone = null;
+		Mu originalStructureTone = structureTone;
 		List<MuTagBundle> bundleList = structureTone.getMuTagBundleContaining(MuTag.HISTORY);
 		if (bundleList.size() > 0)
 		{
@@ -417,8 +419,13 @@ public class ArtefactToParameter
 		}
 		else
 		{
-			// for now this leaves out any structure tone syncopation repos
-			// in a later variation process they can be added
+			pack.getRepo().put(
+					Parameter.STRUCTURE_TONE_SYNCOPATION, 
+					PlaceHolderRepo.builder()
+						.parameter(Parameter.STRUCTURE_TONE_SYNCOPATION)
+						.className(PlaceHolderRenderParameter.class.getName())
+						.build()
+					);
 		}
 		
 		return pack;
@@ -461,13 +468,8 @@ public class ArtefactToParameter
 
 	private static PooplinePackage getDurationPatternModelsForStructureTones(Mu aMu, PooplinePackage pack)
 	{
-//		List<Mu> structureTones = aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE);
-		List<Mu> originalStructureTones = aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE).stream()
-				.map(x -> (Mu)x.getMuTagBundleContaining(MuTag.HISTORY)
-						.get(0)
-						.getNamedParameter(MuTagNamedParameter.ORIGINAL_MU)
-					)
-				.collect(Collectors.toList());
+		List<Mu> originalStructureTones = getOriginalStructureTones(aMu);
+		
 		DurationModel[] durationTypeArr = new DurationModel[originalStructureTones.size() - 1];
 		for (int i = 0; i < originalStructureTones.size() - 1; i++)
 		{
@@ -480,17 +482,60 @@ public class ArtefactToParameter
 			}
 			else
 			{
-				durationTypeArr[i] = new DurationInQuarters(DurationInQuarters.SHORT_DURATION_IN_QUARTERS);
+				durationTypeArr[i] = new DurationInQuarters(structureTone.getLengthInQuarters());
 			}
 		}
+		DurationModel endNoteDurationModel = getEndNoteDurationModel(originalStructureTones);
 		DurationPatternRepo repo = DurationPatternRepo.builder()
 				.durationModelPattern(durationTypeArr)
+				.endNoteDurationModel(endNoteDurationModel)
 				.staccatoDurationInMilliseconds(100)
 				.tagToActUpon(MuTag.IS_STRUCTURE_TONE)
 				.className(DurationPattern.class.getName())
 				.build();
 		pack.getRepo().put(Parameter.DURATION, repo);
 		return pack;
+	}
+
+
+
+	private static DurationModel getEndNoteDurationModel(List<Mu> muList)
+	{
+		if (muList.size() == 0)
+		{
+			return new DurationInQuarters(DurationInQuarters.SHORT_DURATION_IN_QUARTERS);
+		}
+		else
+		{
+			Mu endNote = muList.get(muList.size() - 1);
+			return new DurationInQuarters(endNote.getLengthInQuarters());
+		}
+	}
+
+
+
+	private static List<Mu> getOriginalStructureTones(Mu aMu)
+	{
+		List<Mu> structureTones = aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE);
+		List<Mu> structureTonesWithHistory = structureTones.stream()
+				.filter(x -> x.getMuTagBundleContaining(MuTag.HISTORY).size() > 0)
+				.collect(Collectors.toList());
+		List<Mu> originalStructureTones;
+		if (structureTonesWithHistory.size() > 0)
+		{
+			originalStructureTones = aMu.getMuWithTag(MuTag.IS_STRUCTURE_TONE).stream()
+//					.filter(x -> x.getMuTagBundleContaining(MuTag.HISTORY).size() > 0)
+					.map(x -> (Mu)x.getMuTagBundleContaining(MuTag.HISTORY)
+							.get(0)
+							.getNamedParameter(MuTagNamedParameter.ORIGINAL_MU)
+						)
+					.collect(Collectors.toList());
+		}
+		else
+		{
+			originalStructureTones = structureTones;
+		}
+		return originalStructureTones;
 	}
 
 
