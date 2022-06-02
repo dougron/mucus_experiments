@@ -26,6 +26,7 @@ public class PhraseBoundRepo extends RepoSuperclass implements RepoInterface {
 				.selectedValue(selectedValue)
 				.rangeLow(rangeLow)
 				.rangeHigh(rangeHigh)
+				.parameter(parameter)
 				.className(className)
 				.build();
 	}

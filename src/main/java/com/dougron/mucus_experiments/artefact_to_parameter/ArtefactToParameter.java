@@ -90,19 +90,20 @@ public class ArtefactToParameter
 
 	
 	
-	public static PooplinePackage getPackFromMu(Mu aMu)
+	public static PooplinePackage getPackFromMu(Mu aStructureToneMu, Mu aOriginalMu)
 	{
-		ChordToneAndEmbellishmentTagger.addTags(aMu);
-		justForNowConvertChordTonesToStructureTones(aMu);
-		PooplinePackage pack = new PooplinePackage(aMu.getName(), new Random());
-		pack = addTempoRepo(aMu, pack);
-		pack = addPhraseLengthSetLengthRepo(aMu, pack);
-		pack = addTimeSignatureRandomRepo(aMu, pack);
-		pack = addXmlKey(aMu, pack);
-		pack = addChordProgression(aMu, pack);
-		pack = addReposForStructureTones(aMu, pack);
+		ChordToneAndEmbellishmentTagger.addTags(aStructureToneMu);
+		justForNowConvertChordTonesToStructureTones(aStructureToneMu);
+		aOriginalMu.makePreviousNextMusWithNotesSkippingNotesInTupletHolders();
+		PooplinePackage pack = new PooplinePackage(aStructureToneMu.getName(), new Random());
+		pack = addTempoRepo(aStructureToneMu, pack);
+		pack = addPhraseLengthSetLengthRepo(aStructureToneMu, pack);
+		pack = addTimeSignatureRandomRepo(aStructureToneMu, pack);
+		pack = addXmlKey(aStructureToneMu, pack);
+		pack = addChordProgression(aStructureToneMu, pack);
+		pack = addReposForStructureTones(aStructureToneMu, pack);
 		
-		pack = addEmbellishmentRepos(aMu, pack);
+		pack = addEmbellishmentRepos(aStructureToneMu, pack);
 		
 		
 		return pack;
@@ -254,6 +255,7 @@ public class ArtefactToParameter
 				for (List<MuTagBundle> muTagList: EmbellishmentSchema.getEmbellishmentTagLists(schema))
 				{
 					bw.write("\t\tindex=" + index + ": " + muTagList.toString() + "\n");
+					index++;
 				}
 				List<String> lengthAndIOItoString = EmbellishmentSchema.getLengthAndInterOnsetDistance(schema).stream()
 						.map(x -> "[" + x[0] + "," + x[1] + "]")
@@ -264,7 +266,6 @@ public class ArtefactToParameter
 		} 
 		catch (IOException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

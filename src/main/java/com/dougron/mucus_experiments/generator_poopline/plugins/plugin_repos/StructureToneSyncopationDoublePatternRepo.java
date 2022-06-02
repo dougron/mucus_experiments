@@ -20,7 +20,7 @@ public class StructureToneSyncopationDoublePatternRepo extends RepoSuperclass im
 	{
 		return StructureToneSyncopationDoublePatternRepo.builder()
 				.selectedOption(selectedOption)
-				.options(getCopy(options))
+				.options(options == null ? null : getCopy(options))
 				.className(className)
 				.build();
 	}

@@ -38,8 +38,8 @@ public class DurationPatternsRepo extends RepoSuperclass implements RepoInterfac
 	public DurationPatternsRepo deepCopy()
 	{
 		return DurationPatternsRepo.builder()
-				.durationPatternMap(getCopy(durationPatternMap))
-				.patternIndices(getCopy(patternIndices))
+				.durationPatternMap(durationPatternMap == null ? null : getCopy(durationPatternMap))
+				.patternIndices(patternIndices == null ? null : getCopy(patternIndices))
 				.staccatoDurationInMilliseconds(staccatoDurationInMilliseconds)
 				.tagToFilterStructureTones(tagToFilterStructureTones)
 				.tagToFilterEmbellishments(tagToFilterEmbellishments)

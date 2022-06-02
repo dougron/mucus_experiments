@@ -15,4 +15,17 @@ public class NoteInfo
 	private BarsAndBeats positionInBarsAndBeats;
 	private int pitch;
 	@ToString.Exclude Mu relatedMu;	
+	
+	
+	public boolean isTupletContainer()
+	{
+		if (relatedMu == null)
+		{
+			return false;
+		}
+		else
+		{
+			return relatedMu.isTupletPrintContainer();
+		}
+	}
 }

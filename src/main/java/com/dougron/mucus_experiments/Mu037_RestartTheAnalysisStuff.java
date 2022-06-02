@@ -3,6 +3,9 @@ package main.java.com.dougron.mucus_experiments;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,8 +31,9 @@ import main.java.com.dougron.mucus.mucus_utils.mucus_corpus_utility.MucusCorpusU
 import main.java.com.dougron.mucus_experiments.artefact_to_parameter.ArtefactToParameter;
 import main.java.com.dougron.mucus_experiments.generator_poopline.Poopline;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
-import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationPatterns;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ForceCreatePlugInsFromRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.ChordProgressionRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StartNoteRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TimeSignatureRepo;
 import main.java.da_utils.combo_variables.IntAndString;
 import main.java.da_utils.render_name.RenderName;
@@ -86,8 +90,9 @@ public class Mu037_RestartTheAnalysisStuff
 //						new IntAndString(0, "BlackOrpheus_phrase1"),
 //						new IntAndString(-2, "Stella"),
 //						new IntAndString(-2, "AprilInParis"),
-						new IntAndString(-2, "LaFiesta"),
+//						new IntAndString(-2, "LaFiesta"),
 //						new IntAndString(-1, "Confirmation"),
+						new IntAndString(-1, "Confirmation_triplet"),
 //						new IntAndString(0, "SyncError"),
 //						new IntAndString(0, "PitchError"),
 						
@@ -170,7 +175,7 @@ public class Mu037_RestartTheAnalysisStuff
 			logger.debug("start regeneration");
 			
 			// regenerate mu 
-			PooplinePackage pack = ArtefactToParameter.getPackFromMu(level1Mu);
+			PooplinePackage pack = ArtefactToParameter.getPackFromMu(level1Mu, originalMu);
 			Poopline pipeline = new Poopline();
 			pipeline.setPrimaryPlugin(new ForceCreatePlugInsFromRepo(pipeline));
 			pack = pipeline.process(pack);
@@ -183,20 +188,9 @@ public class Mu037_RestartTheAnalysisStuff
 			addWillSyncopateAnnotation(pack.getMu());
 			
 //			addMuIdAnnotationToAllMus(totalMu);
-			logger.debug("changing time signature");
-			
-//			TimeSignature ts = TimeSignature.FIVE_FOUR;
-//			TimeSignatureRepo tsRepo = (TimeSignatureRepo)pack.getRepo().get(Parameter.TIME_SIGNATURE);
-//			tsRepo.setSelectedValue(ts);
-//			
-//			pack.setMu(new Mu("changed_ts"));
-//			pack = pipeline.process(pack);
-//			pack.getMu().addTag(MuTag.PART_2);
-//			totalMu.addMu(pack.getMu(), 16);
 			
 			
 			logger.debug("outputting to musicxml");
-			
 			String x = ContinuousIntegrator.outputMultiPartMuToXMLandLiveWithoutTimeStamp(
 					totalMu, 
 					fileName + "_" + corpusInfo.str + "_" + RenderName.dateAndTime(),
@@ -207,11 +201,162 @@ public class Mu037_RestartTheAnalysisStuff
 			System.out.println(corpusInfo.str + " " + x);
 			
 			logger.debug("Completed Mu037 experiment for " + corpusInfo.str);
+			
+		
+//			changeTimeSignature(corpusInfo, pack, pipeline, TimeSignature.FIVE_FOUR);
+//			changeStartNote(corpusInfo, pack, pipeline, 67);
+//			changeChords(corpusInfo, pack, pipeline);
 		}		
 		logger.debug("Mu037.main() exited -------------------------------------------------------------------------------");
 	}
 
 
+
+	private void changeChords
+	(
+			IntAndString corpusInfo, 
+			PooplinePackage pack, 
+			Poopline pipeline
+			)
+	{
+		String x;
+		logger.debug("changing start note");
+		
+		PooplinePackage nupack = new PooplinePackage("change_chords", new Random());
+		for (Parameter parameter: pack.getRepo().keySet())
+		{
+			nupack.getRepo().put(parameter, pack.getRepo().get(parameter).deepCopy());
+		}
+		ChordProgressionRepo cpRepo = (ChordProgressionRepo)nupack.getRepo().get(Parameter.CHORD_LIST_GENERATOR);
+		Map<Double, String> map = Stream.of(new Object[][] { 
+		     {0.0, "C"}, 
+		     {1.0, "G"}, 
+		     {2.0, "Am"}, 
+		     {3.0, "F"}, 
+		 }).collect(Collectors.toMap(data -> (Double) data[0], data -> (String) data[1]));
+		cpRepo.setFloatBarChordMap(map);
+		
+		nupack.setMu(new Mu("change_chords"));
+//			Poopline nuPipeline = new Poopline();
+//			nuPipeline.setPrimaryPlugin(new ForceCreatePlugInsFromRepo(pipeline));
+		nupack = pipeline.process(nupack);
+		nupack.getMu().addTag(MuTag.PART_2);
+		nupack.getMu().addTag(MuTag.PRINT_CHORDS);
+		nupack.getMu().setHasLeadingDoubleBar(true);
+		for (Mu mu: nupack.getMu().getMusWithNotes())
+		{
+			if (mu.hasTag(MuTag.IS_STRUCTURE_TONE))
+			{
+				mu.addMuAnnotation(new MuAnnotation("st", TextPlacement.PLACEMENT_BELOW));
+			}
+		}
+		
+		
+		logger.debug("outputting to musicxml");
+		x = ContinuousIntegrator.outputMultiPartMuToXMLandLiveWithoutTimeStamp(
+				nupack.getMu(), 
+				fileName + "_" + corpusInfo.str + "_" + nupack.getMu().getName() + "_" + RenderName.dateAndTime(),
+				partTrackAndClipIndexMap,
+				new ArrayList<MuController>(),	// placeholder for the controller list
+				injector
+				);
+		System.out.println(corpusInfo.str + " " + x);
+		logger.debug("Completed Mu037 experiment for " + corpusInfo.str + "_" + nupack.getMu().getName());
+	}
+	
+	
+	
+	private void changeStartNote
+	(
+			IntAndString corpusInfo, 
+			PooplinePackage pack, 
+			Poopline pipeline,
+			int startNote
+			)
+	{
+		String x;
+		logger.debug("changing start note");
+		Mu bigMu = new Mu("big_mu");
+		
+		PooplinePackage nupack = new PooplinePackage("change_start_note", new Random());
+		for (Parameter parameter: pack.getRepo().keySet())
+		{
+			nupack.getRepo().put(parameter, pack.getRepo().get(parameter).deepCopy());
+		}
+		StartNoteRepo snRepo = (StartNoteRepo)nupack.getRepo().get(Parameter.START_NOTE);
+		snRepo.setSelectedValue(startNote);
+		
+		nupack.setMu(new Mu("change_start_note"));
+//			Poopline nuPipeline = new Poopline();
+//			nuPipeline.setPrimaryPlugin(new ForceCreatePlugInsFromRepo(pipeline));
+		nupack = pipeline.process(nupack);
+		nupack.getMu().addTag(MuTag.PART_2);
+//		nupack.getMu().addTag(MuTag.PRINT_CHORDS);
+		nupack.getMu().setHasLeadingDoubleBar(true);
+		for (Mu mu: nupack.getMu().getMusWithNotes())
+		{
+			if (mu.hasTag(MuTag.IS_STRUCTURE_TONE))
+			{
+				mu.addMuAnnotation(new MuAnnotation("st", TextPlacement.PLACEMENT_BELOW));
+			}
+		}
+		
+		bigMu.addMu(pack.getMu(), 0);
+		bigMu.addMu(nupack.getMu(), 0);
+		
+		logger.debug("outputting to musicxml");
+		x = ContinuousIntegrator.outputMultiPartMuToXMLandLiveWithoutTimeStamp(
+				bigMu, 
+				fileName + "_" + corpusInfo.str + "_" + nupack.getMu().getName() + "_" + RenderName.dateAndTime(),
+				partTrackAndClipIndexMap,
+				new ArrayList<MuController>(),	// placeholder for the controller list
+				injector
+				);
+		System.out.println(corpusInfo.str + " " + x);
+		logger.debug("Completed Mu037 experiment for " + corpusInfo.str + "_" + nupack.getMu().getName());
+	}
+
+	
+
+	private void changeTimeSignature
+	(
+			IntAndString corpusInfo, 
+			PooplinePackage pack, 
+			Poopline pipeline,
+			TimeSignature ts
+			)
+	{
+		String x;
+		logger.debug("changing time signature");
+		
+		PooplinePackage nupack = new PooplinePackage("change_ts", new Random());
+		for (Parameter parameter: pack.getRepo().keySet())
+		{
+			nupack.getRepo().put(parameter, pack.getRepo().get(parameter).deepCopy());
+		}
+		TimeSignatureRepo tsRepo = (TimeSignatureRepo)nupack.getRepo().get(Parameter.TIME_SIGNATURE);
+		tsRepo.setSelectedValue(ts);
+		
+		nupack.setMu(new Mu("changed_ts"));
+//			Poopline nuPipeline = new Poopline();
+//			nuPipeline.setPrimaryPlugin(new ForceCreatePlugInsFromRepo(pipeline));
+		nupack = pipeline.process(nupack);
+		nupack.getMu().addTag(MuTag.PART_2);
+		nupack.getMu().addTag(MuTag.PRINT_CHORDS);
+		nupack.getMu().setHasLeadingDoubleBar(true);
+		logger.debug("outputting to musicxml");
+		x = ContinuousIntegrator.outputMultiPartMuToXMLandLiveWithoutTimeStamp(
+				nupack.getMu(), 
+				fileName + "_" + corpusInfo.str + "_" + nupack.getMu().getName() + "_" + RenderName.dateAndTime(),
+				partTrackAndClipIndexMap,
+				new ArrayList<MuController>(),	// placeholder for the controller list
+				injector
+				);
+		System.out.println(corpusInfo.str + " " + x);
+		logger.debug("Completed Mu037 experiment for " + corpusInfo.str + "_" + nupack.getMu().getName());
+	}
+	
+	
 
 	private void addMuIdAnnotationToAllMus(Mu totalMu)
 	{

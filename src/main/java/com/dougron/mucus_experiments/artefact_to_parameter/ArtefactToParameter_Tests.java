@@ -231,7 +231,7 @@ class ArtefactToParameter_Tests
 	private PooplinePackage getPackFromPipelineWithForceCreatePlugin(Mu mu)
 	{
 //		ChordToneAndEmbellishmentTagger.addTags(mu);
-		PooplinePackage pack = ArtefactToParameter.getPackFromMu(mu);
+		PooplinePackage pack = ArtefactToParameter.getPackFromMu(mu, mu);
 		Poopline pipeline = new Poopline();
 		pipeline.setPrimaryPlugin(new ForceCreatePlugInsFromRepo(pipeline));
 		pack = pipeline.process(pack);

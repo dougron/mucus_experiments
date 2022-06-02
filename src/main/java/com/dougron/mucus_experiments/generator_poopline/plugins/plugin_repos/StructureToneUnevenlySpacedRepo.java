@@ -21,7 +21,7 @@ public class StructureToneUnevenlySpacedRepo extends RepoSuperclass implements R
 		return StructureToneUnevenlySpacedRepo.builder()
 				.rndValue(rndValue)
 				.selectedValuesInFloatBars(selectedValuesInFloatBars)
-				.options(getCopy(options))
+				.options(options == null ? null : getCopy(options))
 				.hasRenderedMu(hasRenderedMu)
 				.className(className)
 				.build();

@@ -22,6 +22,7 @@ public class TessituraRepo extends RepoSuperclass  implements RepoInterface {
 		return TessituraRepo.builder()
 				.highValue(highValue)
 				.lowValue(lowValue)
+				.parameter(parameter)
 				.className(className)
 				.build();
 	}

@@ -22,7 +22,7 @@ public class DurationPatternRepo extends RepoSuperclass implements RepoInterface
 	public DurationPatternRepo deepCopy()
 	{
 		return DurationPatternRepo.builder()
-				.durationModelPattern(getCopy(durationModelPattern))
+				.durationModelPattern(durationModelPattern == null ? null : getCopy(durationModelPattern))
 				.endNoteDurationModel(endNoteDurationModel)
 				.staccatoDurationInMilliseconds(staccatoDurationInMilliseconds)
 				.tagToActUpon(tagToActUpon)

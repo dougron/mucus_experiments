@@ -36,6 +36,8 @@ public class ForceCreatePlugInsFromRepo extends PlugGeneric implements PooplineP
 	public PooplinePackage process(PooplinePackage pack)
 	{
 		logger.info(getInfoLevelPackReceiptMessage(pack));
+		parent.getPlugins().clear();
+		parent.setPrimaryPlugin(this);
 		ParameterRepository repo = pack.getRepo();
 		for (Parameter parameter: repo.keySet())
 		{

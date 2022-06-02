@@ -20,7 +20,7 @@ public class StructureToneSyncopationIntegerPatternRepo extends RepoSuperclass i
 		return StructureToneSyncopationIntegerPatternRepo.builder()
 				.rndValue(rndValue)
 				.selectedOption(selectedOption)
-				.options(getCopy(options))
+				.options(options == null ? null : getCopy(options))
 				.className(className)
 				.build();
 	}

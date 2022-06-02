@@ -21,7 +21,7 @@ public class StructureToneEvenlySpacedRepo extends RepoSuperclass implements Rep
 		return StructureToneEvenlySpacedRepo.builder()
 				.rndValue(rndValue)
 				.selectedValueInFloatBars(selectedValueInFloatBars)
-				.options(getCopy(options))
+				.options(options == null ? null : getCopy(options))
 				.hasRenderedMu(hasRenderedMu)
 				.className(className)
 				.build();

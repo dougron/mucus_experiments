@@ -17,7 +17,7 @@ public class VectorChordTonesRepo extends RepoSuperclass implements RepoInterfac
 	public VectorChordTonesRepo deepCopy()
 	{
 		return VectorChordTonesRepo.builder()
-				.selectedVectorArray(getCopy(selectedVectorArray))
+				.selectedVectorArray(selectedVectorArray == null ? null : getCopy(selectedVectorArray))
 				.className(className)
 				.build();
 	}

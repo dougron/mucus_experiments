@@ -21,7 +21,7 @@ public class XmlKeyRepo extends RepoSuperclass implements RepoInterface {
 		return XmlKeyRepo.builder()
 				.rndValue(rndValue)
 				.selectedValue(selectedValue)
-				.options(getCopy(options))
+				.options(options == null ? null : getCopy(options))
 				.className(className)
 				.build();
 	}

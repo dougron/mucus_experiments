@@ -24,7 +24,7 @@ implements RepoInterface
 	public DurationFixedInQuartersRepo deepCopy()
 	{
 		return DurationFixedInQuartersRepo.builder()
-				.durationPattern(getCopy(durationPattern))
+				.durationPattern(durationPattern == null ? null : getCopy(durationPattern))
 //				.staccatoDurationInMilliseconds(staccatoDurationInMilliseconds)
 				.build();
 	}

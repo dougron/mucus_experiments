@@ -21,10 +21,10 @@ public class ChordProgressionRepo extends RepoSuperclass implements RepoInterfac
 	public ChordProgressionRepo deepCopy()
 	{
 		return ChordProgressionRepo.builder()
-				.rndValue(getCopy(rndValue))
-				.selectedValues(getCopy(selectedValues))
-				.options(getCopy(options))
-				.floatBarChordMap(getDoubleStringMapCopy(floatBarChordMap))
+				.rndValue(rndValue == null ? null : getCopy(rndValue))
+				.selectedValues(selectedValues == null ? null : getCopy(selectedValues))
+				.options(options == null ? null : getCopy(options))
+				.floatBarChordMap(floatBarChordMap == null ? null : getDoubleStringMapCopy(floatBarChordMap))
 				.className(className)
 				.build();
 	}
