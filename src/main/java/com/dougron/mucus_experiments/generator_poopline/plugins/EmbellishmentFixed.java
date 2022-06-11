@@ -35,6 +35,13 @@ public class EmbellishmentFixed extends PlugGeneric
 	}
 	
 	
+	PooplinePackage updateMu_new(PooplinePackage pack)
+	{
+		
+		return pack;
+	}
+	
+	
 	
 	@Override
 	PooplinePackage updateMu(PooplinePackage pack)

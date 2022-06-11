@@ -47,7 +47,7 @@ public class StructureToneUnevenlySpacedFixed extends PlugGeneric {
 						Parameter.PHRASE_LENGTH,
 						Parameter.TIME_SIGNATURE,
 						Parameter.PHRASE_START_PERCENT,
-						Parameter.PHRASE_END_PERCENT
+						Parameter.PHRASE_END_PERCENT,
 				}
 				);
 		spacingsInFloatBars = aSpacingsInFloatBars;

@@ -62,7 +62,8 @@ public class VectorChordTonesFixed   extends PlugGeneric implements PooplinePlug
 						Parameter.PHRASE_END_PERCENT,
 //						Parameter.STRUCTURE_TONE_MULTIPLIER,
 						Parameter.STRUCTURE_TONE_SPACING,
-						Parameter.CHORD_LIST_GENERATOR
+						Parameter.CHORD_LIST_GENERATOR,
+						Parameter.STRUCTURE_TONE_SYNCOPATION
 					}
 				);
 		vectorArray = aVectorArray;

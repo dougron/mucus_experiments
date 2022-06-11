@@ -19,8 +19,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.nd4j.shade.guava.math.DoubleMath;
 
+import com.google.common.collect.ImmutableMap;
+
 import main.java.com.dougron.mucus.algorithms.generic_generator.DurationType;
 import main.java.com.dougron.mucus.algorithms.mu_chord_tone_and_embellishment.ChordToneAndEmbellishmentTagger;
+import main.java.com.dougron.mucus.algorithms.mu_generator.enums.ChordToneType;
 import main.java.com.dougron.mucus.algorithms.random_melody_generator.Parameter;
 import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.chord_list.Chord;
@@ -30,11 +33,16 @@ import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTag;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagBundle;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagNamedParameter;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
+import main.java.com.dougron.mucus_experiments.generator_poopline.embellisher.Anticipation;
+import main.java.com.dougron.mucus_experiments.generator_poopline.embellisher.ChordTone;
+import main.java.com.dougron.mucus_experiments.generator_poopline.embellisher.MuEmbellisher;
+import main.java.com.dougron.mucus_experiments.generator_poopline.embellisher.StepTone;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ChordProgressionFloatBarFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationFixedInQuarters;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationPattern;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationPatterns;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.EmbellishmentFixed;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PatternEmbellisherRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseBoundPercentSetAmount;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PhraseLengthSetLength;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.PlaceHolderRenderParameter;
@@ -56,6 +64,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.DurationPatternRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.DurationPatternsRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.EmbellishmentFixedRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PatternEmbellishmentRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseBoundRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PhraseLengthRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PlaceHolderRepo;
@@ -68,6 +77,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.TimeSignatureRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.VectorChordTonesRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.XmlKeyRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.rhythm_offset.RhythmOffset;
 import main.java.da_utils.combo_variables.IntAndInt;
 import main.java.da_utils.time_signature_utilities.time_signature.TimeSignature;
 
@@ -104,7 +114,6 @@ public class ArtefactToParameter
 		pack = addReposForStructureTones(aStructureToneMu, pack);
 		
 		pack = addEmbellishmentRepos(aStructureToneMu, pack);
-		
 		
 		return pack;
 	}
@@ -158,9 +167,10 @@ public class ArtefactToParameter
 	private static PooplinePackage addEmbellishmentRepos(Mu aMu, PooplinePackage pack)
 	{
 		List<EmbellishmentSchema> schemaList = getEmbellishmentSchemaList(aMu, pack);
-		makeArtefactToParameterLog(schemaList);
+//		makeArtefactToParameterLog(schemaList);
 		
-		pack = addEmbellishmentGeneratorRepo(pack, schemaList);
+//		pack = addFixedEmbellishmentGeneratorRepo(pack, schemaList);
+		pack = addMuEmbellishmentGeneratorRepo(pack, schemaList);
 		pack = addEmbellishmentDurationRepo(pack, schemaList);
 		
 		return pack;
@@ -168,7 +178,138 @@ public class ArtefactToParameter
 
 
 
-	private static PooplinePackage addEmbellishmentGeneratorRepo(PooplinePackage pack, List<EmbellishmentSchema> schemaList)
+	protected static PooplinePackage addMuEmbellishmentGeneratorRepo
+	(
+			PooplinePackage pack,
+			List<EmbellishmentSchema> schemaList)
+	{
+		makeArtefactToParameterLog(schemaList);
+		Map<Integer, List<MuEmbellisher>> selectedPitchMap = new HashMap<Integer, List<MuEmbellisher>>();
+		List<Integer> pitchIndexList = new ArrayList<Integer>();
+		Map<Integer, List<RhythmOffset>> selectedRhythmOffsetMap = new HashMap<Integer, List<RhythmOffset>>();
+		List<Integer> rhythmIndexList = new ArrayList<Integer>();
+		List<MuEmbellisher> pitchOptionList = new ArrayList<MuEmbellisher>();
+		List<RhythmOffset> rhythmOptionList = new ArrayList<RhythmOffset>();
+		Map<Integer, Integer> selectedCountMap = new HashMap<Integer, Integer>();
+		List<Integer> countIndexList = new ArrayList<Integer>();
+		
+		int index = 0;
+		for (EmbellishmentSchema es: schemaList)
+		{
+			List<MuEmbellisher> pitchList = new ArrayList<MuEmbellisher>();
+			List<RhythmOffset> rhythmList = new ArrayList<RhythmOffset>();
+			for (int i = es.size() - 2; i > 0; i--)
+			{
+				MuEmbellisher embellishmentOption = getEmbellishmentOptions(es, i);
+				pitchList.add(embellishmentOption);
+				pitchOptionList.add(embellishmentOption);
+				RhythmOffset rhythmOption = EmbellishmentSchema.getBackwardRhythmOffsets(es)[i];
+				rhythmList.add(rhythmOption);
+				rhythmOptionList.add(rhythmOption);
+			}
+			selectedPitchMap.put(index, pitchList);
+			pitchIndexList.add(index);
+			selectedRhythmOffsetMap.put(index, rhythmList);
+			rhythmIndexList.add(index);
+			selectedCountMap.put(index, pitchList.size());
+			countIndexList.add(index);
+			index++;
+		}
+		Map<Integer, List<Double>> pitchGeneratorRndValues = makePitchGeneratorRndValuesMap(selectedPitchMap, pitchOptionList);
+		Map<Integer, List<Double>> rhythmGeneratorRndValues = makeRhythmGeneratorRndValuesMap(selectedRhythmOffsetMap, rhythmOptionList);
+		PatternEmbellishmentRepo repo = PatternEmbellishmentRepo.builder()
+				.selectedPitchGenerators(selectedPitchMap)
+				.selectedPitchIndexPattern(pitchIndexList.stream().mapToInt(x -> x).toArray())
+				.pitchGeneratorRndValues(pitchGeneratorRndValues)
+				.pitchGeneratorOptions(pitchOptionList.toArray(new MuEmbellisher[pitchOptionList.size()]))
+				.selectedRhythmOffsets(selectedRhythmOffsetMap)
+				.selectedRhythmIndexPattern(rhythmIndexList.stream().mapToInt(x -> x).toArray())
+				.rhythmOffsetRndValues(rhythmGeneratorRndValues)
+				.rhythmOffsetOptions(rhythmOptionList.toArray(new RhythmOffset[rhythmOptionList.size()]))
+				.selectedCollisionIndexPattern(new int[] {0})
+				.selectedCollisionOffsets(ImmutableMap.<Integer, RhythmOffset>builder().put(0, new RhythmOffset(0,0,0,1,0)).build())
+				.selectedCounts(selectedCountMap)
+				.selectedCountIndexPattern(countIndexList.stream().mapToInt(x -> x).toArray())
+				.className(PatternEmbellisherRandom.class.getName())
+				.build();
+		pack.getRepo().put(Parameter.EMBELLISHMENT_GENERATOR, repo);
+		return pack;
+	}
+
+
+	
+	private static Map<Integer, List<Double>> makeRhythmGeneratorRndValuesMap
+	(
+			Map<Integer, List<RhythmOffset>> map, 
+			List<RhythmOffset> optionList
+			)
+	{
+		Map<Integer, List<Double>> rndMap = new HashMap<Integer, List<Double>>();
+		double centreAmount = 0.5 / optionList.size(); 		// amount to add to lower bound of rnd value to centre it
+		for (Integer key: map.keySet())
+		{
+			List<Double> rndList = new ArrayList<Double>();
+			for (RhythmOffset ro: map.get(key))
+			{
+				rndList.add((double)optionList.indexOf(ro) / optionList.size() + centreAmount);
+			}
+			rndMap.put(key, rndList);
+		}
+		return rndMap;
+	}
+	
+	
+	
+	private static Map<Integer, List<Double>> makePitchGeneratorRndValuesMap
+	(
+			Map<Integer, List<MuEmbellisher>> map, 
+			List<MuEmbellisher> optionList
+			)
+	{
+		Map<Integer, List<Double>> rndMap = new HashMap<Integer, List<Double>>();
+		double centreAmount = 0.5 / optionList.size(); 		// amount to add to lower bound of rnd value to centre it
+		for (Integer key: map.keySet())
+		{
+			List<Double> rndList = new ArrayList<Double>();
+			for (MuEmbellisher emb: map.get(key))
+			{
+				rndList.add((double)optionList.indexOf(emb) / optionList.size() + centreAmount);
+			}
+			rndMap.put(key, rndList);
+		}
+		return rndMap;
+	}
+
+
+
+	private static MuEmbellisher getEmbellishmentOptions(EmbellishmentSchema es, int index)
+	{
+		int[] backwardSemitones = EmbellishmentSchema.getBackwardSemitoneSpacing(es);
+		if (backwardSemitones[index] == 0) return Anticipation.getInstance();
+		Integer[] backwardChordTones = EmbellishmentSchema.getBackwardChordToneSpacing(es);
+		if (backwardChordTones[index] != null)
+		{
+			ChordToneType chordToneType;
+			if (backwardChordTones[index] > 0) chordToneType = ChordToneType.CLOSEST_ABOVE; else chordToneType = ChordToneType.CLOSEST_BELOW;
+			
+			return new ChordTone(chordToneType, Math.abs(backwardChordTones[index]));
+		}
+		IntAndInt[] backwardStepTones = EmbellishmentSchema.getBackwardDiatonicSpacing(es);
+		if (backwardStepTones[index] != null)
+		{
+			ChordToneType chordToneType;
+			if (backwardStepTones[index].i1 > 0) chordToneType = ChordToneType.CLOSEST_ABOVE; else chordToneType = ChordToneType.CLOSEST_BELOW;
+			
+			// this does not yet accomodate chromatic step tones
+			return new StepTone(chordToneType, Math.abs(backwardStepTones[index].i1));
+		}
+		return Anticipation.getInstance();  	// this needs to be the semitone embellisher.....
+		
+	}
+
+
+
+	private static PooplinePackage addFixedEmbellishmentGeneratorRepo(PooplinePackage pack, List<EmbellishmentSchema> schemaList)
 	{
 		EmbellishmentFixedRepo repo = EmbellishmentFixedRepo.builder()
 				.schemaList(schemaList)
@@ -237,6 +378,8 @@ public class ArtefactToParameter
 				bw.write("\tfloatBars" + Arrays.toString(EmbellishmentSchema.getBackwardFloatBarsSpacing(schema)) + "\n");
 				bw.write("\trelativeRhythmicPosition" + Arrays.toString(EmbellishmentSchema.getForwardRelativeRhythmicSpacing(schema)) + "\n");
 				bw.write("\trelativeRhythmicPosition" + Arrays.toString(EmbellishmentSchema.getBackwardRelativeRhythmicSpacing(schema)) + "\n");
+				bw.write("\trhythmOffsets" + Arrays.toString(EmbellishmentSchema.getForwardRhythmOffsets(schema)) + "\n");
+				bw.write("\trhythmOffsets" + Arrays.toString(EmbellishmentSchema.getBackwardRhythmOffsets(schema)) + "\n");
 				bw.write("\tsemitones" + Arrays.toString(EmbellishmentSchema.getForwardSemitoneSpacing(schema)) + "\n");
 				bw.write("\tsemitones" + Arrays.toString(EmbellishmentSchema.getBackwardSemitoneSpacing(schema)) + "\n");
 				
@@ -272,7 +415,7 @@ public class ArtefactToParameter
 
 
 
-	private static List<EmbellishmentSchema> getEmbellishmentSchemaList(Mu aMu, PooplinePackage pack)
+	static List<EmbellishmentSchema> getEmbellishmentSchemaList(Mu aMu, PooplinePackage pack)
 	{
 		List<EmbellishmentSchema> schemaList = new ArrayList<EmbellishmentSchema>();
 		Mu previousStructureTone = null;

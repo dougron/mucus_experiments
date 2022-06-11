@@ -9,6 +9,8 @@ import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.chord_list.Chord;
 import main.java.com.dougron.mucus.mu_framework.data_types.RelativeRhythmicPosition;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagBundle;
+import main.java.com.dougron.mucus_experiments.generator_poopline.rhythm_offset.RhythmOffset;
+import main.java.com.dougron.mucus_experiments.generator_poopline.rhythm_offset.RhythmOffsetFactory;
 import main.java.da_utils.combo_variables.IntAndInt;
 
 public class EmbellishmentSchema extends ArrayList<NoteInfo>
@@ -98,6 +100,44 @@ public class EmbellishmentSchema extends ArrayList<NoteInfo>
 			currentInfo = schema.get(i);
 			nextInfo = schema.get(i + 1);
 			arr[index] = nextInfo.getPositionInFloatBars() - currentInfo.getPositionInFloatBars();
+			index++;
+		}
+		return arr;
+	}
+	
+	
+	
+	public static RhythmOffset[] getForwardRhythmOffsets(EmbellishmentSchema schema)
+	{
+		RhythmOffset[] arr = new RhythmOffset[schema.size() - 1];
+		int index = 0;
+		Mu muFromTheArea = schema.get(0).getRelatedMu();	// as this list is in reverse order, index 0 is the last structure tone, and as such should always exist and have a relatedMu
+		NoteInfo currentInfo;
+		NoteInfo nextInfo;
+		for (int i = schema.size() - 1; i > 0; i--)
+		{
+			currentInfo = schema.get(i);
+			nextInfo = schema.get(i - 1);
+			arr[index] = RhythmOffsetFactory.getRhythmOffset(currentInfo.getPositionInBarsAndBeats(), nextInfo.getPositionInBarsAndBeats(), nextInfo.getRelatedMu());
+			index++;
+		}
+		return arr;
+	}
+	
+	
+	
+	public static RhythmOffset[] getBackwardRhythmOffsets(EmbellishmentSchema schema)
+	{
+		RhythmOffset[] arr = new RhythmOffset[schema.size() - 1];
+		int index = 0;
+		Mu muFromTheArea = schema.get(0).getRelatedMu();	// as this list is in reverse order, index 0 is the last structure tone, and as such should always exist and have a relatedMu
+		NoteInfo currentInfo;
+		NoteInfo nextInfo;
+		for (int i = schema.size() - 2; i >= 0; i--)
+		{
+			currentInfo = schema.get(i);
+			nextInfo = schema.get(i + 1);
+			arr[index] = RhythmOffsetFactory.getRhythmOffset(currentInfo.getPositionInBarsAndBeats(), nextInfo.getPositionInBarsAndBeats(), currentInfo.getRelatedMu());
 			index++;
 		}
 		return arr;

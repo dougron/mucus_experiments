@@ -30,5 +30,11 @@ public class Anticipation implements MuEmbellisher {
 		int pitch = aMu.getParent().getTopPitch();
 		aMu.addMuNote(new MuNote(pitch, MuEmbellisher.DEFAULT_VELOCITY));		
 	}
+	
+	
+	public String toString()
+	{
+		return "Anticipation: ...";
+	}
 
 }

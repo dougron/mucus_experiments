@@ -1,5 +1,6 @@
 package main.java.com.dougron.mucus_experiments.generator_poopline.embellisher;
 
+import lombok.Getter;
 import main.java.com.dougron.mucus.algorithms.mu_generator.enums.ChordToneType;
 import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.chord_list.Chord;
@@ -11,11 +12,12 @@ public class StepTone implements MuEmbellisher {
 	
 	
 	
-	private ChordToneType chordToneType;
-	private int jumpCount;
+	@Getter private ChordToneType chordToneType;
+	@Getter private int jumpCount;
 	private ChordToneName[] chordToneNames;
 
-	public StepTone(
+	public StepTone
+	(
 			ChordToneType aChordToneType, 
 			int aJumpCount
 			) 
@@ -24,6 +26,8 @@ public class StepTone implements MuEmbellisher {
 		jumpCount = aJumpCount;
 	}
 
+	
+	
 	@Override
 	public void addNotes(Mu embellishment) {
 		Chord chord = getPrevailingChord(embellishment);
@@ -130,6 +134,15 @@ public class StepTone implements MuEmbellisher {
 //			pitch = chord.getClosestDiatonicNote(tempPitch, contour * jumpCount, chordToneNames);
 //		}
 		return pitch;
+	}
+	
+	
+	
+	public String toString()
+	{
+		return "StepTone: ChordToneType=" + chordToneType
+			+ "jumpCount=" + jumpCount
+			+ "ChordToneNames:" + chordToneNames;
 	}
 
 

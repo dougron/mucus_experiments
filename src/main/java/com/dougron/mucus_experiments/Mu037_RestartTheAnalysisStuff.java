@@ -54,13 +54,13 @@ public class Mu037_RestartTheAnalysisStuff
 			.put(MuTag.PART_2, new Integer[] {2, 0})
 //			.put(MuTag.PART_BASS, new Integer[] {3, 0})
 			.build();
-	private static final int STRENGTH_OF_0 = 0;
-	private static final int STRENGTH_OF_1 = 1;
-	private static final int STRENGTH_OF_2 = 2;
-	private static final int STRENGTH_OF_4 = 4;		// this causes problems as a resolution for a structure tone melody
+	public static final int STRENGTH_OF_0 = 0;
+	public static final int STRENGTH_OF_1 = 1;
+	public static final int STRENGTH_OF_2 = 2;
+	public static final int STRENGTH_OF_4 = 4;		// this causes problems as a resolution for a structure tone melody
 	
-	private static final double LENGTH_OF_QUARTER = 1.0;
-	private static final double LENGTH_OF_EIGHTH = 0.5;
+	public static final double LENGTH_OF_QUARTER = 1.0;
+	public static final double LENGTH_OF_EIGHTH = 0.5;
 	
 	private int STRENGTH_THRESHOLD = 1;
 	
@@ -87,12 +87,12 @@ public class Mu037_RestartTheAnalysisStuff
 //						new IntAndString(-3, "BlueBossa"),
 //						new IntAndString(0, "BlackOrpheus"),
 //						new IntAndString(0, "Ceora"),
-//						new IntAndString(0, "BlackOrpheus_phrase1"),
+						new IntAndString(0, "BlackOrpheus_phrase1"),
 //						new IntAndString(-2, "Stella"),
 //						new IntAndString(-2, "AprilInParis"),
 //						new IntAndString(-2, "LaFiesta"),
 //						new IntAndString(-1, "Confirmation"),
-						new IntAndString(-1, "Confirmation_triplet"),
+//						new IntAndString(-1, "Confirmation_triplet"),
 //						new IntAndString(0, "SyncError"),
 //						new IntAndString(0, "PitchError"),
 						
@@ -203,7 +203,7 @@ public class Mu037_RestartTheAnalysisStuff
 			logger.debug("Completed Mu037 experiment for " + corpusInfo.str);
 			
 		
-//			changeTimeSignature(corpusInfo, pack, pipeline, TimeSignature.FIVE_FOUR);
+//			changeTimeSignature(corpusInfo, pack, pipeline, TimeSignature.SEVEN_FOUR_322);
 //			changeStartNote(corpusInfo, pack, pipeline, 67);
 //			changeChords(corpusInfo, pack, pipeline);
 		}		
@@ -384,7 +384,7 @@ public class Mu037_RestartTheAnalysisStuff
 
 
 
-	private Mu makeChordToneMu(Mu originalMu)
+	public static Mu makeChordToneMu(Mu originalMu)
 	{
 		Mu reducedMu = new Mu("chord_tones");
 		Mu invisibleHolderOfTheChordProgression = getChordProgressionMu(originalMu);
@@ -408,7 +408,7 @@ public class Mu037_RestartTheAnalysisStuff
 
 
 
-	private Mu getChordProgressionMu(Mu originalMu)
+	private static Mu getChordProgressionMu(Mu originalMu)
 	{
 		Mu mu = new Mu("chords");
 		mu.setChordListGenerator(originalMu.getChordListGenerator());
@@ -417,7 +417,7 @@ public class Mu037_RestartTheAnalysisStuff
 
 
 
-	private MuTagBundle getHistoryMuTagBundle(Mu mu)
+	private static MuTagBundle getHistoryMuTagBundle(Mu mu)
 	{
 		MuTagBundle bundle = new MuTagBundle(MuTag.HISTORY);
 		bundle.addNamedParameter(MuTagNamedParameter.ORIGINAL_MU, mu);
@@ -436,7 +436,7 @@ public class Mu037_RestartTheAnalysisStuff
 
 
 
-	private Mu makeReducedMu(Mu originalMu, int strengthThreshold, String aName, double lengthInQuarters)
+	public static Mu makeReducedMu(Mu originalMu, int strengthThreshold, String aName, double lengthInQuarters)
 	{
 		Mu reducedMu = new Mu(aName);
 //		reducedMu.setChordListGenerator(
@@ -474,7 +474,7 @@ public class Mu037_RestartTheAnalysisStuff
 
 
 
-	private void copyHistoryMuTag(Mu originalMu, Mu newMu)
+	private static void copyHistoryMuTag(Mu originalMu, Mu newMu)
 	{
 		List<MuTagBundle> bundleList = originalMu.getMuTagBundleContaining(MuTag.HISTORY);
 		for (MuTagBundle bundle: bundleList)
@@ -486,7 +486,7 @@ public class Mu037_RestartTheAnalysisStuff
 
 
 
-	private void addWillSyncopateTag(Mu oldMu, Mu newMu)
+	private static void addWillSyncopateTag(Mu oldMu, Mu newMu)
 	{
 		List<MuTagBundle> bundleList = oldMu.getMuTagBundleContaining(MuTag.IS_SYNCOPATION);
 		if (bundleList.size() > 0)
@@ -500,7 +500,7 @@ public class Mu037_RestartTheAnalysisStuff
 
 
 
-	private void copyMuNotesToNuMu(Mu mu, Mu nuMu)
+	private static void copyMuNotesToNuMu(Mu mu, Mu nuMu)
 	{
 		for (MuNote note: mu.getMuNotes())
 		{
@@ -511,7 +511,7 @@ public class Mu037_RestartTheAnalysisStuff
 
 
 
-	private BarsAndBeats getDeSyncopatedPosition(Mu mu)
+	private static BarsAndBeats getDeSyncopatedPosition(Mu mu)
 	{
 		BarsAndBeats position = mu.getGlobalPositionInBarsAndBeats();
 		if (mu.hasTag(MuTag.IS_SYNCOPATION))
@@ -540,7 +540,7 @@ public class Mu037_RestartTheAnalysisStuff
 
 
 
-	private void addBeatStrengthTags(Mu aMu)
+	public static void addBeatStrengthTags(Mu aMu)
 	{
 		for (Mu mu: aMu.getMusWithNotes())
 		{

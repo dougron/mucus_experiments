@@ -17,6 +17,7 @@ public class NoteInfo
 	@ToString.Exclude Mu relatedMu;	
 	
 	
+	@ToString.Include
 	public boolean isTupletContainer()
 	{
 		if (relatedMu == null)

@@ -125,7 +125,7 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 	public PatternEmbellisherRandom() {
 		super(
 				Parameter.EMBELLISHMENT_GENERATOR,
-				new Parameter[] {}
+				new Parameter[] {Parameter.STRUCTURE_TONE_GENERATOR}
 				);
 	}
 	
@@ -410,17 +410,21 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 		int countIndexPatternIndex = 0;
 		int[] countIndexPattern = repo.getSelectedCountIndexPattern();
 		repo.clearPitchAndRhythmUsedCountMaps();
-		
-		int rhythmIndex = rhythmIndexPattern[rhythmIndexPatternIndex];
-		int pitchIndex = pitchIndexPattern[pitchIndexPatternIndex];
-		int collisionIndex = collisionIndexPattern[collisionIndexPatternIndex];
-		int countIndex = countIndexPattern[countIndexPatternIndex];
+		int rhythmIndex;
+		int pitchIndex;
+		int collisionIndex;
+		int countIndex;
+
 		
 		// loop through structure tones and apply embellishment patterns
 		Mu previousStructureTone = null;
 		Mu tempMu;
 		for (Mu structureTone: structureTones)
 		{
+			rhythmIndex = rhythmIndexPattern[rhythmIndexPatternIndex];
+			pitchIndex = pitchIndexPattern[pitchIndexPatternIndex];
+			collisionIndex = collisionIndexPattern[collisionIndexPatternIndex];
+			countIndex = countIndexPattern[countIndexPatternIndex];
 			List<RhythmOffset> offsetList = repo.getSelectedRhythmOffsets().get(rhythmIndex);
 			List<MuEmbellisher> embellisherList = repo.getSelectedPitchGenerators().get(pitchIndex);
 			RhythmOffset collisionOffset = repo.getSelectedCollisionOffsets().get(collisionIndex);
@@ -429,14 +433,17 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 			tempMu = structureTone;
 			Integer count = repo.getSelectedCounts().get(countIndex);
 			int numberOfEmbellishmentsUsed = 0;
+			logger.debug("Structure tone position=" + structureTone.getGlobalPositionInQuarters());
 			for (int i = 0; i < count; i++)
 			{
 				RhythmOffset ro = getRhythmOffset(pack, offsetList, i, rhythmIndex);
 				double offsetInQuarters = getOffsetInQuarters(ro, tempMu);
+				logger.debug("Embellishment rhythmOffset: " + ro.toString() + " offsetInQuarters=" + offsetInQuarters);
 				if (tempMu.getGlobalPositionInQuarters() + offsetInQuarters >= globalPositionOfCollisionPoint)
 				{
 					numberOfEmbellishmentsUsed = i;
 					Mu mu = new Mu("emb");
+					mu.addTag(MuTag.IS_EMBELLISHMENT);
 					tempMu.addMu(mu, offsetInQuarters);
 					MuEmbellisher currentEmbellisher = getEmbellisher(pack, embellisherList, i, pitchIndex);
 					currentEmbellisher.addNotes(mu);
@@ -458,9 +465,6 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 			if (countIndexPatternIndex >= countIndexPattern.length) countIndexPatternIndex = 0;
 			previousStructureTone = structureTone;
 		}
-		
-		
-		
 		return pack;
 	}
 

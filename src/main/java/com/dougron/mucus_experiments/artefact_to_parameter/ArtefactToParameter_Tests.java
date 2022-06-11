@@ -1,25 +1,31 @@
 package main.java.com.dougron.mucus_experiments.artefact_to_parameter;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import org.junit.jupiter.api.Test;
 
 import main.java.com.dougron.mucus.algorithms.mu_chord_tone_and_embellishment.ChordToneAndEmbellishmentTagger;
+import main.java.com.dougron.mucus.algorithms.mu_generator.enums.ChordToneType;
+import main.java.com.dougron.mucus.algorithms.random_melody_generator.Parameter;
 import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.chord_list.Chord;
 import main.java.com.dougron.mucus.mu_framework.data_types.BarsAndBeats;
 import main.java.com.dougron.mucus.mu_framework.data_types.MuNote;
 import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTag;
 import main.java.com.dougron.mucus.mucus_utils.mu_liveclip_utils.MuLiveClipUtils;
+import main.java.com.dougron.mucus_experiments.Mu037_RestartTheAnalysisStuff;
 import main.java.com.dougron.mucus_experiments.generator_poopline.Poopline;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
+import main.java.com.dougron.mucus_experiments.generator_poopline.embellisher.Anticipation;
+import main.java.com.dougron.mucus_experiments.generator_poopline.embellisher.ChordTone;
+import main.java.com.dougron.mucus_experiments.generator_poopline.embellisher.StepTone;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ForceCreatePlugInsFromRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.PatternEmbellishmentRepo;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.StartNoteRepo;
 import main.java.da_utils.ableton_live.ableton_live_clip.LiveClip;
 
 
@@ -184,7 +190,125 @@ class ArtefactToParameter_Tests
 	}
 	
 	
+	@Test
+	void when_mu_with_1_structure_tone_with_1_embellishments_is_processed_then_repo_contains_1_list_of_pitch_generators_of_size_1() throws Exception
+	{
+		Mu parent = getParentMuWithMelodyGtoC();
+		Mu chordToneMu = getChordToneMu(parent);
+		Mu structureToneMu = getStructureToneMu(chordToneMu);
+		PooplinePackage pack = makePackWithRequiredRepos();
+		
+		List<EmbellishmentSchema> schemaList = ArtefactToParameter.getEmbellishmentSchemaList(structureToneMu, pack);
+		pack = ArtefactToParameter.addMuEmbellishmentGeneratorRepo(pack, schemaList);
+		PatternEmbellishmentRepo peRepo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
+		assertThat(peRepo).isNotNull();
+		assertThat(peRepo.getSelectedPitchGenerators().size()).isEqualTo(1);
+		assertThat(peRepo.getSelectedPitchGenerators().get(0).size()).isEqualTo(1);
+	}
 	
+	
+	@Test
+	void when_mu_with_1_structure_tone_with_2_embellishments_is_processed_then_repo_contains_1_list_of_pitch_generators_of_size_2() throws Exception
+	{
+		Mu parent = getParentMuWithMelodyGtoAtoC();
+		Mu chordToneMu = getChordToneMu(parent);
+		Mu structureToneMu = getStructureToneMu(chordToneMu);
+		PooplinePackage pack = makePackWithRequiredRepos();
+		
+		List<EmbellishmentSchema> schemaList = ArtefactToParameter.getEmbellishmentSchemaList(structureToneMu, pack);
+		pack = ArtefactToParameter.addMuEmbellishmentGeneratorRepo(pack, schemaList);
+		PatternEmbellishmentRepo peRepo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
+		assertThat(peRepo).isNotNull();
+		assertThat(peRepo.getSelectedPitchGenerators().size()).isEqualTo(1);
+		assertThat(peRepo.getSelectedPitchGenerators().get(0).size()).isEqualTo(2);
+	}
+	
+	
+	@Test
+	void when_mu_with_3_structure_tones_with_1_embellishments_is_processed_then_repo_contains_3_list_of_pitch_generators_of_size_1() throws Exception
+	{
+		Mu parent = getParentMuWithMelodyGtoC_3times();
+		Mu chordToneMu = getChordToneMu(parent);
+		Mu structureToneMu = getStructureToneMu(chordToneMu);
+		PooplinePackage pack = makePackWithRequiredRepos();
+		
+		List<EmbellishmentSchema> schemaList = ArtefactToParameter.getEmbellishmentSchemaList(structureToneMu, pack);
+		pack = ArtefactToParameter.addMuEmbellishmentGeneratorRepo(pack, schemaList);
+		PatternEmbellishmentRepo peRepo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
+		assertThat(peRepo).isNotNull();
+		assertThat(peRepo.getSelectedPitchGenerators().size()).isEqualTo(3);
+		assertThat(peRepo.getSelectedPitchGenerators().get(0).size()).isEqualTo(1);
+		assertThat(peRepo.getSelectedPitchGenerators().get(1).size()).isEqualTo(1);
+		assertThat(peRepo.getSelectedPitchGenerators().get(2).size()).isEqualTo(1);
+	}
+	
+	
+	@Test
+	void when_mu_with_1_structure_tone_with_1_embellishment_of_the_same_pitch_is_processed_then_repo_contains_1_list_of_anticipation_class_pitch_generator() throws Exception
+	{
+		Mu parent = getParentMuWithMelodyCtoC();
+		Mu chordToneMu = getChordToneMu(parent);
+		Mu structureToneMu = getStructureToneMu(chordToneMu);
+		PooplinePackage pack = makePackWithRequiredRepos();
+		
+		List<EmbellishmentSchema> schemaList = ArtefactToParameter.getEmbellishmentSchemaList(structureToneMu, pack);
+		pack = ArtefactToParameter.addMuEmbellishmentGeneratorRepo(pack, schemaList);
+		PatternEmbellishmentRepo peRepo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
+//		assertThat(peRepo).isNotNull();
+		assertThat(peRepo.getSelectedPitchGenerators().size()).isEqualTo(1);
+		assertThat(peRepo.getSelectedPitchGenerators().get(0).get(0).getClass()).isEqualTo(Anticipation.class);
+	}
+
+	
+	@Test
+	void when_mu_with_1_structure_tone_with_1_embellishment_of_rizing_chord_tone_jump_is_processed_then_repo_contains_1_list_of_chord_tone_class_pitch_generator() throws Exception
+	{
+		Mu parent = getParentMuWithMelodyGtoC();
+		Mu chordToneMu = getChordToneMu(parent);
+		Mu structureToneMu = getStructureToneMu(chordToneMu);
+		PooplinePackage pack = makePackWithRequiredRepos();
+		
+		List<EmbellishmentSchema> schemaList = ArtefactToParameter.getEmbellishmentSchemaList(structureToneMu, pack);
+		pack = ArtefactToParameter.addMuEmbellishmentGeneratorRepo(pack, schemaList);
+		PatternEmbellishmentRepo peRepo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
+//		assertThat(peRepo).isNotNull();
+		assertThat(peRepo.getSelectedPitchGenerators().size()).isEqualTo(1);
+		assertThat(peRepo.getSelectedPitchGenerators().get(0).get(0).getClass()).isEqualTo(ChordTone.class);
+	}
+	
+	
+	@Test
+	void when_mu_with_1_structure_tone_with_1_embellishment_of_rizing_diatonic_tone_jump_is_processed_then_repo_contains_1_list_of_chord_tone_class_pitch_generator() throws Exception
+	{
+		Mu parent = getParentMuWithMelodyBtoC();
+		Mu chordToneMu = getChordToneMu(parent);
+		Mu structureToneMu = getStructureToneMu(chordToneMu);
+		PooplinePackage pack = makePackWithRequiredRepos();
+		
+		List<EmbellishmentSchema> schemaList = ArtefactToParameter.getEmbellishmentSchemaList(structureToneMu, pack);
+		pack = ArtefactToParameter.addMuEmbellishmentGeneratorRepo(pack, schemaList);
+		PatternEmbellishmentRepo peRepo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
+//		assertThat(peRepo).isNotNull();
+		assertThat(peRepo.getSelectedPitchGenerators().size()).isEqualTo(1);
+		assertThat(peRepo.getSelectedPitchGenerators().get(0).get(0).getClass()).isEqualTo(StepTone.class);
+	}
+	
+	
+	@Test
+	void when_mu_with_1_structure_tone_with_1_embellishment_of_rizing_diatonic_tone_jump_is_processed_then_StepTone_getJumpCount_is_1_and_chordToneType_is_CLOSEST_BELOW() throws Exception
+	{
+		Mu parent = getParentMuWithMelodyBtoC();
+		Mu chordToneMu = getChordToneMu(parent);
+		Mu structureToneMu = getStructureToneMu(chordToneMu);
+		PooplinePackage pack = makePackWithRequiredRepos();
+		
+		List<EmbellishmentSchema> schemaList = ArtefactToParameter.getEmbellishmentSchemaList(structureToneMu, pack);
+		pack = ArtefactToParameter.addMuEmbellishmentGeneratorRepo(pack, schemaList);
+		PatternEmbellishmentRepo peRepo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
+		StepTone stepTone = (StepTone)peRepo.getSelectedPitchGenerators().get(0).get(0);
+		assertThat(stepTone.getChordToneType()).isEqualTo(ChordToneType.CLOSEST_BELOW);
+		assertThat(stepTone.getJumpCount()).isEqualTo(1);
+	}
 	
 	
 //	@Test
@@ -226,6 +350,154 @@ class ArtefactToParameter_Tests
 
 
 // privates -----------------------------------------------------------------------------------------------
+	
+
+
+	private PooplinePackage makePackWithRequiredRepos()
+	{
+		PooplinePackage pack = new PooplinePackage("XX", new Random());
+		StartNoteRepo snRepo = StartNoteRepo.builder()
+				.selectedValue(60)
+				.build();
+		pack.getRepo().put(Parameter.START_NOTE, snRepo);
+		return pack;
+	}
+
+
+	private Mu getStructureToneMu(Mu chordToneMu)
+	{
+		Mu structureToneMu = Mu037_RestartTheAnalysisStuff.makeReducedMu(
+				chordToneMu, 
+				Mu037_RestartTheAnalysisStuff.STRENGTH_OF_0, 
+				"reduce_0", 
+				Mu037_RestartTheAnalysisStuff.LENGTH_OF_QUARTER);
+		return structureToneMu;
+	}
+
+
+	private Mu getChordToneMu(Mu parent)
+	{
+		Mu chordToneMu = Mu037_RestartTheAnalysisStuff.makeChordToneMu(parent);
+		ChordToneAndEmbellishmentTagger.addTags(chordToneMu);
+		Mu037_RestartTheAnalysisStuff.addBeatStrengthTags(chordToneMu);
+		return chordToneMu;
+	}
+
+
+	private Mu getParentMuWithMelodyGtoC()
+	{
+		Mu parent = new Mu("parent");
+		parent.setLengthInBars(4);
+		
+		Mu st1 = new Mu("st1");
+		st1.setLengthInQuarters(1.0);
+		st1.addMuNote(60, 64);
+		
+		parent.addMu(st1, 1);
+		
+		Mu emb1 = new Mu("emb1");
+		emb1.setLengthInQuarters(1.0);
+		emb1.addMuNote(55, 48);
+		
+		st1.addMu(emb1, -2.0);
+		
+		ChordToneAndEmbellishmentTagger.addTags(parent);
+		Mu037_RestartTheAnalysisStuff.addBeatStrengthTags(parent);
+		return parent;
+	}
+	
+	
+	private Mu getParentMuWithMelodyCtoC()
+	{
+		Mu parent = new Mu("parent");
+		parent.setLengthInBars(4);
+		
+		addStructureToneAndSingleEmbellishment(parent, 1, 60, -1.0, 60);
+		
+		ChordToneAndEmbellishmentTagger.addTags(parent);
+		Mu037_RestartTheAnalysisStuff.addBeatStrengthTags(parent);
+		return parent;
+	}
+	
+	
+	
+	private Mu getParentMuWithMelodyBtoC()
+	{
+		Mu parent = new Mu("parent");
+		parent.setLengthInBars(4);
+		
+		addStructureToneAndSingleEmbellishment(parent, 1, 60, -1.0, 59);
+		
+		ChordToneAndEmbellishmentTagger.addTags(parent);
+		Mu037_RestartTheAnalysisStuff.addBeatStrengthTags(parent);
+		return parent;
+	}
+	
+	
+	private Mu getParentMuWithMelodyGtoC_3times()
+	{
+		Mu parent = new Mu("parent");
+		parent.setLengthInBars(4);
+		
+		addStructureToneAndSingleEmbellishment(parent, 1, 60, -1.0, 55);
+		addStructureToneAndSingleEmbellishment(parent, 2, 60, -1.0, 55);
+		addStructureToneAndSingleEmbellishment(parent, 3, 60, -1.0, 55);
+		
+		ChordToneAndEmbellishmentTagger.addTags(parent);
+		Mu037_RestartTheAnalysisStuff.addBeatStrengthTags(parent);
+		return parent;
+	}
+	
+	
+	private void addStructureToneAndSingleEmbellishment(
+			Mu parent, 
+			int structureTonePositionInBars, 
+			int structureTonePitch,
+			double embellishmentOffsetInQuarters,
+			int embellishmentPitch)
+	{
+		Mu st = new Mu("st");
+		st.setLengthInQuarters(1.0);
+		st.addMuNote(structureTonePitch, 64);
+		
+		parent.addMu(st, structureTonePositionInBars);
+		
+		Mu emb = new Mu("emb");
+		emb.setLengthInQuarters(1.0);
+		emb.addMuNote(embellishmentPitch, 48);
+		
+		st.addMu(emb, embellishmentOffsetInQuarters);
+		
+	}
+
+
+	private Mu getParentMuWithMelodyGtoAtoC()
+	{
+		Mu parent = new Mu("parent");
+		parent.setLengthInBars(4);
+		
+		Mu st1 = new Mu("st1");
+		st1.setLengthInQuarters(1.0);
+		st1.addMuNote(60, 64);
+		
+		parent.addMu(st1, 1);
+		
+		Mu emb1 = new Mu("emb1");
+		emb1.setLengthInQuarters(1.0);
+		emb1.addMuNote(57, 48);
+		
+		st1.addMu(emb1, -1.0);
+		
+		Mu emb2 = new Mu("emb2");
+		emb2.setLengthInQuarters(1.0);
+		emb2.addMuNote(55, 48);
+		
+		emb1.addMu(emb2, -1.0);
+		
+		ChordToneAndEmbellishmentTagger.addTags(parent);
+		Mu037_RestartTheAnalysisStuff.addBeatStrengthTags(parent);
+		return parent;
+	}
 	
 
 	private PooplinePackage getPackFromPipelineWithForceCreatePlugin(Mu mu)

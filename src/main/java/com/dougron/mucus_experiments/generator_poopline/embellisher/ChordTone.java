@@ -131,6 +131,14 @@ public class ChordTone implements MuEmbellisher {
 		return pitch;
 	}
 
+	
+	
+	public String toString()
+	{
+		return "ChordTone: ChordToneType=" + chordToneType
+			+ "jumpCount=" + jumpCount
+			+ "ChordToneNames:" + chordToneNames;
+	}
 
 
 	private Mu getPreviousMu(Mu aMu)

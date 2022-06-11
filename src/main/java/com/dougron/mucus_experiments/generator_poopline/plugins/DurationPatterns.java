@@ -57,7 +57,7 @@ public class DurationPatterns extends PlugGeneric implements PooplinePlugin {
 								Parameter.TEMPO,
 								Parameter.STRUCTURE_TONE_SYNCOPATION,
 								Parameter.STRUCTURE_TONE_GENERATOR,
-								Parameter.EMBELLISHMENT_GENERATOR
+								Parameter.EMBELLISHMENT_GENERATOR,
 						}
 				);
 		durationPatternMap = aDurationPatternMap;

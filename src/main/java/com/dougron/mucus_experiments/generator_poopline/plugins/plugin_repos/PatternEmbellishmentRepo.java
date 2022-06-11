@@ -95,8 +95,8 @@ public class PatternEmbellishmentRepo extends RepoSuperclass implements RepoInte
 				.selectedCountIndexPattern(selectedCountIndexPattern == null ? null : getCopy(selectedCountIndexPattern))
 				.countIndexPatternOptions(countIndexPatternOptions == null ? null : getCopy(countIndexPatternOptions))
 				
-				.countRndValues(getIntegerDoubleMapCopy(countRndValues))
-				.selectedCounts(getIntegerIntegerMapCopy(selectedCounts))
+				.countRndValues(countRndValues == null ? null : getIntegerDoubleMapCopy(countRndValues))
+				.selectedCounts(selectedCounts == null ? null : getIntegerIntegerMapCopy(selectedCounts))
 				.countOptions(countOptions == null ? null : getCopy(countOptions))
 				
 				.pitchIndexPatternRndValue(pitchIndexPatternRndValue)
