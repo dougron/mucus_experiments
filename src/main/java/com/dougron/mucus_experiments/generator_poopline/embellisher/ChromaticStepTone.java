@@ -1,5 +1,6 @@
 package main.java.com.dougron.mucus_experiments.generator_poopline.embellisher;
 
+import lombok.Getter;
 import main.java.com.dougron.mucus.algorithms.mu_generator.enums.ChordToneType;
 import main.java.com.dougron.mucus.mu_framework.Mu;
 import main.java.com.dougron.mucus.mu_framework.chord_list.Chord;
@@ -7,23 +8,31 @@ import main.java.com.dougron.mucus.mu_framework.data_types.BarsAndBeats;
 import main.java.com.dougron.mucus.mu_framework.data_types.MuNote;
 import main.java.da_utils.static_chord_scale_dictionary.ChordToneName;
 
-public class ChordTone implements MuEmbellisher {
+public class ChromaticStepTone implements MuEmbellisher
+{
 	
 	
 	
-	private ChordToneType chordToneType;
-	private int jumpCount;
+	@Getter private ChordToneType chordToneType;
+	@Getter private int stepCount;
 	private ChordToneName[] chordToneNames;
+	@Getter private int semitoneOffset;
 
-	public ChordTone(
+	public ChromaticStepTone
+	(
 			ChordToneType aChordToneType, 
-			int aJumpCount
+			int aStepCount,
+			int aSemitoneOffset
 			) 
 	{
 		chordToneType = aChordToneType;
-		jumpCount = aJumpCount;
+		// stepCount and semitoneOffset are always postive or zero. chordToneType indicates the vector
+		stepCount = aStepCount;
+		semitoneOffset = aSemitoneOffset;
 	}
 
+	
+	
 	@Override
 	public void addNotes(Mu embellishment) {
 		Chord chord = getPrevailingChord(embellishment);
@@ -34,30 +43,31 @@ public class ChordTone implements MuEmbellisher {
 			int pitch = 0;
 			switch (chordToneType)
 			{
-			case CLOSEST:
-				if (chordToneNames == null)
-				{
-					pitch = chord.getClosestChordTone(parentPitch, 0);
-				} else
-				{
-					pitch = chord.getClosestChordTone(parentPitch, 0,
-							chordToneNames);
-				}
-
-				break;
+//			case CLOSEST:
+//				if (chordToneNames == null)
+//				{
+//					pitch = chord.getClosestChordTone(parentPitch, 0);
+//				} else
+//				{
+//					pitch = chord.getClosestChordTone(parentPitch, 0,
+//							chordToneNames);
+//				}
+//
+//				break;
 			case CLOSEST_ABOVE:
-				pitch = getJumpedChordTone(chord, parentPitch, 1);
+				pitch = getJumpedStepTone(chord, parentPitch, 1);
 				break;
-			case CLOSEST_ABOVE_OR_EQUAL:
-				pitch = getClosestOrEqual(chord, parentPitch, 1);
-				break;
+//			case CLOSEST_ABOVE_OR_EQUAL:
+//				pitch = getClosestOrEqual(chord, parentPitch, 1);
+//				break;
 			case CLOSEST_BELOW:
-				pitch = getJumpedChordTone(chord, parentPitch, -1);
+				pitch = getJumpedStepTone(chord, parentPitch, -1);
 				break;
-			case CLOSEST_BELOW_OR_EQUAL:
-				pitch = getClosestOrEqual(chord, parentPitch, -1);
-				break;
+//			case CLOSEST_BELOW_OR_EQUAL:
+//				pitch = getClosestOrEqual(chord, parentPitch, -1);
+//				break;
 			default:
+				pitch = parentPitch;
 				break;
 			}
 			embellishment.addMuNote(
@@ -109,36 +119,39 @@ public class ChordTone implements MuEmbellisher {
 				pitch = chord.getClosestChordTone(parentPitch, contour, chordToneNames);
 			}
 		}
-		
+		pitch += (semitoneOffset * contour);
 		return pitch;
 	}
 
 
 	
-	public int getJumpedChordTone (Chord chord, int parentPitch, int contour)	// contour currently is 1 or -1 for search up or down
+	public int getJumpedStepTone (Chord chord, int parentPitch, int contour)	// contour currently is 1 or -1 for search up or down
 	{
 		int tempPitch = parentPitch;
 		int pitch = 0;
 
-		if (chordToneNames == null)
-		{
-			pitch = chord.getClosestChordTone(tempPitch, contour * jumpCount);
-		}
-		else
-		{
-			pitch = chord.getClosestChordTone(tempPitch, contour * jumpCount, chordToneNames);
-		}
+		pitch = chord.getClosestDiatonicNote(tempPitch, contour * stepCount);
+//		if (chordToneNames == null)
+//		{
+//		}
+//		else
+//		{
+//			pitch = chord.getClosestDiatonicNote(tempPitch, contour * jumpCount, chordToneNames);
+//		}
+		pitch += (semitoneOffset * contour);
 		return pitch;
 	}
-
+	
 	
 	
 	public String toString()
 	{
-		return "ChordTone: ChordToneType=" + chordToneType
-			+ " jumpCount=" + jumpCount
+		return "ChromaticStepTone: ChordToneType=" + chordToneType
+			+ " stepCount=" + stepCount
+			+ " semitoneOffset=" + semitoneOffset
 			+ " ChordToneNames:" + chordToneNames;
 	}
+
 
 
 	private Mu getPreviousMu(Mu aMu)
@@ -152,7 +165,5 @@ public class ChordTone implements MuEmbellisher {
 		}
 		return null;
 	}
-
-
 
 }

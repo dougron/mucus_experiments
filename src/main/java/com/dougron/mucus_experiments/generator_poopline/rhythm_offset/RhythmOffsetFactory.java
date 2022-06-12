@@ -531,7 +531,7 @@ public class RhythmOffsetFactory
 		}
 		for (Double d: ts.getSuperTactusAsQuartersPositions())
 		{
-			if (d > low && d <= hi) count += increment;
+			if (d >= low && d < hi) count += increment;
 		}
 		return count;
 	}

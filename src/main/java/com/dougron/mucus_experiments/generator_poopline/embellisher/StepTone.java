@@ -13,17 +13,17 @@ public class StepTone implements MuEmbellisher {
 	
 	
 	@Getter private ChordToneType chordToneType;
-	@Getter private int jumpCount;
+	@Getter private int stepCount;
 	private ChordToneName[] chordToneNames;
 
 	public StepTone
 	(
 			ChordToneType aChordToneType, 
-			int aJumpCount
+			int aStepCount
 			) 
 	{
 		chordToneType = aChordToneType;
-		jumpCount = aJumpCount;
+		stepCount = aStepCount;
 	}
 
 	
@@ -50,13 +50,13 @@ public class StepTone implements MuEmbellisher {
 //
 //				break;
 			case CLOSEST_ABOVE:
-				pitch = getJumpedChordTone(chord, parentPitch, 1);
+				pitch = getJumpedStepTone(chord, parentPitch, 1);
 				break;
 //			case CLOSEST_ABOVE_OR_EQUAL:
 //				pitch = getClosestOrEqual(chord, parentPitch, 1);
 //				break;
 			case CLOSEST_BELOW:
-				pitch = getJumpedChordTone(chord, parentPitch, -1);
+				pitch = getJumpedStepTone(chord, parentPitch, -1);
 				break;
 //			case CLOSEST_BELOW_OR_EQUAL:
 //				pitch = getClosestOrEqual(chord, parentPitch, -1);
@@ -120,12 +120,12 @@ public class StepTone implements MuEmbellisher {
 
 
 	
-	public int getJumpedChordTone (Chord chord, int parentPitch, int contour)	// contour currently is 1 or -1 for search up or down
+	public int getJumpedStepTone (Chord chord, int parentPitch, int contour)	// contour currently is 1 or -1 for search up or down
 	{
 		int tempPitch = parentPitch;
 		int pitch = 0;
 
-		pitch = chord.getClosestDiatonicNote(tempPitch, contour * jumpCount);
+		pitch = chord.getClosestDiatonicNote(tempPitch, contour * stepCount);
 //		if (chordToneNames == null)
 //		{
 //		}
@@ -141,8 +141,8 @@ public class StepTone implements MuEmbellisher {
 	public String toString()
 	{
 		return "StepTone: ChordToneType=" + chordToneType
-			+ "jumpCount=" + jumpCount
-			+ "ChordToneNames:" + chordToneNames;
+			+ " stepCount=" + stepCount
+			+ " ChordToneNames:" + chordToneNames;
 	}
 
 

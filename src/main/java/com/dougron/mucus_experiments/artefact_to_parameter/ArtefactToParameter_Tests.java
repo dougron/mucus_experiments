@@ -307,7 +307,7 @@ class ArtefactToParameter_Tests
 		PatternEmbellishmentRepo peRepo = (PatternEmbellishmentRepo)pack.getRepo().get(Parameter.EMBELLISHMENT_GENERATOR);
 		StepTone stepTone = (StepTone)peRepo.getSelectedPitchGenerators().get(0).get(0);
 		assertThat(stepTone.getChordToneType()).isEqualTo(ChordToneType.CLOSEST_BELOW);
-		assertThat(stepTone.getJumpCount()).isEqualTo(1);
+		assertThat(stepTone.getStepCount()).isEqualTo(1);
 	}
 	
 	

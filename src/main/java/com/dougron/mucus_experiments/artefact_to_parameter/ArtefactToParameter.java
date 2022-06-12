@@ -35,7 +35,9 @@ import main.java.com.dougron.mucus.mu_framework.mu_tags.MuTagNamedParameter;
 import main.java.com.dougron.mucus_experiments.generator_poopline.PooplinePackage;
 import main.java.com.dougron.mucus_experiments.generator_poopline.embellisher.Anticipation;
 import main.java.com.dougron.mucus_experiments.generator_poopline.embellisher.ChordTone;
+import main.java.com.dougron.mucus_experiments.generator_poopline.embellisher.ChromaticStepTone;
 import main.java.com.dougron.mucus_experiments.generator_poopline.embellisher.MuEmbellisher;
+import main.java.com.dougron.mucus_experiments.generator_poopline.embellisher.SemiTone;
 import main.java.com.dougron.mucus_experiments.generator_poopline.embellisher.StepTone;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.ChordProgressionFloatBarFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.DurationFixedInQuarters;
@@ -287,24 +289,35 @@ public class ArtefactToParameter
 		int[] backwardSemitones = EmbellishmentSchema.getBackwardSemitoneSpacing(es);
 		if (backwardSemitones[index] == 0) return Anticipation.getInstance();
 		Integer[] backwardChordTones = EmbellishmentSchema.getBackwardChordToneSpacing(es);
+		ChordToneType chordToneType;
 		if (backwardChordTones[index] != null)
 		{
-			ChordToneType chordToneType;
 			if (backwardChordTones[index] > 0) chordToneType = ChordToneType.CLOSEST_ABOVE; else chordToneType = ChordToneType.CLOSEST_BELOW;
 			
 			return new ChordTone(chordToneType, Math.abs(backwardChordTones[index]));
 		}
 		IntAndInt[] backwardStepTones = EmbellishmentSchema.getBackwardDiatonicSpacing(es);
-		if (backwardStepTones[index] != null)
+		if (backwardStepTones[index].i1 != 0)
 		{
-			ChordToneType chordToneType;
 			if (backwardStepTones[index].i1 > 0) chordToneType = ChordToneType.CLOSEST_ABOVE; else chordToneType = ChordToneType.CLOSEST_BELOW;
-			
-			// this does not yet accomodate chromatic step tones
-			return new StepTone(chordToneType, Math.abs(backwardStepTones[index].i1));
+			return new ChromaticStepTone(chordToneType, Math.abs(backwardStepTones[index].i1), Math.abs(backwardStepTones[index].i2));
 		}
-		return Anticipation.getInstance();  	// this needs to be the semitone embellisher.....
 		
+//		if (backwardStepTones[index] != null)
+//		{
+//			if (backwardStepTones[index].i2 == 0) {
+//				if (backwardStepTones[index].i1 > 0) chordToneType = ChordToneType.CLOSEST_ABOVE; else chordToneType = ChordToneType.CLOSEST_BELOW;
+//				return new StepTone(chordToneType, Math.abs(backwardStepTones[index].i1));
+//			}
+//			else
+//			{
+//				if (backwardStepTones[index].i1 == 0)
+//				{
+//					if (backwardStepTones[index].i2 > 0) chordToneType = ChordToneType.CLOSEST_ABOVE; else chordToneType = ChordToneType.CLOSEST_BELOW;
+//				}
+//			}
+//		}
+		return new SemiTone(backwardSemitones[index]);
 	}
 
 

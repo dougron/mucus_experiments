@@ -83,15 +83,16 @@ public class Mu037_RestartTheAnalysisStuff
 //						new IntAndString(-3, "AccentedEscapeToneTest"),
 //						new IntAndString(-3, "AnticipationTest"),
 //						new IntAndString(-2, "Anthropology"),
-//						new IntAndString(-2, "Anthropollywoggle"),	// 'Anthropology' with extended chords
+						new IntAndString(-2, "Anthropollywoggle"),	// 'Anthropology' with extended chords
+//						new IntAndString(-2, "AnthropologyLine1"),	
 //						new IntAndString(-3, "BlueBossa"),
-//						new IntAndString(0, "BlackOrpheus"),
+						new IntAndString(0, "BlackOrpheus"),
 //						new IntAndString(0, "Ceora"),
-						new IntAndString(0, "BlackOrpheus_phrase1"),
+//						new IntAndString(0, "BlackOrpheus_phrase1"),
 //						new IntAndString(-2, "Stella"),
 //						new IntAndString(-2, "AprilInParis"),
 //						new IntAndString(-2, "LaFiesta"),
-//						new IntAndString(-1, "Confirmation"),
+						new IntAndString(-1, "Confirmation"),
 //						new IntAndString(-1, "Confirmation_triplet"),
 //						new IntAndString(0, "SyncError"),
 //						new IntAndString(0, "PitchError"),
@@ -175,12 +176,12 @@ public class Mu037_RestartTheAnalysisStuff
 			logger.debug("start regeneration");
 			
 			// regenerate mu 
-			PooplinePackage pack = ArtefactToParameter.getPackFromMu(level1Mu, originalMu);
+			PooplinePackage pack = ArtefactToParameter.getPackFromMu(level2Mu, originalMu);
 			Poopline pipeline = new Poopline();
 			pipeline.setPrimaryPlugin(new ForceCreatePlugInsFromRepo(pipeline));
 			pack = pipeline.process(pack);
 			pack.getMu().addTag(MuTag.PART_5);
-			pack.getMu().setName("reduce_1\nreproduced");
+			pack.getMu().setName("reduce_2\nreproduced");
 //			pack.getMu().addTag(MuTag.PRINT_CHORDS);
 //			pack.getMu().setToGetLengthFromChildren();
 			Mu packMu = pack.getMu();
