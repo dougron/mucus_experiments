@@ -103,7 +103,7 @@ public class Mu043_GeneratorPooplineExperiment
 		Mu totalMu = new Mu("parent");
 		boolean first = true;
 		Mu previousMu = null;
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 1; i++)
 		{
 			PooplinePackage pack = new PooplinePackage("pack" + i, new Random());
 			pack = pipeline.process(pack);

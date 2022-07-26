@@ -60,24 +60,7 @@ public class DurationPattern extends PlugGeneric implements PooplinePlugin {
 		durationModelPattern = aDurationModelPattern;
 		tagToActUpon = aTagToActUpon;
 	}
-	
-	
-//	public DurationPattern(DurationType[] aDurationPattern, MuTag aTagToActUpon)
-//	{
-//		super(
-//				Parameter.DURATION,
-//				new Parameter[] 
-//						{
-//								Parameter.TEMPO,
-//								Parameter.STRUCTURE_TONE_SYNCOPATION,
-//								Parameter.STRUCTURE_TONE_GENERATOR,
-//								Parameter.EMBELLISHMENT_GENERATOR
-//						}
-//				);
-//		durationPattern = aDurationPattern;
-//		tagToActUpon = aTagToActUpon;
-//	}
-	
+
 	
 	
 	@Override

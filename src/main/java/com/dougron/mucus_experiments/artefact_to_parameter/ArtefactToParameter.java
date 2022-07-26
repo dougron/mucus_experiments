@@ -57,6 +57,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.Tessit
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.TimeSignatureSingleRandom;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.VectorChordTonesFixed;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.XmlKeyRandom;
+import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.duration_model.DurationInFloatBarsToNearestStrength;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.duration_model.DurationInQuarters;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.duration_model.DurationLegato;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.duration_model.DurationModel;
@@ -80,6 +81,7 @@ import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.VectorChordTonesRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.plugins.plugin_repos.XmlKeyRepo;
 import main.java.com.dougron.mucus_experiments.generator_poopline.rhythm_offset.RhythmOffset;
+import main.java.com.dougron.mucus_experiments.mu_length_in_float_bars.MuLengthInFloatBars;
 import main.java.da_utils.combo_variables.IntAndInt;
 import main.java.da_utils.time_signature_utilities.time_signature.TimeSignature;
 
@@ -665,7 +667,10 @@ public class ArtefactToParameter
 		else
 		{
 			Mu endNote = muList.get(muList.size() - 1);
-			return new DurationInQuarters(endNote.getLengthInQuarters());
+//			return new DurationInQuarters(endNote.getLengthInQuarters());
+			return new DurationInFloatBarsToNearestStrength(
+					MuLengthInFloatBars.getLengthInFloatBars(endNote), 
+					endNote.getBeatStrengthOfEnd());
 		}
 	}
 

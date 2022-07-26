@@ -266,7 +266,7 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 				.countIndexPatternRndValue(countIndexPatternRndValue = pack.getRnd().nextDouble())
 				.selectedCountIndexPattern(countIndices = countIndexPatternOptions[(int)(countIndexPatternOptions.length * countIndexPatternRndValue)])
 				.countIndexPatternOptions(countIndexPatternOptions)
-				.countRndValues(countRndValues = getSingleRndValueMap(collisionIndices, pack.getRnd()))
+				.countRndValues(countRndValues = getSingleRndValueMap(countIndices, pack.getRnd()))
 				.selectedCounts(getSelectedCounts(countRndValues, countOptions))
 				.countOptions(countOptions)
 				.className(getClass().getName())
@@ -434,6 +434,10 @@ public class PatternEmbellisherRandom  extends PlugGeneric implements PooplinePl
 			Integer count = repo.getSelectedCounts().get(countIndex);
 			int numberOfEmbellishmentsUsed = 0;
 			logger.debug("Structure tone position=" + structureTone.getGlobalPositionInQuarters());
+			if (count == null) {
+				logger.debug("count is null");
+			}
+			
 			for (int i = 0; i < count; i++)
 			{
 				RhythmOffset ro = getRhythmOffset(pack, offsetList, i, rhythmIndex);

@@ -45,5 +45,16 @@ class DurationModel_Tests
 		dm.setDuration(mu1);
 		assertThat(mu1.getLengthInQuarters()).isEqualTo(4.0);
 	}
+	
+	
+	@Test
+	void when_duration_is_1_25_float_bars_to_strength_1_then_final_duration_is_1_bar_2_beats()
+	{
+		DurationModel dm = new DurationInFloatBarsToNearestStrength(1.25, 1);
+		Mu mu = new Mu("mu");
+		dm.setDuration(mu);
+		assertThat(mu.getLengthInBarsAndBeats().getBarPosition()).isEqualTo(1);
+		assertThat(mu.getLengthInBarsAndBeats().getOffsetInQuarters()).isEqualTo(2.0);
+	}
 
 }
